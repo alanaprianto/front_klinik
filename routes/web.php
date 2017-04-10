@@ -18,3 +18,9 @@ Route::get('/registasi', function() {
 Route::get('/dashboard', function() {
     return View::make('dashboard.dashboard');
 });
+Route::get('/inventori', function() {
+    return View::make('inventori.inventori');
+});
+Route::get('/farmasi', function() {
+    return View::make('farmasi.farmasi');
+});

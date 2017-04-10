@@ -53,7 +53,7 @@
                     <nav class="sidebar-nav">
                         <ul class="metismenu" id="module-left-menu">
                             <li class="item">
-                                <a href="#">
+                                <a href="{{url('farmasi')}}">
                                     <span> <img src="assets/images/logo/farmasi-101.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Farmasi</span>
                                 </a>
@@ -111,7 +111,7 @@
                                 </a>
                             </li>
                             <li class="item">
-                                <a href="#">
+                                <a href="{{url('inventori')}}">
                                     <span> <img src="assets/images/logo/inventori.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Inventori</span>
                                 </a>
