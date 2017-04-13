@@ -119,7 +119,7 @@
 
                             <li class="sidebar-nav-heading">Point of Sales</li>
                             <li>
-                                <a href="#">
+                                <a href="{{url('pos_farmasi')}}">
                                     <span><img src="assets/images/logo/pos-framasi.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">POS Farmasi</span>
                                 </a>

@@ -24,3 +24,6 @@ Route::get('/inventori', function() {
 Route::get('/farmasi', function() {
     return View::make('farmasi.farmasi');
 });
+Route::get('/pos_farmasi', function() {
+    return View::make('pos_farmasi.pos_farmasi');
+});
