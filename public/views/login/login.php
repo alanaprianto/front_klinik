@@ -18,27 +18,36 @@
   <body>
   <div class="ui middle aligned center aligned grid">
   <div class="column">
-    <form class="ui large form">
       <div class="ui stacked segment">
       <img src="assets/images/logo/logo.png" style="margin-top: 0.4px" class="image">
-     <h2 class="ui teal header">
-      <div class="content">
-        LOGIN
-      </div>
-    </h2>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="user" placeholder="User Name">
+        <h2 class="ui teal header">
+          <div class="content">
+            LOGIN
           </div>
+        </h2>
+        <div><form class="ui large form">
+                  <div class="field">
+                  <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="user" placeholder="User Name" ng-model="username">
+                    <!-- <span style="color:red" ng-show="myForm.username.$dirty && myForm.username.$invalid">
+                    <span ng-show="myForm.username.$error.required">Username is required.</span>
+                    </span> -->
+                  </div>
+              </div>
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password" name="password" placeholder="Password" ng-model="password">
+                  <!-- <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                  <span ng-show="myForm.password.$error.required">Password is required.</span>
+                  </span> -->
+                </div>
+              </div>
+
+                <div class="ui fluid large teal submit button" onclick="">Login</div>
+            </form>
         </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Password">
-          </div>
-        </div>
-        <div class="ui fluid large teal submit button">Login</div>
         <div class="field">
           <hr>
           <p>Tidak memiliki akun? <p>Klik tombol berikut untuk mengajukan pendaftaran.</p>
@@ -73,14 +82,31 @@
           <div class="actions">
             <div class="ui red basic cancel inverted button">
               <i class="remove icon"></i>
-              </div>
+            </div>
 
         </div>
 
 </div>
  <!-- Modal -->
 
-   <script src="views/login/login.js"></script>
+    <script src="views/login/login.js"></script>
     <script src="assets/plugins/semantic/semantic.min.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <script>
+    var app = angular.module('myApp', []);
+    app.controller('formCtrl', function($scope, $http) {
+        $scope.username: "";
+        $scope.password: "";
+        },
+        $http({
+            method: "post",
+            url: "http://139.59.247.107/oauth/token"
+        }).then(function(response) {
+            $scope.content = response.data;
+        }, function(response) {
+            $scope.content = "Something went wrong";
+        });
+    });
+    </script>
   </body>
 </html>

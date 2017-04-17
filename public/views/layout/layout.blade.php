@@ -8,8 +8,8 @@
     @yield('title')
 
     <!-- CSS -->
-    <link rel="stylesheet" href="views/inventori/inventori.css">
-      <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="views/layout/layout.css">
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,11 +21,11 @@
       @yield('css')
   </head>
   <body>
-	<div class="loader" id="loader">
+	<!-- <div class="loader" id="loader">
 	  <div class="ui active dimmer">
 		<div class="ui loader"></div>
 	  </div>
-	</div>
+	</div> -->
 
     <div class="module-left-aside">
       @yield('module-title')
@@ -85,7 +85,7 @@
 
                             <li class="sidebar-nav-heading">Lain-lain</li>
                             <li>
-                                <a href="#">
+                                <a href="login">
                                     <span class="sidebar-nav-item-icon fa fa-sign-out fa-fw"></span>
                                     <span class="sidebar-nav-item">Keluar</span>
                                 </a>
@@ -96,24 +96,8 @@
             </div>
         </div>
     </div>
-    <div class="module-content-container">
-        <div class="gray-bg sidebar-content">
-                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                    <div class="navbar-header">
-                        <ul>
-                            <img src="assets/images/logo/logo-md.png" style="height: 15px">
-                            <h3>Point of Sales: Farmasi</h3>
-                        </ul>
-                    </div>
-                    <ul class="nav navbar-top-links navbar-right">
-                        <li>
-                            <a href="{{url('login')}}" style="padding: 15px;">
-                                <i class="fa fa-sign-out"></i> Log out
-                            </a>
-                        </li>
-                    </ul>
-
-                </nav>
+      @yield('module-content-container')
+    
             @yield('content')
 
         </div>
@@ -131,7 +115,7 @@
     <script src="{{asset ('/assets/plugins/datatables/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset ('/assets/plugins/datatables/js/responsive.semanticui.min.js')}}"></script>
 
-    <script src="views/inventori/inventori.js"></script>
+    <script src="views/layout/layout.js"></script>
     @yield('scripts')
   </body>
 </html>

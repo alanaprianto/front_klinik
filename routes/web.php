@@ -27,3 +27,18 @@ Route::get('/farmasi', function() {
 Route::get('/pos_farmasi', function() {
     return View::make('pos_farmasi.pos_farmasi');
 });
+Route::get('/keuangan', function() {
+    return View::make('keuangan.keuangan');
+});
+Route::get('/kepegawaian', function() {
+    return View::make('kepegawaian.kepegawaian');
+});
+Route::get('/rawatinap', function() {
+    return View::make('rawatinap.rawatinap');
+});
+Route::get('/rekammedis', function() {
+    return View::make('rekammedis.rekammedis');
+});
+Route::get('/masterdata', function() {
+    return View::make('masterdata.masterdata');
+});

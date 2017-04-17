@@ -10,6 +10,25 @@
     <span>POS Farmasi</span>
 </div>
 @endsection
+@section('module-content-container')
+<div class="module-content-container">
+    <div class="gray-bg sidebar-content">
+            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <ul>
+                        <img src="assets/images/logo/logo-md.png" style="height: 15px">
+                        <h3>Point of Sales: Farmasi</h3>
+                    </ul>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="{{url('login')}}" style="padding: 15px;">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+@endsection
 @section('content')
     <div class="col-md-12" style="padding-top: 10px; padding-bottom: 10px; border-bottom: 2px solid #B3B3B3">
         <div class="col-md-6 no-padding">
@@ -29,7 +48,14 @@
             <p>
                 <small>Cari barang:</small>
             </p>
-            <input type="text" class="form-control" value="" placeholder="search ...">
+            <form>
+             <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search">
+               <div class="input-group-btn">
+                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+               </div>
+             </div>
+           </form>
             <div class="col-md-12" style="padding-top: 10px">
                 <div class="col-md-4">
                     <input type="text" class="form-control" value="" placeholder="Harga Satuan">
@@ -48,10 +74,76 @@
                         <button type="button" class="btn btn-info" style="padding-top: 10px"> OK</button>
                     </div>
                     <div class="pull-right" style="padding: 10px">
-                        <button type="button" class="btn btn-info"> Racikan</button>
+                        <button type="button" id="btn-modalpos" class="btn btn-primary"> Racikan</button>
+                        <div class="ui small modal">
+                          <div class="actions">
+                            <div class="ui red basic cancel inverted button">
+                              <i class="remove icon"></i>
+                            </div>
+                          </div>
+                          <div class="header">
+                            Obat Racikan
+                          </div>
+                          <div class="content">
+                            <p><small>Cari Bahan Racikan</small></p>
+                            <form>
+                               <div class="input-group">
+                                 <input type="text" class="form-control" placeholder="Search">
+                                 <div class="input-group-btn">
+                                   <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                 </div>
+                               </div>
+                             </form>
+                            <div class="col-md-12" style="background-color:#5DD973; color: #ffffff; margin-top:10px; margin-bottom: 10px ">
+                                <p>Jasa Racik </p>
+                                <div class="col-lg-1">
+                                    <h1>RP </h1>
+                                </div>
+                                <div class="pull-right">
+                                    <h1> 200.000,-</h1>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="background-color:#72CCCA; color: #ffffff; margin-top:10px; margin-bottom: 10px ">
+                                <p>Harga (1) Racik </p>
+                                <div class="col-lg-1">
+                                    <h1>RP </h1>
+                                </div>
+                                <div class="pull-right">
+                                    <h1> 0,-</h1>
+                                </div>
+                            </div>
+                            <div>
+                              <button class="btn btn-info"> tambahkan ketagihan</button>
+                            </div>
+                            <div>
+                              <p>Daftar Bahan Racikan </p>
+                            </div>
+                            <div>
+                              <div class="table-responsive">
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th>Nama Bahan </th>
+                                    <th>Harga</th>
+                                    <th>Satuan</th>
+                                    <th>QTY</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Analgesik</td>
+                                    <td>2500</td>
+                                    <td>tablet</td>
+                                    <td><input type="text" class="form-control"></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                 </div>
-
                 <div class="row" style="padding-top: 10px">
                     <p>
                         <small>Nominal Yang dibayar</small>
@@ -60,10 +152,9 @@
                         <input type="text" class="form-control" value="" placeholder="">
                     </div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-warning"> Cetak</button>
+                        <button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-print"></span> Cetak</button>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="col-md-6" style="background-color:#FE8A71; color: #ffffff;  margin-bottom: 10px ">
@@ -98,7 +189,17 @@
         <p>
             Customer Receipt
         </p>
-        <input type="text" class="form-control" value="" placeholder="search ...">
+        <form>
+           <div class="input-group">
+             <input type="text" class="form-control" placeholder="Search">
+             <div class="input-group-btn">
+               <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+             </div>
+           </div>
+         </form>
 
     </div>
+@endsection
+@section('scripts')
+<script src="views/pos_farmasi/pos_farmasi.js"></script>
 @endsection

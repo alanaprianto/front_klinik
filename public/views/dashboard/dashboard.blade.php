@@ -59,53 +59,53 @@
                                 </a>
                             </li>
                             <li class="item">
-                                <a href="#">
+                                <a href="{{url('manajemenuser')}}">
                                     <span> <img src="assets/images/logo/manajemen-user.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Manajemen User </span>
                                 </a>
                             </li>
                             <li class="item">
-                                <a href="#">
+                                <a href="{{url('pendaftaranpasien')}}">
                                     <span> <img src="assets/images/logo/pendaftaran-pasien.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Pendaftaran Pasien </span>
                                 </a>
                             </li>
                             <li class="item">
-                                <a href="#">
+                                <a href="{{url('rawatjalan')}}">
                                     <span> <img src="assets/images/logo/rawat-jalan.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Rawat Jalan </span>
                                 </a>
                             </li>
                             <li class="item">
-                                <a href="#">
+                                <a href="{{url('rawatinap')}}">
                                     <span> <img src="assets/images/logo/rawat-inap.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Rawat Inap </span>
                                 </a>
                             </li>
                             <li class="item">
-                                <a href="#">
+                                <a href="{{url('rekammedis')}}">
                                     <span> <img src="assets/images/logo/rekam-medik.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Rekam Medis </span>
                                 </a>
                             </li>  <li class="item">
-                                <a href="#">
+                                <a href="{{url('kepegawaian')}}">
                                     <span> <img src="assets/images/logo/kepegawaian.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Kepegawaian </span>
                                 </a>
                             </li>  <li class="item">
-                                <a href="#">
+                                <a href="{{url('leb')}}">
                                     <span> <img src="assets/images/logo/lab.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Laboratorium </span>
                                 </a>
                             </li>
                             <li class="item">
-                                <a href="#">
+                                <a href="{{url('masterdata')}}">
                                     <span> <img src="assets/images/logo/master-data.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Master Data</span>
                                 </a>
                             </li>
                             <li class="item">
-                                <a href="#">
+                                <a href="{{url('keuangan')}}">
                                     <span> <img src="assets/images/logo/keuangan.png" style="width: 25px"></span>
                                     <span class="sidebar-nav-item">Keuangan </span>
                                 </a>
@@ -136,7 +136,7 @@
           <div class="center">
           <img alt="image" class="img-circle" src="assets/images/logo/picture.png" style="height: 250px">
               <h1> Klinik Alhamdulilah </h1><p>jl bandung </p>
-              <button type="button" href=""  class="btn btn-default">Ubah Profile</button>
+              <button type="button" href=""  class="btn btn-info">Ubah Profile</button>
           </div>
       </div>
   </div>
