@@ -1,18 +1,3 @@
-/* MAIN */
-@import url("../assets/plugins/metismenu/metisMenu.min.css");
-@import url("../assets/plugins/bootstrap/css/bootstrap.min.css");
-@import url("../assets/plugins/semantic/semantic.min.css");
-
-/* FONT */
-@import url("../assets/plugins/fontawesome/css/font-awesome.min.css");
-@import url("../assets/plugins/themify/themify-icons.css");
-@import url("../assets/plugins/ionicons/css/ionicons.min.css");
-
-/* TABLE */
-/*@import url("../plugins/datatables/css/jquery.dataTables.min.css");*/
-@import url("../assets/plugins/datatables/css/dataTables.semanticui.min.css");
-@import url("../assets/plugins/datatables/css/responsive.semanticui.min.css");
-
 /* CSS MODULE */
 a:focus, a:active{
     text-decoration: none;

@@ -1,33 +1,26 @@
 @extends('layout.layout')
 @section('title')
-<title>POS Farmasi .: Teknohealth :. </title>
+<title>Kasir .: Teknohealth :. </title>
 <link rel="icon" href="assets/images/logo/logo-sm.png">
 @endsection
 @section('module-title')
 <div class="module-left-title">
     <div class="module-left-bars"><i class="ti-menu"></i></div>
     <img src="assets/images/logo/pos-framasi.png">
-    <span>POS Farmasi</span>
+    <span>Kasir</span>
 </div>
 @endsection
+@section('nav')
+    @include('layout.navKasir')
+@endsection
 @section('module-content-container')
-<div class="module-content-container">
-    <div class="gray-bg sidebar-content">
-            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <ul>
-                        <img src="assets/images/logo/logo-md.png" style="height: 15px">
-                        <h3>Point of Sales: Farmasi</h3>
-                    </ul>
-                </div>
-                <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <a href="{{url('login')}}" style="padding: 15px;">
-                            <i class="fa fa-sign-out"></i> Log out
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+<nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <ul>
+                <h3>Kasir </h3>
+            </ul>
+        </div>
+    </nav>
 @endsection
 @section('content')
     <div class="col-md-12" style="padding-top: 10px; padding-bottom: 10px; border-bottom: 2px solid #B3B3B3">
@@ -71,10 +64,10 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="pull-right">
-                        <button type="button" class="btn btn-info" style="padding-top: 10px"> OK</button>
+                        <button type="button" class="btn btn-info " style="padding-top: 10px"> OK</button>
                     </div>
                     <div class="pull-right" style="padding: 10px">
-                        <button type="button" id="btn-modalpos" class="btn btn-primary"> Racikan</button>
+                        <button type="button" id="btn-modalpos  col-md-4" class="btn btn-primary"> Racikan</button>
                         <div class="ui small modal">
                           <div class="actions">
                             <div class="ui red basic cancel inverted button">

@@ -10,9 +10,10 @@
     <span>KEPEGAWAIAN</span>
 </div>
 @endsection
+@section('nav')
+@include('layout.navKepegawaian')
+@endsection
 @section('module-content-container')
-<div class="module-content-container">
-    <div class="gray-bg sidebar-content">
             <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <ul>

@@ -1,12 +1,22 @@
-  body {
-      background-color: #4D545E;
-    }
-    body > .grid {
-      height: 100%;
-    }
-    .image {
-      margin-top: -100px;
-    }
-    .column {
-      max-width: 450px;
-    }
+body {
+    background-color: #4D545E;
+}
+
+body > .grid {
+    height: 100%;
+}
+
+.image {
+    margin-top: -100px;
+}
+
+.column {
+    max-width: 450px;
+}
+
+.btn-login-close {
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    padding: 19px !important;
+}
