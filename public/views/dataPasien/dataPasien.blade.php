@@ -27,6 +27,9 @@
                             <td>[[visitor.patient.full_name]]</td>
                             <td>[[visitor.patient.gender]]</td>
                             <td>[[visitor.patient.age]]</td>
+                            <td>[[visitor.patient.age]]</td>
+                            <td>[[visitor.patient.age]]</td>
+                            <td>[[visitor.patient.age]]</td>
                             <td>
                                 <button class="btn btn-xs btn-default"
                                     ng-click="openModal('detaiPasienModal', '', register)">
