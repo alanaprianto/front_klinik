@@ -154,9 +154,30 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-6 no-padding">
+                        <h3>Tambah Tindakan</h3>
+                        <button class="btn btn-primary btn-plus" type="button">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                        <table class="table service-table" id="service-table">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Layanan</th>
+                                <th>Biaya Layanan</th>
+                                <th>Jumlah</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
                     <div class="col-md-6">
-                        <button class="btn btn-info col-md-4 no-radius pull-right" 
-                            ng-clik="">
+                          <button class="btn btn-info col-md-4 no-radius pull-right" 
+                            ng-clik="openModal('medicalRecordModal')">
                             Medical Record
                         </button>
                         <div class="col-md-1 pull-right"></div>
@@ -165,6 +186,104 @@
                             Surat Sakit
                         </button>
                     </div>
+                </div>
+            </div>
+        </script>
+
+         <script type="text/ng-template" id="medicalRecordModal">
+            <div class="row p-b-15">
+                <h4 class="modal-title">
+                    Medical Record
+                </h4>
+            </div>
+            <div class="row p-b-15 no-margin">
+                <div class="col-md-12">
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Anamnesa</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" 
+                                class="form-control" 
+                                disabled="disabled" 
+                                ng-model="">
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Diagnosis</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" 
+                                class="form-control" 
+                                disabled="disabled" 
+                                ng-model="">
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Explain</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" 
+                                class="form-control" 
+                                disabled="disabled" 
+                                ng-model="">
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Therapy</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text"                 
+                                class="form-control" 
+                                ng-model="">
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Notes</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" 
+                                class="form-control" 
+                                ng-model="">
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Perlu Istirahat Selama</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="number"
+                                step="1" 
+                                min="0"
+                                class="form-control" 
+                                ng-model="temp.duration">
+                        </div>
+                        <div class="col-sm-6 no-padding">
+                            <p style="margin-top: 5px">Hari</p>
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Terhitung dari Tanggal</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="date" 
+                                class="form-control" 
+                                ng-model="temp.startDate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-b-15 no-margin">
+                <div class="col-md-12">
+                    <button class="btn btn-default col-md-4 no-radius pull-right"
+                        ng-click="printArea('printSuratSakit')">
+                        <i class="fa fa-print"></i> Print
+                    </button>
                 </div>
             </div>
         </script>

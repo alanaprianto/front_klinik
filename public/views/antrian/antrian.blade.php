@@ -73,7 +73,7 @@
                                     <i class="fa fa-bullhorn"></i>
                                 </button>
                                 <span> | </span>
-                                <button class="btn btn-warning btn-xs">
+                                <button class="btn btn-warning btn-xs" >
                                     <i class="fa fa-edit"></i>
                                 </button>
                             </td>
@@ -101,7 +101,8 @@
                                     <i class="fa fa-bullhorn"></i>
                                 </button>
                                 <span> | </span>
-                                <button class="btn btn-warning btn-xs">
+                                <button class="btn btn-warning btn-xs"
+                                ng-click="pendaftaranPasien">
                                     <i class="fa fa-edit"></i>
                                 </button>
                             </td>

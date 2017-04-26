@@ -9,35 +9,35 @@
                             </li>
                             <li>
                                 <a class="has-arrow" href="#" aria-expanded="false">
-                                    <span class="sidebar-nav-item-icon fa fa-address-book fa-fw"></span>
+                                    <span class="sidebar-nav-item-icon fa fa-plus-square fa-fw"></span>
                                     <span class="sidebar-nav-item">Poli Umum</span>
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
                                     <li><a href="/antrian-poli-umum">Antrian </a></li>
                                     <li><a href="/kunjunganPoliUmum">Kunjungan </a></li>
-                                    <li><a href="/detaPasien">Pengunjungan </a></li>
+                                    <li><a href="/dataPasien">Pengunjungan </a></li>
                                 </ul>
                             </li>
                            <li>
                                 <a class="has-arrow" href="#" aria-expanded="false">
-                                    <span class="sidebar-nav-item-icon fa fa-address-book fa-fw"></span>
+                                    <span class="sidebar-nav-item-icon fa fa-stethoscope fa-fw"></span>
                                     <span class="sidebar-nav-item">Poli Gigi</span>
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
                                     <li><a href="/antrian-poli-gigi">Antrian </a></li>
                                     <li><a href="/kunjunganPoliGigi">Kunjungan </a></li>
-                                    <li><a href="/detaPasien">Pengunjungan </a></li>
+                                    <li><a href="/dataPasien">Pengunjungan </a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a class="has-arrow" href="#" aria-expanded="false">
-                                    <span class="sidebar-nav-item-icon fa fa-address-book fa-fw"></span>
+                                    <span class="sidebar-nav-item-icon fa  fa-child fa-fw"></span>
                                     <span class="sidebar-nav-item">Poli Anak</span>
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
                                     <li><a href="/antrian-poli-anak">Antrian </a></li>
                                     <li><a href="/kunjunganPoliAnak">Kunjungan </a></li>
-                                    <li><a href="/detaPasien">Pengunjungan </a></li>
+                                    <li><a href="/dataPasien">Pengunjungan </a></li>
                                 </ul>
                             </li>
                            
