@@ -18,7 +18,15 @@ angular.module('adminApp')
             params: {
                 module: 'api',
                 submodule: 'common',
-                controller: 'batches'
+                controller: 'buyers'
+            }
+        },
+        getProvinces: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'provinces'
             }
         },
         getDoctorServices: {

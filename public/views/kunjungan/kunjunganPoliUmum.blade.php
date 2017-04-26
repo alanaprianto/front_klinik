@@ -17,13 +17,13 @@
     <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <ul>
-                <h3>KUnjungan Poli Umum</h3>
+                <h3>Kunjungan Poli Umum</h3>
             </ul>
         </div>
     </nav>
 @endsection
 @section('content')
-    <div id="staff-area" ng-controller="StaffCtrl" >
+    <div id="kunjungan-area" ng-controller="KunjunganCtrl" >
         <div class="row no-margin">
             <div class="col-md-12">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
@@ -41,7 +41,8 @@
                             <td>[[$index + 1]]</td>
                             <td></td>
                             <td></td>
-                            <td></td>                            
+                            <td></td>
+                            <td></td>                             
                         </tr>
                     </tbody>
                 </table>

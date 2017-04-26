@@ -1,15 +1,20 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('KunjunganCtrl', function($scope, $http, $rootScope, ServicesLoket) {
+    .controller('KunjunganCtrl', function(
+            $scope, 
+            $http, 
+            $rootScope, 
+            ServicesAdmin
+        ) {
         var getLoketKunjunganList = function () {
-            ServicesLoket.getLoketKunjungan().$promise.then(function (result) {
-                $scope.tableListLoketKunjungan = result.datas.Kunjungan; 
+            ServicesAdmin.getVisitor().$promise.then(function (result) {
+                $scope.tableListKunjungan = result.datas.Visitor; 
             });
         }
 
         var firstInit = function () {
-            getLoketKunjunganList();
+            getVisitor();
         }
         
         firstInit();

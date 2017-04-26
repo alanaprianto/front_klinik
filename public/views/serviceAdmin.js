@@ -7,11 +7,10 @@ angular.module('adminApp')
     }, {
     	getPenataJasaAntrian: {
             method: 'GET',
-            url: config.url + ':module/:submodule/:controller/:action/:type',
             params: {
                 module: 'api',
                 submodule: 'admin',
-                controller: 'antrian',
+                controller: 'queues',
             }
         },
         getPenataJasaAntrianList: {
@@ -19,7 +18,7 @@ angular.module('adminApp')
             params: {
                 module: 'api',
                 submodule: 'admin',
-                controller: 'antrian',
+                controller: 'queues',
                 action: 'list',
             }
         },
@@ -29,7 +28,7 @@ angular.module('adminApp')
             params: {
                 module: 'api',
                 submodule: 'admin',
-                controller: 'antrian',
+                controller: 'queues',
                 action: 'update-status',
                 kiosk:null
             }
@@ -59,23 +58,27 @@ angular.module('adminApp')
         },
         getLoketAntrianList: {
             method: 'GET',
-            url: config.url + ':module/:submodule/:controller/:action/:type',
             params: {
                 module: 'api',
                 submodule: 'admin',
-                controller: 'antrian',
-                action: 'list',
-                type: null
+                controller: 'queues'
+            }
+        },
+        postKioskCreate: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'kiosk',
+                controller: 'create'      
             }
         },
         updateLoketAntrianStatus: {
-            method: 'PUT',
+            method: 'POST',
             params: {
                 module: 'api',
                 submodule: 'admin',
-                controller: 'antrian',
-                action: 'update-status',
-                id: null
+                controller: 'queues',
+                action: 'update',
             }
         },
         getLoketRegisters: {

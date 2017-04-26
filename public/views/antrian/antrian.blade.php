@@ -36,17 +36,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="antrian in tableListantrian">
-                            <td>[[$index + 1]]</td>
-                            <td></td>
-                            <td></td>
-                            
+                        <tr ng-repeat="a in antrianBpjs">
+                            <td>[[a.displayedQueue]]</td>
+                            <td>[[a.displayedStatus]]</td>
+                            <td>
+                                <button class="btn btn-default btn-xs"
+                                    ng-click="callQueue(a.type, a.queue_number, a.id)">
+                                    <i class="fa fa-bullhorn"></i>
+                                </button>
+                                <span> | </span>
+                                <button class="btn btn-warning btn-xs">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-md-4">
-                <h5>Antrian Poli umum</h5>
+                <h5>Antrian Umum</h5>
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -56,17 +64,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="antrian in tableListantrian">
-                            <td>[[$index + 1]]</td>
-                            <td></td>
-                            <td></td>
-                            
+                        <tr ng-repeat="a in antrianUmum">
+                             <td>[[a.displayedQueue]]</td>
+                            <td>[[a.displayedStatus]]</td>
+                            <td>
+                                <button class="btn btn-default btn-xs"
+                                    ng-click="callQueue(a.type, a.queue_number, a.id)">
+                                    <i class="fa fa-bullhorn"></i>
+                                </button>
+                                <span> | </span>
+                                <button class="btn btn-warning btn-xs">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-md-4">
-                <h5>Antrian Poli Gigi</h5>
+                <h5>Antrian Contractor</h5>
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -76,11 +92,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="antrian in tableListantrian">
-                            <td>[[$index + 1]]</td>
-                            <td></td>
-                            <td></td>
-                            
+                        <tr ng-repeat="a in antrianContractor">
+                            <td>[[a.displayedQueue]]</td>
+                            <td>[[a.displayedStatus]]</td>
+                            <td>
+                                <button class="btn btn-default btn-xs"
+                                    ng-click="callQueue(a.type, a.queue_number, a.id)">
+                                    <i class="fa fa-bullhorn"></i>
+                                </button>
+                                <span> | </span>
+                                <button class="btn btn-warning btn-xs">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

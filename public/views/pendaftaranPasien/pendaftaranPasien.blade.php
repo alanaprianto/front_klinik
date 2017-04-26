@@ -409,7 +409,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group field p-b-15 row">
+                   <!--  <div class="form-group field p-b-15 row">
                         <label class="col-sm-4 no-padding text-left">Jam Kedatangan</label>
                         <div class="col-sm-8">
                             <input 
@@ -418,7 +418,7 @@
                                 name="time_attend"
                                 ng-model="temp.time_attend">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group field p-b-15 row">
                         <label class="col-sm-4 no-padding text-left">Tipe Layanan</label>
                         <div class="col-sm-8">

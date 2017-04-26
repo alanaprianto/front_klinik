@@ -1,3 +1,16 @@
 {
-	
+    "typeQueue": [
+        {
+            "key": "bpjs",
+            "value": true
+        },
+        {
+            "key": "umum",
+            "value": true
+        },
+        {
+            "key": "contractor",
+            "value": true
+        }
+    ]
 }

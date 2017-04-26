@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SIM Klinik | Kiosk </title>
+    <title> Kiosk </title>
     <link rel="icon" href="{{asset('assets/images/logo/logo-sm.png')}}">
   
 
@@ -19,12 +19,18 @@
     <h1 style="margin-top: 100px">KIOSK </h1>
     <h3>Terima kasih telah menggunakan fasilitas kiosk untuk melakukan pendaftaran pelayanan laboratorium.</h3>
     <div class="panel-body">
-        <a class="btn btn-print" type="button" data-type="bpjs" href="javascript:;"><img src="assets/images/button/icon-bpjs.png"
-                                                                                         style="height: 200px"></a>
-        <a class="btn btn-print" type="button" href="javascript:;" data-type="umum"><img src="assets/images/button/icon-umum.png"
-                                                                                         style="height: 200px"></a>
-        <a class="btn  btn-print" type="button" href="javascript:;" data-type="contractor"><img
-                    src="assets/images/button/icon-contractor.png" style="height: 200px"></a>
+        <a class="btn btn-print" type="button" data-type="bpjs" href="javascript:;">
+            <img src="assets/images/button/icon-bpjs.png"style="height: 200px">
+        </a>
+        <a class="btn btn-print" type="button" href="javascript:;" data-type="umum">
+            <img src="assets/images/button/icon-umum.png" style="height: 200px">
+        </a>
+        <a class="btn  btn-print" type="button" href="javascript:;" data-type="anak">
+         <img src="assets/images/button/poliAnak.png" style="height: 200px">
+        </a>
+        <a class="btn  btn-print" type="button" href="javascript:;" data-type="gigi">
+         <img src="assets/images/button/poli-gigi.png" style="height: 200px">
+        </a>
     </div>
     <h1></h1>
     <h3>Struk antrian akan dicetak secara otomatis</h3>

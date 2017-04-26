@@ -20,7 +20,7 @@ angular.module('adminApp')
             var data = {
                 grant_type: "password",
                 client_id: 2,
-                client_secret: 'uMwGMJez1q5k9LHAiyKqW8NkbJA2nT4AakBWUK4s',
+                client_secret: 'bGcMQqggydXmYRAOa6E04PZx5NE73WylDjQvHrvL',
                 username: $scope.username,
                 password: $scope.password
             };

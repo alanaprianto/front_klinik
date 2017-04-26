@@ -1,16 +1,31 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('PendaftaranPasienCtrl', function($scope, $http, $rootScope, ServicesLoket) {
-        var getRegister = function () {
-            ServicesLoket.getRegister().$promise.then(function (result) {
-                $scope.tableListRegister = result.datas.resgister; 
+    .controller('KioskCtrl', function(
+        $scope, 
+        $http, 
+        $rootScope, 
+        ngDialog,
+        moment,
+        ServicesAdmin
+    ) {
+        
+        $scope.postKioskCreate = function (type) {
+            var params = {type: type};
+
+            ServicesAdmin.postKioskCreate(params).$promise
+            .then(function (result) {
+                if (!result.isSuccess) {
+                    alert('Error, Please contact Tech Support');
+                    return;
+                }
+                $scope.result = result.datas.kiosk;
+
+                ngDialog.open({
+                    template: 'modalResponse',
+                    scope: $scope,
+                    className: 'ngDialog-modal'
+                });
             });
         }
-
-        var firstInit = function () {
-            getRegister();
-        }
-        
-        firstInit();
     });

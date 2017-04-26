@@ -11,6 +11,7 @@
 
     <title>Display .: Teknohealth :. </title>
     <link rel="icon" href="{{asset('assets/images/logo/logo-sm.png')}}">
+    <link href="{{asset('css/admin.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/fontawesome/css/font-awesome.min.css')}}" rel="stylesheet">
     @yield('css')

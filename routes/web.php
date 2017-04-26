@@ -2,6 +2,7 @@
 
 
 Route::get('/', function () {
+    return redirect('login');
     return view('welcome');
 });
 
@@ -87,14 +88,14 @@ Route::get('/resep', function() {
 Route::get('/rawatjalan', function() {
     return View::make('rawatjalan.rawatjalan');
 });
-Route::get('/antrianPoliAnak', function() {
-    return View::make('antrianRawatJalan.antrianPoliAnak');
+Route::get('/antrian-poli-anak', function() {
+    return View::make('antrianRawatJalan.antrianPoli');
 });
-Route::get('/antrianPoliGigi', function() {
-    return View::make('antrianRawatJalan.antrianPoliGigi');
+Route::get('/antrian-poli-gigi', function() {
+    return View::make('antrianRawatJalan.antrianPoli');
 });
-Route::get('/antrianPoliUmum', function() {
-    return View::make('antrianRawatJalan.antrianPoliUmum');
+Route::get('/antrian-poli-umum', function() {
+    return View::make('antrianRawatJalan.antrianPoli');
 });
 Route::get('/antrian', function() {
     return View::make('antrian.antrian');
@@ -142,5 +143,5 @@ Route::get('/kiosk', function() {
     return View::make('kiosk.kiosk');
 });
 Route::get('/display', function() {
-    return View::make('display');
+    return View::make('display.display');
 });

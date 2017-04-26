@@ -46,6 +46,7 @@
         <script src="{{asset('../assets/plugins/ngDialog/ngDialog.js')}}"></script>
         <script src="{{asset('../assets/plugins/moment/moment.js')}}"></script>
         <script src="{{asset('../assets/plugins/angular-moment/angular-moment.js')}}"></script>
+        <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 
         <script src="{{asset('../views/app.js')}}"></script>
         <script src="{{asset('../views/config/config.js')}}"></script>
@@ -56,6 +57,7 @@
         <script src="{{asset('../views/serviceKasir.js')}}"></script>
         <script src="{{asset('../views/serviceApotek.js')}}"></script>
         <script src="{{asset('../views/serviceAdmin.js')}}"></script>
+
         
         @yield('scripts')
 
@@ -99,29 +101,31 @@
                 });
             });
 
+            var datatableSettings = '';
+
             $(document).ready(function(){
                 /* datatable */
-                $('#example').DataTable({
-                    'dom':'<"top"f>rt<"bottom"<"col-md-6"i><"col-md-6 right"p>><"clear">',
-                    'language': {
-                        'zeroRecords': 'Maaf, Data tidak ditemukan',
-                        'infoEmpty' : 'Tidak ada record data',
-                        'info' : 'Halaman _PAGE_ dari _PAGES_. Total records: _TOTAL_',
-                        'search': '<form class="ui form"><div class="field"><div class="ui left icon input"><i class="search icon"></i> _INPUT_ </div></div></form>',
-                        'searchPlaceholder': 'Search...',
-                        'paginate':{
-                            'previous': '&laquo',
-                            'next': '&raquo'
+                // datatableSettings = $('#example').DataTable({
+                //     'dom':'<"top"f>rt<"bottom"<"col-md-6"i><"col-md-6 right"p>><"clear">',
+                //     'language': {
+                //         'zeroRecords': 'Maaf, Data tidak ditemukan',
+                //         'infoEmpty' : 'Tidak ada record data',
+                //         'info' : 'Halaman _PAGE_ dari _PAGES_. Total records: _TOTAL_',
+                //         'search': '<form class="ui form"><div class="field"><div class="ui left icon input"><i class="search icon"></i> _INPUT_ </div></div></form>',
+                //         'searchPlaceholder': 'Search...',
+                //         'paginate':{
+                //             'previous': '&laquo',
+                //             'next': '&raquo'
 
-                        },
-                        'infoFiltered': '<br/>(dari _MAX_ total record)',
-                        'responsive': true,
-                        'columnDefs': [
-                            { 'responsivePriority': 1, 'targets': 0 },
-                            { 'responsivePriority': 2, 'targets': -1 }
-                        ]
-                    }
-                });
+                //         },
+                //         'infoFiltered': '<br/>(dari _MAX_ total record)',
+                //         'responsive': true,
+                //         'columnDefs': [
+                //             { 'responsivePriority': 1, 'targets': 0 },
+                //             { 'responsivePriority': 2, 'targets': -1 }
+                //         ]
+                //     }
+                // });
             });
         </script>
   </body>

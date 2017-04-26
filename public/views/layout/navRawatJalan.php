@@ -13,7 +13,7 @@
                                     <span class="sidebar-nav-item">Poli Umum</span>
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
-                                    <li><a href="/antrianPoliUmum">Antrian </a></li>
+                                    <li><a href="/antrian-poli-umum">Antrian </a></li>
                                     <li><a href="/kunjunganPoliUmum">Kunjungan </a></li>
                                     <li><a href="/detaPasien">Pengunjungan </a></li>
                                 </ul>
@@ -24,7 +24,7 @@
                                     <span class="sidebar-nav-item">Poli Gigi</span>
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
-                                    <li><a href="/antrianPoliGigi">Antrian </a></li>
+                                    <li><a href="/antrian-poli-gigi">Antrian </a></li>
                                     <li><a href="/kunjunganPoliGigi">Kunjungan </a></li>
                                     <li><a href="/detaPasien">Pengunjungan </a></li>
                                 </ul>
@@ -35,7 +35,7 @@
                                     <span class="sidebar-nav-item">Poli Anak</span>
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
-                                    <li><a href="/antrianPoliAnak">Antrian </a></li>
+                                    <li><a href="/antrian-poli-anak">Antrian </a></li>
                                     <li><a href="/kunjunganPoliAnak">Kunjungan </a></li>
                                     <li><a href="/detaPasien">Pengunjungan </a></li>
                                 </ul>

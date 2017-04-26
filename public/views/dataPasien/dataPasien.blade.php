@@ -23,17 +23,16 @@
                     <tbody>
                         <tr ng-repeat="visitor in tableListVisitor">
                             <td>[[$index + 1]]</td>
-                            <td>[[visitor.patient.number_medical_record]]</td>
-                            <td>[[visitor.patient.full_name]]</td>
-                            <td>[[visitor.patient.gender]]</td>
-                            <td>[[visitor.patient.age]]</td>
-                            <td>[[visitor.patient.age]]</td>
-                            <td>[[visitor.patient.age]]</td>
-                            <td>[[visitor.patient.age]]</td>
+                            <td>[[visitor.number_medical_record]]</td>
+                            <td>[[visitor.full_name]]</td>
+                            <td>[[visitor.gender]]</td>
+                            <td>[[visitor.age]]</td>
+                            <td>[[visitor.phone_number]]</td>
+                            <td></td>
                             <td>
                                 <button class="btn btn-xs btn-default"
-                                    ng-click="openModal('detaiPasienModal', '', register)">
-                                    <i class="fa fa-plus"></i> Detail Pasien
+                                    ng-click="openModal('detaiPasienModal', '', pasiens)">
+                                    <i class="fa fa-search-plus"></i> Detail Pasien
                                 </button>
                             </td>
                         </tr>
