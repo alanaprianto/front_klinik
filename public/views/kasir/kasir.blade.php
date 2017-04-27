@@ -102,7 +102,7 @@
 
                     <div class="form-group field row text-left">
                         <div class="col-sm-4 no-padding">
-                            <label>No Askes / Jamkesmas :</label>
+                            <label>No Askes / Jamkesmas</label>
                         </div>
                         <div class="col-sm-8">
                             <p class="text-left">[[dataOnModal.patient.askes_number]]</p>
@@ -133,7 +133,7 @@
                         <tr>
                             <td></td>
                             <td></td>
-                            <td class="amount">}</td>
+                            <td class="amount"></td>
                             <td>
                                 <input type="checkbox"
                                        class="check-payment"

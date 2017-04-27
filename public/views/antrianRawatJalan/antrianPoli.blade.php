@@ -247,18 +247,35 @@
 
                         <div>
                             <p><b>Tambah Tindakan</b></p>
+                            <button type="button"
+                                        class="btn btn-primary btn-sm accordion-toggle"
+                                        data-toggle="collapse"><i
+                                        class="fa fa-plus"></i>
+                            </button>
                             <table id="service-table" class="table service-table">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Layanan</th>
-                                        <th>Biaya Layanan</th>
+                                        <th>Nama Tindakan</th>
+                                        <th>Biaya Tindakan</th>
                                         <th>Jumlah</th>
                                         <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    <tr>
+                                        <td>[[$index + 1]]</td>
+                                        <td>
+                                            <select name="final_result" class="form-control condition" 
+                                                ng-model="temp.finalResult" required>
+                                                <option ng-repeat="o in finalResultOnPoli"
+                                                    value="[[o.value]]">[[o.key]]</option>
+                                            </select>
+                                        </td>
+                                        <td></td>
+                                        <td><input type="text" class="form-control condition" name=""></td>
+                                        <td></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -139,6 +139,17 @@ angular.module('adminApp')
                 $scope.finalResultOnPoli = data.data.finalResultOnPoli;
             });
         };
+        var 4 = function (poliID) {
+            var result = "";
+            $scope.listPoli.forEach(function (val) {
+                if (val && val.id && val.id == poliID) {
+                    result = val.name;
+                    return;
+                }
+            });
+            return result;
+        }
+
 
         var firstInit = function () {
             $scope.poliType = toTitleCase(
@@ -221,5 +232,13 @@ angular.module('adminApp')
 
         $scope.editPasien = function (dataPasien) {
             
+        }
+
+        $scope.rows = ['Row 1', 'Row 2'];      
+        $scope.counter = 3;
+        $scope.addRow = function() {
+    
+            $scope.rows.push('Row ' + $scope.counter);
+            $scope.counter++;
         }
     });
