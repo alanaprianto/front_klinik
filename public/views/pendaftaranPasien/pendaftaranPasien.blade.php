@@ -483,7 +483,7 @@
             <h4 class="modal-title">Pasien Lama</h4>
         </div>
         <div class="row p-b-15">
-            <div class="col-md-12">
+            <div class="col-md-8" >
                 <input 
                     type="text" 
                     class="form-control"

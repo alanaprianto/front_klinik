@@ -31,6 +31,10 @@ Route::get('/createEditResep', function() {
 Route::get('/pos_farmasi', function() {
     return View::make('pos_farmasi.pos_farmasi');
 });
+Route::get('/kasir', function() {
+    return View::make('kasir.kasir');
+});
+
 Route::get('/keuangan', function() {
     return View::make('keuangan.keuangan');
 });

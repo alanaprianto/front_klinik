@@ -13,13 +13,13 @@
         </a>
         <a class="item" href="#">
             <i class="bookmark icon"></i>
-      </a>
-      <a class="item" href="#">
+        </a>
+        <a class="item" href="#">
           <i class="unlock alternate icon"></i>
-      </a>
-      <a class="item" href="logout">
+        </a>
+        <a class="item" href="logout">
           <i class="fa fa-sign-out"></i>
-      </a>
+        </a>
   </div>
 </div>
 
@@ -116,7 +116,7 @@
 
                         <li class="sidebar-nav-heading">Point of Sales</li>
                         <li>
-                            <a href="{{url('pos_farmasi')}}">
+                            <a href="{{url('kasir')}}">
                                 <span><img src="assets/images/logo/pos-framasi.png" style="width: 25px"></span>
                                 <span class="sidebar-nav-item">Kasir</span>
                             </a>

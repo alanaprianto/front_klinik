@@ -8,13 +8,13 @@
                                  </a>
                             </li>
                             <li>
-                                <a href="pos_farmasi">
+                                <a href="kasir">
                                     <span class="sidebar-nav-item-icon fa fa-money  fa-fw"></span>
                                     <span class="sidebar-nav-item">Pembayaran</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="pengunjungKasir">
+                                <a href="dataPasien">
                                     <span class="sidebar-nav-item-icon fa fa-address-book"></span>
                                     <span class="sidebar-nav-item">Pengunjung</span>
                                 </a>

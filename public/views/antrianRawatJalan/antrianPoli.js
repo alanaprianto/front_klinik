@@ -98,6 +98,17 @@ angular.module('adminApp')
             return result;
         }
 
+        var getPoliName = function (poliID) {
+            var result = "";
+            $scope.listPoli.forEach(function (val) {
+                if (val && val.id && val.id == poliID) {
+                    result = val.name;
+                    return;
+                }
+            });
+            return result;
+        }
+
         var getLoketAntrianPoli = function () {
             ServicesAdmin.getLoketAntrianList({type: $scope.poliType}).$promise
             .then(function (result) {
@@ -112,6 +123,7 @@ angular.module('adminApp')
                     }
                     if (item.reference) {
                         item.displayedDoctor = getDoctorName(item.reference.staff_id);
+                        item.displayedPoli = getPoliName(item.reference.poly_id);
                     }
                     dataArray.push(item);
                 });
@@ -122,6 +134,12 @@ angular.module('adminApp')
             });
         }
 
+        var getDefaultValues = function() {
+            $http.get('views/config/defaultValues.json').then(function(data) {
+                $scope.finalResultOnPoli = data.data.finalResultOnPoli;
+            });
+        };
+
         var firstInit = function () {
             $scope.poliType = toTitleCase(
                 window.location.pathname
@@ -129,7 +147,8 @@ angular.module('adminApp')
                 .replace("-"," ")
             );
 
-            
+            getDefaultValues();
+
             listPoli().then(function() {
                 getLoketAntrianPoli();
             });
@@ -168,6 +187,7 @@ angular.module('adminApp')
         }
 
         $scope.openModal = function (target, type, data) {
+            console.log(target);
             var cssModal = '';
             if (type) {
                 cssModal = 'modal-' + type;

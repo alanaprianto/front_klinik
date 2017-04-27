@@ -1,126 +1,17 @@
-.no-margin {
-	margin: 0px !important;
-    padding: 25px
-}
+/* MAIN */
+@import url("../assets/plugins/metismenu/metisMenu.min.css");
+@import url("../assets/plugins/bootstrap/css/bootstrap.min.css");
+@import url("../assets/plugins/semantic/semantic.min.css");
 
-.no-padding {
-	padding: 0px !important;
-}
+/* FONT */
+@import url("../assets/plugins/fontawesome/css/font-awesome.min.css");
+@import url("../assets/plugins/themify/themify-icons.css");
+@import url("../assets/plugins/ionicons/css/ionicons.min.css");
 
-.no-radius {
-    border-radius: 0px !important;
-}
-
-.no-border {
-    border: 0px !important;
-}
-
-.m-b-15 {
-	margin-bottom: 15px;
-}
-
-.m-t-15 {
-	margin-top: 15px;
-}
-
-.p-b-15 {
-	padding-bottom: 15px;
-}
-
-.p-t-15 {
-	padding-top: 15px;
-}
-
-.nav-title {
-    background: #FFFFFF !important;
-    border-bottom: 1px solid #e0e0e0 !important;
-    margin-bottom: 15px !important;
-}
-
-.nav-title > .navbar-header {
-    padding-top: 15px;
-}
-
-.nav-title > .navbar-header > ul {
-    padding-left: 20px;
-}
-
-.ui.vertical.icon.menu, .ui.vertical.menu > .item:last-child, .ui.vertical.menu > .item:first-child {
-	border-radius: 0;
-	border: none;
-}
-
-.ui.icon.menu .item:hover {
-	background-color: #000;
-	color: #fff;
-}
-
-.ui.icon.menu .item {
-	background-color: #1A1A1A;
-	color: #8895A3;
-}
-
-.module-left-title > .ui.input {
-	padding: 10px;
-    width: 100%;
-}
-
-.module-left-title > .ui.input > input, .module-left-title > .ui.input > i:before {
-	background: #3A4047;
-	color: #8895A3;
-}
-
-.module-left-title > .ui.input > i {
-	margin-right: 7px !important;
-}
-
-#module-left-menu .sidebar-nav-item-icon {
-    width: 20px;
-    text-align: center;
-}
-
-.sidebar-nav-item {
-    margin-left: 10px !important;
-}
-
-.ngDialog-modal {
-    width: 100%;
-}
-
-.ngDialog-modal > .ngdialog-content {
-    background-color: #fff !important;
-    padding: 15px;
-    margin: auto;
-    width: 50%;
-    margin:0 auto;
-    display:table;
-    position: absolute;
-    left: 0;
-    right:0;
-    top: 5%; 
-    text-align: center;
-}
-
-.ngDialog-modal.modal-sm > .ngdialog-content {
-    width: 25%;
-}
-
-.ngDialog-modal.modal-lg > .ngdialog-content {
-    width: 75%;
-}
-
-.ngDialog-modal .ngdialog-close {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    background: none;
-    border: 0px;
-    font-size: 25px;
-}
-
-.ngDialog-modal > .ngdialog-overlay {
-    z-index: -1;
-}
+/* TABLE */
+/*@import url("../plugins/datatables/css/jquery.dataTables.min.css");*/
+@import url("../assets/plugins/datatables/css/dataTables.semanticui.min.css");
+@import url("../assets/plugins/datatables/css/responsive.semanticui.min.css");
 
 /* CSS MODULE */
 a:focus, a:active{
@@ -137,12 +28,6 @@ a:focus, a:active{
     border: none;
 	background: #000000;
 }
-.module-left-aside-icon{
-    float: left;
-    background-color: #1A1A1A;
-    height: 100%;
-
-}
 .module-left-aside{
     float: left;
     width: 250px;
@@ -150,15 +35,16 @@ a:focus, a:active{
 .module-left-container{
     display: block;
     position: fixed;
-    width: 230px;
+    width: 250px;
     height: 100%;
-    background-color: #31363B;
+    background-color: #4D545E;
+
     padding-top: 50px;
 }
 .module-left-title{
-    background-color: #31363B;
+    background-color: #529695;
     height: 50px;
-    width: 210px;
+    width: 250px;
     position: fixed;
     z-index: 999;
 }
@@ -212,17 +98,10 @@ a:focus, a:active{
     display: none;
     font-size: 20px;
 }
-.center {
-    margin: auto;
-    width: 60%;
-    text-align: center;
-    margin-top: 50px;
-}
 
 .module-content-container{
     margin-left: 250px;
     display: block;
-    background-color: #FFF;
 }
 
 /** customize metismenu **/

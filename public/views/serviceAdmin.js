@@ -39,7 +39,7 @@ angular.module('adminApp')
             params: {
                 module: 'api',
                 submodule: 'admin',
-                controller: 'priksa',
+                controller: 'check-up',
                 action: 'update-status',
                 reference_id: null,
                 rujukan: null
@@ -51,7 +51,18 @@ angular.module('adminApp')
             params: {
                 module: 'api',
                 submodule: 'admin',
-                controller: 'priksa',
+                controller: 'check-up',
+                action: 'update-status',
+                reference_id: null
+            }
+        },
+        postPenataJasaMedicalRecord: {
+            method: 'POST',
+            url: config.url + ':module/:submodule/:controller/:action/:reference_id',
+            params: {
+                module: 'api',
+                submodule: 'admin',
+                controller: 'check-up',
                 action: 'update-status',
                 reference_id: null
             }

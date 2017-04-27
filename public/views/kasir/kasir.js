@@ -1,18 +1,19 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('DaftarPasienCtrl', function(
+    .controller('KasirController', function(
         $scope, 
         $http, 
         ngDialog,
         moment,
         $rootScope, 
-        ServicesAdmin) {
+        ServicesAdmin
+    ) {
         var listDataPasien = function () {
-            ServicesAdmin.getVisitor().$promise
+            ServicesAdmin.getKasirPayments().$promise
             .then(function (result) {
-                var tempData=[];
-                result.datas.patients.forEach(function(item,key){
+                var tempData = [];
+                result.datas.registers.forEach(function(item,key){
                      if (item.patient && item.patient.birth) {
                         item.patient.age = moment().diff(moment(item.patient.birth, "DD/MM/YYYY", true), 'years');
                     }
@@ -27,9 +28,11 @@ angular.module('adminApp')
                     tempData.push(item);
                 });
                 
-                $scope.tableListVisitor = tempData; 
+                $scope.tableListPayment = tempData; 
             });
-            $scope.openModal = function (target, type, data) {
+        }
+
+        $scope.openModal = function (target, type, data) {
             console.log(target);
             var cssModal = '';
             if (type) {
@@ -46,7 +49,7 @@ angular.module('adminApp')
                 className: 'ngDialog-modal ' + cssModal
             });
         }
-        }
+        
         var firstInit = function () {
             listDataPasien();
         }

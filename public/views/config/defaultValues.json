@@ -12,5 +12,19 @@
             "key": "contractor",
             "value": true
         }
+    ],
+    "finalResultOnPoli": [
+        {
+            "key": "dirujuk",
+            "value": 1
+        },
+        {
+            "key": "dirawat",
+            "value": 2
+        },
+        {
+            "key": "selesai diperiksa",
+            "value": 3
+        }
     ]
 }
