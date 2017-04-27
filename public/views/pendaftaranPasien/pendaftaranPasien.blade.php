@@ -52,10 +52,16 @@
                             <td>[[register.patient.age]]</td>
                             <td>[[register.displayedStatus]]</td>
                             <td>
-                                <button class="btn btn-xs btn-default"
-                                    ng-click="openModal('tambahRujukanModal', '', register)">
-                                    <i class="fa fa-plus"></i> rujukan
+                                <button 
+                                    class="btn btn-xs btn-default"
+                                    ng-click="openModal('tambahRujukanModal', '', register)"
+                                    ng-if="register.status == 1">
+                                        <i class="fa fa-plus"></i> rujukan
                                 </button>
+                                <div 
+                                    ng-if="register.status != 1">
+                                    -
+                                </div>
                             </td>
                         </tr>
                     </tbody>

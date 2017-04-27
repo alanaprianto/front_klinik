@@ -266,15 +266,23 @@
                                     <tr>
                                         <td>[[$index + 1]]</td>
                                         <td>
-                                            <select name="final_result" class="form-control condition" 
-                                                ng-model="temp.finalResult" required>
-                                                <option ng-repeat="o in finalResultOnPoli"
-                                                    value="[[o.value]]">[[o.key]]</option>
+                                            <select name="service_ids[]" class="form-control condition"
+                                                ng-model="temp.myService"
+                                                ng-options="service.name for service in services"
+                                                ng-change="setTotal()">
+                                                
                                             </select>
                                         </td>
-                                        <td></td>
-                                        <td><input type="text" class="form-control condition" name=""></td>
-                                        <td></td>
+                                        <td>[[temp.myService.cost]]</td>
+                                        <td class="col-sm-2">
+                                            <input type="number"
+                                                step="1" 
+                                                min="0"
+                                                class="form-control" 
+                                                ng-model="temp.amount"
+                                                ng-change="setTotal()">
+                                        </td>
+                                        <td>[[temp.totalAmount]]</td>
                                     </tr>
                                 </tbody>
                             </table>

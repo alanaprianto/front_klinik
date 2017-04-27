@@ -152,7 +152,7 @@ angular.module('adminApp')
                         item.displayedStatus = 'open';
                     }
                     if (item.status == 2) {
-                        item.displayedStatus = 'close';
+                        item.displayedStatus = 'closed';
                     }
 
                     if (item.references) {

@@ -87,6 +87,22 @@ angular.module('adminApp')
             });
         }
 
+        var listServices = function () {
+            return ServicesCommon.getServices().$promise
+            .then(function (result) {
+                var dataServices = [];
+                $scope.services = result.datas.services;
+
+                if (result.datas && result.datas.services) {
+                    $scope.temp.myService = $scope.services[0];
+                    result.datas.services.forEach(function (val) {
+                        dataServices.push(val);
+                    });
+                    $scope.services = dataServices;
+                }
+            });
+        }
+
         var getDoctorName = function (staffID) {
             var result = "";
             $scope.listAllDoctor.forEach(function (val) {
@@ -139,17 +155,6 @@ angular.module('adminApp')
                 $scope.finalResultOnPoli = data.data.finalResultOnPoli;
             });
         };
-        var getPoliName = function (poliID) {
-            var result = "";
-            $scope.listPoli.forEach(function (val) {
-                if (val && val.id && val.id == poliID) {
-                    result = val.name;
-                    return;
-                }
-            });
-            return result;
-        }
-
 
         var firstInit = function () {
             $scope.poliType = toTitleCase(
@@ -162,6 +167,11 @@ angular.module('adminApp')
 
             listPoli().then(function() {
                 getLoketAntrianPoli();
+            });
+
+            listServices().then(function() {
+                console.log("end listing services");
+
             });
         }
         
@@ -232,5 +242,9 @@ angular.module('adminApp')
 
         $scope.editPasien = function (dataPasien) {
             
+        }
+    
+        $scope.setTotal = function() {
+            $scope.temp.totalAmount = $scope.temp.myService.cost*$scope.temp.amount;
         }
     });

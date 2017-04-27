@@ -122,4 +122,34 @@ angular.module('adminApp')
         }
         
         firstInit();
+
+        $scope.openModal = function (target, type, data) {
+            console.log('open modal');
+            var cssModal = '';
+            if (type) {
+                cssModal = 'modal-' + type;
+            }
+
+            if (data) {
+                $scope.dataOnModal = data;
+            }
+
+            getDataOnModalOpen(target);
+
+            ngDialog.open({
+                template: target,
+                scope: $scope,
+                className: 'ngDialog-modal ' + cssModal
+            });
+        }
+
+        var getDataOnModalOpen = function (target) {
+            switch(target) {
+                case 'tambahPasienBaruModal':
+
+                    break;
+                default:
+                    
+            }
+        }
     });
