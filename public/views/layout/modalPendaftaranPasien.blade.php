@@ -656,7 +656,7 @@
         </div>
         <button 
             class="btn btn-info col-md-3 no-radius" 
-            ng-click="createNewPendaftaranPasien()"
+            ng-click="createOldPendaftaranPasien()"
             ng-disabled="!temp.poly_id">Tambah</button>
     </div>
 </script>

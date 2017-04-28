@@ -203,7 +203,7 @@ angular.module('adminApp')
             }
 
             if (data) {
-                $scope.dataOnModal = data;
+                $scope.dataOnModal = data;            
             }
 
             ngDialog.open({
@@ -242,7 +242,7 @@ angular.module('adminApp')
             });
     
             var params = {
-                register_id: $scope.dataOnModal.reference.register.id,
+                kiosk_id: $scope.dataOnModal.id,
                 reference_id: $scope.dataOnModal.reference_id,
                 poly_id: $scope.temp.poliID,
                 doctor_id: $scope.temp.doctor_id,
