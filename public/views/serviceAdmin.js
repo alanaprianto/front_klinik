@@ -150,13 +150,11 @@ angular.module('adminApp')
         },
         getLoketPendaftaranPatient: {
             method: 'GET',
-            url: config.url + ':module/:submodule/:controller/:action/:query',
             params: {
                 module: 'api',
                 submodule: 'admin',
-                controller: 'pendaftaran',
-                action: 'get_patient',
-                query: null
+                controller: 'registers',
+                action: 'select-patient'
             }
         },
         createLoketPendaftaranPatient: {

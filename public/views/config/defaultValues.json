@@ -26,5 +26,23 @@
             "key": "selesai diperiksa",
             "value": 3
         }
+    ],
+    "statusQueue": [
+        {
+           "key": "open",
+            "value": 1 
+        },
+        {
+           "key": "calling",
+            "value": 2 
+        },
+        {
+           "key": "On proses",
+            "value": 3 
+        },
+        {
+           "key": "closed",
+            "value": 4 
+        }
     ]
 }

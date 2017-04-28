@@ -5,10 +5,34 @@ angular.module('adminApp')
         $scope, 
         $http, 
         $rootScope, 
+        $controller,
         ngDialog,
         moment,
         ServicesAdmin
     ) {
+        $scope.today = new Date();
+        $scope.temp = {};
+        $scope.message = {};
+        
+        angular.extend(this, $controller('ModalPendaftaranPasienCtrl', {$scope: $scope}));
+
+        $scope.openModal = function (target, type, data) {
+            var cssModal = '';
+            if (type) {
+                cssModal = 'modal-' + type;
+            }
+
+            if (data) {
+                $scope.dataOnModal = data;
+            }
+
+            ngDialog.open({
+                template: target,
+                scope: $scope,
+                className: 'ngDialog-modal ' + cssModal
+            });
+        }
+
         var tripleDigit = function(number) {
             if (number !== null && number !== undefined) {
                 var str = "" + number;
@@ -19,21 +43,13 @@ angular.module('adminApp')
 
         var statusOnQueue = function (val) {
             if (val && val.status) {
-                switch (val.status) {
-                    case 1: 
-                        return "open";
-                        break;
-                    case 2: 
-                        return "calling";
-                        break;
-                    case 3: 
-                        return "On proses";
-                        break;
-                    case 4: 
-                        return "closed";
-                        break;
-                }
-                return 
+                var result = '';
+                $scope.statusQueue.forEach(function (item) {
+                    if (val.status == item.value) {
+                        result = item.key;
+                    }
+                });         
+                return result;       
             }
         }
 
@@ -115,41 +131,22 @@ angular.module('adminApp')
             updateStatusToCalling(type, id);
         }
 
+        var getDefaultValues = function() {
+            $http.get('views/config/defaultValues.json').then(function(data) {
+                $scope.statusQueue = data.data.statusQueue;        
+            });
+        };
+
         var firstInit = function () {
+            getDefaultValues();
+
             getLoketAntrianBpjs();
             getLoketAntrianUmum();
             getLoketAntrianContractor();
+
+            $scope.getListPoli();
+            $scope.getListProvinces();
         }
         
         firstInit();
-
-        $scope.openModal = function (target, type, data) {
-            console.log('open modal');
-            var cssModal = '';
-            if (type) {
-                cssModal = 'modal-' + type;
-            }
-
-            if (data) {
-                $scope.dataOnModal = data;
-            }
-
-            getDataOnModalOpen(target);
-
-            ngDialog.open({
-                template: target,
-                scope: $scope,
-                className: 'ngDialog-modal ' + cssModal
-            });
-        }
-
-        var getDataOnModalOpen = function (target) {
-            switch(target) {
-                case 'tambahPasienBaruModal':
-
-                    break;
-                default:
-                    
-            }
-        }
     });

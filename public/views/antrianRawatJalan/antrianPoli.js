@@ -42,21 +42,13 @@ angular.module('adminApp')
 
         var statusOnQueue = function (val) {
             if (val && val.status) {
-                switch (val.status) {
-                    case 1: 
-                        return "open";
-                        break;
-                    case 2: 
-                        return "calling";
-                        break;
-                    case 3: 
-                        return "On proses";
-                        break;
-                    case 4: 
-                        return "closed";
-                        break;
-                }
-                return 
+                var result = '';
+                $scope.statusQueue.forEach(function (item) {
+                    if (val.status == item.value) {
+                        result = item.key;
+                    }
+                });         
+                return result;  
             }
         }
 
@@ -153,6 +145,7 @@ angular.module('adminApp')
         var getDefaultValues = function() {
             $http.get('views/config/defaultValues.json').then(function(data) {
                 $scope.finalResultOnPoli = data.data.finalResultOnPoli;
+                $scope.statusQueue = data.data.statusQueue;
             });
         };
 

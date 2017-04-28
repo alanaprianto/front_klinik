@@ -5,6 +5,7 @@ angular.module('adminApp')
         $scope, 
         $http, 
         $rootScope, 
+        $controller,
         ngDialog, 
         ServicesAdmin,
         ServicesCommon,
@@ -13,6 +14,8 @@ angular.module('adminApp')
         $scope.today = new Date();
         $scope.temp = {};
         $scope.message = {};
+
+        angular.extend(this, $controller('ModalPendaftaranPasienCtrl', {$scope: $scope}));
 
         var getDataOnModalOpen = function (target) {
             switch(target) {
@@ -43,53 +46,6 @@ angular.module('adminApp')
             });
         }
 
-        var defaultDataCreatePasien = function () {
-            var data = {
-                age: $scope.temp.age
-            }
-            return data;
-        }
-
-        $scope.createNewPendaftaranPasien = function () {
-            $scope.message.createLoketRegisters = {};
-
-            var data = {
-                kiosk_id: $scope.temp.kiosk_id,
-                patient_id: $scope.temp.patient_id,
-                number_medical_record: $scope.temp.number_medical_record,
-                full_name: $scope.temp.full_name,
-                place: $scope.temp.place,
-                birth: moment($scope.temp.birth).format("DD/MM/YYYY"),
-                gender: $scope.temp.gender,
-                address: $scope.temp.address,
-                religion: $scope.temp.religion,
-                city: $scope.temp.city,
-                district: $scope.temp.district,
-                sub_district: $scope.temp.sub_district,
-                rt_rw: $scope.temp.rt_rw,
-                phone_number: $scope.temp.phone_number,
-                last_education: $scope.temp.last_education,
-                job: $scope.temp.job,
-                askes_number: $scope.temp.askes_number,
-                poly_id: $scope.temp.poly_id,
-                doctor_id: $scope.temp.doctor_id
-            }
-
-            var defaultData = defaultDataCreatePasien();
-
-            var param = Object.assign(data, defaultData);
-
-            ServicesAdmin.createLoketRegisters(param).$promise
-            .then(function (result) {
-                if (!result.isSuccess) {
-                    return $scope.message.createLoketRegisters.error = result.message;
-                };
-                $scope.result = result;
-                listPendaftaranPasien(); 
-                ngDialog.closeAll();
-            });
-        }
-
         $scope.createTambahRujukan = function () {
             $scope.message.createTambahRujukan = {};
 
@@ -107,36 +63,6 @@ angular.module('adminApp')
                 $scope.result = result;
                 listPendaftaranPasien(); 
                 ngDialog.closeAll();
-            });
-        }
-
-        $scope.seachPasien = function () {
-            var data = {
-                query: $scope.query
-            };
-
-            ServicesAdmin.getLoketPendaftaranPatient(data).$promise
-             .then(function (result) {
-                $scope.resultPasien = result.datas.polies;
-            });
-        }
-
-        $scope.getAge = function () {
-            $scope.temp.age = moment().diff($scope.temp.birth, 'years');
-        }
-
-        $scope.getDoctor = function () {
-            $scope.listPoli.forEach(function(item) {
-                if (item.id == $scope.temp.poly_id && item.doctors) {
-                    $scope.listDoctor = item.doctors;
-                }
-            });
-        }
-
-        var listPoli = function () {
-            ServicesCommon.getPolies().$promise
-            .then(function (result) {
-                $scope.listPoli = result.datas.polies;
             });
         }
 
@@ -176,7 +102,10 @@ angular.module('adminApp')
 
         var firstInit = function () {
             listPendaftaranPasien();
-            listPoli();
+
+            // from extended ModalPendaftaranPasienCtrl
+            $scope.getListPoli();
+            $scope.getListProvinces();
         }
         
         firstInit();
