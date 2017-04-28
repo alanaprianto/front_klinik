@@ -10,8 +10,12 @@ angular.module('adminApp')
         ServicesAdmin,
         ServicesCommon
     ) {
-        $scope.temp = {};
-        $scope.temp.startDate = new Date();
+        var initTemp = function () {
+            $scope.message = '';
+            $scope.temp = {};
+            $scope.temp.startDate = new Date();
+            $scope.temp.listServices = [];
+        }
 
         var toTitleCase = function (str) {
             return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -73,6 +77,10 @@ angular.module('adminApp')
                                 dataDoctor.push(item);
                             });
                         }
+
+                        if (val.name.includes($scope.poliType)) {
+                            $scope.currentPoli = val;
+                        }
                     });
                     $scope.listAllDoctor = dataDoctor;
                 }
@@ -82,16 +90,7 @@ angular.module('adminApp')
         var listServices = function () {
             return ServicesCommon.getServices().$promise
             .then(function (result) {
-                var dataServices = [];
                 $scope.services = result.datas.services;
-
-                if (result.datas && result.datas.services) {
-                    $scope.temp.myService = $scope.services[0];
-                    result.datas.services.forEach(function (val) {
-                        dataServices.push(val);
-                    });
-                    $scope.services = dataServices;
-                }
             });
         }
 
@@ -125,8 +124,8 @@ angular.module('adminApp')
                     item.displayedStatus = statusOnQueue(item);
                     item.displayedQueue = tripleDigit(item.queue_number);
                     if (item.reference && item.reference.register && item.reference.register.patient) {
-                        item.displayedAge = moment().diff(item.reference.register.patient.birth, 'years');
-                        item.displayedBirth = moment(item.reference.register.patient.birth).format('DD MMMM YYYY');
+                        item.displayedAge = moment($scope.temp.startDate).diff(item.reference.register.patient.birth, 'years');
+                        item.displayedBirth = moment(item.reference.register.patient.birth, 'DD/MM/YYYY').format('DD MMMM YYYY');
                         item.displayedGender = genderToString(item.reference.register.patient.gender);
                     }
                     if (item.reference) {
@@ -156,16 +155,14 @@ angular.module('adminApp')
                 .replace("-"," ")
             );
 
+            initTemp();
             getDefaultValues();
 
             listPoli().then(function() {
                 getLoketAntrianPoli();
             });
 
-            listServices().then(function() {
-                console.log("end listing services");
-
-            });
+            listServices();
         }
         
         firstInit();
@@ -201,7 +198,7 @@ angular.module('adminApp')
         }
 
         $scope.openModal = function (target, type, data) {
-            console.log(target);
+            initTemp();
             var cssModal = '';
             if (type) {
                 cssModal = 'modal-' + type;
@@ -236,8 +233,76 @@ angular.module('adminApp')
         $scope.editPasien = function (dataPasien) {
             
         }
-    
-        $scope.setTotal = function() {
-            $scope.temp.totalAmount = $scope.temp.myService.cost*$scope.temp.amount;
+
+        $scope.createCheckUp = function () {
+            var service_ids = [];
+            var service_amounts = [];
+
+            $scope.temp.listServices.forEach(function (val) {
+                service_ids.push(val.service_id);
+                service_amounts.push(val.service_amount);
+            });
+
+            var params = {
+                reference_id: $scope.dataOnModal.reference_id,
+                poly_id: $scope.temp.poliID,
+                doctor_id: $scope.temp.doctor_id,
+                service_ids: service_ids,
+                service_amounts: service_amounts,
+                status: $scope.temp.finalResult,
+                notes: $scope.temp.notes
+            };
+
+            ServicesAdmin.createPenataJasaPeriksa(params).$promise
+            .then(function (result) {
+                if (!result.isSuccess) {
+                    $scope.message = result.message;
+                    return;
+                }
+
+                initTemp();
+                ngDialog.closeAll();
+                getLoketAntrianPoli();
+            });
+        }
+
+        $scope.removeService = function (idx) {
+            $scope.temp.listServices.splice(idx, 1);
+        }
+
+        $scope.addService = function () {
+            var countService = $scope.temp.listServices.length;
+            if (!$scope.services[countService]) {
+                return;
+            }
+
+            var initAmount = 1;
+            var initCost = $scope.services[countService].cost;
+            var initID = $scope.services[countService].id;
+
+            var addService = {
+                cost: initCost,
+                service_id: initID,
+                service_amount: initAmount,
+                service_total: initAmount * initCost
+            };
+
+            $scope.temp.listServices.push(addService);
+        }
+        
+        $scope.setService = function (idx) {
+            var result = {};
+            $scope.services.forEach(function (item) {
+                if (item.id == $scope.temp.listServices[idx].service_id) {
+                    return result = item;
+                };
+            });
+
+            $scope.temp.listServices[idx].cost = result.cost;
+            $scope.temp.listServices[idx].service_total = result.cost * $scope.temp.listServices[idx].service_amount;
+        }
+
+        $scope.setTotal = function (idx) {
+            $scope.temp.listServices[idx].service_total = $scope.temp.listServices[idx].service_amount * $scope.temp.listServices[idx].cost;
         }
     });

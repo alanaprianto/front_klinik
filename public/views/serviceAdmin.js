@@ -47,13 +47,10 @@ angular.module('adminApp')
         },
         createPenataJasaPeriksa: {
             method: 'POST',
-            url: config.url + ':module/:submodule/:controller/:action/:reference_id',
             params: {
                 module: 'api',
                 submodule: 'admin',
-                controller: 'check-up',
-                action: 'update-status',
-                reference_id: null
+                controller: 'check-up'
             }
         },
         postPenataJasaMedicalRecord: {

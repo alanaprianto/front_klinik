@@ -9,6 +9,12 @@
 #antrian-area label {
     color: #fefefe;
 }
+
 #antrian-area h5 {
     color: #fefefe;
+}
+
+.overflow-table {
+    max-height: 300px;
+    overflow-y: auto;
 }

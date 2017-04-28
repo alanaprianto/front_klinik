@@ -93,7 +93,7 @@
                 <div class="col-md-6 no-padding">
                     <div class="form-group field row text-left">
                         <div class="col-sm-4 no-padding">
-                            <label>Nomber Rekam Medis</label>
+                            <label>Nomor Rekam Medis</label>
                         </div>
                         <div class="col-sm-8">
                            <p class="text-left">[[dataOnModal.patient.number_medical_record]]</p>

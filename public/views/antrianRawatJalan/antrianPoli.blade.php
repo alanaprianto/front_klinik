@@ -2,6 +2,7 @@
 @section('title')
 <title>Rawat Jalan .: Teknohealth :. </title>
 <link rel="icon" href="assets/images/logo/logo-sm.png">
+<link rel="stylesheet" href="views/antrianRawatJalan/antrianPoli.css">
 @endsection
 @section('module-title')
 <div class="module-left-title">
@@ -221,7 +222,11 @@
                                 <b>Dokter</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.displayedDoctor]]</p>
+                                <select class="form-control condition"
+                                    ng-init="temp.doctor_id = dataOnModal.reference.staff_id"
+                                    ng-model="temp.doctor_id"
+                                    ng-options="l.pivot.staff_id as l.full_name for l in currentPoli.doctors">
+                                </select>                                
                             </div>
                         </div>
 
@@ -244,17 +249,19 @@
                     </div>
 
                     <div class="col-md-6 text-left">
-
-                        <div>
-                            <p><b>Tambah Tindakan</b></p>
-                            <button type="button"
-                                        class="btn btn-primary btn-sm accordion-toggle"
-                                        data-toggle="collapse"><i
-                                        class="fa fa-plus"></i>
-                            </button>
+                        <p><b>Tindakan</b></p>
+                        <div class="overflow-table">
                             <table id="service-table" class="table service-table">
                                 <thead>
                                     <tr>
+                                        <th>
+                                            <button type="button"
+                                                class="btn btn-primary btn-xs"
+                                                ng-click="addService()"
+                                                ng-hide="temp.listServices.length == services.length">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </th>
                                         <th>No</th>
                                         <th>Nama Tindakan</th>
                                         <th>Biaya Tindakan</th>
@@ -263,31 +270,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr ng-repeat="l in temp.listServices">
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-danger btn-xs"
+                                                ng-click="removeService($index)">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </td>
                                         <td>[[$index + 1]]</td>
                                         <td>
-                                            <select name="service_ids[]" class="form-control condition"
-                                                ng-model="temp.myService"
-                                                ng-options="service.name for service in services"
-                                                ng-change="setTotal()">
-                                                
+                                            <select class="form-control condition"
+                                                ng-model="l.service_id"
+                                                ng-change="setService($index)"
+                                                ng-options="s.id as s.name for s in services">
                                             </select>
                                         </td>
-                                        <td>[[temp.myService.cost]]</td>
+                                        <td>[[temp.listServices[$index].cost]]</td>
                                         <td class="col-sm-2">
                                             <input type="number"
                                                 step="1" 
                                                 min="0"
                                                 class="form-control" 
-                                                ng-model="temp.amount"
-                                                ng-change="setTotal()">
+                                                ng-model="l.service_amount"
+                                                ng-change="setTotal($index)">
                                         </td>
-                                        <td>[[temp.totalAmount]]</td>
+                                        <td>[[temp.listServices[$index].service_total]]</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-
                         <div>
                             <p><b>Kesimpulan Akhir</b></p>
                             <table class="table table-condition">
@@ -312,13 +324,26 @@
                                     </tr>
                                     <tr>
                                         <td class="no-border">Catatan :
-                                            <textarea name="notes" class="form-control"></textarea>
+                                            <textarea name="notes" class="form-control" ng-model="temp.notes"></textarea>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 text-left">
+                        <div class="col-md-9">
+                            <div class="bg-warning" style="min-height: 34px;"
+                                ng-show="message">
+                                <p class="text-left">
+                                    [[message]]
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" ng-click="createCheckUp()">Submit</button>
                             </div>
                         </div>
                     </div>
