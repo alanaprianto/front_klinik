@@ -120,36 +120,44 @@
                 </div>
             </div>
 
-            <div class="col-md-12 no-padding">
-                <table class="table table-payment">
+            <div class="col-md-12 no-padding" ng-init="totalPayments = 0" ng-repeat="pp in dataOnModal.references">
+                <div class="col-md-12" style="padding: 5px; background-color: #636363; color: #fff;">
+                    <h4 class="text-left no-margin no-padding">[[pp.poly.name]]</h4>
+                </div>
+                <table class="table table-payment" ng-init="pp.subTotal = 0">
                     <thead>
-                    <tr>
-                        <th class="text-center" style="width: 50px">No</th>
-                        <th class="text-center">Jenis Pembayaran</th>
-                        <th class="text-center">Jumlah</th>
-                        <th class="text-center">Tarif</th>
-                        <th class="text-right">Total Pembayaran</th>
-                    </tr>
+                        <tr>
+                            <th class="text-center" style="width: 50px">No</th>
+                            <th class="text-center">Jenis Pembayaran</th>
+                            <th class="text-center">Jumlah</th>
+                            <th class="text-center">Tarif</th>
+                            <th class="text-right">Total Pembayaran</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="p in dataOnModal.payments">
+                        <tr ng-repeat="p in pp.payments">
                             <td>[[$index + 1]]</td>
-                            <td>[[p.type]]</td>
-                            <td></td>
-                            <td></td>
-                            <td class="text-right">[[p.total]]</td>
+                            <td ng-show="p.service.name">[[p.service.name]]</td>
+                            <td ng-hide="p.service.name">[[p.type]]</td>
+                            <td ng-show="p.service">[[p.total/p.service.cost]]</td>
+                            <td ng-hide="p.service">[[p.total/p.total]]</td>
+                            <td ng-show="p.service.cost">[[p.service.cost]]</td>
+                            <td ng-hide="p.service.cost">[[p.total]]</td>
+                            <td class="text-right" ng-init="pp.subTotal = pp.subTotal + p.total">[[p.total]]</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th class="text-left">Total</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th class="text-right"><b>123</b></th>
+                            <th colspan="4" class="text-left">Sub Total</th>
+                            <th class="text-right" ng-init="totalPayments = totalPayments + pp.subTotal"><b>[[pp.subTotal]]</b></th>
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+            <div class="col-md-12 no-padding">
+                <div class="col-md-12">
+                    <h4 class="text-left no-margin no-padding">[[totalPayments]]</h4>
+                </div>
             </div>
         </div>
 

@@ -1,4 +1,4 @@
-@extends('index')
+@extends('layout.layout')
 @section('css')
     <link rel="stylesheet" href="views/dataPasien/dataPasien.css">
 @endsection

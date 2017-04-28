@@ -52,6 +52,18 @@ angular.module('adminApp')
                 return result;  
             }
         }
+        
+        var finalResultOnPoli = function (val) {
+            if (val && val.status) {
+                var result = '';
+                $scope.finalResultOnPoli.forEach(function (item) {
+                    if (val.status == item.value) {
+                        result = item.key;
+                    }
+                });         
+                return result;  
+            }
+        }
 
         $scope.getDoctor = function () {
             $scope.listPoli.forEach(function(item) {
@@ -138,6 +150,30 @@ angular.module('adminApp')
             });
         }
 
+        var getVisitor = function () {
+            ServicesAdmin.getVisitor({type: $scope.poliType}).$promise
+            .then(function (result) {
+                var dataArrayOld = [];
+                result.datas.patients.forEach(function (item) {
+                    item.displayedStatus = finalResultOnPoli(item);
+
+                    item.displayedAge = moment($scope.temp.startDate).diff(item.birth, 'years');
+                    item.displayedBirth = moment(item.birth, 'DD/MM/YYYY').format('DD MMMM YYYY');
+                    item.displayedGender = genderToString(item.gender);
+
+                    if (item.reference) {
+                        item.displayedDoctor = getDoctorName(item.reference.staff_id);
+                        item.displayedPoli = getPoliName(item.reference.poly_id);
+                    }
+                    dataArrayOld.push(item);
+                });
+                $scope.getLoketAntrianPoliOld  = dataArrayOld;
+                console.log(result)
+                // var datatableSettings = $('#example').DataTable();        
+                // datatableSettings.ajax.reload();
+            });
+        }
+
         var getDefaultValues = function() {
             $http.get('views/config/defaultValues.json').then(function(data) {
                 $scope.finalResultOnPoli = data.data.finalResultOnPoli;
@@ -158,6 +194,7 @@ angular.module('adminApp')
 
             listPoli().then(function() {
                 getLoketAntrianPoli();
+                getVisitor();
             });
 
             listServices();

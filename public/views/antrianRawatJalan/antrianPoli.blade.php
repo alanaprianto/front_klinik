@@ -103,10 +103,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="a in antrianPoliUmum">
+                                <tr ng-repeat="a in getLoketAntrianPoliOld ">
                                     <td>[[$index + 1]]</td>
-                                    <td>[[a.displayedQueue]]</td>
-                                    <td>[[a.reference.register.patient.full_name]]</td>
+                                    <td>[[a.number_medical_record]]</td>
+                                    <td>[[a.full_name]]</td>
                                     <td>[[a.displayedGender]]</td>
                                     <td>[[a.displayedStatus]]</td>
                                     <td>
@@ -298,7 +298,7 @@
                                         <td>[[temp.listServices[$index].service_total]]</td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table>.
                         </div>
                         <div>
                             <p><b>Kesimpulan Akhir</b></p>
@@ -326,6 +326,7 @@
                                         <td class="no-border">Catatan :
                                             <textarea name="notes" class="form-control" ng-model="temp.notes"></textarea>
                                         </td>
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -366,7 +367,7 @@
                         <div class="col-sm-8">
                             <input type="text" 
                                 class="form-control" 
-                                ng-model="">
+                                >
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -376,7 +377,7 @@
                         <div class="col-sm-8">
                             <input type="text" 
                                 class="form-control" 
-                                ng-model="">
+                                >
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -386,7 +387,7 @@
                         <div class="col-sm-8">
                             <input type="text" 
                                 class="form-control" 
-                                ng-model="">
+                                >
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -396,7 +397,7 @@
                         <div class="col-sm-8">
                             <input type="text"                 
                                 class="form-control" 
-                                ng-model="">
+                                >
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -406,7 +407,7 @@
                         <div class="col-sm-8">
                             <input type="text" 
                                 class="form-control" 
-                                ng-model="">
+                                >
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -416,17 +417,17 @@
                         <div class="col-sm-8">
                             <input type="text" 
                                 class="form-control" 
-                                ng-model="">
+                                >
                         </div>
                     </div>
                     
             </div>
             <div class="row p-b-15 no-margin">
                 <div class="col-md-12">
-                    <button class="btn btn-default col-md-4 no-radius pull-right"
-                        ng-click="printArea('printMedicalReport')">
-                        <i class="fa fa-print"></i> Print
-                    </button>
+                     <button type="submit" 
+                     class="btn btn-default col-md-4 no-radius pull-right" 
+                     ng-click="createMedicalRecord()">Submit</button>
+                    
                 </div>
             </div>
         </script>
