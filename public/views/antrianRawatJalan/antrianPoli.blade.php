@@ -313,7 +313,7 @@
                                             </select>
                                         </td>
                                     </tr>
-                                    <tr ng-if="temp.finalResult == 1">
+                                    <tr ng-if="temp.finalResult == 3">
                                         <td class="no-border">
                                             <select name="poli" class="form-control condition" 
                                                 ng-model="temp.poliID" required>

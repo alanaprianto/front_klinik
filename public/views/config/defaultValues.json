@@ -15,16 +15,16 @@
     ],
     "finalResultOnPoli": [
         {
-            "key": "dirujuk",
-            "value": 1
-        },
-        {
-            "key": "dirawat",
+            "key": "dipulangkan / selesai pemeriksaan",
             "value": 2
         },
         {
-            "key": "selesai diperiksa",
+            "key": "dirujuk",
             "value": 3
+        },
+        {
+            "key": "dirawat",
+            "value": 4
         }
     ],
     "statusQueue": [
