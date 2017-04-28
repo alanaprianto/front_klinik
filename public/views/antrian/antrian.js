@@ -8,15 +8,18 @@ angular.module('adminApp')
         $controller,
         ngDialog,
         moment,
-        ServicesAdmin
+        ServicesAdmin    
     ) {
-        $scope.today = new Date();
-        $scope.temp = {};
-        $scope.message = {};
+        var initTemp = function () {
+            $scope.today = new Date();
+            $scope.temp = {};
+            $scope.message = {};
+        }
         
         angular.extend(this, $controller('ModalPendaftaranPasienCtrl', {$scope: $scope}));
 
-        $scope.openModal = function (target, type, data) {
+        $scope.openModal = function (target, type, data) {       
+            initTemp();
             var cssModal = '';
             if (type) {
                 cssModal = 'modal-' + type;
@@ -24,8 +27,7 @@ angular.module('adminApp')
 
             if (data) {
                 $scope.dataOnModal = data;
-                $scope.temp.kiosk_id = data.id;
-                console.log($scope.temp.kiosk_id);
+                $scope.kiosk_id = data.id;                
             }
 
             ngDialog.open({
@@ -140,6 +142,7 @@ angular.module('adminApp')
         };
 
         var firstInit = function () {
+            initTemp();
             getDefaultValues();
 
             getLoketAntrianBpjs();

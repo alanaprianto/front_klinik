@@ -9,7 +9,7 @@ angular.module('adminApp')
         ServicesAdmin,
         ServicesCommon,
         moment
-    ) {
+    ) {        
         var defaultDataCreatePasien = function () {
             var data = {
                 age: $scope.temp.age
@@ -19,10 +19,9 @@ angular.module('adminApp')
 
         $scope.createNewPendaftaranPasien = function () {
             $scope.message.createLoketRegisters = {};
-
+    
             var data = {
-                kiosk_id: $scope.temp.kiosk_id,
-                patient_id: $scope.temp.patient_id,
+                kiosk_id: $scope.kiosk_id,                
                 number_medical_record: $scope.temp.number_medical_record,
                 full_name: $scope.temp.full_name,
                 place: $scope.temp.place,
@@ -60,23 +59,8 @@ angular.module('adminApp')
             $scope.message.createLoketRegisters = {};
 
             var data = {
-                kiosk_id: $scope.temp.kiosk_id,
-                patient_id: $scope.temp.patient_id,
-                number_medical_record: $scope.temp.number_medical_record,
-                full_name: $scope.temp.full_name,
-                place: $scope.temp.place,
-                birth: moment($scope.temp.birth).format("DD/MM/YYYY"),
-                gender: $scope.temp.gender,
-                address: $scope.temp.address,
-                religion: $scope.temp.religion,
-                city: $scope.temp.city,
-                district: $scope.temp.district,
-                sub_district: $scope.temp.sub_district,
-                rt_rw: $scope.temp.rt_rw,
-                phone_number: $scope.temp.phone_number,
-                last_education: $scope.temp.last_education,
-                job: $scope.temp.job,
-                askes_number: $scope.temp.askes_number,
+                kiosk_id: $scope.kiosk_id,
+                patient_id: $scope.patient_id,            
                 poly_id: $scope.temp.poly_id,
                 doctor_id: $scope.temp.doctor_id
             }
@@ -106,7 +90,7 @@ angular.module('adminApp')
             });
         }
 
-        $scope.oldPatient = function () {
+        $scope.oldPatient = function () {            
             $scope.temp.number_medical_record = $scope.temp.patient.number_medical_record;
             $scope.temp.full_name = $scope.temp.patient.full_name;
             $scope.temp.place = $scope.temp.patient.place;
@@ -124,6 +108,8 @@ angular.module('adminApp')
             $scope.temp.last_education = $scope.temp.patient.last_education;
             $scope.temp.job = $scope.temp.patient.job;
             $scope.temp.askes_number = $scope.temp.patient.askes_number;
+
+            $scope.patient_id = $scope.temp.patient.id;
         }
 
         $scope.getAge = function () {
