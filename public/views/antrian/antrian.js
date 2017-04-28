@@ -24,6 +24,8 @@ angular.module('adminApp')
 
             if (data) {
                 $scope.dataOnModal = data;
+                $scope.temp.kiosk_id = data.id;
+                console.log($scope.temp.kiosk_id);
             }
 
             ngDialog.open({

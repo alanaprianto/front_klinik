@@ -25,7 +25,7 @@
 @section('content')
 <div ng-controller="KasirController">
     <div class="col-md-12">
-         <div class="row">
+        <div class="row">
             <div class="col-md-12">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
@@ -43,8 +43,8 @@
                             <td>[[$index + 1]]</td>
                             <td>[[k.patient.number_medical_record]]</td>
                             <td>[[k.patient.full_name]]</td>
-                            <td>[[k.created_at]]</td>
-                            <td>[[k.status]]</td>
+                            <td>[[k.displayedCreatedAt]]</td>
+                            <td>[[k.displayedStatus]]</td>
                             <td>
                                 <button class="btn btn-xs btn-default"
                                     ng-click="openModal('detaiPasienModal', 'lg', k)">
@@ -56,6 +56,7 @@
                 </table>
             </div>
         </div>
+    </div>
     <script type="text/ng-template" id="detaiPasienModal">
         <div class="row p-b-15">
             <h4 class="modal-title">
@@ -78,7 +79,7 @@
                             <label>Umur</label>
                         </div>
                         <div class="col-sm-8">
-                           <p class="text-left">[[dataOnModal.patient.age]]</p>
+                           <p class="text-left">[[dataOnModal.displayedAge]]</p>
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -86,7 +87,7 @@
                             <label>Jenis Kelamin</label>
                         </div>
                         <div class="col-sm-8">
-                            <p class="text-left">[[dataOnModal.patient.gender]]</p>
+                            <p class="text-left">[[dataOnModal.displayedGender]]</p>
                         </div>
                     </div>
                 </div>
@@ -119,87 +120,48 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12 no-padding">
                 <table class="table table-payment">
                     <thead>
                     <tr>
-                        <th style="width: 50px">No</th>
-                        <th>Jenis Pembayaran</th>
-                        <th>Total Pembayaran</th>
-                        <th>Action</th>
+                        <th class="text-center" style="width: 50px">No</th>
+                        <th class="text-center">Jenis Pembayaran</th>
+                        <th class="text-center">Jumlah</th>
+                        <th class="text-center">Tarif</th>
+                        <th class="text-right">Total Pembayaran</th>
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr ng-repeat="p in dataOnModal.payments">
+                            <td>[[$index + 1]]</td>
+                            <td>[[p.type]]</td>
                             <td></td>
                             <td></td>
-                            <td class="amount"></td>
-                            <td>
-                                <input type="checkbox"
-                                       class="check-payment"
-                                       name="">Dibayar
-
-                                <button type="button"
-                                        class="btn btn-primary btn-sm accordion-toggle"
-                                        data-toggle="collapse"><i
-                                        class="fa fa-info"></i></button>
-
-                            </td>
+                            <td class="text-right">[[p.total]]</td>
                         </tr>
-
-                            <tr>
-                                <th class="hiddenRow">
-                                    <div ></div>
-                                </th>
-                                <th class="hiddenRow">
-                                    <div>Nama Tindakan
-                                    </div>
-                                </th>
-                                <th class="hiddenRow">
-                                    <div>Jumlah Tindakan
-                                        / Harga Per Tindakan
-                                    </div>
-                                </th>
-                                <th class="hiddenRow">
-                                    <div>Total</div>
-                                </th>
-                            </tr>
-                           
-                                <tr>
-                                    <td class="hiddenRow">
-                                        <div></div>
-                                    </td>
-                                    <td class="hiddenRow">
-                                        <div></div>
-                                    </td>
-                                    <td class="hiddenRow">
-                                        <div>
-                                            x Tindakan / Rp.</div>
-                                    </td>
-                                    <td class="hiddenRow">
-                                        <div>
-                                            Rp.</div>
-                                    </td>
-                                </tr>
-
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th class="text-left">Total</th>
                             <th></th>
-                            <th><span
-                                        class="remaining"></span></th>
-                            <th class="text-right">Total : Rp.</th>
-                            <th><input type="checkbox"
-                                       class="full_payment" >Lunas
-                            </th>
+                            <th></th>
+                            <th></th>
+                            <th class="text-right"><b>123</b></th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
         </div>
+
         <div class="row p-b-15 no-margin">
-            <div class="col-md-12">
-                <button class="btn btn-default col-md-4 no-radius pull-right"
+            <div class="col-md-3 pull-right">
+                <button class="btn btn-primary col-md-12 no-radius pull-right"
+                    ng-click="createKasirPayments()">
+                    Bayar
+                </button>
+            </div>
+            <div class="col-md-3 pull-right">
+                <button class="btn btn-default col-md-12 no-radius pull-right"
                     ng-click="printArea('printSuratSakit')">
                     <i class="fa fa-print"></i> Print
                 </button>

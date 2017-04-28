@@ -353,7 +353,8 @@
                         name="patient"
                         ng-init="temp.patient = temp.patients[0]"
                         ng-model="temp.patient"
-                        ng-options="p.full_name for p in temp.patients">
+                        ng-click="oldPatient()"
+                        ng-options="p.result for p in temp.patients">
                     </select>
                 </div>
             </div>

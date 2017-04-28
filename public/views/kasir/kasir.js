@@ -9,21 +9,47 @@ angular.module('adminApp')
         $rootScope, 
         ServicesAdmin
     ) {
+        $scope.message = '';
+
+        var genderToString = function (val) {
+            if (val !== null && val !== undefined) {
+                var result = "";
+                $scope.gender.forEach(function (item) {
+                    if (val == item.value) {
+                        result = item.key;
+                    }
+                });
+                return result;
+            }
+        }
+
+        var statusOnPayments = function (val) {
+            if (val && val.status) {
+                var result = '';
+                $scope.statusPayments.forEach(function (item) {
+                    if (val.status == item.value) {
+                        result = item.key;
+                    }
+                });         
+                return result;  
+            }
+        }
+
         var listDataPasien = function () {
             ServicesAdmin.getKasirPayments().$promise
             .then(function (result) {
                 var tempData = [];
-                result.datas.registers.forEach(function(item,key){
-                     if (item.patient && item.patient.birth) {
-                        item.patient.age = moment().diff(moment(item.patient.birth, "DD/MM/YYYY", true), 'years');
-                    }
-                    switch (item.gender) {
-                    case 1:
-                       item.gender = 'Laki-laki';
-                        break;
-                    case 2:
-                        item.gender = 'Perempuan';
-                        break;
+                result.datas.registers.forEach(function(item, key){
+                    item.displayedStatus = statusOnPayments(item);
+                    item.displayedCreatedAt = moment(item.created_at).format('DD MMM YYYY, HH:mm');
+
+                    if (item.patient) {
+                        if (item.patient.birth) {
+                            item.displayedAge = moment().diff(moment(item.patient.birth, "DD/MM/YYYY"), 'years');
+                        }
+                        if (item.patient.gender) {
+                            item.displayedGender = genderToString(item.patient.gender);
+                        }
                     }
                     tempData.push(item);
                 });
@@ -50,9 +76,34 @@ angular.module('adminApp')
             });
         }
         
+        var getDefaultValues = function() {
+            return $http.get('views/config/defaultValues.json').then(function(data) {
+                $scope.statusPayments = data.data.statusPayments;
+                $scope.gender = data.data.gender;
+            });
+        };
+
         var firstInit = function () {
-            listDataPasien();
+            getDefaultValues().then(function () {
+                listDataPasien();
+            });
         }
 
         firstInit();
+
+        $scope.createKasirPayments = function () {
+            var params = {
+
+            };
+
+            ServicesAdmin.createKasirPayments().$promise
+            .then(function (result) {
+                if (!result.isSuccess) {
+                    $scope.message = result.message;
+                    return;
+                }
+
+                listDataPasien();
+            })
+        }
     });

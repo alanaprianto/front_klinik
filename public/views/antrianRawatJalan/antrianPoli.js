@@ -24,14 +24,11 @@ angular.module('adminApp')
         var genderToString = function (val) {
             if (val !== null && val !== undefined) {
                 var result = "";
-                switch (val) {
-                    case 1: 
-                        result = "Laki-Laki";
-                        break;
-                    case 2:
-                        result = "Perempuan";
-                        break;
-                }
+                $scope.gender.forEach(function (item) {
+                    if (val == item.value) {
+                        result = item.key;
+                    }
+                });
                 return result;
             }
         }
@@ -145,6 +142,7 @@ angular.module('adminApp')
             $http.get('views/config/defaultValues.json').then(function(data) {
                 $scope.finalResultOnPoli = data.data.finalResultOnPoli;
                 $scope.statusQueue = data.data.statusQueue;
+                $scope.gender = data.data.gender;
             });
         };
 
@@ -242,8 +240,9 @@ angular.module('adminApp')
                 service_ids.push(val.service_id);
                 service_amounts.push(val.service_amount);
             });
-
+    
             var params = {
+                register_id: $scope.dataOnModal.reference.register.id,
                 reference_id: $scope.dataOnModal.reference_id,
                 poly_id: $scope.temp.poliID,
                 doctor_id: $scope.temp.doctor_id,

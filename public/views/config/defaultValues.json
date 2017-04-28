@@ -15,6 +15,10 @@
     ],
     "finalResultOnPoli": [
         {
+            "key": "belum diperiksa",
+            "value": 1
+        },
+        {
             "key": "dipulangkan / selesai pemeriksaan",
             "value": 2
         },
@@ -43,6 +47,30 @@
         {
            "key": "closed",
             "value": 4 
+        }
+    ],
+    "gender": [
+        {
+            "key": "Laki-Laki",
+            "value": 1
+        },
+        {
+            "key": "Perempuan",
+            "value": 2
+        }
+    ],
+    "statusPayments": [
+        {
+            "key": "belum dibayar",
+            "value": 1
+        },
+        {
+            "key": "ada tunggakan",
+            "value": 2
+        },
+        {
+            "key": "lunas",
+            "value": 3
         }
     ]
 }
