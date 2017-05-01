@@ -137,7 +137,8 @@ angular.module('adminApp')
 
         var getDefaultValues = function() {
             $http.get('views/config/defaultValues.json').then(function(data) {
-                $scope.statusQueue = data.data.statusQueue;        
+                $scope.statusQueue = data.data.statusQueue;
+                $scope.defaultValues = data.data;
             });
         };
 

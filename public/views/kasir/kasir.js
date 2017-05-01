@@ -9,6 +9,8 @@ angular.module('adminApp')
         $rootScope, 
         ServicesAdmin
     ) {
+        $scope.temp = {};
+        $scope.temp.totalPayments = 0;
         $scope.message = '';
 
         var genderToString = function (val) {
@@ -92,17 +94,24 @@ angular.module('adminApp')
         firstInit();
 
         $scope.createKasirPayments = function () {
-            var params = {
+            if (!$scope.temp.payment) {
+                console.log('no payment amount inserted')
+                return;
+            }
 
+            var params = {
+                register_id: $scope.dataOnModal.id,
+                payment: $scope.temp.payment
             };
 
-            ServicesAdmin.createKasirPayments().$promise
+            ServicesAdmin.createKasirPayments(params).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
                     $scope.message = result.message;
                     return;
                 }
 
+                ngDialog.closeAll();
                 listDataPasien();
             })
         }

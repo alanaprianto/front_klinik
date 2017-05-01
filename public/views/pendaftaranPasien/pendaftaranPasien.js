@@ -100,9 +100,15 @@ angular.module('adminApp')
             });
         }
 
+        var getDefaultValues = function() {
+            $http.get('views/config/defaultValues.json').then(function(data) {
+                $scope.defaultValues = data.data;
+            });
+        }
+
         var firstInit = function () {
             listPendaftaranPasien();
-
+            getDefaultValues();
             // from extended ModalPendaftaranPasienCtrl
             $scope.getListPoli();
             $scope.getListProvinces();

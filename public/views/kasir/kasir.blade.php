@@ -120,11 +120,11 @@
                 </div>
             </div>
 
-            <div class="col-md-12 no-padding" ng-init="totalPayments = 0" ng-repeat="pp in dataOnModal.references">
+            <div class="col-md-12 no-padding" ng-repeat="pp in dataOnModal.references">
                 <div class="col-md-12" style="padding: 5px; background-color: #636363; color: #fff;">
                     <h4 class="text-left no-margin no-padding">[[pp.poly.name]]</h4>
                 </div>
-                <table class="table table-payment" ng-init="pp.subTotal = 0">
+                <table class="table table-payment">
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 50px">No</th>
@@ -143,20 +143,31 @@
                             <td ng-hide="p.service">[[p.total/p.total]]</td>
                             <td ng-show="p.service.cost">[[p.service.cost]]</td>
                             <td ng-hide="p.service.cost">[[p.total]]</td>
-                            <td class="text-right" ng-init="pp.subTotal = pp.subTotal + p.total">[[p.total]]</td>
+                            <td class="text-right">[[p.total]]</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
                             <th colspan="4" class="text-left">Sub Total</th>
-                            <th class="text-right" ng-init="totalPayments = totalPayments + pp.subTotal"><b>[[pp.subTotal]]</b></th>
+                            <th class="text-right"
+                                ng-init="totalPayments = totalPayments + pp.reference_total_payment">
+                                <b>[[pp.reference_total_payment]]</b>
+                            </th>
                         </tr>
+                        <tr>
+                        </tr>
+                        <tr>
+                        </tr>           
                     </tfoot>
                 </table>
             </div>
+
             <div class="col-md-12 no-padding">
-                <div class="col-md-12">
-                    <h4 class="text-left no-margin no-padding">[[totalPayments]]</h4>
+                <div class="col-sm-8">
+                    <p>Total</p>
+                </div>
+                <div class="col-md-4 text-right">
+                    <b class="no-margin no-padding">[[totalPayments]]</b>
                 </div>
             </div>
         </div>

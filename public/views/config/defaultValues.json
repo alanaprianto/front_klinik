@@ -59,6 +59,94 @@
             "value": 2
         }
     ],
+    "serviceType": [
+        {
+            "key": "Reguler",
+            "value": "Reguler"
+        },
+        {
+            "key": "Prioritas",
+            "value": "Prioritas"
+        }
+    ],
+    "visitType": [
+        {
+            "key": "Di Antar",
+            "value": "Di Antar"
+        },
+        {
+            "key": "Datang Sendiri",
+            "value": "Datang Sendiri"
+        },
+        {
+            "key": "Di Jemput",
+            "value": "Di Jemput"
+        }
+    ],
+    "religion": [
+        {
+            "key": "Islam",
+            "value": "Islam"
+        },
+        {
+            "key": "Kristen",
+            "value": "Kristen"
+        },
+        {
+            "key": "Katolik",
+            "value": "Katolik"
+        },
+        {
+            "key": "Budha",
+            "value": "Budha"
+        },
+        {
+            "key": "Hindu",
+            "value": "Hindu"
+        },
+        {
+            "key": "Khonghucu",
+            "value": "Khonghucu"
+        }
+    ],
+    "education": [
+        {
+            "key": "SD",
+            "value": "SD"
+        },
+        {
+            "key": "SMP",
+            "value": "SMP"
+        },
+        {
+            "key": "SMA",
+            "value": "SMA"
+        },
+        {
+            "key": "Diploma 1",
+            "value": "Diploma 1"
+        },
+        {
+            "key": "Diploma 2",
+            "value": "Diploma 2"
+        },
+        {
+            "key": "Diploma 3",
+            "value": "Diploma 3"
+        },
+        {
+            "key": "S1",
+            "value": "S1"
+        },
+        {
+            "key": "S2",
+            "value": "S2"
+        },
+        {
+            "key": "S3",
+            "value": "S3"
+        }
+    ],
     "statusPayments": [
         {
             "key": "belum dibayar",

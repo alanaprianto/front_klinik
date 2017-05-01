@@ -97,13 +97,8 @@
                         <select 
                             class="form-control m-b" 
                             name="religion"
-                            ng-model="temp.religion">
-                                <option>Islam</option>
-                                <option>Kristen</option>
-                                <option>Katolik</option>
-                                <option>Budha</option>
-                                <option>Hindu</option>
-                                <option>Khonghucu</option>
+                            ng-model="temp.religion"
+                            ng-options="d.value as d.key for d in defaultValues.religion">
                         </select>
                     </div>
                 </div>
@@ -175,16 +170,8 @@
                         <select 
                             class="form-control m-b" 
                             name="last_education"
-                            ng-model="temp.last_education">
-                           <option>SD</option>
-                           <option>SMP</option>
-                           <option>SMA</option>
-                           <option>Diploma 1</option>
-                           <option>Diploma 2</option>
-                           <option>Diploma 3</option>
-                           <option>S1</option>
-                           <option>S2</option>
-                           <option>S3</option>
+                            ng-model="temp.last_education"
+                            ng-options="d.value as d.key for d in defaultValues.education">
                         </select>
                     </div>
                 </div>
@@ -247,10 +234,8 @@
                         <select 
                             class="form-control m-b" 
                             name="how_visit"
-                            ng-model="temp.how_visit">
-                            <option>Di Antar</option>
-                            <option>Datang Sendiri</option>
-                            <option>Di Jemput</option>
+                            ng-model="temp.how_visit"
+                            ng-options="d.value as d.key for d in defaultValues.visitType">
                         </select>
                     </div>
                 </div>
@@ -270,9 +255,8 @@
                         <select 
                             class="form-control m-b" 
                             name="service_type"
-                            ng-model="temp.service_type">
-                                <option>Reguler</option>
-                                <option>Prioritas</option>
+                            ng-model="temp.service_type"
+                            ng-options="d.value as d.key for d in defaultValues.serviceType">
                         </select>
                     </div>
                 </div>
@@ -436,13 +420,8 @@
                         <select disabled="input" 
                             class="form-control m-b" 
                             name="religion"
-                            ng-model="temp.religion">
-                                <option>Islam</option>
-                                <option>Kristen</option>
-                                <option>Katolik</option>
-                                <option>Budha</option>
-                                <option>Hindu</option>
-                                <option>Khonghucu</option>
+                            ng-model="temp.religion"
+                            ng-options="d.value as d.key for d in defaultValues.religion">
                         </select>
                     </div>
                 </div>
@@ -513,16 +492,8 @@
                         <select disabled="input" 
                             class="form-control m-b" 
                             name="last_education"
-                            ng-model="temp.last_education">
-                           <option>SD</option>
-                           <option>SMP</option>
-                           <option>SMA</option>
-                           <option>Diploma 1</option>
-                           <option>Diploma 2</option>
-                           <option>Diploma 3</option>
-                           <option>S1</option>
-                           <option>S2</option>
-                           <option>S3</option>
+                            ng-model="temp.last_education"
+                            ng-options="d.value as d.key for d in defaultValues.education">
                         </select>
                     </div>
                 </div>
@@ -582,13 +553,10 @@
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Cara Kunjungan</label>
                     <div class="col-sm-8">
-                        <select 
-                            class="form-control m-b" 
+                        <select class="form-control m-b" 
                             name="how_visit"
-                            ng-model="temp.how_visit">
-                            <option>Di Antar</option>
-                            <option>Datang Sendiri</option>
-                            <option>Di Jemput</option>
+                            ng-model="temp.how_visit"
+                            ng-options="d.value as d.key for d in defaultValues.visitType">
                         </select>
                     </div>
                 </div>
@@ -608,9 +576,8 @@
                         <select 
                             class="form-control m-b" 
                             name="service_type"
-                            ng-model="temp.service_type">
-                                <option>Reguler</option>
-                                <option>Prioritas</option>
+                            ng-model="temp.service_type"
+                            ng-options="d.value as d.key for d in defaultValues.visitType">
                         </select>
                     </div>
                 </div>
