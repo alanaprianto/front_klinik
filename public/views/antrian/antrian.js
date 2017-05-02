@@ -151,7 +151,6 @@ angular.module('adminApp')
             getLoketAntrianContractor();
 
             $scope.getListPoli();
-            $scope.getListProvinces();
         }
         
         firstInit();

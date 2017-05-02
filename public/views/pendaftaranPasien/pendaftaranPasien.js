@@ -111,9 +111,6 @@ angular.module('adminApp')
             getDefaultValues();
             // from extended ModalPendaftaranPasienCtrl
             $scope.getListPoli();
-            $scope.getListProvinces();
-            $scope.getListCities();
-            $scope.getListDistricts();
         }
         
         firstInit();

@@ -151,4 +151,8 @@ angular.module('adminApp')
                 $scope.districts = result.datas.districts;
             });
         }
+
+        $scope.getListProvinces();
+        $scope.getListCities();
+        $scope.getListDistricts();
     });
