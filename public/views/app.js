@@ -56,6 +56,26 @@ angular.module('adminApp', [
     })
 
     .run(function ($rootScope, $cookies, config, $window, $http) {
+        var getAdminMenu = function (roleName) {
+            return config.menus.find(function (item) {
+                if (item[roleName]){
+                    return item[roleName];
+                }
+            });
+        }
+
+        var getListMenu = function (roleName) {
+            $http.get('views/config/menu.json').then(function(res) {
+                var menus = [];
+                res.data.menu.forEach(function (item, key) {
+                    if (item.active && getAdminMenu(roleName)[roleName].indexOf(key) !== -1) {
+                        menus.push(item);
+                    }
+                });
+                $rootScope.listMenu = menus;
+            });
+        }
+
         var isLoggedIn = function () {
             var token = $cookies.get('access_token');
             if (!token) {
@@ -72,6 +92,7 @@ angular.module('adminApp', [
             }).then(function (response) {
                 if (response.data && response.data.datas) {
                     $rootScope.dataUser = response.data.datas.user;
+                    getListMenu(response.data.datas.user.roles[0].name);
                 }
                 return;
             }, function (response) {

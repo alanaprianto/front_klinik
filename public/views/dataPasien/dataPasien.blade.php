@@ -186,7 +186,7 @@
                             <div class="accordian-body collapse demo[[$index]]">[[$reference->created_at]]</div>
                         </td>
                         <td colspan="2" class="hiddenRow">
-                            <div class="accordian-body collapse demo[[$index]]"> [[$reference->final_result]]</div>
+                            <div class="accordian-body collapse demo[[$index]]"> [[  $reference->final_result]]</div>
                         </td>
                     </tr>
                        <tr>
