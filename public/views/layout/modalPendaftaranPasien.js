@@ -137,4 +137,18 @@ angular.module('adminApp')
                 $scope.provinces = result.datas.provinces;
             });
         }
+
+        $scope.getListCities = function () {
+            ServicesCommon.getCities().$promise
+            .then(function (result) {
+                $scope.cities = result.datas.cities;
+            });
+        }
+
+        $scope.getListDistricts = function () {
+            ServicesCommon.getDistricts().$promise
+            .then(function (result) {
+                $scope.districts = result.datas.districts;
+            });
+        }
     });

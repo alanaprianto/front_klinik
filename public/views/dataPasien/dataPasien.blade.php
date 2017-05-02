@@ -152,46 +152,46 @@
             <tbody>
           
                 <tr>
-                    <td>{{$index + 1}}</td>
-                    <td>{{$register->register_number}}</td>
-                    <td>{{$register->created_at}}</td>
-                    <td>{{$register->service_type}}</td>
+                    <td>[[$index + 1]]</td>
+                    <td>[[$register->register_number]]</td>
+                    <td>[[$register->created_at]]</td>
+                    <td>[[$register->service_type]]</td>
                     <td>
-                        <button  data-toggle="collapse" data-target=".demo{{$index}}" class="accordion-toggle"><i class="fa fa-eye"></i></button>
+                        <button  data-toggle="collapse" data-target=".demo[[$index]]" class="accordion-toggle"><i class="fa fa-eye"></i></button>
                     </td>
                 </tr>
                 <tr>
                     <th class="hiddenRow">
-                        <div class="accordian-body collapse demo{{$index}}"> Poli Tujuan</div>
+                        <div class="accordian-body collapse demo[[$index]]"> Poli Tujuan</div>
                     </th>
                     <th class="hiddenRow">
-                        <div class="accordian-body collapse demo{{$index}}"> Diperiksa Oleh</div>
+                        <div class="accordian-body collapse demo[[$index]]"> Diperiksa Oleh</div>
                     </th>
                     <th class="hiddenRow">
-                        <div class="accordian-body collapse demo{{$index}}"> Waktu</div>
+                        <div class="accordian-body collapse demo[[$index]]"> Waktu</div>
                     </th>
                     <th colspan="2" class="hiddenRow">
-                        <div class="accordian-body collapse demo{{$index}}"> Status</div>
+                        <div class="accordian-body collapse demo[[$index]]"> Status</div>
                     </th>
                 </tr>
 
                     <tr>
                         <td class="hiddenRow">
-                            <div class="accordian-body collapse demo{{$index}}"> {{$reference->poly->name}}</div>
+                            <div class="accordian-body collapse demo[[$index]]"> [[$reference->poly->name]]</div>
                         </td>
                         <td class="hiddenRow">
-                            <div class="accordian-body collapse demo{{$index}}">{{$reference->doctor->full_name}}</div>
+                            <div class="accordian-body collapse demo[[$index]]">[[$reference->doctor->full_name]]</div>
                         </td>
                         <td class="hiddenRow">
-                            <div class="accordian-body collapse demo{{$index}}">{{$reference->created_at}}</div>
+                            <div class="accordian-body collapse demo[[$index]]">[[$reference->created_at]]</div>
                         </td>
                         <td colspan="2" class="hiddenRow">
-                            <div class="accordian-body collapse demo{{$index}}"> {{$reference->final_result}}</div>
+                            <div class="accordian-body collapse demo[[$index]]"> [[$reference->final_result]]</div>
                         </td>
                     </tr>
                        <tr>
                         <td class="hiddenRow" colspan="5">
-                            <div class="accordian-body collapse demo{{$index}}"> -</div>
+                            <div class="accordian-body collapse demo[[$index]]"> -</div>
                         </td>
                     </tr>
 

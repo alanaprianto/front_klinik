@@ -1,9 +1,14 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('ResepCtrl', function($scope, $http, $rootScope, ServicesAdmin) {
+    .controller('ResepCtrl', function(
+        $scope, 
+        $http, 
+        $rootScope, 
+        ngDialog,
+        ServicesApotek) {
         var getApotekRecipes = function () {
-            ServicesAdmin.getApotekRecipes().$promise.then(function (result) {
+            ServicesApotek.getApotekRecipes().$promise.then(function (result) {
                 $scope.tableListRecipes = result.datas.recipes; 
             });
         }
@@ -25,4 +30,22 @@ angular.module('adminApp')
         }
         
         createEditInit();
+
+        $scope.openModal = function (target, type, data) {
+            console.log(target);
+            var cssModal = '';
+            if (type) {
+                cssModal = 'modal-' + type;
+            }
+
+            if (data) {
+                $scope.dataOnModal = data;
+            }
+
+            ngDialog.open({
+                template: target,
+                scope: $scope,
+                className: 'ngDialog-modal ' + cssModal
+            });
+        }
     });

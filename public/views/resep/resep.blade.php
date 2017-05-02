@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('title')
-<title>kepegawaian .: Teknohealth :. </title>
+<title>Farmasi .: Teknohealth :. </title>
 <link rel="icon" href="assets/images/logo/logo-sm.png">
 @endsection
 @section('module-title')

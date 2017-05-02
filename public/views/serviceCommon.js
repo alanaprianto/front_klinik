@@ -29,6 +29,23 @@ angular.module('adminApp')
                 controller: 'provinces'
             }
         },
+        getCities: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'cities'
+            }
+        },
+        getDistricts: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'districts'
+            }
+        },
+
         getDoctorServices: {
             method: 'GET',
             params: {

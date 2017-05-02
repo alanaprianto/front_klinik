@@ -110,7 +110,7 @@
                             name="province" 
                             id="province"
                             ng-model="temp.province"
-                            ng-options="province.name for province in provinces">
+                            ng-options="province.code as province.name for province in provinces">
                             <option>--Pilih Provinsi--</option>
                         </select>
                     </div>
@@ -119,7 +119,8 @@
                             class="form-control m-b" 
                             name="city" 
                             id="city"
-                            ng-model="temp.city">
+                            ng-model="temp.city"
+                            ng-options="city.code as city.name for city in cities | filter: { sub_code: temp.province }">
                             <option>--Pilih Kota--</option>
                         </select>
                     </div>
@@ -127,11 +128,14 @@
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Kecamatan</label>
                     <div class="col-sm-8">
-                        <input 
-                            type="text" 
-                            class="form-control" 
+                        <select 
+                            class="form-control m-b" 
                             name="district" 
-                            ng-model="temp.district">
+                            id="district"
+                            ng-model="temp.district"
+                            ng-options="district.code as district.name for district in districts | filter: { sub_code: temp.city }">
+                            <option>--Pilih Kecamatan--</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">
