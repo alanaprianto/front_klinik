@@ -28,7 +28,24 @@ function mainConfig () {
         currency: currency,
         decimalSeparator: decimalSeparator,
         zipLength: zipLength,
-        countryCode: countryCode
+        countryCode: countryCode,
+        menus: [
+            {
+                "penata_jasa": [2, 3]
+            },
+            {
+                "admin": [0, 1, 2, 3, 4, 5]
+            },
+            {
+                "admin_apotek": [0, 2]
+            },
+            {
+                "apotek": [0, 2]
+            },
+            {
+                "admin_kasir": [2, 4]
+            }
+        ]
     }
 }
 

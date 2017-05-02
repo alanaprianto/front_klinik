@@ -1,0 +1,102 @@
+{
+    "menu": [
+        {
+            "text": "Farmasi",
+            "link": "farmasi",
+            "image": "assets/images/logo/farmasi-101.png",
+            "icon": "",
+            "active": true
+        },
+        {
+            "text": "Loket",
+            "link": "loket",
+            "image": "assets/images/logo/dataPasien.png",
+            "icon": "",
+            "active": true
+        },
+        {
+            "text": "Data Pasien",
+            "link": "dataPasien",
+            "image": "assets/images/logo/pendaftaran-pasien.png",
+            "icon": "",
+            "active": true
+        },
+        {
+            "text": "Penata Jasa",
+            "link": "rawatjalan",
+            "image": "assets/images/logo/rawat-jalan.png",
+            "icon": "",
+            "active": true
+        },
+        {
+            "text": "Kasir",
+            "link": "kasir",
+            "image": "assets/images/logo/pos-framasi.png",
+            "icon": "",
+            "active": true
+        },
+        {
+            "text": "Manajemen User",
+            "link": "managementUser",
+            "image": "assets/images/logo/manajemen-user.png",
+            "icon": "",
+            "active": false
+        },
+        {
+            "text": "Antrian",
+            "link": "antrian",
+            "image": "assets/images/logo/antrian.png",
+            "icon": "",
+            "active": false
+        },
+        {
+            "text": "Rawat Inap",
+            "link": "rawatinap",
+            "image": "assets/images/logo/rawat-inap.png",
+            "icon": "",
+            "active": false
+        },
+        {
+            "text": "Kepegawaian",
+            "link": "kepegawaian",
+            "image": "assets/images/logo/kepegawaian.png",
+            "icon": "",
+            "active": false
+        },
+        {
+            "text": "Rekam Medis",
+            "link": "rekammedis",
+            "image": "assets/images/logo/rekam-medik.png",
+            "icon": "",
+            "active": false
+        },
+        {
+            "text": "Laboratorium",
+            "link": "leb",
+            "image": "assets/images/logo/lab.png",
+            "icon": "",
+            "active": false
+        },
+        {
+            "text": "Master Data",
+            "link": "masterdata",
+            "image": "assets/images/logo/master-data.png",
+            "icon": "",
+            "active": false
+        },
+        {
+            "text": "Keuangan",
+            "link": "keuangan",
+            "image": "assets/images/logo/keuangan.png",
+            "icon": "",
+            "active": false
+        },
+        {
+            "text": "Inventori",
+            "link": "inventori",
+            "image": "assets/images/logo/inventori.png",
+            "icon": "",
+            "active": false
+        }
+    ]
+}
