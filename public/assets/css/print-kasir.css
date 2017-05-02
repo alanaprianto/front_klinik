@@ -1,0 +1,10 @@
+.sub-title {
+    padding: 5px; 
+    background-color: #636363 !important; 
+    -webkit-print-color-adjust: exact;
+}
+
+.sub-title > h4 {
+    color: rgba(255, 255, 255, 1) !important;
+    -webkit-print-color-adjust: exact;
+}

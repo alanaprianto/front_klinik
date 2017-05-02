@@ -147,11 +147,6 @@
         </div>
 
         <script type="text/ng-template" id="editPasienModal">
-            <!--<div class="row p-b-15">
-                <h4 class="modal-title">
-                    Pasien [[dataOnModal.reference.register.patient.full_name]]
-                </h4>
-            </div>-->
             <div class="row p-b-15">
                 <div class="col-md-12">
                     <div class="col-md-6">

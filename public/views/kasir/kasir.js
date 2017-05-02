@@ -10,7 +10,6 @@ angular.module('adminApp')
         ServicesAdmin
     ) {
         $scope.temp = {};
-        $scope.temp.totalPayments = 0;
         $scope.message = '';
 
         var genderToString = function (val) {
@@ -53,6 +52,16 @@ angular.module('adminApp')
                             item.displayedGender = genderToString(item.patient.gender);
                         }
                     }
+
+                    if (item.references) {
+                        var totalPayments = 0;
+
+                        item.references.forEach(function (val) {
+                            totalPayments += val.reference_total_payment;
+                        });
+                        item.totalPayments = totalPayments;
+                    }
+
                     tempData.push(item);
                 });
                 
@@ -92,6 +101,31 @@ angular.module('adminApp')
         }
 
         firstInit();
+
+        $scope.printArea = function (divID) {
+            if (!$scope.temp.duration) {
+                $scope.temp.duration = 0;
+            }
+            $scope.temp.endDate = moment($scope.temp.startDate).add('days', $scope.temp.duration).format('DD-MM-YYYY');
+            $scope.todayDate = moment().format('DD MMMM YYYY');
+            setTimeout(function(){
+                var printContents = document.getElementById(divID).innerHTML;
+                var popupWin = window.open('', '_blank', 'width=800, height=600');
+                popupWin.document.open();
+                popupWin.document.write(
+                    '<html>'+
+                        '<head>'+
+                            '<link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap/css/bootstrap.min.css" />'+
+                            '<link rel="stylesheet" type="text/css" href="assets/css/angular-to-pure-css.css" />'+
+                            '<link rel="stylesheet" type="text/css" href="assets/css/print-kasir.css" />'+
+                        '</head>'+
+                        '<body onload="window.print()">' + printContents + 
+                        '</body>'+
+                    '</html>'
+                );
+                popupWin.document.close();
+            }, 500);
+        }
 
         $scope.createKasirPayments = function () {
             if (!$scope.temp.payment) {

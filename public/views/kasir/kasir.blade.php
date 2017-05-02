@@ -2,6 +2,7 @@
 @section('title')
 <title>Kasir .: Teknohealth :. </title>
 <link rel="icon" href="assets/images/logo/logo-sm.png">
+<link rel="stylesheet" type="text/css" href="assets/css/print-kasir.css" />
 @endsection
 @section('module-title')
 <div class="module-left-title">
@@ -63,65 +64,34 @@
                 Pembayaran
             </h4>
         </div>
-        <div class="row p-b-15 no-margin">
+        <div id="printKasir" class="row p-b-15 no-margin">
             <div class="col-md-12">
-                <div class="col-md-6 no-padding">
-                    <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <label>Nama</label>
-                        </div>
-                        <div class="col-sm-8">
-                           <p class="text-left">[[dataOnModal.patient.full_name]]</p>
-                        </div>
-                    </div>
-                    <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <label>Umur</label>
-                        </div>
-                        <div class="col-sm-8">
-                           <p class="text-left">[[dataOnModal.displayedAge]]</p>
-                        </div>
-                    </div>
-                    <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <label>Jenis Kelamin</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <p class="text-left">[[dataOnModal.displayedGender]]</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 no-padding">
-                    <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <label>Nomor Rekam Medis</label>
-                        </div>
-                        <div class="col-sm-8">
-                           <p class="text-left">[[dataOnModal.patient.number_medical_record]]</p>
-                        </div>
-                    </div>
-
-                    <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <label>No Askes / Jamkesmas</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <p class="text-left">[[dataOnModal.patient.askes_number]]</p>
-                        </div>
-                    </div>
-                    <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <label>Telepon</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <p class="text-left">[[dataOnModal.patient.phone_number]]</p>
-                        </div>
-                    </div>
-                </div>
+                <table class="table table-payment">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nama</th>
+                            <th class="text-center">Umur</th>
+                            <th class="text-center">Jenis Kelamin</th>
+                            <th class="text-center">Nomor Rekam Medis</th>
+                            <th class="text-center">No Askes / Jamkesmas</th>
+                            <th class="text-center">Telepon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">[[dataOnModal.patient.full_name]]</td>
+                            <td class="text-center">[[dataOnModal.displayedAge]]</td>
+                            <td class="text-center">[[dataOnModal.displayedGender]]</td>
+                            <td class="text-center">[[dataOnModal.patient.number_medical_record]]</td>
+                            <td class="text-center">[[dataOnModal.patient.askes_number]]</td>
+                            <td class="text-center">[[dataOnModal.patient.phone_number]]</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="col-md-12 no-padding" ng-repeat="pp in dataOnModal.references">
-                <div class="col-md-12" style="padding: 5px; background-color: #636363; color: #fff;">
+                <div class="sub-title col-md-12">
                     <h4 class="text-left no-margin no-padding">[[pp.poly.name]]</h4>
                 </div>
                 <table class="table table-payment">
@@ -136,21 +106,20 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="p in pp.payments">
-                            <td>[[$index + 1]]</td>
-                            <td ng-show="p.service.name">[[p.service.name]]</td>
-                            <td ng-hide="p.service.name">[[p.type]]</td>
-                            <td ng-show="p.service">[[p.total/p.service.cost]]</td>
-                            <td ng-hide="p.service">[[p.total/p.total]]</td>
-                            <td ng-show="p.service.cost">[[p.service.cost]]</td>
-                            <td ng-hide="p.service.cost">[[p.total]]</td>
+                            <td class="text-center">[[$index + 1]]</td>
+                            <td class="text-center" ng-show="p.service.name">[[p.service.name]]</td>
+                            <td class="text-center" ng-hide="p.service.name">[[p.type]]</td>
+                            <td class="text-center" ng-show="p.service">[[p.total/p.service.cost]]</td>
+                            <td class="text-center" ng-hide="p.service">[[p.total/p.total]]</td>
+                            <td class="text-center" ng-show="p.service.cost">[[p.service.cost]]</td>
+                            <td class="text-center" ng-hide="p.service.cost">[[p.total]]</td>
                             <td class="text-right">[[p.total]]</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
                             <th colspan="4" class="text-left">Sub Total</th>
-                            <th class="text-right"
-                                ng-init="totalPayments = totalPayments + pp.reference_total_payment">
+                            <th class="text-right">
                                 <b>[[pp.reference_total_payment]]</b>
                             </th>
                         </tr>
@@ -163,12 +132,14 @@
             </div>
 
             <div class="col-md-12 no-padding">
-                <div class="col-sm-8">
-                    <p>Total</p>
-                </div>
-                <div class="col-md-4 text-right">
-                    <b class="no-margin no-padding">[[totalPayments]]</b>
-                </div>
+                <table class="table table-payment">
+                    <thead>
+                        <tr>
+                            <th class="text-left"><b>Total</b></th>
+                            <th class="text-right"><b>[[dataOnModal.totalPayments]]</b></th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
 
@@ -181,7 +152,7 @@
             </div>
             <div class="col-md-3 pull-right">
                 <button class="btn btn-default col-md-12 no-radius pull-right"
-                    ng-click="printArea('printSuratSakit')">
+                    ng-click="printArea('printKasir')">
                     <i class="fa fa-print"></i> Print
                 </button>
             </div>

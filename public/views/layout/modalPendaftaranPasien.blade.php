@@ -120,7 +120,7 @@
                             name="city" 
                             id="city"
                             ng-model="temp.city">
-                            <option>-</option>
+                            <option>--Pilih Kota--</option>
                         </select>
                     </div>
                 </div>
