@@ -44,7 +44,19 @@ function mainConfig () {
             },
             {
                 "admin_kasir": [2, 4]
-            }
+            },
+            {
+                "loket": [1,2]
+            },
+            {
+                "admin_loket": [1,2]
+            },
+            {
+                "kasir": [2,4]
+            },
+            {
+                "admin_kasir": [2,4]
+            },
         ]
     }
 }
