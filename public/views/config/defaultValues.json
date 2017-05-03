@@ -149,16 +149,12 @@
     ],
     "statusPayments": [
         {
-            "key": "belum dibayar",
+            "key": "Belum Lunas/ Ada Tunggakan",
+            "value": 0
+        },
+        {
+            "key": "Lunas",
             "value": 1
-        },
-        {
-            "key": "ada tunggakan",
-            "value": 2
-        },
-        {
-            "key": "lunas",
-            "value": 3
-        }
+        }        
     ]
 }

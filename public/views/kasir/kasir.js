@@ -25,10 +25,10 @@ angular.module('adminApp')
         }
 
         var statusOnPayments = function (val) {
-            if (val && val.status) {
+            if (val && val.payment_status) {
                 var result = '';
                 $scope.statusPayments.forEach(function (item) {
-                    if (val.status == item.value) {
+                    if (val.payment_status == item.value) {
                         result = item.key;
                     }
                 });         
@@ -125,6 +125,15 @@ angular.module('adminApp')
                 );
                 popupWin.document.close();
             }, 500);
+        }
+
+        $scope.countPayments = function () {        
+            $scope.temp.diff = $scope.temp.payment - $scope.dataOnModal.totalPayments;
+            // if ($scope.temp.diff.indexOf('-')=0) {
+            //     console.log('contains -');
+            // } else { 
+            //     console.log('not contains -');
+            // }
         }
 
         $scope.createKasirPayments = function () {
