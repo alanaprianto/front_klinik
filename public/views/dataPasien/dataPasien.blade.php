@@ -101,7 +101,7 @@
                             <p class="text-left">Jumlah Pendaftaran </p>
                         </div>
                         <div class="col-md-6">
-                            <p class="text-left">[[dataOnModal.patient.full_name]]</p>
+                            <p class="text-left">[[dataOnModal.registersTotal]]</p>
                         </div>
                     </div>
                     <div class="row p-b-15">
@@ -109,7 +109,7 @@
                             <p class="text-left">Jumlah Kunjungan  </p>
                         </div>
                         <div class="col-md-6">
-                            <p class="text-left">[[dataOnModal.patient.full_name]]</p>
+                            <p class="text-left">[[dataOnModal.referencesTotal]]</p>
                         </div>
                     </div>
                     <hr>
