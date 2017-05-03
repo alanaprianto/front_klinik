@@ -66,6 +66,14 @@ angular.module('adminApp')
                 id: null
             }
         },
+        getVisitor: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'loket',
+                controller: 'visitors'
+            }
+        },
         getLoketPendaftaranPatient: {
             method: 'GET',
             url: config.url + ':module/:submodule/:controller/:action/:query',

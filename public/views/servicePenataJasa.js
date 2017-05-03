@@ -14,6 +14,14 @@ angular.module('adminApp')
                 controller: 'antrian',
             }
         },
+         getVisitor: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'penata-jasa',
+                controller: 'visitors'
+            }
+        },
         getPenataJasaAntrianList: {
             method: 'GET',
             params: {
