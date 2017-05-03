@@ -14,6 +14,14 @@ angular.module('adminApp')
                 action: 'list'
             }
         },
+         getVisitor: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'apotek',
+                controller: 'visitors'
+            }
+        },
         getApotekRecipesCreate: {
             method: 'GET',
             params: {

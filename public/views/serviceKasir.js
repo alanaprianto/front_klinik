@@ -21,6 +21,14 @@ angular.module('adminApp')
                 controller: 'payments',
             }
         },
+         getVisitor: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'kasir',
+                controller: 'visitors'
+            }
+        },
         createKasirPayments: {
             method: 'POST',
             params: {
