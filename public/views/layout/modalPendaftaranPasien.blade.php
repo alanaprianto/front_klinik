@@ -322,13 +322,19 @@
                     <p>Search</p>
                 </div>
                 <div class="col-md-8" >
-                    <input 
-                        type="text" 
-                        class="form-control"
-                        name="searchPasien"
-                        ng-model="temp.query" 
-                        ng-keyup="$event.keyCode == 13 && searchPasien()">
-                    <p ng-show="temp.patients.length > 0">[[temp.patients.length]] found</p>
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            name="searchPasien"
+                            ng-model="temp.query" 
+                            ng-keyup="searchPasien()">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="searchPasien()">Search</button>
+                        </span>
+                    </div>
+                    <p ng-show="temp.patients.length == 0">pencarian dengan kata kunci "[[temp.query]]" tidak ditemukan.</p>
+                    <p ng-show="temp.patients.length > 0">[[temp.patients.length]] pasien ditemukan.</p>
                 </div>
             </div>
             <div class="form-group field p-b-15 row" ng-show="temp.patients.length > 0">

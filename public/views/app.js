@@ -42,7 +42,7 @@ angular.module('adminApp', [
                     SweetAlert.swal({
                         title: 'Error',
                         text :'No connection to the API, please check your internet connection.' + 
-                                'If the problem still persists, please contact tech support (admin@teknoland.com).' +
+                                'If the problem still persists, please contact tech support (admin@teknolands.com).' +
                             '\n' + '\n' + 'Click OK to reload this page.'
                     }, function () {
                         $window.location.reload();

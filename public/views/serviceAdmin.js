@@ -244,7 +244,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'visitors'
             }
         },

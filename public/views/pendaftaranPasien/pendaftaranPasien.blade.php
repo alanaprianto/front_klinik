@@ -30,7 +30,7 @@
                     class="btn btn-info col-md-4 no-radius" 
                     ng-click="openModal('tambahPasienModal')"> Tambah Pasien</button>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 no-padding">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>

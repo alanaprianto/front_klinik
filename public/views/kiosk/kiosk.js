@@ -26,7 +26,8 @@ angular.module('adminApp')
                 ngDialog.open({
                     template: idModal,
                     scope: $scope,
-                    className: 'ngDialog-modal'
+                    className: 'ngDialog-modal',
+                    closeByDocument: false
                 });
 
                 $scope.printArea('printArea');

@@ -24,7 +24,7 @@
 @endsection
 @section('content')
     <div id="staff-area" ng-controller="AntrianCtrl" >
-        <div class="row no-margin">
+        <div class="row no-margin no-padding">
             <div class="col-md-4">
                 <h5>Antrian BPJS</h5>
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">

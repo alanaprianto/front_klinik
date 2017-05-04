@@ -33,7 +33,8 @@ angular.module('adminApp')
             ngDialog.open({
                 template: target,
                 scope: $scope,
-                className: 'ngDialog-modal ' + cssModal
+                className: 'ngDialog-modal ' + cssModal,
+                closeByDocument: false
             });
         }
 
@@ -58,7 +59,7 @@ angular.module('adminApp')
         }
 
         var getLoketAntrianBpjs = function () {
-            ServicesAdmin.getLoketAntrianList({type: 'bpjs'}).$promise
+            return ServicesAdmin.getLoketAntrianList({type: 'bpjs'}).$promise
             .then(function (result) {
                 var dataArray = [];
                 result.datas.kiosks.forEach(function (item) {
@@ -71,7 +72,7 @@ angular.module('adminApp')
         }
 
         var getLoketAntrianUmum = function () {
-            ServicesAdmin.getLoketAntrianList({type: 'umum'}).$promise
+            return ServicesAdmin.getLoketAntrianList({type: 'umum'}).$promise
             .then(function (result) {
                 var dataArray = [];
                 result.datas.kiosks.forEach(function (item) {
@@ -84,7 +85,7 @@ angular.module('adminApp')
         }
 
         var getLoketAntrianContractor = function () {
-            ServicesAdmin.getLoketAntrianList({type: 'contractor'}).$promise
+            return ServicesAdmin.getLoketAntrianList({type: 'contractor'}).$promise
             .then(function (result) {
                 var dataArray = [];
                 result.datas.kiosks.forEach(function (item) {
@@ -124,34 +125,40 @@ angular.module('adminApp')
             var id = id;
 
             function panggilanLoket () {
-                responsiveVoice.speak("Pasien " + type.toUpperCase() + " ke loket pendaftaran", typeVoice, {rate: 1});
+                responsiveVoice.speak("Pasien " + type.toUpperCase() + " ke loket pendaftaran", typeVoice, {rate: 0.8});
             }
             function panggilanAntrian () {
                 responsiveVoice.speak("'" + queue + "'", typeVoice, {rate: 0.75, volume: 1.5, onend: panggilanLoket});
             }
             
-            responsiveVoice.speak("Nomor antrian ", typeVoice, {rate: 1, onend: panggilanAntrian});
+            responsiveVoice.speak("Nomor antrian ", typeVoice, {rate: 0.8, onend: panggilanAntrian});
 
             updateStatusToCalling(type, id);
         }
 
         var getDefaultValues = function() {
-            $http.get('views/config/defaultValues.json').then(function(data) {
+            return $http.get('views/config/defaultValues.json').then(function(data) {
                 $scope.statusQueue = data.data.statusQueue;
                 $scope.defaultValues = data.data;
             });
         };
 
-        var firstInit = function () {
-            initTemp();
-            getDefaultValues();
+        function webWorker () {
+            getLoketAntrianBpjs()
+            .then(getLoketAntrianUmum)
+            .then(getLoketAntrianContractor)
+            .then(function () {
+                setTimeout(webWorker, 5000);
+            })
+        }
 
-            getLoketAntrianBpjs();
-            getLoketAntrianUmum();
-            getLoketAntrianContractor();
+        $scope.firstInit = function () {
+            initTemp();
+            getDefaultValues()
+            .then(webWorker);
 
             $scope.getListPoli();
         }
         
-        firstInit();
+        $scope.firstInit();
     });

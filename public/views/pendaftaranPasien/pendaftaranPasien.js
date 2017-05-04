@@ -67,7 +67,7 @@ angular.module('adminApp')
         }
 
         var listPendaftaranPasien = function () {
-            ServicesAdmin.getLoketRegisters().$promise
+            return ServicesAdmin.getLoketRegisters().$promise
             .then(function (result) {
                 var tempData = [];
                 result.datas.registers.forEach(function (item, key) {
@@ -101,14 +101,21 @@ angular.module('adminApp')
         }
 
         var getDefaultValues = function() {
-            $http.get('views/config/defaultValues.json').then(function(data) {
+            return $http.get('views/config/defaultValues.json').then(function(data) {
                 $scope.defaultValues = data.data;
             });
         }
 
+        function webWorker () {
+            listPendaftaranPasien()
+            .then(function () {
+                setTimeout(webWorker, 5000);
+            })
+        }
+
         var firstInit = function () {
-            listPendaftaranPasien();
-            getDefaultValues();
+            getDefaultValues()
+            .then(webWorker);
             // from extended ModalPendaftaranPasienCtrl
             $scope.getListPoli();
         }
