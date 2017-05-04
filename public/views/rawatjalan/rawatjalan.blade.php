@@ -7,7 +7,7 @@
 <div class="module-left-title">
     <div class="module-left-bars"><i class="ti-menu"></i></div>
     <img src="assets/images/logo/kepegawaian.png">
-    <span>Rawat Jalan</span>
+    <span>Penata Jasa</span>
 </div>
 @endsection
 @section('nav')
@@ -17,7 +17,7 @@
     <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <ul>
-                <h3>Rawat Jalan </h3>
+                <h3>Penata Jasa</h3>
             </ul>
         </div>
     </nav>

@@ -35,10 +35,10 @@
             <div class="module-left-sidebar sidebar">
                 <nav class="sidebar-nav">
                     <ul class="metismenu" id="module-left-menu">
-                        <li class="item" ng-repeat="l in listMenu | filter: { text: searchMenu}">
-                            <a href="[[l.link]]">
+                        <li class="item" ng-repeat="l in listMenu | filter: { display_name: searchMenu}">
+                            <a href="[[l.name]]">
                                 <span> <img ng-src="[[l.image]]" style="width: 25px"></span>
-                                <span class="sidebar-nav-item">[[l.text]]</span>
+                                <span class="sidebar-nav-item">[[l.display_name]]</span>
                             </a>
                         </li>
                     </ul>

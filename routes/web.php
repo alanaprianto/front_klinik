@@ -22,7 +22,7 @@ Route::get('/dashboard', function() {
 Route::get('/inventori', function() {
     return View::make('inventori.inventori');
 });
-Route::get('/farmasi', function() {
+Route::get('/apotek', function() {
     return View::make('farmasi.farmasi');
 });
 Route::get('/createEditResep', function() {
@@ -89,16 +89,16 @@ Route::get('/createEditAlkes', function() {
 Route::get('/resep', function() {
     return View::make('resep.resep');
 });
-Route::get('/rawatjalan', function() {
+Route::get('/penata_jasa', function() {
     return View::make('rawatjalan.rawatjalan');
 });
-Route::get('/antrian-poli-anak', function() {
+Route::get('/poli_anak', function() {
     return View::make('antrianRawatJalan.antrianPoli');
 });
-Route::get('/antrian-poli-gigi', function() {
+Route::get('/poli_gigi', function() {
     return View::make('antrianRawatJalan.antrianPoli');
 });
-Route::get('/antrian-poli-umum', function() {
+Route::get('/poli_umum', function() {
     return View::make('antrianRawatJalan.antrianPoli');
 });
 Route::get('/antrian', function() {
@@ -140,7 +140,7 @@ Route::get('/staffPosition', function() {
 Route::get('/createStaffPosition', function() {
     return View::make('staffPosition.createStaffPosition');
 });
-Route::get('/dataPasien', function() {
+Route::get('/data_patient', function() {
     return View::make('dataPasien.dataPasien');
 });
 Route::get('/kiosk', function() {

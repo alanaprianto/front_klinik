@@ -8,7 +8,7 @@
 <div class="module-left-title">
     <div class="module-left-bars"><i class="ti-menu"></i></div>
     <img src="assets/images/logo/farmasi-101.png">
-    <span>Rawat Jalan </span>
+    <span>Penata Jasa</span>
 </div>
 @endsection
 @section('nav')
@@ -63,7 +63,7 @@
                                     <td>[[a.reference.register.patient.full_name]]</td>
                                     <td>[[a.displayedGender]]</td>
                                     <td>[[a.displayedDoctor]]</td>
-                                    <td>[[a.displayedStatus]]</td>
+                                    <td>[[a.Status]]</td>
                                     <td>
                                         <button class="btn btn-default btn-xs"
                                             ng-click="callQueue(

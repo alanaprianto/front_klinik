@@ -5,11 +5,11 @@ angular.module('adminApp')
     return $resource(config.url + ':module/:submodule/:controller/:action/:id', {
         id: '@_id'
     }, {
-    	getPenataJasaAntrian: {
+        getPenataJasaAntrian: {
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'queues',
             }
         },
@@ -17,7 +17,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'queues',
                 action: 'list',
             }
@@ -27,7 +27,7 @@ angular.module('adminApp')
             url: config.url + ':module/:submodule/:controller/:action/:kiosk',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'queues',
                 action: 'update-status',
                 kiosk:null
@@ -38,7 +38,7 @@ angular.module('adminApp')
             url: config.url + ':module/:submodule/:controller/:action/:reference_id/:rujukan',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'check-up',
                 action: 'update-status',
                 reference_id: null,
@@ -49,7 +49,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'check-up'
             }
         },
@@ -58,7 +58,7 @@ angular.module('adminApp')
             url: config.url + ':module/:submodule/:controller/:action/:reference_id',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'check-up',
                 action: 'update-status',
                 reference_id: null
@@ -68,7 +68,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'queues'
             }
         },
@@ -76,7 +76,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'kiosk',
+                submodule: 'common',
                 controller: 'create'      
             }
         },
@@ -84,7 +84,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'queues',
                 action: 'update',
             }
@@ -93,7 +93,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'registers'
             }
         },
@@ -102,7 +102,7 @@ angular.module('adminApp')
             url: config.url + ':module/:submodule/:controller/:action/:kiosk_id',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'registers',
                 action: 'create',
                 kiosk_id: null
@@ -112,7 +112,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'registers'
             }
         },
@@ -120,7 +120,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'registers'
             }
         },
@@ -129,7 +129,7 @@ angular.module('adminApp')
             url: config.url + ':module/:submodule/:controller/:action/:kiosk_id',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'pendaftaran',
                 action: 'tambah',
                 kiosk_id: null
@@ -139,7 +139,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'pendaftaran',
                 action: 'pilih-poli',
                 id: null
@@ -149,7 +149,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'registers',
                 action: 'select-patient'
             }
@@ -158,7 +158,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'pendaftaran',
                 action: 'store'
             }
@@ -167,7 +167,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'pendaftaran',
                 action: 'store',
                 id: null
@@ -177,7 +177,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'pendaftaran',
                 action: 'tambah-rujukan',
                 id: null
@@ -187,7 +187,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'pendaftaran',
                 action: 'tambah-rujukan'
             }
@@ -196,7 +196,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'payments',
             }
         },
@@ -204,7 +204,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'payments',
             }
         },
@@ -212,7 +212,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'payments',
             }
         },
@@ -220,7 +220,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'batches'
             }
         },
@@ -228,7 +228,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'batches'
             }
         },
@@ -236,7 +236,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'doctor-services'
             }
         },
@@ -252,7 +252,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'hospital'
             }
         },
@@ -260,7 +260,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'icd10'
             }
         },
@@ -268,7 +268,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'inventories'
             }
         },
@@ -276,7 +276,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'kiosks'
             }
         },
@@ -284,7 +284,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'medical-records'
             }
         },
@@ -292,7 +292,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'patiens'
             }
         },
@@ -300,7 +300,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'payments'
             }
         },
@@ -308,7 +308,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'permissions'
             }
         },
@@ -316,7 +316,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'pharmacy-seller'
             }
         },
@@ -324,7 +324,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'polies'
             }
         },
@@ -332,7 +332,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'recipes'
             }
         },
@@ -340,7 +340,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'references'
             }
         },
@@ -348,7 +348,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'registers'
             }
         },
@@ -356,7 +356,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'roles'
             }
         },
@@ -364,7 +364,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'services'
             }
         },
@@ -372,7 +372,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'settings'
             }
         },
@@ -380,7 +380,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'staff'
             }
         },
@@ -388,7 +388,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'staff-jobs'
             }
         },
@@ -396,7 +396,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'staff-positions'
             }
         },
@@ -404,7 +404,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'tuslahs'
             }
         },
@@ -412,7 +412,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'users'
             }
         },
@@ -420,7 +420,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'apotek',
+                submodule: 'common',
                 controller: 'recipes',
                 action: 'list'
             }
@@ -429,7 +429,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'recipes',
             }
         },
@@ -438,7 +438,7 @@ angular.module('adminApp')
             url: config.url + ':module/:submodule/:controller/:action/:reference_id/:name_tuslah/:tuslah_amount/:amount/:price/:inventory',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'recipes',
                 reference_id: null,
                 name_tusla: null,
@@ -452,7 +452,7 @@ angular.module('adminApp')
             method: 'GET',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'recipes',
                 id: null
             }

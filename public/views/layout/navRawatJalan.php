@@ -7,22 +7,10 @@
                                     <span class="sidebar-nav-item">Beranda</span>
                                  </a>
                             </li>
-                            <li>
-                                <a href="/antrian-poli-umum">
-                                    <span class="sidebar-nav-item-icon fa fa-plus-square fa-fw"></span>
-                                    <span class="sidebar-nav-item">Poli Umum</span>
-                                </a>
-                            </li>
-                           <li>
-                                <a href="/antrian-poli-gigi">
-                                    <span class="sidebar-nav-item-icon fa fa-stethoscope fa-fw"></span>
-                                    <span class="sidebar-nav-item">Poli Gigi</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/antrian-poli-anak">
-                                    <span class="sidebar-nav-item-icon fa  fa-child fa-fw"></span>
-                                    <span class="sidebar-nav-item">Poli Anak</span>
+                            <li ng-repeat="l in listMenuPoli">
+                                <a href="[[l.name]]">
+                                    <span class="sidebar-nav-item-icon fa fa-fw" ng-class="l.icon"></span>
+                                    <span class="sidebar-nav-item">[[l.display_name]]</span>
                                 </a>
                             </li>
                            

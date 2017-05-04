@@ -34,6 +34,9 @@ function mainConfig () {
                 "penata_jasa": [2, 3]
             },
             {
+                "poli_umum": [2, 3]
+            },
+            {
                 "admin": [0, 1, 2, 3, 4, 5]
             },
             {

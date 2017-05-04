@@ -185,8 +185,8 @@ angular.module('adminApp')
         var firstInit = function () {
             $scope.poliType = toTitleCase(
                 window.location.pathname
-                .replace("/antrian-","")
-                .replace("-"," ")
+                .replace("/","")
+                .replace("_"," ")
             );
 
             initTemp();
@@ -233,7 +233,13 @@ angular.module('adminApp')
         }
 
         $scope.openModal = function (target, type, data) {
-            initTemp();
+            if ([
+                "medicalRecordModal", 
+                "suratSakitModal"
+                ].indexOf(target) === -1) {
+                initTemp();
+            }
+
             var cssModal = '';
             if (type) {
                 cssModal = 'modal-' + type;
