@@ -69,8 +69,8 @@ angular.module('adminApp')
             });
         }
 
-        $scope.openModal = function (target, type, data) {
-            console.log(target);
+        $scope.openModal = function (target, type, data) {         
+            $scope.temp.diff = '-';
             var cssModal = '';
             if (type) {
                 cssModal = 'modal-' + type;
@@ -145,8 +145,8 @@ angular.module('adminApp')
             var params = {
                 register_id: $scope.dataOnModal.id,
                 payment: $scope.temp.payment
-            };
-
+            };            
+            
             ServicesAdmin.createKasirPayments(params).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
@@ -156,6 +156,7 @@ angular.module('adminApp')
 
                 ngDialog.closeAll();
                 listDataPasien();
+                $scope.printArea('printKasir');
             })
         }
     });

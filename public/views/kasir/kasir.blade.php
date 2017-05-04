@@ -137,21 +137,41 @@
                             <th class="text-left"><b>Total</b></th>
                             <th class="text-right"><b>[[dataOnModal.totalPayments]]</b></th>
                         </tr>
+                        <tr>
+                            <th class="text-left"><b>Payments</b></th>
+                            <th class="text-right col-md-4">
+                                <input 
+                                    type="text" 
+                                    class="form-control hidden-print"
+                                    name="payment"
+                                    ng-model="temp.payment"
+                                    ng-change="countPayments()">
+                                <b class="displayOnPrint">[[temp.payment]]</b>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="text-left"><b>Diverentiation</b></th>
+                            <th class="text-right col-md-4">
+                                <input
+                                    type="text"
+                                    class="form-control hidden-print"
+                                    name="diff"
+                                    ng-model="temp.diff"
+                                    readonly="true">
+                                <b class="displayOnPrint">[[temp.diff]]</b>
+                            </th>
+                        </tr>
                     </thead>
                 </table>
-            </div>
-
-            <div class="displayOnPrint">
-                <p>[[temp.payment]]</p>
-            </div>
+            </div>        
         </div>
-
+        
         <div class="row p-b-15 no-margin">
-            <div class="col-md-3 pull-right">
-                <button class="btn btn-primary col-md-12 no-radius pull-right"
-                    ng-click="openModal('bayarModal', 'lg'); temp.payment = ''; temp.diff = '-'">
-                    Bayar
-                </button>
+            <div class="col-md-3 pull-right">                
+                <button 
+                    class="btn btn-info col-md-12 no-radius pull-right" 
+                    ng-click="createKasirPayments()"
+                    ng-disabled="temp.diff<0||temp.diff=='-'||dataOnModal.totalPayments<=0">Bayar</button>
             </div>
             <div class="col-md-3 pull-right">
                 <button class="btn btn-default col-md-12 no-radius pull-right"
@@ -160,60 +180,7 @@
                 </button>
             </div>
         </div>
-    </script>
-    <script type="text/ng-template" id="bayarModal">
-        <div class="row p-b-15">
-            <h4 class="modal-title">Pembayaran</h4>
-        </div>
-        <div class="row p-t-15">
-            <div class="col-md-6 text-left">
-                <div class="form-group field p-b-15 row">
-                    <div class="col-md-4">
-                        <p>Total Tagihan</p>
-                    </div>
-                    <div class="col-md-8" >
-                        <input 
-                            type="text" 
-                            class="form-control"                            
-                            ng-model="dataOnModal.totalPayments" 
-                            readonly="true">                        
-                    </div>
-                </div>
-                <div class="form-group field p-b-15 row">
-                    <div class="col-md-4">
-                        <p>Jumlah Bayar</p>
-                    </div>
-                    <div class="col-md-8" >
-                        <input 
-                            type="text" 
-                            class="form-control"
-                            name="payment"
-                            ng-model="temp.payment"
-                            ng-change="countPayments()">                        
-                    </div>
-                </div>
-                <div class="form-group field p-b-15 row">
-                    <div class="col-md-4">
-                        <p>Diverensiasi</p>
-                    </div>
-                    <div class="col-md-8" >
-                        <input 
-                            type="text" 
-                            class="form-control"
-                            name="diff"
-                            ng-model="temp.diff" 
-                            readonly="true">                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row p-t-15">            
-            <button 
-                class="btn btn-info col-md-3 no-radius" 
-                ng-click="createKasirPayments()"
-                ng-disabled="temp.diff<0||temp.diff=='-'||dataOnModal.totalPayments<=0">Bayar</button>
-        </div>
-    </script>
+    </script>    
 </div>
 @endsection
 @section('scripts')
