@@ -29,6 +29,7 @@ angular.module('adminApp')
                 gender: $scope.temp.gender,
                 address: $scope.temp.address,
                 religion: $scope.temp.religion,
+                province: $scope.temp.province,
                 city: $scope.temp.city,
                 district: $scope.temp.district,
                 sub_district: $scope.temp.sub_district,
@@ -154,7 +155,25 @@ angular.module('adminApp')
             });
         }
 
-        $scope.getListProvinces();
-        $scope.getListCities();
-        $scope.getListDistricts();
+        $scope.getListGenders = function () {
+            ServicesCommon.get().$promise
+            .then(function (result) {
+                $scope.districts = result.datas.districts;
+            });
+        }
+
+        var getDefaultValues = function() {
+            return $http.get('views/config/defaultValues.json').then(function(data) {                
+                $scope.genders = data.data.gender;                
+            });
+        };
+
+        var firstInit = function () {
+            getDefaultValues();            
+            $scope.getListProvinces();
+            $scope.getListCities();
+            $scope.getListDistricts();
+        }
+
+        firstInit();        
     });
