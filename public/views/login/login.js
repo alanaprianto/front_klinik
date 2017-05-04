@@ -31,7 +31,7 @@ angular.module('adminApp')
                 data: data
             }).then(function (response) {
                 $scope.message = "Login Success";
-                $scope.isLogin = true;
+                $scope.isLogin = true;                
                 successFunction(response.data);
             }, function (response) {
                 $scope.message = "Something went wrong";

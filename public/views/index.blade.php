@@ -23,7 +23,7 @@
         @yield('css')
         
     </head>
-    <body ng-app="adminApp">
+    <body ng-app="adminApp" ng-cloak>
         
         @yield('view')
 

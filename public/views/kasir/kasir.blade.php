@@ -2,7 +2,6 @@
 @section('title')
 <title>Kasir .: Teknohealth :. </title>
 <link rel="icon" href="assets/images/logo/logo-sm.png">
-<link rel="stylesheet" type="text/css" href="assets/css/print-kasir.css" />
 @endsection
 @section('module-title')
 <div class="module-left-title">
@@ -140,6 +139,10 @@
                         </tr>
                     </thead>
                 </table>
+            </div>
+
+            <div class="displayOnPrint">
+                <p>[[temp.payment]]</p>
             </div>
         </div>
 

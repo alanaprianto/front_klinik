@@ -8,3 +8,7 @@
     color: rgba(255, 255, 255, 1) !important;
     -webkit-print-color-adjust: exact;
 }
+
+.displayOnPrint {
+	display: block !important;
+}

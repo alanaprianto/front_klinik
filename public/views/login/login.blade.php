@@ -27,12 +27,16 @@
                             <div class="field">
                                 <div class="ui left icon input">
                                     <i class="lock icon"></i>
-                                    <input type="password" name="password" placeholder="Password" ng-model="password">
+                                    <input type="password" name="password" placeholder="Password" ng-model="password" 
+                                        ng-keyup="$event.keyCode == 13 && doLogin()">
                                     <!-- <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
                                     <span ng-show="myForm.password.$error.required">Password is required.</span>
                                     </span> -->
                                 </div>
                             </div>
+                            <span ng-show="message && isLogin">
+                                <span>[[message]]</span>
+                            </span>
                             <div class="ui fluid large teal submit button" ng-click="doLogin()">Login</div>
                         </div>
                     </div>
@@ -44,9 +48,6 @@
                         <a class="ui fluid large teal button" style="background-color: #FE6860" href="registasi">Registasi</a>
                         <p style="text-align:center;color: #fff">Copyright Teknoland 2017        Teknohealth Software ver. 1.0.0</p>
                     </div>
-                     <span ng-show="message && isLogin">
-                                <span>[[message]]</span>
-                     </span>
                 </div>
             </div>
         </div>

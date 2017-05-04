@@ -67,6 +67,9 @@ angular.module('adminApp', [
         var getListMenu = function (roleName) {
             $http.get('views/config/menu.json').then(function(res) {
                 var menus = [];
+                if (!res.data) {
+                    return;
+                }
                 res.data.menu.forEach(function (item, key) {
                     if (item.active && getAdminMenu(roleName)[roleName].indexOf(key) !== -1) {
                         menus.push(item);
