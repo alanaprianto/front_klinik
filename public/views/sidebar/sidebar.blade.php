@@ -26,7 +26,7 @@
 <div class="module-left-aside">
     <div class="module-left-title">
         <div class="ui icon input">
-            <input type="text" placeholder="Search">
+            <input type="text" placeholder="Search" ng-model="searchMenu">
             <i class="search icon"></i>
         </div>
     </div>
@@ -35,9 +35,9 @@
             <div class="module-left-sidebar sidebar">
                 <nav class="sidebar-nav">
                     <ul class="metismenu" id="module-left-menu">
-                        <li class="item" ng-repeat="l in listMenu">
+                        <li class="item" ng-repeat="l in listMenu | filter: { text: searchMenu}">
                             <a href="[[l.link]]">
-                                <span> <img src="[[l.image]]" style="width: 25px"></span>
+                                <span> <img ng-src="[[l.image]]" style="width: 25px"></span>
                                 <span class="sidebar-nav-item">[[l.text]]</span>
                             </a>
                         </li>
