@@ -1,4 +1,4 @@
-    @extends('index')
+    @extends('index-without-login')
 @section('title')
     <title>SIM Klinik | Kiosk </title>
 @endsection

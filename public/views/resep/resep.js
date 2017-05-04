@@ -6,9 +6,10 @@ angular.module('adminApp')
         $http, 
         $rootScope, 
         ngDialog,
-        ServicesApotek) {
+        ServicesApotek,
+        ServicesAdmin ) {
         var getApotekRecipes = function () {
-            ServicesApotek.getApotekRecipes().$promise.then(function (result) {
+            ServicesAdmin.getApotekRecipes().$promise.then(function (result) {
                 $scope.tableListRecipes = result.datas.recipes; 
             });
         }

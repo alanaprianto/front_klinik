@@ -12,6 +12,10 @@ angular.module('adminApp')
         ServicesPenataJasa,
         ServicesKasir,
         ServicesApotek) {
+        var initTemp = function () {
+            $scope.temp = {};
+            $scope.temp.startDate = new Date();
+        }
         var listDataPasien = function () {
             ServicesAdmin.getVisitor().$promise
             .then(function (result) {
@@ -33,6 +37,26 @@ angular.module('adminApp')
                 
                 $scope.tableListVisitor = tempData; 
             });
+           $scope.printArea = function (divID) {
+            $scope.currentDate = moment().format('DD MMMM YYYY HH:mm:ss');
+            setTimeout(function(){
+                var printContents = document.getElementById(divID).innerHTML;
+                var popupWin = window.open('', '_blank', 'width=800, height=600');
+                popupWin.document.open();
+                popupWin.document.write(
+                    '<html>'+
+                        '<head>'+
+                            '<link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap/css/bootstrap.min.css" />'+
+                            '<link rel="stylesheet" type="text/css" href="assets/css/angular-to-pure-css.css" />'+
+                            '<link rel="stylesheet" type="text/css" href="assets/css/print-kiosk.css" />'+
+                        '</head>'+
+                        '<body onload="window.print()">' + printContents + 
+                        '</body>'+
+                    '</html>'
+                );
+                popupWin.document.close();
+            }, 500);
+        }
             $scope.openModal = function (target, type, data) {
                 console.log(data);
                 var cssModal = '';
