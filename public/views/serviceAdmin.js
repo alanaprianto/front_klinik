@@ -64,6 +64,16 @@ angular.module('adminApp')
                 reference_id: null
             }
         },
+        postMedicalRecord: {
+            method: 'POST',
+            url: config.url + ':module/:submodule/:controller/:action',
+            params: {
+                module: 'api',
+                submodule: 'admin',
+                controller: 'check-up',
+                action: 'medical-record',                
+            }
+        },
         getLoketAntrianList: {
             method: 'GET',
             params: {

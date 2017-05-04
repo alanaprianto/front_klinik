@@ -233,7 +233,13 @@
                                         Medical Record
                                     </button>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5">
+                                    <button class="btn btn-warning col-md-12 no-radius" 
+                                        ng-click="openModal('medicalRecordOldModal')">
+                                        Riwayat Medical Record
+                                    </button>
+                                </div>
+                                <div class="col-md-3">
                                     <button class="btn btn-default col-md-12 no-radius" 
                                         ng-click="openModal('suratSakitModal')">
                                         Surat Sakit
@@ -361,8 +367,8 @@
                         </div>
                         <div class="col-sm-8">
                             <input type="text" 
-                                class="form-control" 
-                                >
+                                class="form-control"
+                                ng-model="temp.medrec.anamnesa">
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -372,7 +378,7 @@
                         <div class="col-sm-8">
                             <input type="text" 
                                 class="form-control" 
-                                >
+                                ng-model="temp.medrec.diagnosis">
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -382,7 +388,7 @@
                         <div class="col-sm-8">
                             <input type="text" 
                                 class="form-control" 
-                                >
+                                ng-model="temp.medrec.explain">
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -392,7 +398,7 @@
                         <div class="col-sm-8">
                             <input type="text"                 
                                 class="form-control" 
-                                >
+                                ng-model="temp.medrec.therapy">
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -402,7 +408,7 @@
                         <div class="col-sm-8">
                             <input type="text" 
                                 class="form-control" 
-                                >
+                                ng-model="temp.medrec.notes">
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -412,19 +418,60 @@
                         <div class="col-sm-8">
                             <input type="text" 
                                 class="form-control" 
-                                >
+                                ng-model="temp.medrec.icd10">
                         </div>
                     </div>
                     
             </div>
             <div class="row p-b-15 no-margin">
-                <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="bg-warning" style="min-height: 34px;"
+                        ng-show="message">
+                        <p class="text-left">
+                            [[createMedicalRecorderror]]
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 pull-left">
                      <button type="submit" 
-                     class="btn btn-default col-md-4 no-radius pull-right" 
-                     ng-click="createMedicalRecord()">Submit</button>
+                         class="btn btn-default col-md-4 no-radius pull-right" 
+                         ng-click="createMedicalRecord()">Submit</button>
                     
                 </div>
             </div>
+        </script>
+        <script type="text/ng-template" id="medicalRecordOldModal">
+            <div class="row p-b-15">
+                <h4 class="modal-title">
+                    Riwayat Medical Record
+                </h4>
+            </div>
+                        <table class="table service-table">
+                            <thead>
+                                <tr>
+                                    <th>NO</th> 
+                                    <th>Tanggal</th> 
+                                    <th>Anamnesa</th>
+                                    <th>Diagnosis</th>
+                                    <th>Explain</th>
+                                    <th>Therapy</th>
+                                    <th>Notes</th>
+                                    <th>ICD 10</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="l in dataOnModal.reference.medical_records">
+                                    <td>[[$index + 1]]</td>
+                                    <td>[[l.created_at]]</td>
+                                    <td>[[l.anamnesa]]</td>
+                                    <td>[[l.diagnosis]]</td>
+                                    <td>[[l.explain]]</td>
+                                    <td>[[l.therapy]]</td>
+                                    <td>[[l.notes]]</td>
+                                    <td>[[l.icd10]]</td>
+                                </tr>
+                            </tbody>
+                        </table>
         </script>
 
         <script type="text/ng-template" id="suratSakitModal">
@@ -533,13 +580,13 @@
             </div>-->
             <div class="row p-b-15">
                 <div class="col-md-12">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group field row text-left">
                             <div class="col-sm-4 no-padding">
                                 <b>No RM</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.number_reference]]</p>
+                                <p>[[dataOnModal.number_medical_record]]</p>
                             </div>
                         </div>
                         <div class="form-group field row text-left">
@@ -547,7 +594,7 @@
                                 <b>Nama Lengkap</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.register.patient.full_name]]</p>
+                                <p>[[dataOnModal.full_name]]</p>
                             </div>
                         </div>
                         <div class="form-group field row text-left">
@@ -572,7 +619,7 @@
                                 <b>Alamat</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.register.patient.address]]</p>
+                                <p>[[dataOnModal.address]]</p>
                             </div>
                         </div>
                         <div class="form-group field row text-left">
@@ -580,48 +627,90 @@
                                 <b>Nomber Handpone</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.register.patient.phone_number]]</p>
-                            </div>
-                        </div>
-
-                        <div class="form-group field row text-left">
-                            <hr>
-                        </div>
-
-                        <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>Poli</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>[[dataOnModal.displayedPoli]]</p>
-                            </div>
-                        </div>
-                        <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>Dokter</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>[[dataOnModal.displayedDoctor]]</p>
+                                <p>[[dataOnModal.phone_number]]</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 text-left">
-                        <p><b>History Medical Record</b></p>
-                        <table class="table service-table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Layanan</th>
-                                    <th>Biaya Layanan</th>
-                                    <th>Jumlah</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <div class="col-md-8 text-left">
+                        <p><b>History</b></p>
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default" ng-repeat="r in dataOnModal.registers | orderBy: 'created_at':true">
+                                <div class="panel-heading" role="tab" id="r[[$index]]">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse[[$index]]" aria-expanded="true" aria-controls="collapse[[$index]]">
+                                            [[r.created_at]]
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse[[$index]]" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="r[[$index]]">
+                                    <div class="panel-body">
 
-                            </tbody>
-                        </table>
+                                        <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                                            <div class="panel panel-default" ng-repeat="rr in r.references">
+                                                <div class="panel-heading" role="tab" id="rr[[$index]]">
+                                                    <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapsed[[$parent.$index]]-[[$index]]" aria-expanded="true" aria-controls="collapsed[[$parent.$index]]-[[$index]]">
+                                                            [[rr.poly.name]] / [[rr.doctor.full_name]]
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapsed[[$parent.$index]]-[[$index]]" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="rr[[$index]]">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                Nomor Pendaftaran
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                [[rr.number_reference]]
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                Note
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                [[rr.notes]]
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <table class="table service-table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>NO</th> 
+                                                                            <th>Tanggal</th> 
+                                                                            <th>Anamnesa</th>
+                                                                            <th>Diagnosis</th>
+                                                                            <th>Explain</th>
+                                                                            <th>Therapy</th>
+                                                                            <th>Notes</th>
+                                                                            <th>ICD10</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr ng-repeat="ll in rr.medical_records">
+                                                                            <td>[[$index + 1]]</td>
+                                                                            <td>[[ll.created_at]]</td>
+                                                                            <td>[[ll.anamnesa]]</td>
+                                                                            <td>[[ll.diagnosis]]</td>
+                                                                            <td>[[ll.explain]]</td>
+                                                                            <td>[[ll.therapy]]</td>
+                                                                            <td>[[ll.notes]]</td>
+                                                                            <td>[[ll.icd10]]</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -348,4 +348,30 @@ angular.module('adminApp')
         $scope.setTotal = function (idx) {
             $scope.temp.listServices[idx].service_total = $scope.temp.listServices[idx].service_amount * $scope.temp.listServices[idx].cost;
         }
+
+        $scope.createMedicalRecord = function () {    
+            $scope.createMedicalRecorderror = '';
+
+            var data = {
+                reference_id: $scope.dataOnModal.reference_id,
+                anamnesa: $scope.temp.medrec.anamnesa,
+                diagnosis: $scope.temp.medrec.diagnosis,
+                explain: $scope.temp.medrec.explain,
+                therapy: $scope.temp.medrec.therapy,
+                notes: $scope.temp.medrec.notes,
+                icd10: $scope.temp.medrec.icd10
+            }
+
+            ServicesAdmin.postMedicalRecord(data).$promise
+            .then(function (result) {
+                console.log(result);
+                if (!result.isSuccess) {
+                    return $scope.createMedicalRecorderror = result.message;
+                };
+                
+                var windowIDs = ngDialog.getOpenDialogs();
+                ngDialog.close(windowIDs[1]);
+                $scope.result = result;
+            });
+        }        
     });
