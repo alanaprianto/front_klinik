@@ -125,16 +125,16 @@
                             <td class="text-center" ng-hide="p.service.name">[[p.type]]</td>
                             <td class="text-center" ng-show="p.service">[[p.total/p.service.cost]]</td>
                             <td class="text-center" ng-hide="p.service">[[p.total/p.total]]</td>
-                            <td class="text-center" ng-show="p.service.cost">[[p.service.cost]]</td>
-                            <td class="text-center" ng-hide="p.service.cost">[[p.total]]</td>
-                            <td class="text-right">[[p.total]]</td>
+                            <td class="text-center" ng-show="p.service.cost">[[p.service.cost | currency]]</td>
+                            <td class="text-center" ng-hide="p.service.cost">[[p.total | currency]]</td>
+                            <td class="text-right">[[p.total | currency]]</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
                             <th colspan="4" class="text-left">Sub Total</th>
                             <th class="text-right">
-                                <b>[[pp.reference_total_payment]]</b>
+                                <b>[[pp.reference_total_payment | currency]]</b>
                             </th>
                         </tr>
                         <tr>
@@ -159,7 +159,7 @@
                     <tbody>
                         <tr ng-repeat="h in dataOnModal.payment_histories">
                             <td class="text-left">[[h.created_at]]</td>
-                            <td class="text-right">[[h.payment]]</td>
+                            <td class="text-right">[[h.payment | currency]]</td>
                         </tr>
                     </tbody>
                 </table>
@@ -170,7 +170,7 @@
                     <thead>
                         <tr>
                             <th class="text-left"><b>Total</b></th>
-                            <th class="text-right"><b>[[dataOnModal.totalPayments]]</b></th>
+                            <th class="text-right"><b>[[dataOnModal.totalPayments | currency]]</b></th>
                         </tr>
                         <tr ng-hide="dataOnModal.payment_status == 1">
                             <th class="text-left"><b>Payments</b></th>
@@ -181,7 +181,7 @@
                                     name="payment"
                                     ng-model="temp.payment"
                                     ng-change="countPayments()">
-                                <b class="displayOnPrint">[[temp.payment]]</b>
+                                <b class="displayOnPrint">[[temp.payment | currency]]</b>
                             </th>
                         </tr>
                         <tr ng-hide="dataOnModal.payment_status == 1">

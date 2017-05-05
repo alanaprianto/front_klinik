@@ -32,6 +32,7 @@
         <script src="{{asset('../assets/js/angular.min.js')}}"></script>
         <script src="{{asset('../assets/js/angular-cookies.js')}}"></script>
         <script src="{{asset('../assets/js/angular-resource.js')}}"></script>
+        <script src="{{asset('../assets/js/angular-locale_id-id.js')}}"></script>
         <!-- Plugins -->
         <script src="{{asset('../assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
         <script src="{{asset('../assets/plugins/semantic/semantic.min.js')}}"></script>
@@ -99,33 +100,6 @@
                     height: '100%',
                     size: '10px'
                 });
-            });
-
-            var datatableSettings = '';
-
-            $(document).ready(function(){
-                /* datatable */
-                // datatableSettings = $('#example').DataTable({
-                //     'dom':'<"top"f>rt<"bottom"<"col-md-6"i><"col-md-6 right"p>><"clear">',
-                //     'language': {
-                //         'zeroRecords': 'Maaf, Data tidak ditemukan',
-                //         'infoEmpty' : 'Tidak ada record data',
-                //         'info' : 'Halaman _PAGE_ dari _PAGES_. Total records: _TOTAL_',
-                //         'search': '<form class="ui form"><div class="field"><div class="ui left icon input"><i class="search icon"></i> _INPUT_ </div></div></form>',
-                //         'searchPlaceholder': 'Search...',
-                //         'paginate':{
-                //             'previous': '&laquo',
-                //             'next': '&raquo'
-
-                //         },
-                //         'infoFiltered': '<br/>(dari _MAX_ total record)',
-                //         'responsive': true,
-                //         'columnDefs': [
-                //             { 'responsivePriority': 1, 'targets': 0 },
-                //             { 'responsivePriority': 2, 'targets': -1 }
-                //         ]
-                //     }
-                // });
             });
         </script>
   </body>

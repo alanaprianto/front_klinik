@@ -24,12 +24,6 @@
                                     <li><a href="/nonAlkes">Data Non Alkes </a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="dataPengunjung">
-                                    <span class="sidebar-nav-item-icon fa fa-male fa-fw"></span>
-                                    <span class="sidebar-nav-item">Pengunjung</span>
-                                </a>
-                            </li>
                            
                             <li class="sidebar-nav-heading">Lain-lain</li>
                             <li>

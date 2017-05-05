@@ -13,12 +13,6 @@
                                     <span class="sidebar-nav-item">Pembayaran</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="dataPasien">
-                                    <span class="sidebar-nav-item-icon fa fa-address-book"></span>
-                                    <span class="sidebar-nav-item">Pengunjung</span>
-                                </a>
-                            </li>
                            
                             <li class="sidebar-nav-heading">Lain-lain</li>
                             <li>

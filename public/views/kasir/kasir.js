@@ -7,6 +7,7 @@ angular.module('adminApp')
         ngDialog,
         moment,
         $rootScope, 
+        $filter,
         ServicesAdmin
     ) {
         $scope.temp = {};
@@ -140,7 +141,7 @@ angular.module('adminApp')
         }
 
         $scope.countPayments = function () {        
-            $scope.temp.diff = $scope.temp.payment - $scope.dataOnModal.totalPayments;
+            $scope.temp.diff = $filter('currency')($scope.temp.payment - $scope.dataOnModal.totalPayments);
             // if ($scope.temp.diff.indexOf('-')=0) {
             //     console.log('contains -');
             // } else { 
@@ -159,6 +160,8 @@ angular.module('adminApp')
                 payment: $scope.temp.payment
             };            
             
+            $scope.printArea('printKasir');
+            
             ServicesAdmin.createKasirPayments(params).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
@@ -168,7 +171,6 @@ angular.module('adminApp')
 
                 ngDialog.closeAll();
                 listDataPasien();
-                $scope.printArea('printKasir');
             })
         }
     });
