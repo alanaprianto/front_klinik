@@ -167,11 +167,11 @@
         </div>
         
         <div class="row p-b-15 no-margin">
-            <div class="col-md-3 pull-right">                
+            <div class="col-md-3 pull-right" ng-hide="dataOnModal.payment_status == 1">                
                 <button 
                     class="btn btn-info col-md-12 no-radius pull-right" 
                     ng-click="createKasirPayments()"
-                    ng-disabled="temp.diff<0||temp.diff=='-'||dataOnModal.totalPayments<=0">Bayar</button>
+                    ng-disabled="temp.diff=='-'|| dataOnModal.totalPayments<=0">Bayar</button>
             </div>
             <div class="col-md-3 pull-right">
                 <button class="btn btn-default col-md-12 no-radius pull-right"
