@@ -86,7 +86,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'common',
+                submodule: 'kiosk',
                 controller: 'create'      
             }
         },
