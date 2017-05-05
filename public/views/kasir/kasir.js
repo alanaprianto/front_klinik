@@ -25,7 +25,7 @@ angular.module('adminApp')
         }
 
         var statusOnPayments = function (val) {
-            if (val && val.payment_status) {
+            if (val) {
                 var result = '';
                 $scope.statusPayments.forEach(function (item) {
                     if (val.payment_status == item.value) {
@@ -62,7 +62,18 @@ angular.module('adminApp')
                         item.totalPayments = totalPayments;
                     }
 
-                    tempData.push(item);
+                    if (item.payment_histories) {
+                        var totalPaid = 0;
+
+                        item.payment_histories.forEach(function (val) {
+                            totalPaid += val.payment;
+                        });
+                        item.totalPayments = totalPayments - totalPaid;
+                    }
+
+                    if (item.displayedStatus) {
+                        tempData.push(item);
+                    }
                 });
                 
                 $scope.tableListPayment = tempData; 

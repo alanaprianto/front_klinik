@@ -26,6 +26,21 @@
 <div ng-controller="KasirController">
     <div class="col-md-12">
         <div class="row">
+            <div class="col-md-12 m-b-15">
+                <div class="col-md-6 no-padding">
+                    <div class="col-md-3 no-padding">
+                        <p>Search</p>
+                    </div>
+                    <div class="col-md-9">
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            name="search pasien"
+                            ng-model="searchPasien.full_name"
+                            placeholder="Nama Pasien">
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
@@ -39,7 +54,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="k in tableListPayment">
+                        <tr ng-repeat="k in tableListPayment | orderBy:'created_at':true | filter: { patient: searchPasien }">
                             <td>[[$index + 1]]</td>
                             <td>[[k.patient.number_medical_record]]</td>
                             <td>[[k.patient.full_name]]</td>
@@ -130,6 +145,26 @@
                 </table>
             </div>
 
+            <div class="col-md-12 no-padding" ng-show="dataOnModal.payment_histories.length">
+                <div class="sub-title col-md-12">
+                    <h4 class="text-left no-margin no-padding">History Pembayaran</h4>
+                </div>
+                <table class="table table-payment">
+                    <thead>
+                        <tr>
+                            <th class="text-left"><b>Tanggal</b></th>
+                            <th class="text-right"><b>Nominal</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="h in dataOnModal.payment_histories">
+                            <td class="text-left">[[h.created_at]]</td>
+                            <td class="text-right">[[h.payment]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <div class="col-md-12 no-padding">
                 <table class="table table-payment">
                     <thead>
@@ -137,7 +172,7 @@
                             <th class="text-left"><b>Total</b></th>
                             <th class="text-right"><b>[[dataOnModal.totalPayments]]</b></th>
                         </tr>
-                        <tr>
+                        <tr ng-hide="dataOnModal.payment_status == 1">
                             <th class="text-left"><b>Payments</b></th>
                             <th class="text-right col-md-4">
                                 <input 
@@ -149,7 +184,7 @@
                                 <b class="displayOnPrint">[[temp.payment]]</b>
                             </th>
                         </tr>
-                        <tr>
+                        <tr ng-hide="dataOnModal.payment_status == 1">
                             <th class="text-left"><b>Diverentiation</b></th>
                             <th class="text-right col-md-4">
                                 <input
