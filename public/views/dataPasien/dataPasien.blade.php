@@ -28,7 +28,7 @@
                             <td>[[visitor.gender]]</td>
                             <td>[[visitor.age]]</td>
                             <td>[[visitor.phone_number]]</td>
-                            <td>[[visitor.registers[0].created_at]]</td>
+                            <td>[[formatDate(visitor.registers[0].created_at) | date: 'dd MMM yyyy HH:mm']]</td>
                             <td>
                                 <button class="btn btn-xs btn-default"
                                     ng-click="openModal('detailPasienModal', 'lg', visitor)">

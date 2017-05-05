@@ -639,7 +639,7 @@
                                 <div class="panel-heading" role="tab" id="r[[$index]]">
                                     <h4 class="panel-title">
                                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse[[$index]]" aria-expanded="true" aria-controls="collapse[[$index]]">
-                                            [[r.created_at]]
+                                            [[formatDate(r.created_at) | date: 'dd MMM yyyy HH:mm']]
                                         </a>
                                     </h4>
                                 </div>
@@ -691,7 +691,7 @@
                                                                     <tbody>
                                                                         <tr ng-repeat="ll in rr.medical_records">
                                                                             <td>[[$index + 1]]</td>
-                                                                            <td>[[ll.created_at]]</td>
+                                                                            <td>[[formatDate(ll.created_at) | date: 'dd MMM yyyy HH:mm']]</td>
                                                                             <td>[[ll.anamnesa]]</td>
                                                                             <td>[[ll.diagnosis]]</td>
                                                                             <td>[[ll.explain]]</td>

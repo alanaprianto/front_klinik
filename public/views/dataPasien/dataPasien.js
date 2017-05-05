@@ -11,11 +11,18 @@ angular.module('adminApp')
         ServicesLoket,
         ServicesPenataJasa,
         ServicesKasir,
-        ServicesApotek) {
+        ServicesApotek
+    ) {
         var initTemp = function () {
             $scope.temp = {};
             $scope.temp.startDate = new Date();
         }
+
+        $scope.formatDate = function(date){
+            var dateOut = new Date(date);
+            return dateOut;
+        };
+
         var listDataPasien = function () {
             ServicesAdmin.getVisitor().$promise
             .then(function (result) {

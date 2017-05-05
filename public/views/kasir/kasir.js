@@ -13,6 +13,11 @@ angular.module('adminApp')
         $scope.temp = {};
         $scope.message = '';
 
+        $scope.formatDate = function(date){
+            var dateOut = new Date(date);
+            return dateOut;
+        };
+
         var genderToString = function (val) {
             if (val !== null && val !== undefined) {
                 var result = "";
@@ -161,7 +166,7 @@ angular.module('adminApp')
             };            
             
             $scope.printArea('printKasir');
-            
+
             ServicesAdmin.createKasirPayments(params).$promise
             .then(function (result) {
                 if (!result.isSuccess) {

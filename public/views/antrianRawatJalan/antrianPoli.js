@@ -17,6 +17,12 @@ angular.module('adminApp')
             $scope.temp.listServices = [];
         }
 
+
+        $scope.formatDate = function(date){
+            var dateOut = new Date(date);
+            return dateOut;
+        }
+
         var toTitleCase = function (str) {
             return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
         }

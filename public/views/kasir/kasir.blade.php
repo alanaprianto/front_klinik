@@ -158,7 +158,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="h in dataOnModal.payment_histories">
-                            <td class="text-left">[[h.created_at]]</td>
+                            <td class="text-left">[[formatDate(h.created_at) | date:'dd MMM yyyy HH:mm']]</td>
                             <td class="text-right">[[h.payment | currency]]</td>
                         </tr>
                     </tbody>
