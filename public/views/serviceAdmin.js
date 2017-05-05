@@ -69,7 +69,7 @@ angular.module('adminApp')
             url: config.url + ':module/:submodule/:controller/:action',
             params: {
                 module: 'api',
-                submodule: 'admin',
+                submodule: 'common',
                 controller: 'check-up',
                 action: 'medical-record',                
             }
@@ -86,7 +86,7 @@ angular.module('adminApp')
             method: 'POST',
             params: {
                 module: 'api',
-                submodule: 'kiosk',
+                submodule: 'common',
                 controller: 'create'      
             }
         },
