@@ -17,6 +17,23 @@ angular.module('adminApp')
             return data;
         }
 
+        $scope.currHour = moment().format('HH:mm');
+
+        $scope.printArea = function (divID) {
+            if (!$scope.temp.duration) {
+                $scope.temp.duration = 0;
+            }
+            $scope.temp.endDate = moment($scope.temp.startDate).add('days', $scope.temp.duration).format('DD-MM-YYYY');
+            $scope.todayDate = moment().format('DD MMMM YYYY');
+            setTimeout(function(){
+                var printContents = document.getElementById(divID).innerHTML;
+                var popupWin = window.open('', '_blank', 'width=800, height=600');
+                popupWin.document.open();
+                popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+                popupWin.document.close();
+            }, 500);
+        } 
+
         $scope.createNewPendaftaranPasien = function () {
             $scope.message.createLoketRegisters = {};
     
@@ -26,34 +43,27 @@ angular.module('adminApp')
                 full_name: $scope.temp.full_name,
                 place: $scope.temp.place,
                 birth: moment($scope.temp.birth).format("DD/MM/YYYY"),
-                gender: $scope.temp.gender,
+                gender: $scope.temp.gender.value,
                 address: $scope.temp.address,
                 religion: $scope.temp.religion,
-                province: $scope.temp.province,
-                city: $scope.temp.city,
-                district: $scope.temp.district,
+                province: $scope.temp.province.code,
+                city: $scope.temp.city.code,
+                district: $scope.temp.district.code,
                 sub_district: $scope.temp.sub_district,
                 rt_rw: $scope.temp.rt_rw,
                 phone_number: $scope.temp.phone_number,
                 last_education: $scope.temp.last_education,
                 job: $scope.temp.job,
                 askes_number: $scope.temp.askes_number,
-                poly_id: $scope.temp.poly_id,
-                doctor_id: $scope.temp.doctor_id
+                poly_id: $scope.temp.poly.id,
+                doctor_id: $scope.temp.doctor.id
             }
 
             var defaultData = defaultDataCreatePasien();
 
             var param = Object.assign(data, defaultData);
 
-            ServicesAdmin.createLoketRegisters(param).$promise
-            .then(function (result) {
-                if (!result.isSuccess) {
-                    return $scope.message.createLoketRegisters.error = result.message;
-                };
-                $scope.result = result;
-                ngDialog.closeAll();
-            });
+            serviceCreatePendaftaran(param);
         }
 
         $scope.createOldPendaftaranPasien = function () {
@@ -62,21 +72,28 @@ angular.module('adminApp')
             var data = {
                 kiosk_id: $scope.kiosk_id,
                 patient_id: $scope.patient_id,            
-                poly_id: $scope.temp.poly_id,
-                doctor_id: $scope.temp.doctor_id
+                poly_id: $scope.temp.poly.id,
+                doctor_id: $scope.temp.doctor.id
             }
 
             var defaultData = defaultDataCreatePasien();
 
             var param = Object.assign(data, defaultData);
 
+            serviceCreatePendaftaran(param);            
+        }
+
+        var serviceCreatePendaftaran = function (param) {
             ServicesAdmin.createLoketRegisters(param).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
                     return $scope.message.createLoketRegisters.error = result.message;
                 };
+
+                $scope.temp.poliquenumber = "12";
                 $scope.result = result;
                 ngDialog.closeAll();
+                $scope.printArea('printRegister');
             });
         }
 
@@ -98,12 +115,8 @@ angular.module('adminApp')
                 $scope.temp.place = $scope.temp.patient.place;
                 $scope.temp.birth = new Date($scope.temp.patient.birth);
                 $scope.temp.age = moment().diff($scope.temp.birth, 'years');
-                $scope.temp.gender = $scope.temp.patient.gender;
                 $scope.temp.address = $scope.temp.patient.address;
                 $scope.temp.religion = $scope.temp.patient.religion;
-                $scope.temp.province = $scope.temp.patient.province;
-                $scope.temp.city = $scope.temp.patient.city;
-                $scope.temp.district = $scope.temp.patient.district;
                 $scope.temp.sub_district = $scope.temp.patient.sub_district;
                 $scope.temp.rt_rw = $scope.temp.patient.rt_rw;
                 $scope.temp.phone_number = $scope.temp.patient.phone_number;
@@ -112,6 +125,28 @@ angular.module('adminApp')
                 $scope.temp.askes_number = $scope.temp.patient.askes_number;
 
                 $scope.patient_id = $scope.temp.patient.id;
+
+                $scope.provinces.forEach(function (val) {
+                    if (val.code == $scope.temp.patient.province) {
+                        return $scope.temp.province = val;
+                    }
+                });
+                $scope.cities.forEach(function (val) {
+                    if (val.code == $scope.temp.patient.city) {
+                        return $scope.temp.city = val;
+                    }
+                });
+                $scope.districts.forEach(function (val) {
+                    if (val.code == $scope.temp.patient.district) {
+                        return $scope.temp.district = val;
+                    }
+                });
+
+                $scope.defaultValues.gender.forEach(function (val) {
+                    if (val.value == $scope.temp.patient.gender) {
+                        return $scope.temp.gender = val;
+                    }
+                });
             }
         }
 
@@ -121,7 +156,7 @@ angular.module('adminApp')
 
         $scope.getDoctor = function () {
             $scope.listPoli.forEach(function(item) {
-                if (item.id == $scope.temp.poly_id && item.doctors) {
+                if (item.id == $scope.temp.poly.id && item.doctors) {
                     $scope.listDoctor = item.doctors;
                 }
             });
@@ -150,13 +185,6 @@ angular.module('adminApp')
 
         $scope.getListDistricts = function () {
             ServicesCommon.getDistricts().$promise
-            .then(function (result) {
-                $scope.districts = result.datas.districts;
-            });
-        }
-
-        $scope.getListGenders = function () {
-            ServicesCommon.get().$promise
             .then(function (result) {
                 $scope.districts = result.datas.districts;
             });

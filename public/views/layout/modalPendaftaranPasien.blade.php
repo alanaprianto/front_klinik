@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="tambahPasienModal">
     <div class="row p-b-15">
-        <h4 class="modal-title">Pilih Tipe Pendaftaran</h4>
+        <h4 class="modal-title">Pilih Tipe Pendaftaran</h4>        
     </div>
     <div class="row">
         <div class="col-md-5">
@@ -23,18 +23,7 @@
     </div>
     <div class="row p-t-15">
         <div class="col-md-12">
-            <div class="col-md-6">
-                <div class="form-group field p-b-15 row">
-                    <label class="col-sm-4 no-padding text-left">No RM</label>
-                    <div class="col-sm-8">
-                        <input 
-                            id="number_medical_record"
-                            type="text" 
-                            class="form-control"
-                            name="number_medical_record"
-                            ng-model="temp.number_medical_record">
-                    </div>
-                </div>
+            <div class="col-md-6">                
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Nama Lengkap</label>
                     <div class="col-sm-8">
@@ -77,7 +66,7 @@
                             class="form-control m-b" 
                             name="gender"
                             ng-model="temp.gender"
-                            ng-options="d.value as d.key for d in defaultValues.gender">                            
+                            ng-options="d as d.key for d in defaultValues.gender">                            
                         </select>
                     </div>
                 </div>
@@ -109,7 +98,7 @@
                             name="province" 
                             id="province"
                             ng-model="temp.province"
-                            ng-options="province.code as province.name for province in provinces">
+                            ng-options="province as province.name for province in provinces">
                             <option>--Pilih Provinsi--</option>
                         </select>
                     </div>
@@ -119,7 +108,7 @@
                             name="city" 
                             id="city"
                             ng-model="temp.city"
-                            ng-options="city.code as city.name for city in cities | filter: { sub_code: temp.province }">
+                            ng-options="city as city.name for city in cities | filter: { sub_code: temp.province.code }">
                             <option>--Pilih Kota--</option>
                         </select>
                     </div>
@@ -132,7 +121,7 @@
                             name="district" 
                             id="district"
                             ng-model="temp.district"
-                            ng-options="district.code as district.name for district in districts | filter: { sub_code: temp.city }">
+                            ng-options="district as district.name for district in districts | filter: { sub_code: temp.city.code }">
                             <option>--Pilih Kecamatan--</option>
                         </select>
                     </div>
@@ -270,10 +259,9 @@
                             class="form-control m-b" 
                             name="poly" 
                             id="clinic"
-                            ng-model="temp.poly_id"
-                            ng-change="getDoctor($index)">
-                            <option ng-repeat="poli in listPoli" value="[[poli.id]]">[[poli.name]]</option>
-                         
+                            ng-model="temp.poly"
+                            ng-change="getDoctor($index)"
+                            ng-options="d as d.name for d in listPoli">                        
                         </select>
                     </div>
                 </div>
@@ -284,10 +272,8 @@
                             class="form-control m-b" 
                             name="doctor" 
                             id="doctors"
-                            ng-model="temp.doctor_id">
-                            <option ng-repeat="doctor in listDoctor" value="[[doctor.id]]">
-                                [[doctor.full_name]]
-                            </option>
+                            ng-model="temp.doctor"
+                            ng-options="d as d.full_name for d in listDoctor">                            
                         </select>
                     </div>
                 </div>
@@ -306,7 +292,7 @@
         <button 
             class="btn btn-info col-md-3 no-radius" 
             ng-click="createNewPendaftaranPasien()"
-            ng-disabled="!temp.poly_id">Tambah</button>
+            ng-disabled="!temp.poly.id">Tambah</button>
     </div>
 </script>
 
@@ -355,18 +341,7 @@
     </div>
     <div class="row p-t-15" ng-show="temp.patient">
         <div class="col-md-12">
-            <div class="col-md-6">
-                <div class="form-group field p-b-15 row">
-                    <label class="col-sm-4 no-padding text-left">No RM</label>
-                    <div class="col-sm-8">
-                        <input disabled="input" 
-                            id="number_medical_record"
-                            type="text" 
-                            class="form-control"
-                            name="number_medical_record"
-                            ng-model="temp.number_medical_record">
-                    </div>
-                </div>
+            <div class="col-md-6">                
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Nama Lengkap</label>
                     <div class="col-sm-8">
@@ -409,7 +384,7 @@
                             class="form-control m-b" 
                             name="gender"
                             ng-model="temp.gender"
-                            ng-options="d.value as d.key for d in defaultValues.gender">                            
+                            ng-options="d as d.key for d in defaultValues.gender">                            
                         </select>
                     </div>
                 </div>
@@ -441,7 +416,7 @@
                             name="province" 
                             id="province"
                             ng-model="temp.province"
-                            ng-options="province.code as province.name for province in provinces">
+                            ng-options="province as province.name for province in provinces">
                             <option></option>
                         </select>
                     </div>
@@ -451,7 +426,7 @@
                             name="city" 
                             id="city"
                             ng-model="temp.city"
-                            ng-options="city.code as city.name for city in cities | filter: { sub_code: temp.province }">
+                            ng-options="city as city.name for city in cities | filter: { sub_code: temp.province.code}">
                             <option>-</option>
                         </select>
                     </div>
@@ -465,7 +440,7 @@
                             name="district" 
                             id="district"
                             ng-model="temp.district"
-                            ng-options="district.code as district.name for district in districts | filter: { sub_code: temp.city }">
+                            ng-options="district as district.name for district in districts | filter: { sub_code: temp.city.code }">
                             <option>--Pilih Kecamatan--</option>
                         </select>
                     </div>
@@ -581,7 +556,8 @@
                             type="text" 
                             class="form-control time-1" 
                             name="time_attend"
-                            ng-model="temp.time_attend">
+                            ng-model="temp.time_attend"
+                            ng-value="currHour">
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">
@@ -591,7 +567,7 @@
                             class="form-control m-b" 
                             name="service_type"
                             ng-model="temp.service_type"
-                            ng-options="d.value as d.key for d in defaultValues.visitType">
+                            ng-options="d.value as d.key for d in defaultValues.serviceType">
                         </select>
                     </div>
                 </div>
@@ -602,10 +578,9 @@
                             class="form-control m-b" 
                             name="poly" 
                             id="clinic"
-                            ng-model="temp.poly_id"
-                            ng-change="getDoctor($index)">
-                            <option ng-repeat="poli in listPoli" value="[[poli.id]]">[[poli.name]]</option>
-                         
+                            ng-model="temp.poly"
+                            ng-change="getDoctor($index)"
+                            ng-options="d as d.name for d in listPoli">                        
                         </select>
                     </div>
                 </div>
@@ -616,10 +591,8 @@
                             class="form-control m-b" 
                             name="doctor" 
                             id="doctors"
-                            ng-model="temp.doctor_id">
-                            <option ng-repeat="doctor in listDoctor" value="[[doctor.id]]">
-                                [[doctor.full_name]]
-                            </option>
+                            ng-model="temp.doctor"
+                            ng-options="d as d.full_name for d in listDoctor">                            
                         </select>
                     </div>
                 </div>
@@ -634,10 +607,10 @@
                     [[message.createLoketRegisters.error]]
                 </p>
             </div>
-        </div>
+        </div>        
         <button 
             class="btn btn-info col-md-3 no-radius" 
             ng-click="createOldPendaftaranPasien()"
-            ng-disabled="!temp.poly_id">Tambah</button>
+            ng-disabled="!temp.poly.id">Tambah</button>
     </div>
 </script>
