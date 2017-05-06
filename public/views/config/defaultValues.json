@@ -156,5 +156,59 @@
             "key": "Lunas",
             "value": 1
         }        
+    ],
+    "statusInCharges": [
+        {
+            "key": "Ayah",
+            "value": 0
+        },
+        {
+            "key": "Ibu",
+            "value": 1
+        },
+        {
+            "key": "Saudara",
+            "value": 2
+        },
+        {
+            "key": "Paman",
+            "value": 3
+        },
+        {
+            "key": "Bibi",
+            "value": 4
+        },
+        {
+            "key": "Keponakan",
+            "value": 5
+        },
+        {
+            "key": "Suami",
+            "value": 6
+        },
+        {
+            "key": "Istri",
+            "value": 7
+        },
+        {
+            "key": "Anak",
+            "value": 8
+        },
+        {
+            "key": "Keluarga",
+            "value": 9
+        },
+        {
+            "key": "Tetangga",
+            "value": 10
+        },
+        {
+            "key": "Teman",
+            "value": 11
+        },
+        {
+            "key": "Lain-lain",
+            "value": 12
+        }
     ]
 }

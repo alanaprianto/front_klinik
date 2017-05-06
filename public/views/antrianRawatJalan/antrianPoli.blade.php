@@ -264,7 +264,7 @@
                                             </button>
                                         </th>
                                         <th>No</th>
-                                        <th>Nama Tindakan</th>
+                                        <th>Layanan</th>
                                         <th>Biaya Tindakan</th>
                                         <th>Jumlah</th>
                                         <th>Total</th>
