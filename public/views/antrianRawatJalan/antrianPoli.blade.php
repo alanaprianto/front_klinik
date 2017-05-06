@@ -250,7 +250,7 @@
                     </div>
 
                     <div class="col-md-6 text-left">
-                        <p><b>Tindakan</b></p>
+                        <p><b>Layanan</b></p>
                         <div class="overflow-table">
                             <table id="service-table" class="table service-table">
                                 <thead>
@@ -264,8 +264,8 @@
                                             </button>
                                         </th>
                                         <th>No</th>
-                                        <th>Nama Tindakan</th>
-                                        <th>Biaya Tindakan</th>
+                                        <th>Nama Layanan</th>
+                                        <th>Biaya Layanan</th>
                                         <th>Jumlah</th>
                                         <th>Total</th>
                                     </tr>

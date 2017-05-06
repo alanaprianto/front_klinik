@@ -147,7 +147,7 @@ angular.module('adminApp')
             params: {
                 module: 'api',
                 submodule: 'common',
-                controller: 'references'
+                controller: 'add-references'
             }
         },
         getRegisters: {
