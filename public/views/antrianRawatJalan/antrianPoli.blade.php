@@ -134,7 +134,7 @@
                 <p align="justify">
                     Nama        : <b>[[dataOnModal.reference.register.patient.full_name]]</b> <br>
                     Alamat      : <b>[[dataOnModal.reference.register.patient.address]]</b><br>
-                    Pekerjaan   : <b>[[dataOnModal.reference.register.patient.job]]</b><br>
+                    Pekerjaan   : <b>[[temp.displayedJob]]</b><br>
                 </p>
                 <p align="justify">perlu istirahat karena sakit, selama <b>[[temp.duration]]</b> hari. Terhitung tanggal <b>[[temp.startDate|date:'dd-MM-yyyy']]</b> s/d <b>[[temp.endDate]]</b></p>
                 <p align="left">Harap yang berkepentingan maklum.</p>
@@ -520,9 +520,13 @@
                             <label>Pekerjaan</label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="text"                 
-                                class="form-control" 
+                            <select 
+                                class="form-control m-b" 
+                                name="job"
                                 ng-model="dataOnModal.reference.register.patient.job">
+                                <option ng-repeat="o in job"
+                                    value="[[o.value]]">[[o.key]]</option>                                
+                            </select>                            
                         </div>
                     </div>
                     <div class="form-group field row text-left">

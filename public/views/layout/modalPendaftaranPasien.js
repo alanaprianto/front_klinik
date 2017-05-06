@@ -193,11 +193,18 @@ angular.module('adminApp')
         var getDefaultValues = function() {
             return $http.get('views/config/defaultValues.json').then(function(data) {                
                 $scope.genders = data.data.gender;                
-            });
+            });            
         };
 
+        var getSSRl4b = function () {
+            return $http.get('views/config/defaultSSRjalanRl4b.json').then(function(data) {                
+                $scope.defaultSSRjalanRl4b = data.data;                
+            });
+        }
+
         var firstInit = function () {
-            getDefaultValues();            
+            getDefaultValues();
+            getSSRl4b();
             $scope.getListProvinces();
             $scope.getListCities();
             $scope.getListDistricts();

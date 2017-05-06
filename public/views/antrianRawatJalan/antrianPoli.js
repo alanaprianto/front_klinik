@@ -39,6 +39,18 @@ angular.module('adminApp')
             }
         }
 
+        var jobToString = function (val) {
+            if (val !== null && val !== undefined) {
+                var result = "";
+                $scope.job.forEach(function (item) {
+                    if (val == item.value) {
+                        result = item.key;
+                    }
+                });
+                return result;
+            }
+        }
+
         var tripleDigit = function(number) {
             if (number !== null && number !== undefined) {
                 var str = "" + number;
@@ -166,6 +178,7 @@ angular.module('adminApp')
                     item.displayedAge = moment($scope.temp.startDate).diff(item.birth, 'years');
                     item.displayedBirth = moment(item.birth, 'DD/MM/YYYY').format('DD MMMM YYYY');
                     item.displayedGender = genderToString(item.gender);
+                    item.displayedJob = jobToString(item.job);
 
                     if (item.reference) {
                         item.displayedDoctor = getDoctorName(item.reference.staff_id);
@@ -185,6 +198,7 @@ angular.module('adminApp')
                 $scope.finalResultOnPoli = data.data.finalResultOnPoli;
                 $scope.statusQueue = data.data.statusQueue;
                 $scope.gender = data.data.gender;
+                $scope.job = data.data.listJobs;
             });
         };
 
@@ -268,6 +282,9 @@ angular.module('adminApp')
                 $scope.temp.duration = 0;
             }
             $scope.temp.endDate = moment($scope.temp.startDate).add('days', $scope.temp.duration).format('DD-MM-YYYY');
+            if (divID == "printSuratSakit") {
+                $scope.temp.displayedJob = jobToString($scope.dataOnModal.reference.register.patient.job);
+            }
             $scope.todayDate = moment().format('DD MMMM YYYY');
             setTimeout(function(){
                 var printContents = document.getElementById(divID).innerHTML;
