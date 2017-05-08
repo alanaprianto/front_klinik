@@ -511,7 +511,7 @@
                         <div class="col-sm-8">
                             <input type="text" 
                                 class="form-control" 
-                                disabled="disabled" 
+                                disabled="disabled"
                                 ng-model="dataOnModal.displayedGender">
                         </div>
                     </div>
@@ -525,8 +525,8 @@
                                 name="job"
                                 ng-model="dataOnModal.reference.register.patient.job">
                                 <option ng-repeat="o in job"
-                                    value="[[o.value]]">[[o.key]]</option>                                
-                            </select>                            
+                                    value="[[o.value]]">[[o.key]]</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group field row text-left">

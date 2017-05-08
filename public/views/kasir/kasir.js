@@ -32,7 +32,7 @@ angular.module('adminApp')
 
         var statusOnPayments = function (val) {
             if (val) {
-                var result = '';
+                var result = '';                
                 $scope.statusPayments.forEach(function (item) {
                     if (val.payment_status == item.value) {
                         result = item.key;
