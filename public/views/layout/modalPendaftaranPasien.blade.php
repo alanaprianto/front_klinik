@@ -70,16 +70,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group field p-b-15 row">
-                    <label class="col-sm-4 no-padding text-left">Alamat</label>
-                    <div class="col-sm-8">
-                        <textarea 
-                            class="form-control" 
-                            name="address"
-                            ng-model="temp.address"></textarea>
-                    </div>
-                </div>
-                <div class="form-group field p-b-15 row">
+                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Agama</label>
                     <div class="col-sm-8">
                         <select 
@@ -88,6 +79,15 @@
                             ng-model="temp.religion"
                             ng-options="d.value as d.key for d in defaultValues.religion">
                         </select>
+                    </div>
+                </div>
+                <div class="form-group field p-b-15 row">
+                    <label class="col-sm-4 no-padding text-left">Alamat</label>
+                    <div class="col-sm-8">
+                        <textarea 
+                            class="form-control" 
+                            name="address"
+                            ng-model="temp.address"></textarea>
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">
@@ -129,11 +129,14 @@
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Kelurahan</label>
                     <div class="col-sm-8">
-                        <input 
+                        <select
                             type="text" 
                             class="form-control" 
-                            name="sub_district"
-                            ng-model="temp.sub_district">
+                            name="subDistrict"
+                            ng-model="temp.subDistrict"
+                            ng-options="subDistrict as subDistrict.name for subDistrict in subdistricts | filter: { sub_code: temp.district.code }">
+                            <option>--Pilih Kelurahan--</option>
+                            </select>
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">
@@ -454,8 +457,8 @@
                         <input disabled="input" 
                             type="text" 
                             class="form-control" 
-                            name="sub_district"
-                            ng-model="temp.sub_district">
+                            name="subDistrict"
+                            ng-model="temp.subDistrict">
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">

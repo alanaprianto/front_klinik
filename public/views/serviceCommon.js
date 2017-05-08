@@ -45,6 +45,14 @@ angular.module('adminApp')
                 controller: 'districts'
             }
         },
+        getSubDistricts: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'subdistricts'
+            }
+        },
 
         getDoctorServices: {
             method: 'GET',

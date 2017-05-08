@@ -49,7 +49,7 @@ angular.module('adminApp')
                 province: $scope.temp.province.code,
                 city: $scope.temp.city.code,
                 district: $scope.temp.district.code,
-                sub_district: $scope.temp.sub_district,
+                subDistrict: $scope.temp.subDistrict.code,
                 rt_rw: $scope.temp.rt_rw,
                 phone_number: $scope.temp.phone_number,
                 last_education: $scope.temp.last_education,
@@ -117,7 +117,6 @@ angular.module('adminApp')
                 $scope.temp.age = moment().diff($scope.temp.birth, 'years');
                 $scope.temp.address = $scope.temp.patient.address;
                 $scope.temp.religion = $scope.temp.patient.religion;
-                $scope.temp.sub_district = $scope.temp.patient.sub_district;
                 $scope.temp.rt_rw = $scope.temp.patient.rt_rw;
                 $scope.temp.phone_number = $scope.temp.patient.phone_number;
                 $scope.temp.last_education = $scope.temp.patient.last_education;            
@@ -137,6 +136,11 @@ angular.module('adminApp')
                 $scope.districts.forEach(function (val) {
                     if (val.code == $scope.temp.patient.district) {
                         return $scope.temp.district = val;
+                    }
+                });
+                $scope.subDistricts.forEach(function (val) {
+                    if (val.code == $scope.temp.patient.subDistrict) {
+                        return $scope.temp.subDistrict = val;
                     }
                 });
                 $scope.defaultValues.gender.forEach(function (val) {
@@ -191,6 +195,12 @@ angular.module('adminApp')
                 $scope.districts = result.datas.districts;
             });
         }
+        $scope.getListSubDistricts = function () {
+            ServicesCommon.getSubDistricts().$promise
+            .then(function (result) {
+                $scope.subDistricts = result.datas.subDistricts;
+            });
+        }
 
         var getDefaultValues = function() {
             return $http.get('views/config/defaultValues.json').then(function(data) {                
@@ -210,6 +220,7 @@ angular.module('adminApp')
             $scope.getListProvinces();
             $scope.getListCities();
             $scope.getListDistricts();
+            $scope.getListSubDistricts();
         }
 
         firstInit();        

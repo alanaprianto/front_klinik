@@ -215,12 +215,12 @@
                     <tr>
                         <td>Status Penanggung Jawab</td>
                         <td>:</td>
-                        <td>[[temp.responsible_person_state]]</td>
+                        <td>[[temp.responsible_person_state.key]]</td>
                     </tr>                    
                     <tr>
                         <td>Sebab Sakit</td>
                         <td>:</td>
-                        <td>[[temp.cause_pain]]</td>
+                        <td>[[temp.cause_pain.key]]</td>
                     </tr>                    
                     <tr>
                         <td>Cara Kunjungan</td>
