@@ -5,6 +5,7 @@
 /vendor
 /.idea
 /public/views/config/config.js
+/public/views/layout/NavLoket.js
 /routes/web.js
 Homestead.json
 Homestead.yaml

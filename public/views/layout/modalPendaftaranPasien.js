@@ -17,7 +17,7 @@ angular.module('adminApp')
             return data;
         }
 
-        $scope.currHour = moment().format('HH:mm');
+        $scope.currHour = moment().format('h:mm:ss a');
 
         $scope.printArea = function (divID) {
             if (!$scope.temp.duration) {
@@ -58,7 +58,7 @@ angular.module('adminApp')
                 responsible_person: $scope.temp.responsible_person,
                 responsible_person_state: $scope.temp.responsible_person_state,
                 how_visit: $scope.temp.how_visit,
-                time_attend: $scope.temp.time_attend,
+                time_attend: $scope.currHour,
                 service_type: $scope.temp.service_type,
                 cause_pain: $scope.temp.cause_pain,
                 poly_id: $scope.temp.poly.id,
@@ -81,7 +81,7 @@ angular.module('adminApp')
                 responsible_person: $scope.temp.responsible_person,
                 responsible_person_state: $scope.temp.responsible_person_state,
                 how_visit: $scope.temp.how_visit,
-                time_attend: $scope.temp.time_attend,
+                time_attend: $scope.currHour,
                 service_type: $scope.temp.service_type,
                 cause_pain: $scope.temp.cause_pain,
                 poly_id: $scope.temp.poly.id,
