@@ -220,7 +220,7 @@
                             name="cause_pain"
                             ng-model="temp.cause_pain"
                             ng-options="d.no_dtd as d.gol_sb_sakit for d in defaultSSRjalanRl4b.data">
-                        </select>                        
+                        </select>
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">
@@ -471,9 +471,9 @@
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">No Telp</label>
                     <div class="col-sm-8">
-                        <input disabled="input" 
-                            type="text" 
-                            class="form-control" 
+                        <input disabled="input"
+                            type="text"
+                            class="form-control"
                             name="phone_number"
                             ng-model="temp.phone_number">
                     </div>
@@ -481,8 +481,8 @@
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Pendidikan</label>
                     <div class="col-sm-8">
-                        <select disabled="input" 
-                            class="form-control m-b" 
+                        <select disabled="input"
+                            class="form-control m-b"
                             name="last_education"
                             ng-model="temp.last_education"
                             ng-options="d.value as d.key for d in defaultValues.education">
@@ -492,12 +492,12 @@
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Pekerjaan</label>
                     <div class="col-sm-8">
-                        <select 
-                            class="form-control m-b" 
-                            name="job"
+                        <select disabled="input" 
+                            class="form-control m-b"
+                            name="job"                            
                             ng-model="temp.job"
-                            ng-options="d.value as d.key for d in defaultValues.listJobs">
-                        </select>  
+                            ng-options="d as d.key for d in defaultValues.listJobs">
+                        </select>
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">
@@ -537,10 +537,12 @@
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Sebab Sakit</label>
                     <div class="col-sm-8">
-                        <textarea 
-                            class="form-control" 
+                        <select 
+                            class="form-control m-b" 
                             name="cause_pain"
-                            ng-model="temp.cause_pain"></textarea>
+                            ng-model="temp.cause_pain"
+                            ng-options="d.no_dtd as d.gol_sb_sakit for d in defaultSSRjalanRl4b.data">
+                        </select>
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">

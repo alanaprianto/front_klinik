@@ -120,10 +120,8 @@ angular.module('adminApp')
                 $scope.temp.sub_district = $scope.temp.patient.sub_district;
                 $scope.temp.rt_rw = $scope.temp.patient.rt_rw;
                 $scope.temp.phone_number = $scope.temp.patient.phone_number;
-                $scope.temp.last_education = $scope.temp.patient.last_education;
-                $scope.temp.job = $scope.temp.patient.job;
+                $scope.temp.last_education = $scope.temp.patient.last_education;            
                 $scope.temp.askes_number = $scope.temp.patient.askes_number;
-
                 $scope.patient_id = $scope.temp.patient.id;
 
                 $scope.provinces.forEach(function (val) {
@@ -141,10 +139,14 @@ angular.module('adminApp')
                         return $scope.temp.district = val;
                     }
                 });
-
                 $scope.defaultValues.gender.forEach(function (val) {
                     if (val.value == $scope.temp.patient.gender) {
                         return $scope.temp.gender = val;
+                    }
+                });
+                $scope.defaultValues.listJobs.forEach(function (val) {
+                    if (val.value == $scope.temp.patient.job) {
+                        return $scope.temp.job = val;
                     }
                 });
             }
