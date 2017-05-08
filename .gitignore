@@ -5,6 +5,7 @@
 /vendor
 /.idea
 /public/views/config/config.js
+/routes/web.js
 Homestead.json
 Homestead.yaml
 .env

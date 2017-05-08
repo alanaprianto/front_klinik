@@ -49,7 +49,7 @@ angular.module('adminApp')
                 province: $scope.temp.province.code,
                 city: $scope.temp.city.code,
                 district: $scope.temp.district.code,
-                subDistrict: $scope.temp.subDistrict.code,
+                sub_district: $scope.temp.subDistrict.code,
                 rt_rw: $scope.temp.rt_rw,
                 phone_number: $scope.temp.phone_number,
                 last_education: $scope.temp.last_education,
@@ -113,7 +113,7 @@ angular.module('adminApp')
                 $scope.temp.number_medical_record = $scope.temp.patient.number_medical_record;
                 $scope.temp.full_name = $scope.temp.patient.full_name;
                 $scope.temp.place = $scope.temp.patient.place;
-                $scope.temp.birth = new Date($scope.temp.patient.birth);
+                $scope.temp.birth = new Date(moment($scope.temp.patient.birth, "DD/MM/YYYY"));
                 $scope.temp.age = moment().diff($scope.temp.birth, 'years');
                 $scope.temp.address = $scope.temp.patient.address;
                 $scope.temp.religion = $scope.temp.patient.religion;
@@ -138,10 +138,12 @@ angular.module('adminApp')
                         return $scope.temp.district = val;
                     }
                 });
-                $scope.subDistricts.forEach(function (val) {
-                    if (val.code == $scope.temp.patient.subDistrict) {
-                        return $scope.temp.subDistrict = val;
-                    }
+                $scope.getListSubDistricts().then(function () {
+                    $scope.subDistricts.forEach(function (val) {
+                        if (val.code == $scope.temp.patient.sub_district) {
+                            return $scope.temp.subDistrict = val;
+                        }
+                    });
                 });
                 $scope.defaultValues.gender.forEach(function (val) {
                     if (val.value == $scope.temp.patient.gender) {
@@ -196,10 +198,13 @@ angular.module('adminApp')
             });
         }
         $scope.getListSubDistricts = function () {
-            ServicesCommon.getSubDistricts().$promise
-            .then(function (result) {
-                $scope.subDistricts = result.datas.subDistricts;
-            });
+            if ($scope.temp && $scope.temp.district && $scope.temp.district.code) {
+                var code = $scope.temp.district.code;
+                return ServicesCommon.getSubDistricts({code: code}).$promise
+                .then(function (result) {
+                    $scope.subDistricts = result.datas.subDistricts;
+                });
+            }
         }
 
         var getDefaultValues = function() {
@@ -220,7 +225,6 @@ angular.module('adminApp')
             $scope.getListProvinces();
             $scope.getListCities();
             $scope.getListDistricts();
-            $scope.getListSubDistricts();
         }
 
         firstInit();        

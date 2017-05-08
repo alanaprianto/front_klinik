@@ -121,6 +121,7 @@
                             name="district" 
                             id="district"
                             ng-model="temp.district"
+                            ng-change="getListSubDistricts()"
                             ng-options="district as district.name for district in districts | filter: { sub_code: temp.city.code }">
                             <option>--Pilih Kecamatan--</option>
                         </select>
@@ -134,7 +135,7 @@
                             class="form-control" 
                             name="subDistrict"
                             ng-model="temp.subDistrict"
-                            ng-options="subDistrict as subDistrict.name for subDistrict in subdistricts | filter: { sub_code: temp.district.code }">
+                            ng-options="subDistrict as subDistrict.name for subDistrict in subDistricts | filter: { sub_code: temp.district.code }">
                             <option>--Pilih Kelurahan--</option>
                             </select>
                     </div>
@@ -454,11 +455,15 @@
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Kelurahan</label>
                     <div class="col-sm-8">
-                        <input disabled="input" 
+                        <select
+                            disabled="input"
                             type="text" 
                             class="form-control" 
                             name="subDistrict"
-                            ng-model="temp.subDistrict">
+                            ng-model="temp.subDistrict"
+                            ng-options="subDistrict as subDistrict.name for subDistrict in subDistricts | filter: { sub_code: temp.district.code }">
+                            <option>--Pilih Kelurahan--</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">

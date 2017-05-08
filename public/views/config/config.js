@@ -28,39 +28,7 @@ function mainConfig () {
         currency: currency,
         decimalSeparator: decimalSeparator,
         zipLength: zipLength,
-        countryCode: countryCode,
-        menus: [
-            {
-                "penata_jasa": [2, 3]
-            },
-            {
-                "poli_umum": [2, 3]
-            },
-            {
-                "admin": [0, 1, 2, 3, 4, 5]
-            },
-            {
-                "admin_apotek": [0, 2]
-            },
-            {
-                "apotek": [0, 2]
-            },
-            {
-                "admin_kasir": [2, 4]
-            },
-            {
-                "loket": [1,2]
-            },
-            {
-                "admin_loket": [1,2]
-            },
-            {
-                "kasir": [2,4]
-            },
-            {
-                "admin_kasir": [2,4]
-            },
-        ]
+        countryCode: countryCode
     }
 }
 
