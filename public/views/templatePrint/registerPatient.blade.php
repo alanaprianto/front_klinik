@@ -98,12 +98,12 @@
     <tr>
         <td>Status Penanggung Jawab</td>
         <td>:</td>
-        <td>[[temp.responsible_person_state.key]]</td>
+        <td>[[temp.responsible_person_state]]</td>
     </tr>                    
     <tr>
         <td>Sebab Sakit</td>
         <td>:</td>
-        <td>[[temp.cause_pain.key]]</td>
+        <td>[[temp.cause_pain]]</td>
     </tr>                    
     <tr>
         <td>Cara Kunjungan</td>

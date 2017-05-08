@@ -54,9 +54,15 @@ angular.module('adminApp')
                 phone_number: $scope.temp.phone_number,
                 last_education: $scope.temp.last_education,
                 job: $scope.temp.job,
-                askes_number: $scope.temp.askes_number,
+                askes_number: $scope.temp.askes_number,                
+                responsible_person: $scope.temp.responsible_person,
+                responsible_person_state: $scope.temp.responsible_person_state,
+                how_visit: $scope.temp.how_visit,
+                time_attend: $scope.temp.time_attend,
+                service_type: $scope.temp.service_type,
+                cause_pain: $scope.temp.cause_pain,
                 poly_id: $scope.temp.poly.id,
-                doctor_id: $scope.temp.doctor.id
+                doctor_id: $scope.temp.doctor.id,                
             }
 
             var defaultData = defaultDataCreatePasien();
@@ -71,9 +77,15 @@ angular.module('adminApp')
 
             var data = {
                 kiosk_id: $scope.kiosk_id,
-                patient_id: $scope.patient_id,            
+                patient_id: $scope.patient_id,                
+                responsible_person: $scope.temp.responsible_person,
+                responsible_person_state: $scope.temp.responsible_person_state,
+                how_visit: $scope.temp.how_visit,
+                time_attend: $scope.temp.time_attend,
+                service_type: $scope.temp.service_type,
+                cause_pain: $scope.temp.cause_pain,
                 poly_id: $scope.temp.poly.id,
-                doctor_id: $scope.temp.doctor.id
+                doctor_id: $scope.temp.doctor.id,                
             }
 
             var defaultData = defaultDataCreatePasien();
