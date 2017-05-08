@@ -7,6 +7,19 @@
     <div id="dataPasien-area" ng-controller="DaftarPasienCtrl" class="module-content-container">
         <div class="row no-margin">
             <div class="col-md-12">
+              <div class="col-md-6 no-padding">
+                    <div class="col-md-3 no-padding">
+                        <p>Search</p>
+                    </div>
+                    <div class="col-md-9">
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            name="search pasien"
+                            ng-model="searchPasien.full_name"
+                            placeholder="Nama Pasien">
+                    </div>
+                </div>
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -21,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="visitor in tableListVisitor">
+                        <tr ng-repeat="visitor in tableListVisitor | filter: { patient: searchPasien }">
                             <td>[[$index + 1]]</td>
                             <td>[[visitor.number_medical_record]]</td>
                             <td>[[visitor.full_name]]</td>
@@ -48,7 +61,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-8">
-                    <div class="row p-b-15">
+                    <div class="row">
                         <div class="col-md-6">
                             <p class="text-left">Nomor Rekam Medis</p>
                         </div>
@@ -93,7 +106,7 @@
                             <p class="text-left">Pekerjaan </p>
                         </div>
                         <div class="col-md-6">
-                            <p class="text-left">[[dataOnModal.job]]</p>
+                            <p class="text-left">[[dataOnModal.displayedJob]]</p>
                         </div>
                     </div>
                     <div class="row p-b-15"">

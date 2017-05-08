@@ -23,6 +23,25 @@ angular.module('adminApp')
             return dateOut;
         };
 
+        var jobToString = function (val) {
+            if (val !== null && val !== undefined) {
+                var result = "";
+                $scope.job.forEach(function (item) {
+                    if (val == item.value) {
+                        result = item.key;
+                    }
+                });
+                return result;
+            }
+        }
+
+        var getDefaultValues = function() {
+            $http.get('views/config/defaultValues.json').then(function(data) {
+                $scope.gender = data.data.gender;
+                $scope.job = data.data.listJobs;
+            });
+        };
+
         var listDataPasien = function () {
             ServicesAdmin.getVisitor().$promise
             .then(function (result) {
@@ -30,6 +49,7 @@ angular.module('adminApp')
                 result.datas.patients.forEach(function(item,key){
                      if (item.patient && item.patient.birth) {
                         item.patient.age = moment().diff(moment(item.patient.birth, "DD/MM/YYYY", true), 'years');
+                        item.displayedJob = jobToString(item.job);
                     }
                     switch (item.gender) {
                     case 1:
@@ -46,6 +66,7 @@ angular.module('adminApp')
             });
            $scope.printArea = function (divID) {
             $scope.currentDate = moment().format('DD MMMM YYYY HH:mm:ss');
+            $scope.temp.displayedJob = jobToString($scope.dataOnModal.patient.job);
             setTimeout(function(){
                 var printContents = document.getElementById(divID).innerHTML;
                 var popupWin = window.open('', '_blank', 'width=800, height=600');
@@ -74,7 +95,7 @@ angular.module('adminApp')
                 if (data) {
                     $scope.dataOnModal = data;
                 }
-
+                $scope.dataOnModal.displayedJob = jobToString(data.job);
                 ngDialog.open({
                     template: target,
                     scope: $scope,
@@ -83,165 +104,11 @@ angular.module('adminApp')
                 });
             }
         }
-        // var listDataPasien = function () {
-        //     ServicesLoket.getVisitor().$promise
-        //     .then(function (result) {
-        //         var tempData=[];
-        //         result.datas.patients.forEach(function(item,key){
-                     
-        //              if (item.patient && item.patient.birth) {
-        //                 item.patient.age = moment().diff(moment(item.patient.birth, "DD/MM/YYYY", true), 'years');
-        //             }
-        //             switch (item.gender) {
-        //             case 1:
-        //                item.gender = 'Laki-laki';
-        //                 break;
-        //             case 2:
-        //                 item.gender = 'Perempuan';
-        //                 break;
-        //             }
-        //             tempData.push(item);
-        //         });
-                
-        //         $scope.tableListVisitor = tempData; 
-        //     });
-        //     $scope.openModal = function (target, type, data) {
-        //     console.log(target);
-        //     var cssModal = '';
-        //     if (type) {
-        //         cssModal = 'modal-' + type;
-        //     }
-
-        //     if (data) {
-        //         $scope.dataOnModal = data;
-        //     }
-
-        //     ngDialog.open({
-        //         template: target,
-        //         scope: $scope,
-        //         className: 'ngDialog-modal ' + cssModal
-        //     });
-        // }
-        // }
-        // var listDataPasien = function () {
-        //     ServicesPenataJasa.getVisitor().$promise
-        //     .then(function (result) {
-        //         var tempData=[];
-        //         result.datas.patients.forEach(function(item,key){
-        //              if (item.patient && item.patient.birth) {
-        //                 item.patient.age = moment().diff(moment(item.patient.birth, "DD/MM/YYYY", true), 'years');
-        //             }
-        //             switch (item.gender) {
-        //             case 1:
-        //                item.gender = 'Laki-laki';
-        //                 break;
-        //             case 2:
-        //                 item.gender = 'Perempuan';
-        //                 break;
-        //             }
-        //             tempData.push(item);
-        //         });
-                
-        //         $scope.tableListVisitor = tempData; 
-        //     });
-        //     $scope.openModal = function (target, type, data) {
-        //     console.log(target);
-        //     var cssModal = '';
-        //     if (type) {
-        //         cssModal = 'modal-' + type;
-        //     }
-
-        //     if (data) {
-        //         $scope.dataOnModal = data;
-        //     }
-
-        //     ngDialog.open({
-        //         template: target,
-        //         scope: $scope,
-        //         className: 'ngDialog-modal ' + cssModal
-        //     });
-        // }
-        // }
-        // var listDataPasien = function () {
-        //     ServicesKasir.getVisitor().$promise
-        //     .then(function (result) {
-        //         var tempData=[];
-        //         result.datas.patients.forEach(function(item,key){
-        //              if (item.patient && item.patient.birth) {
-        //                 item.patient.age = moment().diff(moment(item.patient.birth, "DD/MM/YYYY", true), 'years');
-        //             }
-        //             switch (item.gender) {
-        //             case 1:
-        //                item.gender = 'Laki-laki';
-        //                 break;
-        //             case 2:
-        //                 item.gender = 'Perempuan';
-        //                 break;
-        //             }
-        //             tempData.push(item);
-        //         });
-                
-        //         $scope.tableListVisitor = tempData; 
-        //     });
-        //     $scope.openModal = function (target, type, data) {
-        //     console.log(target);
-        //     var cssModal = '';
-        //     if (type) {
-        //         cssModal = 'modal-' + type;
-        //     }
-
-        //     if (data) {
-        //         $scope.dataOnModal = data;
-        //     }
-
-        //     ngDialog.open({
-        //         template: target,
-        //         scope: $scope,
-        //         className: 'ngDialog-modal ' + cssModal
-        //     });
-        // }
-        // }
-        //  var listDataPasien = function () {
-        //     ServicesKasir.getVisitor().$promise
-        //     .then(function (result) {
-        //         var tempData=[];
-        //         result.datas.patients.forEach(function(item,key){
-        //              if (item.patient && item.patient.birth) {
-        //                 item.patient.age = moment().diff(moment(item.patient.birth, "DD/MM/YYYY", true), 'years');
-        //             }
-        //             switch (item.gender) {
-        //             case 1:
-        //                item.gender = 'Laki-laki';
-        //                 break;
-        //             case 2:
-        //                 item.gender = 'Perempuan';
-        //                 break;
-        //             }
-        //             tempData.push(item);
-        //         });
-                
-        //         $scope.tableListVisitor = tempData; 
-        //     });
-        //     $scope.openModal = function (target, type, data) {
-        //     console.log(target);
-        //     var cssModal = '';
-        //     if (type) {
-        //         cssModal = 'modal-' + type;
-        //     }
-
-        //     if (data) {
-        //         $scope.dataOnModal = data;
-        //     }
-
-        //     ngDialog.open({
-        //         template: target,
-        //         scope: $scope,
-        //         className: 'ngDialog-modal ' + cssModal
-        //     });
-        // }
-        // }
+        
         var firstInit = function () {
             listDataPasien();
+            getDefaultValues();
+
         }
 
         firstInit();
