@@ -426,7 +426,7 @@
             <div class="row p-b-15 no-margin">
                 <div class="col-md-6">
                     <div class="bg-warning" style="min-height: 34px;"
-                        ng-show="message">
+                        ng-show="createMedicalRecorderror">
                         <p class="text-left">
                             [[createMedicalRecorderror]]
                         </p>

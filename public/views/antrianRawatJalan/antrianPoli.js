@@ -144,7 +144,7 @@ angular.module('adminApp')
         }
 
         var getLoketAntrianPoli = function () {
-            ServicesAdmin.getLoketAntrianList({type: $scope.poliType}).$promise
+            return ServicesAdmin.getLoketAntrianList({type: $scope.poliType}).$promise
             .then(function (result) {
                 var dataArray = [];
                 result.datas.kiosks.forEach(function (item) {
@@ -169,7 +169,7 @@ angular.module('adminApp')
         }
 
         var getVisitor = function () {
-            ServicesAdmin.getVisitor({type: $scope.poliType}).$promise
+            return ServicesAdmin.getVisitor({type: $scope.poliType}).$promise
             .then(function (result) {
                 var dataArrayOld = [];
                 result.datas.patients.forEach(function (item) {
@@ -194,13 +194,21 @@ angular.module('adminApp')
         }
 
         var getDefaultValues = function() {
-            $http.get('views/config/defaultValues.json').then(function(data) {
+            return $http.get('views/config/defaultValues.json').then(function(data) {
                 $scope.finalResultOnPoli = data.data.finalResultOnPoli;
                 $scope.statusQueue = data.data.statusQueue;
                 $scope.gender = data.data.gender;
                 $scope.job = data.data.listJobs;
             });
         };
+
+        function webWorker () {
+            getLoketAntrianPoli()
+            .then(getVisitor)
+            .then(function () {
+                setTimeout(webWorker, 5000);
+            })
+        }
 
         var firstInit = function () {
             $scope.poliType = toTitleCase(
@@ -210,14 +218,10 @@ angular.module('adminApp')
             );
 
             initTemp();
-            getDefaultValues();
-
-            listPoli().then(function() {
-                getLoketAntrianPoli();
-                getVisitor();
-            });
-
-            listServices();
+            getDefaultValues()
+            .then(listServices)
+            .then(listPoli)
+            .then(webWorker)
         }
         
         firstInit();

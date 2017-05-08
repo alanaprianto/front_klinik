@@ -43,7 +43,7 @@ angular.module('adminApp')
         }
 
         var listDataPasien = function () {
-            ServicesAdmin.getKasirPayments().$promise
+            return ServicesAdmin.getKasirPayments().$promise
             .then(function (result) {
                 var tempData = [];
                 result.datas.registers.forEach(function(item, key){
@@ -112,10 +112,14 @@ angular.module('adminApp')
             });
         };
 
+        function webWorker () {
+            listDataPasien().then(function () {
+                setTimeout(webWorker, 5000);
+            })
+        }
+
         var firstInit = function () {
-            getDefaultValues().then(function () {
-                listDataPasien();
-            });
+            getDefaultValues().then(webWorker);
         }
 
         firstInit();
