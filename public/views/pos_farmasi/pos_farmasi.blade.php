@@ -11,7 +11,7 @@
 </div>
 @endsection
 @section('nav')
-    @include('layout.navKasir')
+    @include('layout.navFarmasi')
 @endsection
 @section('module-content-container')
 <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">

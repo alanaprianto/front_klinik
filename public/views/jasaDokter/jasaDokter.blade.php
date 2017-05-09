@@ -11,13 +11,13 @@
 </div>
 @endsection
 @section('nav')
-   @include('layout.navKepegawaian')
+   @include('layout.navMasterData')
 @endsection
 @section('module-content-container')
             <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <ul>
-                <h3>DATABASE Jasa Dokter</h3>
+                <h3>Jasa Dokter</h3>
             </ul>
         </div>
     </nav>

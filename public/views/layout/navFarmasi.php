@@ -8,12 +8,18 @@
                                  </a>
                             </li>
                             <li>
+                                <a href="pos_farmasi">
+                                    <span class="sidebar-nav-item-icon fa fa-money fa-fw"></span>
+                                    <span class="sidebar-nav-item">Poin Of Sale</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="resep">
                                     <span class="sidebar-nav-item-icon fa fa-plus-square fa-fw"></span>
                                     <span class="sidebar-nav-item">Resep</span>
                                 </a>
-                                
                             </li>
+                            
                             <li>
                                 <a class="has-arrow" href="#" aria-expanded="false">
                                     <span class="sidebar-nav-item-icon fa fa-shopping-cart fa-fw"></span>
@@ -24,7 +30,13 @@
                                     <li><a href="/nonAlkes">Data Non Alkes </a></li>
                                 </ul>
                             </li>
-                           
+                            <li>
+                                <a href="depo">
+                                    <span class="sidebar-nav-item-icon fa fa-shopping-basket fa-fw"></span>
+                                    <span class="sidebar-nav-item">Depo</span>
+                                </a>
+                                
+                            </li>                           
                             <li class="sidebar-nav-heading">Lain-lain</li>
                             <li>
                                 <a href="login">
