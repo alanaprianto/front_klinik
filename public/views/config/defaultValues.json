@@ -62,89 +62,93 @@
     "serviceType": [
         {
             "key": "Reguler",
-            "value": "Reguler"
+            "value": 1
         },
         {
-            "key": "Prioritas",
-            "value": "Prioritas"
+            "key": "VIP",
+            "value": 2
+        },
+        {
+            "key": "VVIP",
+            "value": 3
         }
     ],
     "visitType": [
         {
             "key": "Di Antar",
-            "value": "Di Antar"
+            "value": 1
         },
         {
             "key": "Datang Sendiri",
-            "value": "Datang Sendiri"
+            "value": 2
         },
         {
             "key": "Di Jemput",
-            "value": "Di Jemput"
+            "value": 3
         }
     ],
     "religion": [
         {
             "key": "Islam",
-            "value": "Islam"
+            "value": 1
         },
         {
             "key": "Kristen",
-            "value": "Kristen"
+            "value": 2
         },
         {
             "key": "Katolik",
-            "value": "Katolik"
+            "value": 3
         },
         {
             "key": "Budha",
-            "value": "Budha"
+            "value": 4
         },
         {
             "key": "Hindu",
-            "value": "Hindu"
+            "value": 5
         },
         {
             "key": "Khonghucu",
-            "value": "Khonghucu"
+            "value": 6
         }
     ],
     "education": [
         {
             "key": "SD",
-            "value": "SD"
+            "value": 1
         },
         {
             "key": "SMP",
-            "value": "SMP"
+            "value": 2
         },
         {
             "key": "SMA",
-            "value": "SMA"
+            "value": 3
         },
         {
             "key": "Diploma 1",
-            "value": "Diploma 1"
+            "value": 4
         },
         {
             "key": "Diploma 2",
-            "value": "Diploma 2"
+            "value": 5
         },
         {
             "key": "Diploma 3",
-            "value": "Diploma 3"
+            "value": 6
         },
         {
             "key": "S1",
-            "value": "S1"
+            "value": 7
         },
         {
             "key": "S2",
-            "value": "S2"
+            "value": 8
         },
         {
             "key": "S3",
-            "value": "S3"
+            "value": 9
         }
     ],
     "statusPayments": [

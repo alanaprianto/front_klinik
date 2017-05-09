@@ -44,14 +44,14 @@ angular.module('adminApp')
                 birth: moment($scope.temp.birth).format("DD/MM/YYYY"),
                 gender: $scope.temp.gender.value,
                 address: $scope.temp.address,
-                religion: $scope.temp.religion,
+                religion: $scope.temp.religion.value,
                 province: $scope.temp.province.code,
                 city: $scope.temp.city.code,
                 district: $scope.temp.district.code,
                 sub_district: $scope.temp.subDistrict.code,
                 rt_rw: $scope.temp.rt_rw,
                 phone_number: $scope.temp.phone_number,
-                last_education: $scope.temp.last_education,
+                last_education: $scope.temp.last_education.value,
                 job: $scope.temp.job.value,
                 askes_number: $scope.temp.askes_number,
                 poly_id: $scope.temp.poly.id,
@@ -89,9 +89,9 @@ angular.module('adminApp')
             var registerData = {
                 responsible_person: rp,
                 responsible_person_state: rp_state,
-                how_visit: $scope.temp.how_visit,
+                how_visit: $scope.temp.how_visit.value,
                 time_attend: $scope.currHour,
-                service_type: $scope.temp.service_type,
+                service_type: $scope.temp.service_type.value,
                 cause_pain: cp,
             }
 
@@ -130,11 +130,9 @@ angular.module('adminApp')
                 $scope.temp.place = $scope.temp.patient.place;
                 $scope.temp.birth = new Date(moment($scope.temp.patient.birth, "DD/MM/YYYY"));
                 $scope.temp.age = moment().diff($scope.temp.birth, 'years');
-                $scope.temp.address = $scope.temp.patient.address;
-                $scope.temp.religion = $scope.temp.patient.religion;
+                $scope.temp.address = $scope.temp.patient.address;            
                 $scope.temp.rt_rw = $scope.temp.patient.rt_rw;
-                $scope.temp.phone_number = $scope.temp.patient.phone_number;
-                $scope.temp.last_education = $scope.temp.patient.last_education;            
+                $scope.temp.phone_number = $scope.temp.patient.phone_number;                
                 $scope.temp.askes_number = $scope.temp.patient.askes_number;
                 $scope.patient_id = $scope.temp.patient.id;
 
@@ -159,7 +157,7 @@ angular.module('adminApp')
                             return $scope.temp.subDistrict = val;
                         }
                     });
-                });
+                });                
                 $scope.defaultValues.gender.forEach(function (val) {
                     if (val.value == $scope.temp.patient.gender) {
                         return $scope.temp.gender = val;
@@ -168,6 +166,16 @@ angular.module('adminApp')
                 $scope.defaultValues.listJobs.forEach(function (val) {
                     if (val.value == $scope.temp.patient.job) {
                         return $scope.temp.job = val;
+                    }
+                });                
+                $scope.defaultValues.religion.forEach(function (val) {
+                    if (val.value == $scope.temp.patient.religion) {
+                        return $scope.temp.religion = val;                        
+                    }
+                });                
+                $scope.defaultValues.education.forEach(function (val) {
+                    if (val.value == $scope.temp.patient.last_education) {
+                        return $scope.temp.last_education = val;
                     }
                 });
             }

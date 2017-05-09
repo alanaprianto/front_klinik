@@ -39,7 +39,7 @@
     <tr>
         <td>Agama</td>
         <td>:</td>
-        <td>[[temp.religion]]</td>
+        <td>[[temp.religion.key]]</td>
     </tr>                    
     <tr>
         <td>Provinsi</td>
@@ -74,7 +74,7 @@
     <tr>
         <td>Pendidikan</td>
         <td>:</td>
-        <td>[[temp.last_education]]</td>
+        <td>[[temp.last_education.key]]</td>
     </tr>                    
     <tr>
         <td>Pekerjaan</td>
@@ -108,12 +108,12 @@
     <tr>
         <td>Cara Kunjungan</td>
         <td>:</td>
-        <td>[[temp.how_visit]]</td>
+        <td>[[temp.how_visit.key]]</td>
     </tr>                    
     <tr>
         <td>Tipe Layanan</td>
         <td>:</td>
-        <td>[[temp.service_type]]</td>
+        <td>[[temp.service_type.key]]</td>
     </tr>                    
     <tr>
         <td>Klinik</td>

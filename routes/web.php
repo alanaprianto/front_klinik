@@ -149,3 +149,6 @@ Route::get('/kiosk', function() {
 Route::get('/display', function() {
     return View::make('display.display');
 });
+Route::get('/distributor', function() {
+    return View::make('distributor.distributor');
+});

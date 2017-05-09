@@ -77,7 +77,7 @@
                             class="form-control m-b" 
                             name="religion"
                             ng-model="temp.religion"
-                            ng-options="d.value as d.key for d in defaultValues.religion">
+                            ng-options="d as d.key for d in defaultValues.religion">
                         </select>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                             class="form-control m-b" 
                             name="last_education"
                             ng-model="temp.last_education"
-                            ng-options="d.value as d.key for d in defaultValues.education">
+                            ng-options="d as d.key for d in defaultValues.education">
                         </select>
                     </div>
                 </div>
@@ -234,7 +234,7 @@
                             class="form-control m-b" 
                             name="how_visit"
                             ng-model="temp.how_visit"
-                            ng-options="d.value as d.key for d in defaultValues.visitType">
+                            ng-options="d as d.key for d in defaultValues.visitType">
                         </select>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
                             class="form-control m-b" 
                             name="service_type"
                             ng-model="temp.service_type"
-                            ng-options="d.value as d.key for d in defaultValues.serviceType">
+                            ng-options="d as d.key for d in defaultValues.serviceType">
                         </select>
                     </div>
                 </div>
@@ -412,7 +412,7 @@
                             class="form-control m-b" 
                             name="religion"
                             ng-model="temp.religion"
-                            ng-options="d.value as d.key for d in defaultValues.religion">
+                            ng-options="d as d.key for d in defaultValues.religion">
                         </select>
                     </div>
                 </div>
@@ -494,7 +494,7 @@
                             class="form-control m-b"
                             name="last_education"
                             ng-model="temp.last_education"
-                            ng-options="d.value as d.key for d in defaultValues.education">
+                            ng-options="d as d.key for d in defaultValues.education">
                         </select>
                     </div>
                 </div>
@@ -560,7 +560,7 @@
                         <select class="form-control m-b" 
                             name="how_visit"
                             ng-model="temp.how_visit"
-                            ng-options="d.value as d.key for d in defaultValues.visitType">
+                            ng-options="d as d.key for d in defaultValues.visitType">
                         </select>
                     </div>
                 </div>
@@ -582,7 +582,7 @@
                             class="form-control m-b" 
                             name="service_type"
                             ng-model="temp.service_type"
-                            ng-options="d.value as d.key for d in defaultValues.serviceType">
+                            ng-options="d as d.key for d in defaultValues.serviceType">
                         </select>
                     </div>
                 </div>

@@ -229,6 +229,38 @@ angular.module('adminApp')
                 submodule: 'common',
                 controller: 'users'
             }
+        },
+        getDistributors: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'distributors'
+            }
+        },
+        createDistributor: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'distributors'
+            }
+        },
+        deleteDistributor: {
+            method: 'DELETE',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'distributors'
+            }
+        },
+        updateDistributor: {
+            method: 'PUT',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'distributors'
+            }
         }
     });
 });
