@@ -18,7 +18,7 @@
     @yield('css')
 </head>
 
-<body>
+<body style="background-color: #2F4050">
 <div id="display-area">
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-7 col-lg-offset-5">
@@ -38,9 +38,10 @@
                     </div>
                     <div class="ibox-content" style="background-color: #19B293">
                         <h1 class="no-margins"><span class="count-bpjs">#</span></h1>
-                        <div class="stat-percent font-bold text-success"><span
-                                    class="total-bpjs"></span> <i
-                                    class="fa fa-male"></i></div>
+                        <div class="stat-percent font-bold text-success">
+                            <span class="total-bpjs"></span> 
+                            <i class="fa fa-male  pull-right"></i>
+                        </div>
                         <h5>Total Antrian</h5>
                     </div>
                 </div>
@@ -53,9 +54,10 @@
                     </div>
                     <div class="ibox-content" style="background-color: #1B83C5">
                         <h1 class="no-margins"><span class="count-umum">#</span></h1>
-                        <div class="stat-percent font-bold text-navy"><span
-                                    class="total-umum"></span> <i
-                                    class=" fa fa-male"></i></div>
+                        <div class="stat-percent font-bold text-navy">
+                            <span class="total-umum"></span> 
+                            <i class=" fa fa-male  pull-right"></i>
+                        </div>
                         <h5>Total Antrian</h5>
                     </div>
                 </div>
@@ -68,25 +70,49 @@
                     </div>
                     <div class="ibox-content" style="background-color: #EC5464">
                         <h1 class="no-margins"><span class="count-contractor">#</span></h1>
-                        <div class="stat-percent font-bold text-danger"><span
-                                    class="total-contractor"></span> <i
-                                    class="fa fa-male"></i></div>
+                        <div class="stat-percent font-bold text-danger">
+                            <span class="total-contractor"></span> 
+                            <i class="fa fa-male  pull-right"></i>
+                        </div>
                         <h5>Total Antrian</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-
+    <div class="col-lg-12">
+        <div class="col-lg-5">
+            <h1><b>INFO DOKTER</b></h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th>No</th>
+                    <th>Nama Dokter </th>
+                    <th>Senin - Sabtu</th>
+                    <th>Minggu</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Dr. Jaka Saputra</td>
+                    <td>08:00 - 13:00 </td>
+                    <td>18:00 - 20:00 </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-7">
+            <iframe width="640" height="360" src="https://www.youtube.com/embed/2as2rYU6reM" frameborder="0" allowfullscreen></iframe>
+        </div>
     </div>
     <div class="footer">
-        <div class="pull-right">
+        <p class="pull-right">
             Sistem Informasi Manajemen <strong>Klinik </strong>
-        </div>
-        <div>
+        </p>
+        <p>
             <strong>Copyright</strong> Teknoland &copy; 2017
-        </div>
+        </p>
     </div>
 </div>
 

@@ -7,5 +7,20 @@
 }
 
 #display-area label {
-    color: #fefefe;
+    color: #fff;
+}
+#display-area h1{
+    color: #fff;
+}
+#display-area h2{
+    color: #fff;
+}
+#display-area h4{
+    color: #fff;
+}
+#display-area h5{
+    color: #fff;
+}
+#display-area i{
+    color: #fff;
 }
