@@ -6,28 +6,21 @@
 @section('module-title')
 <div class="module-left-title">
     <div class="module-left-bars"><i class="ti-menu"></i></div>
-    <img src="assets/images/logo/masterdata.png">
+    <img src="assets/images/logo/master-data.png">
     <span>Master Data </span>
 </div>
 @endsection
+@section('nav')
+    @include('layout.navMasterData')
+@endsection
 @section('module-content-container')
-<div class="module-content-container">
-    <div class="gray-bg sidebar-content">
-            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <ul>
-                        <img src="assets/images/logo/logo-md.png" style="height: 15px">
-                        <h3>Mater Data </h3>
-                    </ul>
-                </div>
-                <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <a href="{{url('login')}}" style="padding: 15px;">
-                            <i class="fa fa-sign-out"></i> Log out
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+    <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <ul>
+                <h3>Master Data </h3>
+            </ul>
+        </div>
+    </nav>
 @endsection
 @section('content')
 @endsection

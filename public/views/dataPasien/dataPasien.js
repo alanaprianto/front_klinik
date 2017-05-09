@@ -95,6 +95,7 @@ angular.module('adminApp')
                 if (data) {
                     $scope.dataOnModal = data;
                 }
+                
                 $scope.dataOnModal.displayedJob = jobToString(data.job);
                 ngDialog.open({
                     template: target,

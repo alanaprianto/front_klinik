@@ -47,7 +47,7 @@ Route::get('/rawatinap', function() {
 Route::get('/rekammedis', function() {
     return View::make('rekammedis.rekammedis');
 });
-Route::get('/masterdata', function() {
+Route::get('/master_data', function() {
     return View::make('masterdata.masterdata');
 });
 Route::get('/loket', function() {
