@@ -92,6 +92,9 @@ Route::get('/resep', function() {
 Route::get('/penata_jasa', function() {
     return View::make('rawatjalan.rawatjalan');
 });
+Route::get('/jasaDokter', function() {
+    return View::make('jasaDokter.jasaDokter');
+});
 Route::get('/poli_anak', function() {
     return View::make('antrianRawatJalan.antrianPoli');
 });
@@ -104,41 +107,15 @@ Route::get('/poli_umum', function() {
 Route::get('/antrian', function() {
     return View::make('antrian.antrian');
 });
-Route::get('/kunjunganPoliGigi', function() {
-    return View::make('kunjungan.kunjunganPoliGigi');
-});
-Route::get('/kunjunganPoliAnak', function() {
-    return View::make('kunjungan.kunjunganPoliAnak');
-});
-Route::get('/kunjunganPoliUmum', function() {
-    return View::make('kunjungan.kunjunganPoliUmum');
-});
-Route::get('/pengunjungPoliUmum', function() {
-    return View::make('pengunjungRawatJalan.pengunjungPoliUmum');
-});
-Route::get('/pengunjungPoliAnak', function() {
-    return View::make('pengunjungRawatJalan.pengunjungPoliAnak');
-});
-Route::get('/pengunjungPoliGigi', function() {
-    return View::make('pengunjungRawatJalan.pengunjungPoliGigi');
-});
 Route::get('/staff', function() {
     return View::make('staff.staff');
 });
-Route::get('/createEditStaff', function() {
-    return View::make('staff.createEditStaff');
-});
+
 Route::get('/staffJob', function() {
     return View::make('staffJob.staffJob');
 });
-Route::get('/createStaffJob', function() {
-    return View::make('staffJob.createStaffJob');
-});
 Route::get('/staffPosition', function() {
     return View::make('staffPosition.staffPosition');
-});
-Route::get('/createStaffPosition', function() {
-    return View::make('staffPosition.createStaffPosition');
 });
 Route::get('/data_patient', function() {
     return View::make('dataPasien.dataPasien');
@@ -149,6 +126,16 @@ Route::get('/kiosk', function() {
 Route::get('/display', function() {
     return View::make('display.display');
 });
+
 Route::get('/distributor', function() {
     return View::make('distributor.distributor');
+    });
+Route::get('/depo', function() {
+    return View::make('depo.depo');
+});
+Route::get('/distributor', function() {
+    return View::make('distributor.distributor');
+});
+Route::get('/poli', function() {
+    return View::make('poli.poli');
 });

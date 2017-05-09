@@ -23,6 +23,7 @@
     </nav>
 @endsection
 @section('content')
+
     <div id="pendaftaranPasien-area" ng-controller="DistributorCtrl" >
         <div class="row no-margin">
             <div class="col-md-12 no-padding m-b-15">

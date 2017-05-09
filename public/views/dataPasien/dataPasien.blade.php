@@ -7,19 +7,13 @@
     <div id="dataPasien-area" ng-controller="DaftarPasienCtrl" class="module-content-container">
         <div class="row no-margin">
             <div class="col-md-12">
-              <div class="col-md-6 no-padding">
-                    <div class="col-md-3 no-padding">
-                        <p>Search</p>
+                    <div class="ui icon input pull-right">
+                    <input  type="text"  
+                            class="form-control" 
+                            placeholder="Search Nama Pasien" 
+                            ng-model="searchVisitor.full_name">
+                     <i class="search icon"></i>
                     </div>
-                    <div class="col-md-9">
-                        <input 
-                            type="text" 
-                            class="form-control"
-                            name="search pasien"
-                            ng-model="searchPasien.full_name"
-                            placeholder="Nama Pasien">
-                    </div>
-                </div>
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -34,7 +28,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="visitor in tableListVisitor | filter: { patient: searchPasien }">
+                        <tr ng-repeat="visitor in tableListVisitor | filter: { patient: searchVisitor }">
                             <td>[[$index + 1]]</td>
                             <td>[[visitor.number_medical_record]]</td>
                             <td>[[visitor.full_name]]</td>
@@ -47,6 +41,10 @@
                                     ng-click="openModal('detailPasienModal', 'lg', visitor)">
                                     <i class="fa fa-search-plus"></i> Detail Pasien
                                 </button>
+                                <button class="btn btn-xs btn-default"
+                                        ng-click="printArea('printdetailPasien')">
+                                 <i class="fa fa-print"></i> Print
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -54,7 +52,150 @@
             </div>
         </div>
     </div>
-     <script type="text/ng-template" id="detailPasienModal">
+    <script type="text/ng-template" id="detailPasienModal">
+            <!--<div class="row p-b-15">
+                <h4 class="modal-title">
+                    Pasien [[dataOnModal.reference.register.patient.full_name]]
+                </h4>
+            </div>-->
+            <div class="row p-b-15">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="form-group field row text-left">
+                            <div class="col-sm-4 no-padding">
+                                <b>No RM</b>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>[[dataOnModal.number_medical_record]]</p>
+                            </div>
+                        </div>
+                        <div class="form-group field row text-left">
+                            <div class="col-sm-4 no-padding">
+                                <b>Nama Lengkap</b>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>[[dataOnModal.full_name]]</p>
+                            </div>
+                        </div>
+                        <div class="form-group field row text-left">
+                            <div class="col-sm-4 no-padding">
+                                <b>TTL / Umur</b>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>[[dataOnModal.displayedBirth]] / <b>[[dataOnModal.displayedAge]]</b> tahun</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group field row text-left">
+                            <div class="col-sm-4 no-padding">
+                                <b>Jenis Kelamin</b>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>[[dataOnModal.displayedGender]]</p>
+                            </div>
+                        </div>
+                        <div class="form-group field row text-left">
+                            <div class="col-sm-4 no-padding">
+                                <b>Alamat</b>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>[[dataOnModal.address]]</p>
+                            </div>
+                        </div>
+                        <div class="form-group field row text-left">
+                            <div class="col-sm-4 no-padding">
+                                <b>Nomber Handpone</b>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>[[dataOnModal.phone_number]]</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 text-left">
+                        <p><b>History</b></p>
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default" ng-repeat="r in dataOnModal.registers | orderBy: 'created_at':true">
+                                <div class="panel-heading" role="tab" id="r[[$index]]">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse[[$index]]" aria-expanded="true" aria-controls="collapse[[$index]]">
+                                            [[formatDate(r.created_at) | date: 'dd MMM yyyy HH:mm']]
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse[[$index]]" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="r[[$index]]">
+                                    <div class="panel-body">
+
+                                        <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                                            <div class="panel panel-default" ng-repeat="rr in r.references">
+                                                <div class="panel-heading" role="tab" id="rr[[$index]]">
+                                                    <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapsed[[$parent.$index]]-[[$index]]" aria-expanded="true" aria-controls="collapsed[[$parent.$index]]-[[$index]]">
+                                                            [[rr.poly.name]] / [[rr.doctor.full_name]]
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapsed[[$parent.$index]]-[[$index]]" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="rr[[$index]]">
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                Nomor Pendaftaran
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                [[rr.number_reference]]
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                Note
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                [[rr.notes]]
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <table class="table service-table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>NO</th> 
+                                                                            <th>Tanggal</th> 
+                                                                            <th>Anamnesa</th>
+                                                                            <th>Diagnosis</th>
+                                                                            <th>Explain</th>
+                                                                            <th>Therapy</th>
+                                                                            <th>Notes</th>
+                                                                            <th>ICD10</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr ng-repeat="ll in rr.medical_records">
+                                                                            <td>[[$index + 1]]</td>
+                                                                            <td>[[formatDate(ll.created_at) | date: 'dd MMM yyyy HH:mm']]</td>
+                                                                            <td>[[ll.anamnesa]]</td>
+                                                                            <td>[[ll.diagnosis]]</td>
+                                                                            <td>[[ll.explain]]</td>
+                                                                            <td>[[ll.therapy]]</td>
+                                                                            <td>[[ll.notes]]</td>
+                                                                            <td>[[ll.icd10]]</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+     <!-- <script type="text/ng-template" id="detailPasienModal">
         <div class="row p-b-15">
             <h4 class="modal-title">Detail Pasien </h4>
         </div>
@@ -160,7 +301,7 @@
                         <i class="fa fa-print"></i> Print
                 </button>
         </div>
-    </script>
+    </script> -->
     <div class="hide">
             <div id="printdetailPasien">
                 <h2 align="center"><u>Detail Pasien</u></h2>

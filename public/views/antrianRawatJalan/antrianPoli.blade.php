@@ -63,7 +63,7 @@
                                     <td>[[a.reference.register.patient.full_name]]</td>
                                     <td>[[a.displayedGender]]</td>
                                     <td>[[a.displayedDoctor]]</td>
-                                    <td>[[a.Status]]</td>
+                                    <td>[[a.displayedStatus]]</td>
                                     <td>
                                         <button class="btn btn-default btn-xs"
                                             ng-click="callQueue(
@@ -76,7 +76,7 @@
                                         </button>
                                         <span> | </span>
                                         <button class="btn btn-warning btn-xs"
-                                            ng-click="openModal('editPasienModal', 'lg', a)">
+                                            ng-click="openModal('editPasienModal', 'lg', a, $index)">
                                             <i class="fa fa-edit"></i>
                                         </button>
                                     </td>
@@ -108,10 +108,10 @@
                                     <td>[[a.number_medical_record]]</td>
                                     <td>[[a.full_name]]</td>
                                     <td>[[a.displayedGender]]</td>
-                                    <td>[[a.displayedStatus]]</td>
+                                    <td>[[a.displayedFinalStatus]]</td>
                                     <td>
                                         <button class="btn btn-default btn-xs"
-                                            ng-click="openModal('detailPasienModal', 'lg', a)">
+                                            ng-click="openModal('detailPasienModal', 'lg', a, $index)">
                                             <i class="fa fa-search-plus"></i>
                                         </button>
                                     </td>
@@ -229,14 +229,8 @@
                             <div class="row no-padding">
                                 <div class="col-md-4">
                                     <button class="btn btn-info col-md-12 no-radius" 
-                                        ng-click="openModal('medicalRecordModal')">
+                                        ng-click="openModal('medicalRecordModal', 'lg')">
                                         Medical Record
-                                    </button>
-                                </div>
-                                <div class="col-md-5">
-                                    <button class="btn btn-warning col-md-12 no-radius" 
-                                        ng-click="openModal('medicalRecordOldModal')">
-                                        Riwayat Medical Record
                                     </button>
                                 </div>
                                 <div class="col-md-3">
@@ -287,7 +281,7 @@
                                                 ng-options="s.id as s.name for s in services">
                                             </select>
                                         </td>
-                                        <td>[[temp.listServices[$index].cost]]</td>
+                                        <td>[[temp.listServices[$index].cost | currency]]</td>
                                         <td class="col-sm-2">
                                             <input type="number"
                                                 step="1" 
@@ -296,10 +290,10 @@
                                                 ng-model="l.service_amount"
                                                 ng-change="setTotal($index)">
                                         </td>
-                                        <td>[[temp.listServices[$index].service_total]]</td>
+                                        <td>[[temp.listServices[$index].service_total | currency]]</td>
                                     </tr>
                                 </tbody>
-                            </table>.
+                            </table>
                         </div>
                         <div>
                             <p><b>Kesimpulan Akhir</b></p>
@@ -356,19 +350,86 @@
         <script type="text/ng-template" id="medicalRecordModal">
             <div class="row p-b-15">
                 <h4 class="modal-title">
-                    Medical Record
+                    Riwayat Medical Record
                 </h4>
             </div>
-            <div class="row p-b-15 no-margin">
+            <div ng-hide="temp.medrec.showEdit">
+                <table class="table service-table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">NO</th> 
+                            <th class="text-center">Tanggal</th> 
+                            <th class="text-left">Anamnesa</th>
+                            <th class="text-left">Diagnosis</th>
+                            <th class="text-left">Explain</th>
+                            <th class="text-left">Therapy</th>
+                            <th class="text-left">Notes</th>
+                            <th class="text-left">ICD 10</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="l in dataOnModal.reference.medical_records">
+                            <td>[[$index + 1]]</td>
+                            <td>[[l.created_at]]</td>
+                            <td class="text-left">[[l.anamnesa]]</td>
+                            <td class="text-left">[[l.diagnosis]]</td>
+                            <td class="text-left">[[l.explain]]</td>
+                            <td class="text-left">[[l.therapy]]</td>
+                            <td class="text-left">[[l.notes]]</td>
+                            <td class="text-left">
+                                <p ng-repeat="ll in l.listICD10">[[ll]]</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7"></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary text-left" ng-click="temp.medrec.showEdit = true">Tambah</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row p-b-15 no-margin" ng-show="temp.medrec.showEdit">
                 <div class="col-md-12">
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>ICD 10</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="dropdown pull-right col-md-12 no-padding" auto-close="outsideClick">
+                                <div class="col-md-10 no-padding">
+                                    <p ng-repeat="i in temp.medrec.icd10">
+                                        <button class="btn btn-xs btn-danger" ng-click="removeICDItem($index)">X</button>
+                                        [[i.code]] - [[i.desc]]
+                                    </p>
+                                </div>
+                                <button id="individualDrop"
+                                    type="button" 
+                                    data-toggle="dropdown"
+                                    class="btn btn-default dropdown-toggle col-md-2 text-left">
+                                    <span class="pull-left">search</span><span class="pull-right"> <i class="fa fa-search"></i></span>
+                                </button>
+                                <ul class="dropdown-menu col-md-12" role="menu" aria-labelledby="individualDrop">
+                                    <input disable-auto-close 
+                                        type="search"
+                                        class="form-control" 
+                                        placeholder="Search"
+                                        ng-model="temp.medrec.query"
+                                        ng-keyup="getICD()">
+                                    <li role="presentation" ng-repeat="icd in icd10">
+                                        <a role="menuitem" ng-click="getICDItem(icd)" ng-hide="icd.selected">[[icd.code]] - [[icd.desc]]</a>
+                                    </li>  
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group field row text-left">
                         <div class="col-sm-4 no-padding">
                             <label>Anamnesa</label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="text" 
-                                class="form-control"
-                                ng-model="temp.medrec.anamnesa">
+                            <textarea name="notes" class="form-control" ng-model="temp.medrec.anamnesa"></textarea>
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -376,9 +437,7 @@
                             <label>Diagnosis</label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="text" 
-                                class="form-control" 
-                                ng-model="temp.medrec.diagnosis">
+                            <textarea name="notes" class="form-control" ng-model="temp.medrec.diagnosis"></textarea>
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -386,9 +445,7 @@
                             <label>Explain</label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="text" 
-                                class="form-control" 
-                                ng-model="temp.medrec.explain">
+                            <textarea name="notes" class="form-control" ng-model="temp.medrec.explain"></textarea>
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -396,9 +453,7 @@
                             <label>Therapy</label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="text"                 
-                                class="form-control" 
-                                ng-model="temp.medrec.therapy">
+                            <textarea name="notes" class="form-control" ng-model="temp.medrec.therapy"></textarea>
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -406,24 +461,10 @@
                             <label>Notes</label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="text" 
-                                class="form-control" 
-                                ng-model="temp.medrec.notes">
+                            <textarea name="notes" class="form-control" ng-model="temp.medrec.notes"></textarea>
                         </div>
                     </div>
-                    <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <label>ICD 10</label>
-                        </div>
-                        <div class="col-sm-8">
-                            <input type="text" 
-                                class="form-control" 
-                                ng-model="temp.medrec.icd10">
-                        </div>
-                    </div>
-                    
-            </div>
-            <div class="row p-b-15 no-margin">
+                </div>
                 <div class="col-md-6">
                     <div class="bg-warning" style="min-height: 34px;"
                         ng-show="createMedicalRecorderror">
@@ -433,45 +474,12 @@
                     </div>
                 </div>
                 <div class="col-md-6 pull-left">
-                     <button type="submit" 
+                    <button type="submit" 
                          class="btn btn-default col-md-4 no-radius pull-right" 
                          ng-click="createMedicalRecord()">Submit</button>
-                    
+                    <button class="btn btn-warning col-md-4 no-radius pull-right" ng-click="temp.medrec.showEdit = false">Batal</button>
                 </div>
             </div>
-        </script>
-        <script type="text/ng-template" id="medicalRecordOldModal">
-            <div class="row p-b-15">
-                <h4 class="modal-title">
-                    Riwayat Medical Record
-                </h4>
-            </div>
-                        <table class="table service-table">
-                            <thead>
-                                <tr>
-                                    <th>NO</th> 
-                                    <th>Tanggal</th> 
-                                    <th>Anamnesa</th>
-                                    <th>Diagnosis</th>
-                                    <th>Explain</th>
-                                    <th>Therapy</th>
-                                    <th>Notes</th>
-                                    <th>ICD 10</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="l in dataOnModal.reference.medical_records">
-                                    <td>[[$index + 1]]</td>
-                                    <td>[[l.created_at]]</td>
-                                    <td>[[l.anamnesa]]</td>
-                                    <td>[[l.diagnosis]]</td>
-                                    <td>[[l.explain]]</td>
-                                    <td>[[l.therapy]]</td>
-                                    <td>[[l.notes]]</td>
-                                    <td>[[l.icd10]]</td>
-                                </tr>
-                            </tbody>
-                        </table>
         </script>
 
         <script type="text/ng-template" id="suratSakitModal">
@@ -644,6 +652,7 @@
                                     <h4 class="panel-title">
                                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse[[$index]]" aria-expanded="true" aria-controls="collapse[[$index]]">
                                             [[formatDate(r.created_at) | date: 'dd MMM yyyy HH:mm']]
+                                            <span class="pull-right"><small>[[r.displayedPaymentStatus]]</small></span>
                                         </a>
                                     </h4>
                                 </div>
@@ -656,6 +665,7 @@
                                                     <h4 class="panel-title">
                                                         <a role="button" data-toggle="collapse" data-parent="#accordion2" href="#collapsed[[$parent.$index]]-[[$index]]" aria-expanded="true" aria-controls="collapsed[[$parent.$index]]-[[$index]]">
                                                             [[rr.poly.name]] / [[rr.doctor.full_name]]
+                                                            <span class="pull-right"><small>[[rr.displayedStatus]]</small></span>
                                                         </a>
                                                     </h4>
                                                 </div>

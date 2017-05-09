@@ -71,6 +71,18 @@ angular.module('adminApp')
             }
         }
         
+        var statusPayments = function (val) {
+            if (val && (val.payment_status || val.payment_status == 0)) {
+                var result = '';
+                $scope.statusPayments.forEach(function (item) {
+                    if (val.payment_status == item.value) {
+                        result = item.key;
+                    }
+                });         
+                return result;  
+            }
+        }
+
         var finalResultOnPoli = function (val) {
             if (val && val.status) {
                 var result = '';
@@ -151,14 +163,20 @@ angular.module('adminApp')
                     item.displayedStatus = statusOnQueue(item);
                     item.displayedQueue = tripleDigit(item.queue_number);
                     if (item.reference && item.reference.register && item.reference.register.patient) {
-                        item.displayedAge = moment($scope.temp.startDate).diff(item.reference.register.patient.birth, 'years');
-                        item.displayedBirth = moment(item.reference.register.patient.birth, 'DD/MM/YYYY').format('DD MMMM YYYY');
+                        var dateBirth = moment(item.reference.register.patient.birth, 'DD/MM/YYYY');
+                        item.displayedBirth = dateBirth.format('DD MMMM YYYY');
+                        item.displayedAge = moment().diff(dateBirth, 'years');
                         item.displayedGender = genderToString(item.reference.register.patient.gender);
                     }
                     if (item.reference) {
                         item.displayedDoctor = getDoctorName(item.reference.staff_id);
                         item.displayedPoli = getPoliName(item.reference.poly_id);
                     }
+
+                    item.reference.medical_records.forEach(function (val, key) {
+                        item.reference.medical_records[key].listICD10 = JSON.parse(val.icd10);
+                    });
+
                     dataArray.push(item);
                 });
                 $scope.antrianPoliUmum = dataArray;
@@ -173,10 +191,13 @@ angular.module('adminApp')
             .then(function (result) {
                 var dataArrayOld = [];
                 result.datas.patients.forEach(function (item) {
-                    item.displayedStatus = finalResultOnPoli(item);
+                    item.displayedFinalStatus = finalResultOnPoli(
+                        item.registers[item.registers.length - 1].references[item.registers[item.registers.length - 1].references.length - 1]
+                    );
 
-                    item.displayedAge = moment($scope.temp.startDate).diff(item.birth, 'years');
-                    item.displayedBirth = moment(item.birth, 'DD/MM/YYYY').format('DD MMMM YYYY');
+                    var dateBirth = moment(item.birth, 'DD/MM/YYYY');
+                    item.displayedAge = moment().diff(dateBirth, 'years');
+                    item.displayedBirth = dateBirth.format('DD MMMM YYYY');
                     item.displayedGender = genderToString(item.gender);
                     item.displayedJob = jobToString(item.job);
 
@@ -184,10 +205,16 @@ angular.module('adminApp')
                         item.displayedDoctor = getDoctorName(item.reference.staff_id);
                         item.displayedPoli = getPoliName(item.reference.poly_id);
                     }
+
+                    item.registers.forEach(function (val, key) {
+                        item.registers[key].displayedPaymentStatus = statusPayments(val);
+                        val.references.forEach(function (vals, keys) {
+                            item.registers[key].references[keys].displayedStatus = finalResultOnPoli(vals);
+                        });
+                    });
                     dataArrayOld.push(item);
                 });
                 $scope.getLoketAntrianPoliOld  = dataArrayOld;
-                console.log(result)
                 // var datatableSettings = $('#example').DataTable();        
                 // datatableSettings.ajax.reload();
             });
@@ -196,11 +223,50 @@ angular.module('adminApp')
         var getDefaultValues = function() {
             return $http.get('views/config/defaultValues.json').then(function(data) {
                 $scope.finalResultOnPoli = data.data.finalResultOnPoli;
+                $scope.statusPayments = data.data.statusPayments;
                 $scope.statusQueue = data.data.statusQueue;
                 $scope.gender = data.data.gender;
                 $scope.job = data.data.listJobs;
             });
         };
+
+        $scope.getICD = function () {
+            if (!$scope.temp.medrec.icd10) {
+                $scope.temp.medrec.icd10 = [];
+            }
+
+            var params = {
+                data: $scope.temp.medrec.query,
+                limit: 20
+            };
+
+            return ServicesAdmin.getICD(params).$promise
+            .then(function(data) {
+                $scope.icd10 = data.datas.icd10s.data;
+
+                hideICDSelected();
+            });
+        }
+
+        var hideICDSelected = function () {
+            angular.forEach($scope.icd10, function (val) {
+                $scope.temp.medrec.icd10.forEach(function (v) {
+                    if (v.code === val.code) {
+                        val.selected = true;
+                    }
+                });
+            });
+        }
+
+        $scope.removeICDItem = function (index) {
+            $scope.temp.medrec.icd10.splice(index, 1);
+        }
+
+        $scope.getICDItem = function (item) {
+            $scope.temp.medrec.icd10.push(item);
+
+            hideICDSelected();
+        }
 
         function webWorker () {
             getLoketAntrianPoli()
@@ -256,7 +322,7 @@ angular.module('adminApp')
             updateStatusToCalling(type, id);
         }
 
-        $scope.openModal = function (target, type, data) {
+        $scope.openModal = function (target, type, data, idx) {
             if ([
                 "medicalRecordModal", 
                 "suratSakitModal"
@@ -271,9 +337,10 @@ angular.module('adminApp')
 
             if (data) {
                 $scope.dataOnModal = data;            
+                $scope.dataOnModal.idx = idx;            
             }
 
-            ngDialog.open({
+            return ngDialog.open({
                 template: target,
                 scope: $scope,
                 className: 'ngDialog-modal ' + cssModal,
@@ -378,6 +445,11 @@ angular.module('adminApp')
 
         $scope.createMedicalRecord = function () {    
             $scope.createMedicalRecorderror = '';
+            var idx = $scope.dataOnModal.idx;
+            var icd = [];
+            $scope.temp.medrec.icd10.forEach(function (val) {
+                icd.push(val.code);
+            });
 
             var data = {
                 reference_id: $scope.dataOnModal.reference_id,
@@ -386,19 +458,20 @@ angular.module('adminApp')
                 explain: $scope.temp.medrec.explain,
                 therapy: $scope.temp.medrec.therapy,
                 notes: $scope.temp.medrec.notes,
-                icd10: $scope.temp.medrec.icd10
+                icd10: icd
             }
 
             ServicesAdmin.postMedicalRecord(data).$promise
             .then(function (result) {
-                console.log(result);
                 if (!result.isSuccess) {
                     return $scope.createMedicalRecorderror = result.message;
                 };
-                
-                var windowIDs = ngDialog.getOpenDialogs();
-                ngDialog.close(windowIDs[1]);
-                $scope.result = result;
+
+                getLoketAntrianPoli()
+                .then(function () {
+                    $scope.temp.medrec = {};
+                    $scope.dataOnModal = $scope.antrianPoliUmum[idx];
+                });
             });
-        }        
+        }
     });
