@@ -19,7 +19,7 @@
     <tr>
         <td>TTL</td>
         <td>:</td>
-        <td>[[temp.place]]/[[temp.birth | date: "DD MMM YYYY"]]</td>
+        <td>[[temp.place]]/[[temp.birth|date:'dd-MM-yyyy']]</td>
     </tr>                    
     <tr>
         <td>Umur</td>
@@ -79,7 +79,7 @@
     <tr>
         <td>Pekerjaan</td>
         <td>:</td>
-        <td>[[temp.job]]</td>
+        <td>[[temp.job.key]]</td>
     </tr>                    
     <tr>
         <td>No Jamkesmas / Jamkesda / ASKES</td>
@@ -98,12 +98,12 @@
     <tr>
         <td>Status Penanggung Jawab</td>
         <td>:</td>
-        <td>[[temp.responsible_person_state]]</td>
+        <td>[[temp.responsible_person_state.key]]</td>
     </tr>                    
     <tr>
         <td>Sebab Sakit</td>
         <td>:</td>
-        <td>[[temp.cause_pain]]</td>
+        <td>[[temp.cause_pain.gol_sb_sakit]]</td>
     </tr>                    
     <tr>
         <td>Cara Kunjungan</td>

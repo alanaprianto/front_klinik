@@ -178,7 +178,7 @@
                             class="form-control m-b" 
                             name="job"
                             ng-model="temp.job"
-                            ng-options="d.value as d.key for d in defaultValues.listJobs">
+                            ng-options="d as d.key for d in defaultValues.listJobs">
                         </select>
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                             class="form-control m-b" 
                             name="responsible_person_state"
                             ng-model="temp.responsible_person_state"
-                            ng-options="d.value as d.key for d in defaultValues.statusInCharges">
+                            ng-options="d as d.key for d in defaultValues.statusInCharges">
                         </select>
                     </div>
                 </div>
@@ -223,7 +223,7 @@
                             class="form-control m-b" 
                             name="cause_pain"
                             ng-model="temp.cause_pain"
-                            ng-options="d.no_dtd as d.gol_sb_sakit for d in defaultSSRjalanRl4b.data">
+                            ng-options="d as d.gol_sb_sakit for d in defaultSSRjalanRl4b.data">
                         </select>
                     </div>
                 </div>
@@ -539,7 +539,7 @@
                             class="form-control m-b" 
                             name="responsible_person_state"
                             ng-model="temp.responsible_person_state"
-                            ng-options="d.value as d.key for d in defaultValues.statusInCharges">
+                            ng-options="d as d.key for d in defaultValues.statusInCharges">
                         </select>
                     </div>
                 </div>
@@ -550,7 +550,7 @@
                             class="form-control m-b" 
                             name="cause_pain"
                             ng-model="temp.cause_pain"
-                            ng-options="d.no_dtd as d.gol_sb_sakit for d in defaultSSRjalanRl4b.data">
+                            ng-options="d as d.gol_sb_sakit for d in defaultSSRjalanRl4b.data">
                         </select>
                     </div>
                 </div>
