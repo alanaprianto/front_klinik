@@ -238,7 +238,7 @@ angular.module('adminApp')
                 controller: 'distributors'
             }
         },
-        createDistributor: {
+        createupdateDistributor: {
             method: 'POST',
             params: {
                 module: 'api',
@@ -248,14 +248,6 @@ angular.module('adminApp')
         },
         deleteDistributor: {
             method: 'DELETE',
-            params: {
-                module: 'api',
-                submodule: 'common',
-                controller: 'distributors'
-            }
-        },
-        updateDistributor: {
-            method: 'PUT',
             params: {
                 module: 'api',
                 submodule: 'common',
