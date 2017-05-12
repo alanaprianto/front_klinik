@@ -136,7 +136,7 @@ angular.module('adminApp')
                         listDistributor();
                     });
                 }
-            });            
+            });
         }
 
         $scope.updateDistributor = function () {
