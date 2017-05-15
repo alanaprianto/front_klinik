@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('MasterPoliCtrl', function(
+    .controller('CategoriServiceCtrl', function(
         $scope, 
         $http, 
         $rootScope, 
@@ -15,7 +15,7 @@ angular.module('adminApp')
         $scope.temp = {};        
 
         var getDataOnModalOpen = function (data) {            
-            return ServicesCommon.getPolies({id: data.id}).$promise
+            return ServicesCommon.getCategoryService({id: data.id}).$promise
             .then(function (result) {
                 console.log(result);
             });
@@ -32,14 +32,15 @@ angular.module('adminApp')
             }
 
             if (type=="tambah") {
-                $scope.titlecredPoliModal = "Tambah Poli";
+                $scope.titlecredCategoriServiceModal = "Tambah Kategori Tindakan";
             } else {
                 $scope.temp.id = data.id;
                 $scope.temp.namadist = data.name;
+                $scope.temp.display_namedist = data.display_name;
                 $scope.temp.descdist = data.desc;
-                $scope.titlecredPoliModal = "Edit Poli";
+                $scope.titlecredCategoriServiceModal = "Edit Kategori Tindakan";
             }
-            $scope.typecredPoli = type;
+            $scope.typecredCategoriService = type;
 
             ngDialog.open({
             template: target,
@@ -61,14 +62,15 @@ angular.module('adminApp')
             // }            
         }
 
-        var listPoli = function () {
-            return ServicesCommon.getPolies().$promise
+        var ListCategoryService = function () {
+            return ServicesCommon.getCategoryService().$promise
             .then(function (result) {
+                console.log(result);
                 var tempData = [];
-                result.datas.polies.forEach(function (item, key) {
+                result.datas.categoryServices.forEach(function (item, key) {
                     tempData.push(item);
                 });
-                $scope.tableListPoli = tempData;
+                $scope.tableListCategoryService = tempData;
             });
         }
 
@@ -79,7 +81,7 @@ angular.module('adminApp')
         }
 
         function webWorker () {
-            listPoli()
+            ListCategoryService()
             .then(function () {
                 setTimeout(webWorker, 5000);
             })
@@ -92,26 +94,27 @@ angular.module('adminApp')
 
         firstInit();
 
-        $scope.createnewPoli = function () {            
+        $scope.createnewcategoryService = function () {            
             $scope.message = {};
             var param = {
                 name: $scope.temp.namadist,
                 desc: $scope.temp.descdist,
-                
-            }
+                display_name:$scope.temp.display_namedist,
+                }
+              
 
-            ServicesCommon.createupdatePOli(param).$promise
+            ServicesCommon.createCategoryService(param).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
                     return $scope.message.error = result.message;
                 };
                 
                 ngDialog.closeAll();
-                listPoli();
+                ListCategoryService();
             });
         }
 
-        $scope.deletePoli = function (id) {
+        $scope.deletecategoryService = function (id) {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan delete Data ini?",
@@ -125,20 +128,20 @@ angular.module('adminApp')
                 if (isConfirm) {
                     $scope.message = {};
 
-                    ServicesCommon.deletePoli({id: id}).$promise
+                    ServicesCommon.deletecategoryService({id: id}).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;
                         };
 
                         ngDialog.closeAll();
-                        listPoli();
+                        ListCategoryService();
                     });
                 }
-            });
+            });            
         }
 
-        $scope.updatePoli = function () {
+        $scope.updatecategoryService = function () {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan update Data ini?",
@@ -153,21 +156,23 @@ angular.module('adminApp')
                     console.log($scope.temp);
                     $scope.message = {};
                     var param = {
-                        Poli_id: $scope.temp.id,
+                        id: $scope.temp.id,
                         name: $scope.temp.namadist,
                         desc: $scope.temp.descdist,
+                        display_name:$scope.temp.display_namedist,
                     }
 
-                    ServicesCommon.createupdatePoli(param).$promise
+                    ServicesCommon.updateCategoryService(param).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;
                         };
 
                         ngDialog.closeAll();
-                        listPoli();
+                        ListCategoryService();
                     });
                 }
             }); 
         }
     });
+

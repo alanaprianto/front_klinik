@@ -22,6 +22,9 @@ Route::get('/dashboard', function() {
 Route::get('/inventori', function() {
     return View::make('inventori.inventori');
 });
+Route::get('/inventoryCategori', function() {
+    return View::make('inventoryCategori.inventoryCategori');
+});
 Route::get('/apotek', function() {
     return View::make('farmasi.farmasi');
 });
@@ -110,7 +113,9 @@ Route::get('/antrian', function() {
 Route::get('/staff', function() {
     return View::make('staff.staff');
 });
-
+Route::get('/user', function() {
+    return View::make('user.user');
+});
 Route::get('/staffJob', function() {
     return View::make('staffJob.staffJob');
 });
@@ -138,4 +143,7 @@ Route::get('/distributor', function() {
 });
 Route::get('/poli', function() {
     return View::make('poli.poli');
+});
+Route::get('/categoryService', function() {
+    return View::make('categoryService.categoryService');
 });

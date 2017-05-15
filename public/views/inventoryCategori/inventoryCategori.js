@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('MasterPoliCtrl', function(
+    .controller('IventroyCategoriCtrl', function(
         $scope, 
         $http, 
         $rootScope, 
@@ -15,7 +15,7 @@ angular.module('adminApp')
         $scope.temp = {};        
 
         var getDataOnModalOpen = function (data) {            
-            return ServicesCommon.getPolies({id: data.id}).$promise
+            return ServicesCommon.getInventoryCategories({id: data.id}).$promise
             .then(function (result) {
                 console.log(result);
             });
@@ -32,14 +32,14 @@ angular.module('adminApp')
             }
 
             if (type=="tambah") {
-                $scope.titlecredPoliModal = "Tambah Poli";
+                $scope.titlecredInventoryCategoriModal = "Tambah Inventory Categori";
             } else {
                 $scope.temp.id = data.id;
                 $scope.temp.namadist = data.name;
                 $scope.temp.descdist = data.desc;
-                $scope.titlecredPoliModal = "Edit Poli";
+                $scope.titlecredInventoryCategoriModal = "Edit Inventory Categori";
             }
-            $scope.typecredPoli = type;
+            $scope.typecredInventoryCategori = type;
 
             ngDialog.open({
             template: target,
@@ -61,14 +61,15 @@ angular.module('adminApp')
             // }            
         }
 
-        var listPoli = function () {
-            return ServicesCommon.getPolies().$promise
+        var ListInventoryCategories = function () {
+            return ServicesCommon.getInventoryCategories().$promise
             .then(function (result) {
+                console.log(result);
                 var tempData = [];
-                result.datas.polies.forEach(function (item, key) {
+                result.datas.inventory_categories.forEach(function (item, key) {
                     tempData.push(item);
                 });
-                $scope.tableListPoli = tempData;
+                $scope.tableListInventoryCategories = tempData;
             });
         }
 
@@ -79,7 +80,7 @@ angular.module('adminApp')
         }
 
         function webWorker () {
-            listPoli()
+            ListInventoryCategories()
             .then(function () {
                 setTimeout(webWorker, 5000);
             })
@@ -92,26 +93,25 @@ angular.module('adminApp')
 
         firstInit();
 
-        $scope.createnewPoli = function () {            
+        $scope.createnewInventoryCategories = function () {            
             $scope.message = {};
             var param = {
                 name: $scope.temp.namadist,
                 desc: $scope.temp.descdist,
-                
             }
 
-            ServicesCommon.createupdatePOli(param).$promise
+            ServicesCommon.createInventoryCategories(param).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
                     return $scope.message.error = result.message;
                 };
                 
                 ngDialog.closeAll();
-                listPoli();
+                ListInventoryCategories();
             });
         }
 
-        $scope.deletePoli = function (id) {
+        $scope.deleteInventoryCategories = function (id) {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan delete Data ini?",
@@ -125,20 +125,20 @@ angular.module('adminApp')
                 if (isConfirm) {
                     $scope.message = {};
 
-                    ServicesCommon.deletePoli({id: id}).$promise
+                    ServicesCommon.deleteInventoryCategories({id: id}).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;
                         };
 
                         ngDialog.closeAll();
-                        listPoli();
+                        ListInventoryCategories();
                     });
                 }
-            });
+            });            
         }
 
-        $scope.updatePoli = function () {
+        $scope.updateInventoryCategories = function () {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan update Data ini?",
@@ -153,21 +153,23 @@ angular.module('adminApp')
                     console.log($scope.temp);
                     $scope.message = {};
                     var param = {
-                        Poli_id: $scope.temp.id,
+                        id: $scope.temp.id,
                         name: $scope.temp.namadist,
                         desc: $scope.temp.descdist,
+                        phone: $scope.temp.telpondist,
                     }
 
-                    ServicesCommon.createupdatePoli(param).$promise
+                    ServicesCommon.updateInventoryCategories(param).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;
                         };
 
                         ngDialog.closeAll();
-                        listPoli();
+                        ListInventoryCategories();
                     });
                 }
             }); 
         }
     });
+

@@ -86,6 +86,30 @@ angular.module('adminApp')
                 controller: 'inventories'
             }
         },
+        getInventoryCategories: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'inventory-categories'
+            }
+        },
+        createInventoryCategories: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'inventory-categories'
+            }
+        },
+        deleteInventoryCategories: {
+            method: 'DELETE',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'inventory-categories'
+            }
+        },
         getKiosks: {
             method: 'GET',
             params: {
@@ -206,8 +230,24 @@ angular.module('adminApp')
                 controller: 'staff-jobs'
             }
         },
+        createStaffJob: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'staff-jobs'
+            }
+        },
         getStaffPositions: {
             method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'staff-positions'
+            }
+        },
+        createStaffPositions: {
+            method: 'POST',
             params: {
                 module: 'api',
                 submodule: 'common',
@@ -228,6 +268,30 @@ angular.module('adminApp')
                 module: 'api',
                 submodule: 'common',
                 controller: 'users'
+            }
+        },
+        getCategoryService: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'category-services'
+            }
+        },
+        createCategoryService: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'category-services'
+            }
+        },
+        deleteCategoryService: {
+            method: 'DELETE',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'category-services'
             }
         },
         getDistributors: {

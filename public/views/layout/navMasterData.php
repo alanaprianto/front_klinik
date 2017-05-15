@@ -15,13 +15,8 @@
                                 <ul class="module-left-dropdown" aria-expanded="false">
                                     <li><a href="/alkes">Data Obat & Alkes</a></li>
                                     <li><a href="/nonAlkes">Data Non Alkes </a></li>
+                                    <li><a href="/inventoryCategori">Inventroy Katagori </a></li>
                                 </ul>
-                            </li> 
-                            <li>
-                                <a href="/distributor">
-                                    <span class="sidebar-nav-item-icon fa fa-truck fa-fw"></span>
-                                    <span class="sidebar-nav-item">Distributor</span>
-                                 </a>
                             </li> 
                             <li>
                                 <a href="/poli">
@@ -36,8 +31,8 @@
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
                                     <li><a href="/staff">Staff</a></li>
-                                    <li><a href="">Staff Job </a></li>
-                                    <li><a href="">Staff Position </a></li>
+                                    <li><a href="/staffJob">Staff Job </a></li>
+                                    <li><a href="/staffPosition">Staff Position </a></li>
                                     <li><a href="/jasaDokter">Jasa Dokter </a></li>
                                     <li><a href="">Dokter Poli </a></li>
                                 </ul>
@@ -48,16 +43,20 @@
                                     <span class="sidebar-nav-item">Master User</span>
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
-                                    <li><a href="">User</a></li>
+                                    <li><a href="/user">User</a></li>
                                     <li><a href="">Permission </a></li>
                                     <li><a href="">Role</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="">
+                                <a class="has-arrow" href="#" aria-expanded="false">
                                     <span class="sidebar-nav-item-icon fa fa-medkit fa-fw"></span>
                                     <span class="sidebar-nav-item">Layanan</span>
                                  </a>
+                                  <ul class="module-left-dropdown" aria-expanded="false">
+                                    <li><a href="">Tindakan</a></li>
+                                    <li><a href="/categoryService">Kategori Tindakan</a></li>
+                                </ul>
                             </li>                     
                             <li class="sidebar-nav-heading">Lain-lain</li>
                             <li>

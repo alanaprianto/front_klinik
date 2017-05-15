@@ -17,39 +17,41 @@
     <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <ul>
-                <h3>Staff Job</h3>
+                <h3>Kategori Tindakan </h3>
             </ul>
         </div>
     </nav>
 @endsection
 @section('content')
 
-    <div id="pendaftaranPasien-area" ng-controller="StaffPositionCtrl" >
+    <div id="pendaftaranPasien-area" ng-controller="CategoriServiceCtrl" >
         <div class="row no-margin">
             <div class="col-md-12 no-padding m-b-15">
                 <button 
                     class="btn btn-info col-md-4 no-radius" 
-                    ng-click="openModal('credStaffPositionModal', 'tambah')"> Tambah Staff Position</button>
+                    ng-click="openModal('credCategoriServiceModal', 'tambah')"> Tambah KategoriTindakan </button>
             </div>
             <div class="col-md-12 no-padding">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama </th>
+                            <th>Nama</th>
+                            <th>Display Name</th>
                             <th>Deskripsi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="staffPosition in tableListStaffPosition">
+                        <tr ng-repeat="u in ListCategoryService">
                             <td>[[$index + 1]]</td>
-                            <td>[[staffPosition.name]]</td>
-                            <td>[[staffPosition.desc]]</td>
+                            <td>[[u.name]]</td>
+                            <td>[[u.display_name]]</td>
+                            <td>[[u.desc]]]</td>
                             <td>
                                 <button
                                     class="btn btn-xs btn-default"
-                                    ng-click="openModal('detailStaffPositionModal', '', staffPosition)">
+                                    ng-click="openModal('detailUserModal', '', u)">
                                         <i class="fa fa-id-card"></i>&nbsp;&nbsp;Detail
                                 </button>
                             </td>
@@ -59,27 +61,35 @@
             </div>
         </div>
 
-        <script type="text/ng-template" id="detailStaffPositionModal">
+        <script type="text/ng-template" id="detailUserModal">
             <div class="row p-b-15">
-                <h4 class="modal-title">Detail Staff Position<</h4>
+                <h4 class="modal-title">Detail User</h4>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-left">Nama Staff Position</p>
+                                <p class="text-left">Nama user</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.name]]</p>
+                                <p class="text-left">[[dataOnModal.username]]</p>
                             </div>
                         </div>
                         <div class="row p-b-15"">
                             <div class="col-md-6">
-                                <p class="text-left">Deskripsi</p>
+                                <p class="text-left">email</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.desc]]</p>
+                                <p class="text-left">[[dataOnModal.email]]</p>
+                            </div>
+                        </div>
+                         <div class="row p-b-15"">
+                            <div class="col-md-6">
+                                <p class="text-left">Password</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-left">[[dataOnModal.password]]</p>
                             </div>
                         </div>  
                     </div>               
@@ -88,7 +98,7 @@
             <div class="row col-md-12 pull-right">
                 <div class="col-md-6">
                     <div class="bg-warning" style="min-height: 34px;"
-                        ng-show="message.crtStaffPosition.error">
+                        ng-show="message.crtStaffJob.error">
                         <p class="text-left">
                             [[message.error]]
                         </p>
@@ -96,42 +106,53 @@
                 </div>
                 <button
                     class="btn btn-danger col-md-3 no-radius" 
-                    ng-click="deleteStaffPosition(dataOnModal.id)">
+                    ng-click="deleteStaffJob(dataOnModal.id)">
                     Delete
                 </button>
                 <button 
                     class="btn btn-warning col-md-3 no-radius" 
-                    ng-click="openModal('credStaffPositionModal', 'edit', dataOnModal)">Edit</button>
+                    ng-click="openModal('credStaffJobModal', 'edit', dataOnModal)">Edit</button>
             </div>
         </script>
-        <script type="text/ng-template" id="credStaffPositionModal">
+        <script type="text/ng-template" id="credUserModal">
             <div class="row p-b-15">
-                <h4 class="modal-title">[[ titlecredStaffPositionModal]]</h4>
+                <h4 class="modal-title">[[ titlecredStaffJobModal]]</h4>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-left">Nama Staff Position</p>
+                                <p class="text-left">Nama User</p>
                             </div>
                             <div class="col-md-6">                                
                                 <input 
                                     type="text" 
                                     class="form-control" 
                                     name="name"
-                                    ng-model="temp.namadist">
+                                    ng-model="temp.usernamedist">
                             </div>
                         </div>
                         <div class="row p-b-15"">
                             <div class="col-md-6">
-                                <p class="text-left">Deskripsi</p>
+                                <p class="text-left">email</p>
                             </div>
                             <div class="col-md-6">
                                 <textarea 
                                     class="form-control" 
                                     name="address"
-                                    ng-model="temp.descdist"></textarea>
+                                    ng-model="temp.emaildist"></textarea>
+                            </div>
+                        </div>
+                        <div class="row p-b-15"">
+                            <div class="col-md-6">
+                                <p class="text-left">Password</p>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea 
+                                    class="form-control" 
+                                    name="address"
+                                    ng-model="temp.passworddist"></textarea>
                             </div>
                         </div>
                     </div>               
@@ -140,7 +161,7 @@
             <div class="row col-md-12 pull-right">
                 <div class="col-md-9">
                     <div class="bg-warning" style="min-height: 34px;"
-                        ng-show="message.crtStaffPosition.error">
+                        ng-show="message.crtUser.error">
                         <p class="text-left">
                             [[message.error]]
                         </p>
@@ -148,16 +169,16 @@
                 </div>
                 <button 
                     class="btn btn-info col-md-3 no-radius"
-                    ng-show="typecredStaffPosition=='tambah'"
-                    ng-click="createnewStaffPosition()">Tambah</button>
+                    ng-show="typecredUser=='tambah'"
+                    ng-click="createnewUser()">Tambah</button>
                 <button 
                     class="btn btn-info col-md-3 no-radius" 
-                    ng-show="typecredStaffPosition=='edit'"
-                    ng-click="updateStaffPosition()">Update</button>
+                    ng-show="typecredUser=='edit'"
+                    ng-click="updateUser()">Update</button>
             </div>
         </script>
     </div>
 @endsection
 @section('scripts')
-    <script src="views/staffPosition/staffPosition.js"></script>    
+    <script src="views/categoryService/categoryService.js"></script>    
 @endsection
