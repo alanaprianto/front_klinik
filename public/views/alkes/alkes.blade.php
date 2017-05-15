@@ -196,7 +196,62 @@
                                 name="type"
                                 ng-model="temp.type">
                         </div>
-                    </div>     
+                    </div>
+                    <div class="row p-b-15"">
+                        <div class="col-md-6">
+                            <p class="text-left">Jenis Alkes</p>
+                        </div>
+                        <div class="col-md-6">
+                            <select 
+                                class="form-control m-b" 
+                                name="sediaan"
+                                ng-model="temp.jenis"
+                                ng-options="d as d.key for d in defaultValues.jenisAlkes">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row p-b-15"" ng-show="temp.jenis.value==1">
+                        <div class="col-md-6">
+                            <p class="text-left">Tuslah</p>
+                        </div>
+                        <div class="overflow-table">
+                            <table id="tuslah-table" class="table tuslah-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <button type="button"
+                                                class="btn btn-primary btn-xs"
+                                                ng-click="addTuslah()"
+                                                ng-hide="temp.listTuslah.length == tuslah.length">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </th>
+                                        <th>No</th>
+                                        <th>Nama Obat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="l in temp.listTuslah">
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-danger btn-xs"
+                                                ng-click="removeTuslah($index)">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </td>
+                                        <td>[[$index + 1]]</td>
+                                        <td>
+                                            <select class="form-control condition"
+                                                ng-model="l.tuslah_code"
+                                                ng-change="setTuslah($index)"
+                                                ng-options="s.id as s.name for s in tuslah">
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <div class="row p-b-15"">
                         <div class="col-md-6">
                             <p class="text-left">Explain</p>
@@ -218,7 +273,7 @@
                                 name="sediaan"
                                 ng-model="temp.sediaan"
                                 ng-options="d as d.key for d in defaultValues.sediaan">
-                            </select>                            
+                            </select>
                         </div>
                     </div>  
                     <!-- <div class="row p-b-15"">

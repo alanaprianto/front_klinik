@@ -296,7 +296,7 @@
         },
         {
             "key": "Pcs",
-            "value": 1
+            "value": 3
         }
     ],
     "category": [
@@ -310,7 +310,21 @@
         },
         {
             "key": "Data 3",
+            "value": 3
+        }
+    ],
+    "jenisAlkes": [
+        {
+            "key": "Obat",
+            "value": 0
+        },
+        {
+            "key": "Tuslah",
             "value": 1
+        },
+        {
+            "key": "Lainnya",
+            "value": 3
         }
     ]
 }

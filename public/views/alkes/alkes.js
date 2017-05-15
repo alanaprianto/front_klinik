@@ -10,7 +10,10 @@ angular.module('adminApp')
         ServicesCommon,
         SweetAlert
     ){
-        $scope.temp = {};
+        var initTemp = function () {            
+            $scope.temp = {};
+            $scope.temp.listTuslah = [];
+        }            
 
         var getSediaan = function (id) {            
             var result = {};
@@ -56,7 +59,7 @@ angular.module('adminApp')
 
             if (type=="tambah") {
                 $scope.titlecredAlkesModal = "Tambah Alkes";
-                $scope.temp = {};
+                initTemp();
             } else {
                 $scope.temp.id = data.id;
                 $scope.temp.code = data.code;
@@ -78,7 +81,8 @@ angular.module('adminApp')
 
         var getInventoryAlkes = function () {
             return ServicesCommon.getInventories({type: 'pharmacy'}).$promise.then(function (result) {
-                $scope.tableListInventories = result.datas.inventories.data;                
+                $scope.tableListInventories = result.datas.inventories.data;
+                $scope.tuslah = result.datas.inventories.data;
             });
         }
 
@@ -100,6 +104,7 @@ angular.module('adminApp')
             .then(webWorker);
 
             getCategoryId();
+            initTemp();
         }
         
         firstInit();
@@ -188,5 +193,33 @@ angular.module('adminApp')
                     });
                 }
             }); 
-        }        
+        }
+
+        $scope.addTuslah = function () {
+            var countTuslah = $scope.temp.listTuslah.length;
+            if (!$scope.tuslah[countTuslah]) {
+                return;
+            }
+
+            var initCode = $scope.tuslah[countTuslah].code;
+            var initAmount = 1;            
+
+            var addService = {
+                tuslah_code: initCode,
+                tuslah_amount: initAmount                
+            };
+
+            $scope.temp.listTuslah.push(addService);
+        }
+
+        $scope.setTuslah = function (idx) {
+            var result = {};
+            $scope.tuslah.forEach(function (item) {
+                if (item.id == $scope.temp.listTuslah[idx].tuslah_code) {
+                    return result = item;
+                };
+            });
+
+            $scope.temp.listTuslah[idx].tuslah_amount = result.tuslah_amount;            
+        }
     });
