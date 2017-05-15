@@ -17,19 +17,19 @@
     <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <ul>
-                <h3>Staff Job</h3>
+                <h3>Inventory Categori</h3>
             </ul>
         </div>
     </nav>
 @endsection
 @section('content')
 
-    <div id="pendaftaranPasien-area" ng-controller="StaffPositionCtrl" >
+    <div id="pendaftaranPasien-area" ng-controller="IventroyCategoriCtrl" >
         <div class="row no-margin">
             <div class="col-md-12 no-padding m-b-15">
                 <button 
                     class="btn btn-info col-md-4 no-radius" 
-                    ng-click="openModal('credStaffPositionModal', 'tambah')"> Tambah Staff Position</button>
+                    ng-click="openModal('credInventoryCategoriModal', 'tambah')"> Tambah Inventory Categori</button>
             </div>
             <div class="col-md-12 no-padding">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
@@ -42,14 +42,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="staffPosition in tableListStaffPosition">
+                        <tr ng-repeat="InventoryCategori in tableListInventoryCategories">
                             <td>[[$index + 1]]</td>
-                            <td>[[staffPosition.name]]</td>
-                            <td>[[staffPosition.desc]]</td>
+                            <td>[[InventoryCategori.name]]</td>
+                            <td>[[InventoryCategori.desc]]</td>
                             <td>
                                 <button
                                     class="btn btn-xs btn-default"
-                                    ng-click="openModal('detailStaffPositionModal', '', staffPosition)">
+                                    ng-click="openModal('detailInventoryCategoriesModal', '', InventoryCategori)">
                                         <i class="fa fa-id-card"></i>&nbsp;&nbsp;Detail
                                 </button>
                             </td>
@@ -59,16 +59,16 @@
             </div>
         </div>
 
-        <script type="text/ng-template" id="detailStaffPositionModal">
+        <script type="text/ng-template" id="detailInventoryCategoriesModal">
             <div class="row p-b-15">
-                <h4 class="modal-title">Detail Staff Position<</h4>
+                <h4 class="modal-title">Detail Inventory Categori</h4>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-left">Nama Staff Position</p>
+                                <p class="text-left">Nama Inventory Categori</p>
                             </div>
                             <div class="col-md-6">
                                 <p class="text-left">[[dataOnModal.name]]</p>
@@ -104,16 +104,16 @@
                     ng-click="openModal('credStaffPositionModal', 'edit', dataOnModal)">Edit</button>
             </div>
         </script>
-        <script type="text/ng-template" id="credStaffPositionModal">
+        <script type="text/ng-template" id="credInventoryCategoriModal">
             <div class="row p-b-15">
-                <h4 class="modal-title">[[ titlecredStaffPositionModal]]</h4>
+                <h4 class="modal-title">[[ titlecredInventoryCategoriModal]]</h4>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-left">Nama Staff Position</p>
+                                <p class="text-left">Nama Inventory Categori</p>
                             </div>
                             <div class="col-md-6">                                
                                 <input 
@@ -148,16 +148,16 @@
                 </div>
                 <button 
                     class="btn btn-info col-md-3 no-radius"
-                    ng-show="typecredStaffPosition=='tambah'"
-                    ng-click="createnewStaffPosition()">Tambah</button>
+                    ng-show="typecredInventoryCategori=='tambah'"
+                    ng-click="createnewInventoryCategoriesModal()">Tambah</button>
                 <button 
                     class="btn btn-info col-md-3 no-radius" 
-                    ng-show="typecredStaffPosition=='edit'"
-                    ng-click="updateStaffPosition()">Update</button>
+                    ng-show="typecredInventoryCategori=='edit'"
+                    ng-click="updateInventoryCategori()">Update</button>
             </div>
         </script>
     </div>
 @endsection
 @section('scripts')
-    <script src="views/staffPosition/staffPosition.js"></script>    
+    <script src="views/inventoryCategori/inventoryCategori.js"></script>    
 @endsection

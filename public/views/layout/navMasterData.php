@@ -15,13 +15,8 @@
                                 <ul class="module-left-dropdown" aria-expanded="false">
                                     <li><a href="/alkes">Data Obat & Alkes</a></li>
                                     <li><a href="/nonAlkes">Data Non Alkes </a></li>
+                                    <li><a href="/inventoryCategori">Inventroy Katagori </a></li>
                                 </ul>
-                            </li> 
-                            <li>
-                                <a href="/distributor">
-                                    <span class="sidebar-nav-item-icon fa fa-truck fa-fw"></span>
-                                    <span class="sidebar-nav-item">Distributor</span>
-                                 </a>
                             </li> 
                             <li>
                                 <a href="/poli">
@@ -36,8 +31,8 @@
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
                                     <li><a href="/staff">Staff</a></li>
-                                    <li><a href="">Staff Job </a></li>
-                                    <li><a href="">Staff Position </a></li>
+                                    <li><a href="/staffJob">Staff Job </a></li>
+                                    <li><a href="/staffPosition">Staff Position </a></li>
                                     <li><a href="/jasaDokter">Jasa Dokter </a></li>
                                     <li><a href="">Dokter Poli </a></li>
                                 </ul>

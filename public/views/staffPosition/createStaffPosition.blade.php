@@ -1,4 +1,4 @@
-@extends('layout.layout')
+extends('layout.layout')
 @section('title')
 <title>kepegawaian .: Teknohealth :. </title>
 <link rel="icon" href="assets/images/logo/logo-sm.png">
@@ -64,5 +64,5 @@
     </div>
 @endsection
 @section('scripts')
-<script src="views/staff/staff.js"></script>
+<script src="views/staffPosition/staffPosition.js"></script>
 @endsection

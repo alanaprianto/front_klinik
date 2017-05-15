@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('StaffJobCtrl', function(
+    .controller('IventroyCategoriCtrl', function(
         $scope, 
         $http, 
         $rootScope, 
@@ -15,7 +15,7 @@ angular.module('adminApp')
         $scope.temp = {};        
 
         var getDataOnModalOpen = function (data) {            
-            return ServicesCommon.getStaffJobs({id: data.id}).$promise
+            return ServicesCommon.getInventoryCategories({id: data.id}).$promise
             .then(function (result) {
                 console.log(result);
             });
@@ -32,14 +32,14 @@ angular.module('adminApp')
             }
 
             if (type=="tambah") {
-                $scope.titlecredStaffJobModal = "Tambah Staff Job";
+                $scope.titlecredInventoryCategoriModal = "Tambah Inventory Categori";
             } else {
                 $scope.temp.id = data.id;
                 $scope.temp.namadist = data.name;
                 $scope.temp.descdist = data.desc;
-                $scope.titlecredStaffJobModal = "Edit Staff Job";
+                $scope.titlecredInventoryCategoriModal = "Edit Inventory Categori";
             }
-            $scope.typecredStaffJob = type;
+            $scope.typecredInventoryCategori = type;
 
             ngDialog.open({
             template: target,
@@ -61,15 +61,15 @@ angular.module('adminApp')
             // }            
         }
 
-        var listStaffJob = function () {
-            return ServicesCommon.getStaffJobs().$promise
+        var ListInventoryCategories = function () {
+            return ServicesCommon.getInventoryCategories().$promise
             .then(function (result) {
                 console.log(result);
                 var tempData = [];
-                result.datas.staffjobs.forEach(function (item, key) {
+                result.datas.inventory_categories.forEach(function (item, key) {
                     tempData.push(item);
                 });
-                $scope.tableListStaffJob = tempData;
+                $scope.tableListInventoryCategories = tempData;
             });
         }
 
@@ -80,7 +80,7 @@ angular.module('adminApp')
         }
 
         function webWorker () {
-            listStaffJob()
+            ListInventoryCategories()
             .then(function () {
                 setTimeout(webWorker, 5000);
             })
@@ -93,25 +93,25 @@ angular.module('adminApp')
 
         firstInit();
 
-        $scope.createnewStaffJob = function () {            
+        $scope.createnewInventoryCategories = function () {            
             $scope.message = {};
             var param = {
                 name: $scope.temp.namadist,
                 desc: $scope.temp.descdist,
             }
 
-            ServicesCommon.createStaffJob(param).$promise
+            ServicesCommon.createInventoryCategories(param).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
                     return $scope.message.error = result.message;
                 };
                 
                 ngDialog.closeAll();
-                listStaffJob();
+                ListInventoryCategories();
             });
         }
 
-        $scope.deleteStaffJob = function (id) {
+        $scope.deleteInventoryCategories = function (id) {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan delete Data ini?",
@@ -125,20 +125,20 @@ angular.module('adminApp')
                 if (isConfirm) {
                     $scope.message = {};
 
-                    ServicesCommon.deleteStaffJob({id: id}).$promise
+                    ServicesCommon.deleteInventoryCategories({id: id}).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;
                         };
 
                         ngDialog.closeAll();
-                        listStaffJob();
+                        ListInventoryCategories();
                     });
                 }
             });            
         }
 
-        $scope.updateStaffJob = function () {
+        $scope.updateInventoryCategories = function () {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan update Data ini?",
@@ -159,14 +159,14 @@ angular.module('adminApp')
                         phone: $scope.temp.telpondist,
                     }
 
-                    ServicesCommon.updateStaffJob(param).$promise
+                    ServicesCommon.updateInventoryCategories(param).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;
                         };
 
                         ngDialog.closeAll();
-                        listStaffJob();
+                        ListInventoryCategories();
                     });
                 }
             }); 

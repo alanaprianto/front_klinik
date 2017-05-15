@@ -22,6 +22,9 @@ Route::get('/dashboard', function() {
 Route::get('/inventori', function() {
     return View::make('inventori.inventori');
 });
+Route::get('/inventoryCategori', function() {
+    return View::make('inventoryCategori.inventoryCategori');
+});
 Route::get('/apotek', function() {
     return View::make('farmasi.farmasi');
 });
