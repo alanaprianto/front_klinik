@@ -66,7 +66,7 @@
                             class="form-control m-b" 
                             name="gender"
                             ng-model="temp.gender"
-                            ng-options="d as d.key for d in defaultValues.gender">                            
+                            ng-options="d as d.key for d in defaultValues.gender">
                         </select>
                     </div>
                 </div>
@@ -313,6 +313,33 @@
             <div class="form-group field p-b-15 row">
                 <div class="col-md-4">
                     <p>Search</p>
+                </div>
+                <div class="col-sm-8">
+                    <div class="dropdown pull-right col-md-12 no-padding" auto-close="outsideClick">
+                        <div class="col-md-10 no-padding">
+                            <p ng-repeat="i in temp.medrec.icd10">
+                                <button class="btn btn-xs btn-danger" ng-click="removeICDItem($index)">X</button>
+                                [[i.code]] - [[i.desc]]
+                            </p>
+                        </div>
+                        <button id="individualDrop"
+                            type="button" 
+                            data-toggle="dropdown"
+                            class="btn btn-default dropdown-toggle col-md-2 text-left">
+                            <span class="pull-left">search</span><span class="pull-right"> <i class="fa fa-search"></i></span>
+                        </button>
+                        <ul class="dropdown-menu col-md-12" role="menu" aria-labelledby="individualDrop">
+                            <input disable-auto-close 
+                                type="search"
+                                class="form-control" 
+                                placeholder="Search"
+                                ng-model="temp.medrec.query"
+                                ng-keyup="getICD()">
+                            <li role="presentation" ng-repeat="icd in icd10">
+                                <a role="menuitem" ng-click="getICDItem(icd)" ng-hide="icd.selected">[[icd.code]] - [[icd.desc]]</a>
+                            </li>  
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-8" >
                     <div class="input-group">

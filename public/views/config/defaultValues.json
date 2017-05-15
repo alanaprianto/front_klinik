@@ -283,6 +283,34 @@
         {
             "key": "Profesional Lainnya",
             "value": 18
-        }        
+        }
+    ],
+    "sediaan": [
+        {
+            "key": "Tablet",
+            "value": 0
+        },
+        {
+            "key": "Sirup",
+            "value": 1
+        },
+        {
+            "key": "Pcs",
+            "value": 1
+        }
+    ],
+    "category": [
+        {
+            "key": "Data 1",
+            "value": 0
+        },
+        {
+            "key": "Data 2",
+            "value": 1
+        },
+        {
+            "key": "Data 3",
+            "value": 1
+        }
     ]
 }

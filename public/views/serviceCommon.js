@@ -278,7 +278,15 @@ angular.module('adminApp')
                 controller: 'distributors'
             }
         },
-        createDistributor: {
+        getInventoryCategory: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'inventory-categories'
+            }
+        },
+        createupdateDistributor: {
             method: 'POST',
             params: {
                 module: 'api',
@@ -294,13 +302,21 @@ angular.module('adminApp')
                 controller: 'distributors'
             }
         },
-        updateDistributor: {
-            method: 'PUT',
+        createupdateAlkes: {
+            method: 'POST',
             params: {
                 module: 'api',
                 submodule: 'common',
-                controller: 'distributors'
+                controller: 'inventories'
             }
-        }
+        },
+        deleteAlkes: {
+            method: 'DELETE',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'inventories'
+            }
+        },
     });
 });

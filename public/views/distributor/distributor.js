@@ -101,7 +101,7 @@ angular.module('adminApp')
                 phone: $scope.temp.telpondist,
             }
 
-            ServicesCommon.createDistributor(param).$promise
+            ServicesCommon.createupdateDistributor(param).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
                     return $scope.message.error = result.message;
@@ -136,7 +136,7 @@ angular.module('adminApp')
                         listDistributor();
                     });
                 }
-            });            
+            });
         }
 
         $scope.updateDistributor = function () {
@@ -154,13 +154,13 @@ angular.module('adminApp')
                     console.log($scope.temp);
                     $scope.message = {};
                     var param = {
-                        id: $scope.temp.id,
+                        distributor_id: $scope.temp.id,
                         name: $scope.temp.namadist,
                         address: $scope.temp.alamatdist,
                         phone: $scope.temp.telpondist,
                     }
 
-                    ServicesCommon.updateDistributor(param).$promise
+                    ServicesCommon.createupdateDistributor(param).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;

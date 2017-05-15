@@ -29,7 +29,9 @@
             <div class="col-md-12 no-padding m-b-15">
                 <button 
                     class="btn btn-info col-md-4 no-radius" 
-                    ng-click="openModal('credDistributorModal', 'tambah')"> Tambah Distributor</button>
+                    ng-click="openModal('credDistributorModal', 'tambah')">
+                    Tambah Distributor
+                </button>
             </div>
             <div class="col-md-12 no-padding">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
@@ -60,7 +62,6 @@
                 </table>
             </div>
         </div>
-
         <script type="text/ng-template" id="detailDistributorModal">
             <div class="row p-b-15">
                 <h4 class="modal-title">Detail Distributor</h4>
