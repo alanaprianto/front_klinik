@@ -43,16 +43,20 @@
                                     <span class="sidebar-nav-item">Master User</span>
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
-                                    <li><a href="">User</a></li>
+                                    <li><a href="/user">User</a></li>
                                     <li><a href="">Permission </a></li>
                                     <li><a href="">Role</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="">
+                                <a class="has-arrow" href="#" aria-expanded="false">
                                     <span class="sidebar-nav-item-icon fa fa-medkit fa-fw"></span>
                                     <span class="sidebar-nav-item">Layanan</span>
                                  </a>
+                                  <ul class="module-left-dropdown" aria-expanded="false">
+                                    <li><a href="">Tindakan</a></li>
+                                    <li><a href="/categoryService">Kategori Tindakan</a></li>
+                                </ul>
                             </li>                     
                             <li class="sidebar-nav-heading">Lain-lain</li>
                             <li>

@@ -270,6 +270,30 @@ angular.module('adminApp')
                 controller: 'users'
             }
         },
+        getCategoryService: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'category-services'
+            }
+        },
+        createCategoryService: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'category-services'
+            }
+        },
+        deleteCategoryService: {
+            method: 'DELETE',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'category-services'
+            }
+        },
         getDistributors: {
             method: 'GET',
             params: {

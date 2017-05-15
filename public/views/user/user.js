@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('MasterPoliCtrl', function(
+    .controller('MasterUserCtrl', function(
         $scope, 
         $http, 
         $rootScope, 
@@ -15,7 +15,7 @@ angular.module('adminApp')
         $scope.temp = {};        
 
         var getDataOnModalOpen = function (data) {            
-            return ServicesCommon.getPolies({id: data.id}).$promise
+            return ServicesCommon.getUsers({id: data.id}).$promise
             .then(function (result) {
                 console.log(result);
             });
@@ -32,14 +32,15 @@ angular.module('adminApp')
             }
 
             if (type=="tambah") {
-                $scope.titlecredPoliModal = "Tambah Poli";
+                $scope.titlecredUserModal = "Tambah User ";
             } else {
                 $scope.temp.id = data.id;
-                $scope.temp.namadist = data.name;
-                $scope.temp.descdist = data.desc;
-                $scope.titlecredPoliModal = "Edit Poli";
+                $scope.temp.usernamedist = data.username;
+                $scope.temp.emaildist = data.email;
+                $scope.temp.passworddist = data.password;
+                $scope.titlecredUserModal = "Edit User";
             }
-            $scope.typecredPoli = type;
+            $scope.typecredUser = type;
 
             ngDialog.open({
             template: target,
@@ -61,14 +62,15 @@ angular.module('adminApp')
             // }            
         }
 
-        var listPoli = function () {
-            return ServicesCommon.getPolies().$promise
+        var listUser = function () {
+            return ServicesCommon.getUsers().$promise
             .then(function (result) {
+                console.log(result);
                 var tempData = [];
-                result.datas.polies.forEach(function (item, key) {
+                result.datas.users.forEach(function (item, key) {
                     tempData.push(item);
                 });
-                $scope.tableListPoli = tempData;
+                $scope.tablelistUser = tempData;
             });
         }
 
@@ -79,7 +81,7 @@ angular.module('adminApp')
         }
 
         function webWorker () {
-            listPoli()
+            listUser()
             .then(function () {
                 setTimeout(webWorker, 5000);
             })
@@ -92,26 +94,26 @@ angular.module('adminApp')
 
         firstInit();
 
-        $scope.createnewPoli = function () {            
+        $scope.createnewUsers = function () {            
             $scope.message = {};
             var param = {
-                name: $scope.temp.namadist,
-                desc: $scope.temp.descdist,
-                
+                username : $scope.temp.username,
+                email : $scope.temp.email,
+                password :  $scope.temp.password,
             }
 
-            ServicesCommon.createupdatePOli(param).$promise
+            ServicesCommon.createUsers(param).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
                     return $scope.message.error = result.message;
                 };
                 
                 ngDialog.closeAll();
-                listPoli();
+                listUser();
             });
         }
 
-        $scope.deletePoli = function (id) {
+        $scope.deleteStaffJob = function (id) {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan delete Data ini?",
@@ -125,20 +127,20 @@ angular.module('adminApp')
                 if (isConfirm) {
                     $scope.message = {};
 
-                    ServicesCommon.deletePoli({id: id}).$promise
+                    ServicesCommon.deleteStaffJob({id: id}).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;
                         };
 
                         ngDialog.closeAll();
-                        listPoli();
+                        listUser();
                     });
                 }
-            });
+            });            
         }
 
-        $scope.updatePoli = function () {
+        $scope.updateUsers = function () {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan update Data ini?",
@@ -153,21 +155,23 @@ angular.module('adminApp')
                     console.log($scope.temp);
                     $scope.message = {};
                     var param = {
-                        Poli_id: $scope.temp.id,
+                        id: $scope.temp.id,
                         name: $scope.temp.namadist,
                         desc: $scope.temp.descdist,
+                        phone: $scope.temp.telpondist,
                     }
 
-                    ServicesCommon.createupdatePoli(param).$promise
+                    ServicesCommon.updateUsers(param).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;
                         };
 
                         ngDialog.closeAll();
-                        listPoli();
+                        listUser();
                     });
                 }
             }); 
         }
     });
+

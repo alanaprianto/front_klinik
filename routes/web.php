@@ -113,7 +113,9 @@ Route::get('/antrian', function() {
 Route::get('/staff', function() {
     return View::make('staff.staff');
 });
-
+Route::get('/user', function() {
+    return View::make('user.user');
+});
 Route::get('/staffJob', function() {
     return View::make('staffJob.staffJob');
 });
@@ -141,4 +143,7 @@ Route::get('/distributor', function() {
 });
 Route::get('/poli', function() {
     return View::make('poli.poli');
+});
+Route::get('/categoryService', function() {
+    return View::make('categoryService.categoryService');
 });
