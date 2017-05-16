@@ -69,90 +69,90 @@
         </div>
     </div>
     <script type="text/ng-template" id="detailAlkesModal">
-            <div class="row p-b-15">
-                <h4 class="modal-title">Detail Alkes</h4>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-8">
-                        <div class="row p-b-15">
-                            <div class="col-md-6">
-                                <p class="text-left">Code Alkes</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.code]]</p>
-                            </div>
+        <div class="row p-b-15">
+            <h4 class="modal-title">Detail Alkes</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-8">
+                    <div class="row p-b-15">
+                        <div class="col-md-6">
+                            <p class="text-left">Code Alkes</p>
                         </div>
-                        <div class="row p-b-15">
-                            <div class="col-md-6">
-                                <p class="text-left">Nama Alkes</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.name]]</p>
-                            </div>
+                        <div class="col-md-6">
+                            <p class="text-left">[[dataOnModal.code]]</p>
                         </div>
-                        <div class="row p-b-15"">
-                            <div class="col-md-6">
-                                <p class="text-left">Tipe</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.type]]</p>
-                            </div>
-                        </div>
-                        <div class="row p-b-15"">
-                            <div class="col-md-6">
-                                <p class="text-left">Explain</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.explain]]</p>
-                            </div>
-                        </div>
-                        <div class="row p-b-15">
-                            <div class="col-md-6">
-                                <p class="text-left">Sediaan</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.displaySediaan]]</p>
-                            </div>
-                        </div>
-                        <!-- <div class="row p-b-15">
-                            <div class="col-md-6">
-                                <p class="text-left">Price</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.price]]</p>
-                            </div>
-                        </div> -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p class="text-left">Category</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.displayCategory]]</p>
-                            </div>
-                        </div>
-                    </div>               
-                </div>
-            </div>
-            <div class="row col-md-12 pull-right">
-                <div class="col-md-6">
-                    <div class="bg-warning" style="min-height: 34px;"
-                        ng-show="message.crtDistributor.error">
-                        <p class="text-left">
-                            [[message.error]]
-                        </p>
                     </div>
-                </div>
-                <button
-                    class="btn btn-danger col-md-3 no-radius" 
-                    ng-click="deleteAlkes(dataOnModal.id)">
-                    Delete
-                </button>
-                <button 
-                    class="btn btn-warning col-md-3 no-radius" 
-                    ng-click="openModal('credAlkesModal', 'edit', dataOnModal)">Edit</button>
+                    <div class="row p-b-15">
+                        <div class="col-md-6">
+                            <p class="text-left">Nama Alkes</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-left">[[dataOnModal.name]]</p>
+                        </div>
+                    </div>
+                    <div class="row p-b-15"">
+                        <div class="col-md-6">
+                            <p class="text-left">Tipe</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-left">[[dataOnModal.type]]</p>
+                        </div>
+                    </div>
+                    <div class="row p-b-15"">
+                        <div class="col-md-6">
+                            <p class="text-left">Explain</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-left">[[dataOnModal.explain]]</p>
+                        </div>
+                    </div>
+                    <div class="row p-b-15">
+                        <div class="col-md-6">
+                            <p class="text-left">Sediaan</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-left">[[dataOnModal.displaySediaan]]</p>
+                        </div>
+                    </div>
+                    <!-- <div class="row p-b-15">
+                        <div class="col-md-6">
+                            <p class="text-left">Price</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-left">[[dataOnModal.price]]</p>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-left">Category</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-left">[[dataOnModal.displayCategory]]</p>
+                        </div>
+                    </div>
+                </div>               
             </div>
-        </script>
+        </div>
+        <div class="row col-md-12 pull-right">
+            <div class="col-md-6">
+                <div class="bg-warning" style="min-height: 34px;"
+                    ng-show="message.crtDistributor.error">
+                    <p class="text-left">
+                        [[message.error]]
+                    </p>
+                </div>
+            </div>
+            <button
+                class="btn btn-danger col-md-3 no-radius" 
+                ng-click="deleteAlkes(dataOnModal.id)">
+                Delete
+            </button>
+            <button 
+                class="btn btn-warning col-md-3 no-radius" 
+                ng-click="openModal('credAlkesModal', 'edit', dataOnModal)">Edit</button>
+        </div>
+    </script>
     <script type="text/ng-template" id="credAlkesModal">
         <div class="row p-b-15">
             <h4 class="modal-title">[[titlecredAlkesModal]]</h4>

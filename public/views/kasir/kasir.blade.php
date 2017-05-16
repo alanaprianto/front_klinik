@@ -199,8 +199,7 @@
                     </thead>
                 </table>
             </div>        
-        </div>
-        
+        </div>        
         <div class="row p-b-15 no-margin">
             <div class="col-md-3 pull-right" ng-hide="dataOnModal.payment_status == 1">                
                 <button 
