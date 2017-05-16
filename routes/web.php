@@ -147,3 +147,6 @@ Route::get('/poli', function() {
 Route::get('/categoryService', function() {
     return View::make('categoryService.categoryService');
 });
+Route::get('/service', function() {
+    return View::make('service.service');
+});

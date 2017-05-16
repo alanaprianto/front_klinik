@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('StaffCtrl', function(
+    .controller('StaffJobCtrl', function(
         $scope, 
         $http, 
         $rootScope, 
@@ -15,7 +15,7 @@ angular.module('adminApp')
         $scope.temp = {};        
 
         var getDataOnModalOpen = function (data) {            
-            return ServicesCommon.getStaff({id: data.id}).$promise
+            return ServicesCommon.getStaffJobs({id: data.id}).$promise
             .then(function (result) {
                 console.log(result);
             });
@@ -32,30 +32,12 @@ angular.module('adminApp')
             }
 
             if (type=="tambah") {
-                $scope.titlecredStaffModal = "Tambah Staff ";
+                $scope.titlecredStaffJobModal = "Tambah Staff Job";
             } else {
                 $scope.temp.id = data.id;
-                $scope.temp.nikdist = data.nik;
-                $scope.temp.full_namedist = data.full_name;
-                $scope.temp.placedist = data.place;
-                $scope.temp.birthdist = data.birth;
-                $scope.temp.agedist = data.age;
-                $scope.temp.genderdist = data.gender;
-                $scope.temp.addressdist = data.address;
-                $scope.temp.religiondist = data.religion;
-                $scope.temp.provincedist = data.province;
-                $scope.temp.citydist = data.city;
-                $scope.temp.districtdist = data.district;
-                $scope.temp.sub_districtdist = data.sub_district;
-                $scope.temp.rt_rwdist = data.rt_rw;
-                $scope.temp.phone_numberdist = data.phone_number;
-                $scope.temp.last_educationdist = data.last_education;
-                $scope.temp.staff_job_iddist = data.staff_job_id;
-                $scope.temp.staff_position_iddist = data.staff_position_id;
-                $scope.temp.image_profiledist = data.image_profile;
-                $scope.temp.user_iddist = data.user_id;
-                $scope.temp.staff_iddist = data.staff_id;
-                $scope.titlecredStaffModal = "Edit Staff ";
+                $scope.temp.namadist = data.name;
+                $scope.temp.descdist = data.desc;
+                $scope.titlecredStaffJobModal = "Edit Staff Job";
             }
             $scope.typecredStaffJob = type;
 
@@ -80,14 +62,14 @@ angular.module('adminApp')
         }
 
         var listStaffJob = function () {
-            return ServicesCommon.getStaff().$promise
+            return ServicesCommon.getStaffJobs().$promise
             .then(function (result) {
                 console.log(result);
                 var tempData = [];
-                result.datas.staff.forEach(function (item, key) {
+                result.datas.staffjobs.forEach(function (item, key) {
                     tempData.push(item);
                 });
-                $scope.tableListStaff = tempData;
+                $scope.tableListStaffJob = tempData;
             });
         }
 
@@ -111,29 +93,11 @@ angular.module('adminApp')
 
         firstInit();
 
-        $scope.createnewStaff = function () {            
+        $scope.createnewStaffJob = function () {            
             $scope.message = {};
             var param = {
-                nik       : $scope.temp.nikdist,
-                full_name : $scope.temp.full_namedist,
-                place     : $scope.temp.placedist,
-                birth     : $scope.temp.birthdist,
-                age       : $scope.temp.agedist,
-                gender    : $scope.temp.genderdist,
-                address   : $scope.temp.addressdist,
-                religion  : $scope.temp.religiondist,
-                province  : $scope.temp.provincedist,
-                city      : $scope.temp.citydist,
-                district  : $scope.temp.districtdist,
-                rt_rw     : $scope.temp.rt_rwdist,
-                phone_number : $scope.temp.phone_numberdist,
-                last_education : $scope.temp.last_educationdist,
-                staff_job_id : $scope.temp.staff_job_iddist,
-                staff_position_id: $scope.temp.staff_position_iddist,
-                image_profile: $scope.temp.image_profiledist,
-                user_id   : $scope.temp.user_iddist,
-                staff_id  : $scope.temp.staff_iddist,
-               
+                name: $scope.temp.namadist,
+                desc: $scope.temp.descdist,
             }
 
             ServicesCommon.createStaffJob(param).$promise
@@ -147,7 +111,7 @@ angular.module('adminApp')
             });
         }
 
-        $scope.deleteStaff = function (id) {
+        $scope.deleteStaffJob = function (id) {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan delete Data ini?",
@@ -174,7 +138,7 @@ angular.module('adminApp')
             });            
         }
 
-        $scope.updateStaff = function () {
+        $scope.updateStaffJob = function () {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan update Data ini?",
@@ -190,28 +154,12 @@ angular.module('adminApp')
                     $scope.message = {};
                     var param = {
                         id: $scope.temp.id,
-                        nik       : $scope.temp.nikdist,
-                        full_name : $scope.temp.full_namedist,
-                        place     : $scope.temp.placedist,
-                        birth     : $scope.temp.birthdist,
-                        age       : $scope.temp.agedist,
-                        gender    : $scope.temp.genderdist,
-                        address   : $scope.temp.addressdist,
-                        religion  : $scope.temp.religiondist,
-                        province  : $scope.temp.provincedist,
-                        city      : $scope.temp.citydist,
-                        district  : $scope.temp.districtdist,
-                        rt_rw     : $scope.temp.rt_rwdist,
-                        phone_number : $scope.temp.phone_numberdist,
-                        last_education : $scope.temp.last_educationdist,
-                        staff_job_id : $scope.temp.staff_job_iddist,
-                        staff_position_id: $scope.temp.staff_position_iddist,
-                        image_profile: $scope.temp.image_profiledist,
-                        user_id   : $scope.temp.user_iddist,
-                        staff_id  : $scope.temp.staff_iddist,
+                        name: $scope.temp.namadist,
+                        desc: $scope.temp.descdist,
+                        phone: $scope.temp.telpondist,
                     }
 
-                    ServicesCommon.updateStaff(param).$promise
+                    ServicesCommon.updateStaffJob(param).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;

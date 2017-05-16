@@ -54,7 +54,7 @@
                                     <span class="sidebar-nav-item">Layanan</span>
                                  </a>
                                   <ul class="module-left-dropdown" aria-expanded="false">
-                                    <li><a href="">Tindakan</a></li>
+                                    <li><a href="/service">Tindakan</a></li>
                                     <li><a href="/categoryService">Kategori Tindakan</a></li>
                                 </ul>
                             </li>                     

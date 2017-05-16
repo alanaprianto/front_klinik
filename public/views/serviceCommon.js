@@ -206,6 +206,22 @@ angular.module('adminApp')
                 controller: 'services'
             }
         },
+        createServices: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'services'
+            }
+        },
+        deleteServices: {
+            method: 'DELETE',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'services'
+            }
+        },
         getSettings: {
             method: 'GET',
             params: {
@@ -219,10 +235,18 @@ angular.module('adminApp')
             params: {
                 module: 'api',
                 submodule: 'common',
+                controller:'staff'
+            }
+        },
+        createStaff: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
                 controller: 'staff'
             }
         },
-        getStaffJobs: {
+            getStaffJobs: {
             method: 'GET',
             params: {
                 module: 'api',
