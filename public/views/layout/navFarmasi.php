@@ -9,11 +9,23 @@
              </a>
         </li>
         <li>
+            <a href="/distributor">
+                <span class="sidebar-nav-item-icon fa fa-truck fa-fw"></span>
+                <span class="sidebar-nav-item">Distributor</span>
+            </a>            
+        </li>
+        <li>
             <a href="resep">
                 <span class="sidebar-nav-item-icon fa fa-plus-square fa-fw"></span>
                 <span class="sidebar-nav-item">Resep</span>
             </a>
             
+        </li>
+        <li>
+            <a href="/pembelian_alkes">
+                <span class="sidebar-nav-item-icon fa fa-truck fa-fw"></span>
+                <span class="sidebar-nav-item">Pembelian</span>
+            </a>            
         </li>
         <li>
             <a href="/alkes">
@@ -22,11 +34,17 @@
             </a>            
         </li>
         <li>
-            <a href="/distributor">
-                <span class="sidebar-nav-item-icon fa fa-truck fa-fw"></span>
-                <span class="sidebar-nav-item">Distributor</span>
+            <a href="/penjualan_alkes">
+                <span class="sidebar-nav-item-icon fa fa-shopping-cart fa-fw"></span>
+                <span class="sidebar-nav-item">Point of Sales</span>
             </a>            
-        </li>       
+        </li>
+        <li>
+            <a href="/transfer_depo">
+                <span class="sidebar-nav-item-icon fa fa-tags fa-fw"></span>
+                <span class="sidebar-nav-item">Transfer antar Depo</span>
+            </a>            
+        </li>
         <li class="sidebar-nav-heading">Lain-lain</li>
         <li>
             <a href="login">

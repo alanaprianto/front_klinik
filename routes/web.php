@@ -147,3 +147,13 @@ Route::get('/poli', function() {
 Route::get('/categoryService', function() {
     return View::make('categoryService.categoryService');
 });
+
+Route::get('/pembelian_alkes', function() {
+    return View::make('pembelian_alkes.pembelian_alkes');
+});
+Route::get('/penjualan_alkes', function() {
+    return View::make('penjualan_alkes.penjualan_alkes');
+});
+Route::get('/transfer_depo', function() {
+    return View::make('transfer_depo.transfer_depo');
+});

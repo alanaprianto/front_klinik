@@ -342,5 +342,13 @@ angular.module('adminApp')
                 controller: 'inventories'
             }
         },
+        getListPembelian: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'transactions'
+            }
+        }
     });
 });

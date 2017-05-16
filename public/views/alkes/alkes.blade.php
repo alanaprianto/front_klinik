@@ -212,7 +212,11 @@
                     </div>
                     <div class="row p-b-15"" ng-show="temp.jenis.value==1">
                         <div class="col-md-6">
-                            <p class="text-left">Tuslah</p>
+                            <p 
+                                class="text-left"
+                                ng-init="is_tuslah = 1">
+                                Tuslah
+                            </p>
                         </div>
                         <div class="overflow-table">
                             <table id="tuslah-table" class="table tuslah-table">
@@ -228,6 +232,8 @@
                                         </th>
                                         <th>No</th>
                                         <th>Nama Obat</th>
+                                        <th>Jumlah</th>
+                                        <th>Sediaan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -247,6 +253,15 @@
                                                 ng-options="s.id as s.name for s in tuslah">
                                             </select>
                                         </td>
+                                        <td class="col-sm-2">
+                                            <input type="number"
+                                                step="1" 
+                                                min="0"
+                                                class="form-control" 
+                                                ng-model="l.tuslah_qty"
+                                                ng-change="setTotal($index)">
+                                        </td>
+                                        <td>[[temp.listTuslah[$index].tuslah_sediaan]]</td>
                                     </tr>
                                 </tbody>
                             </table>
