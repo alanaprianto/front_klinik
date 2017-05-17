@@ -48,6 +48,8 @@ angular.module('adminApp')
 
                     $scope.temp.listPO.push(addPO);
                 });
+
+                $scope.setSubTotal();
             }
             $scope.temp.typecredPO = type;
             // $scope.temp.type = 'pharmacy';
@@ -115,18 +117,19 @@ angular.module('adminApp')
             // getCategoryId();
             initTemp();
         }
-        
+
         firstInit();
 
         $scope.createnewPO = function () {
-            var data = [];            
+            var data = [];
 
             $scope.temp.listPO.forEach(function (val) {
                 var temp = {
                     inventory_id: val.po_item_id,
                     amount: val.po_qty,
                     unit: val.po_unit,
-                    price: val.po_price
+                    price: val.po_price,
+                    total: val.po_total
                 };
                 data.push(temp);
             });
@@ -137,7 +140,40 @@ angular.module('adminApp')
                 data: data,
                 distributor_id: $scope.temp.vendor.id
             }
-                // price: $scope.temp.price,                
+                // price: $scope.temp.price,
+            ServicesCommon.createupdatePO(param).$promise
+            .then(function (result) {
+                if (!result.isSuccess) {
+                    return $scope.message.error = result.message;
+                };
+                
+                ngDialog.closeAll();
+                getListPembelian();
+            });
+        }
+
+        $scope.createRO = function () {
+            var data = [];
+
+            $scope.temp.listPO.forEach(function (val) {
+                var temp = {
+                    inventory_id: val.po_item_id,
+                    amount: val.po_qty,
+                    unit: val.po_unit,
+                    price: val.po_price,
+                    total: val.po_total
+                };
+                data.push(temp);
+            });
+
+            $scope.message = {};
+            var param = {
+                type: "4",
+                number_transaction: $scope.dataOnModal.number_transaction,
+                data: data,
+                distributor_id: $scope.temp.vendor.id
+            }
+                // price: $scope.temp.price,
             ServicesCommon.createupdatePO(param).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
@@ -171,6 +207,7 @@ angular.module('adminApp')
             };
 
             $scope.temp.listPO.push(addPO);
+            $scope.setSubTotal();
         }
 
         $scope.setPO = function (idx) {
@@ -188,8 +225,12 @@ angular.module('adminApp')
         }
 
         $scope.setTotalPO = function (idx) {            
-            $scope.temp.listPO[idx].po_total = $scope.temp.listPO[idx].po_price * $scope.temp.listPO[idx].po_qty;
+            $scope.temp.listPO[idx].po_total = $scope.temp.listPO[idx].po_price * $scope.temp.listPO[idx].po_qty;            
 
+            $scope.setSubTotal();
+        }
+
+        $scope.setSubTotal = function () {
             $scope.temp.subtotal = 0;
             $scope.temp.listPO.forEach(function (item) {
                 $scope.temp.subtotal += item.po_total;
@@ -198,7 +239,7 @@ angular.module('adminApp')
             $scope.setGrandTotals();
         }
 
-        $scope.setGrandTotals = function () {            
+        $scope.setGrandTotals = function () {
             $scope.temp.total = $scope.temp.subtotal*1+$scope.temp.tax*1+$scope.temp.shipping*1+$scope.temp.other*1;
         }
 

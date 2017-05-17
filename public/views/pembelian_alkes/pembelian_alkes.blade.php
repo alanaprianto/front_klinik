@@ -52,9 +52,14 @@
                             <td>
                                 <button
                                     class="btn btn-xs btn-default"
+                                    ng-show="po.status!=3"
                                     ng-click="openModal('createPOModal', 'receive', po)">
                                         <i class="fa fa-id-card"></i>&nbsp;&nbsp;Receive Order
                                 </button>
+                                <div 
+                                    ng-show="po.status==3">
+                                    Order Received
+                                </div>
                             </td>
                         </tr>
                     </tbody>
