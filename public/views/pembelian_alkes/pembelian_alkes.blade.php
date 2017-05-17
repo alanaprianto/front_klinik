@@ -35,11 +35,11 @@
             <div class="col-md-12 no-padding">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
-                        <tr>                            
+                        <tr>
                             <th>No</th>
                             <th>Nomor PO</th>
                             <th>Staff</th>
-                            <th>Distributor</th>                            
+                            <th>Distributor</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -48,7 +48,7 @@
                             <td>[[$index + 1]]</td>
                             <td>[[po.number_transaction]]</td>
                             <td>[[po.staff.full_name]]</td>
-                            <td>[[po.distributor.name]]</td>                            
+                            <td>[[po.distributor.name]]</td>
                             <td>
                                 <button
                                     class="btn btn-xs btn-default"

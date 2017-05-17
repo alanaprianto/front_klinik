@@ -404,7 +404,15 @@ angular.module('adminApp')
                 module: 'api',
                 submodule: 'common',
                 controller: 'depo'
-            }  
+            }
+        },
+        getDepoInventory: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'depo-inventory'
+            }
         }
     });
 });
