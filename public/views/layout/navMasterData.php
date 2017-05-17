@@ -13,16 +13,20 @@
                                     <span class="sidebar-nav-item">Inventori</span>
                                 </a>
                                 <ul class="module-left-dropdown" aria-expanded="false">
-                                    <li><a href="/alkes">Data Obat & Alkes</a></li>
                                     <li><a href="/nonAlkes">Data Non Alkes </a></li>
                                     <li><a href="/inventoryCategori">Inventroy Katagori </a></li>
                                 </ul>
                             </li> 
                             <li>
-                                <a href="/poli">
+                                <a href="" class="has-arrow" aria-expanded="false">
                                     <span class="sidebar-nav-item-icon fa fa-hospital-o fa-fw"></span>
                                     <span class="sidebar-nav-item">Master Poli</span>
-                                 </a>
+                                </a>
+                                <ul class="module-left-dropdown" aria-expanded="false">
+                                    <li><a href="/poli">Poli </a></li>
+                                    <li><a href="/depo">Master Depo </a></li>
+                                </ul>
+
                             </li> 
                             <li>
                                 <a class="has-arrow" href="#" aria-expanded="false">
@@ -45,7 +49,7 @@
                                 <ul class="module-left-dropdown" aria-expanded="false">
                                     <li><a href="/user">User</a></li>
                                     <li><a href="">Permission </a></li>
-                                    <li><a href="">Role</a></li>
+                                    <li><a href="/role">Role</a></li>
                                 </ul>
                             </li>
                             <li>

@@ -17,19 +17,19 @@
     <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <ul>
-                <h3>Master Depo</h3>
+                <h3>Role User</h3>
             </ul>
         </div>
     </nav>
 @endsection
 @section('content')
 
-    <div id="pendaftaranPasien-area" ng-controller="MasterDepoCtrl" >
+    <div id="pendaftaranPasien-area" ng-controller="MasterRoleCtrl" >
         <div class="row no-margin">
             <div class="col-md-12 no-padding m-b-15">
                 <button 
                     class="btn btn-info col-md-4 no-radius" 
-                    ng-click="openModal('credDepoModal', 'tambah')"> Tambah Depo</button>
+                    ng-click="openModal('credRoleModal', 'tambah')"> Tambah Role</button>
             </div>
             <div class="col-md-12 no-padding">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
@@ -43,15 +43,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="d in tableListDepo">
+                        <tr ng-repeat="d in tableListRole">
                             <td>[[$index + 1]]</td>
                             <td>[[d.name]]</td>
-                            <td>[[d.desc]]</td>
-                            <td>[[d.location]]</td>
+                            <td>[[d.description]]</td>
+                            <td>[[d.display_name]]</td>
                             <td>
                                 <button
                                     class="btn btn-xs btn-default"
-                                    ng-click="openModal('detailDepoModal', '', d)">
+                                    ng-click="openModal('detailRoleModal', '', d)">
                                         <i class="fa fa-id-card"></i>&nbsp;&nbsp;Detail
                                 </button>
                             </td>
@@ -61,16 +61,16 @@
             </div>
         </div>
 
-        <script type="text/ng-template" id="detailDepoModal">
+        <script type="text/ng-template" id="detailRoleModal">
             <div class="row p-b-15">
-                <h4 class="modal-title">Detail Depo</h4>
+                <h4 class="modal-title">Detail Role</h4>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-left">Nama Depo</p>
+                                <p class="text-left">Nama Role</p>
                             </div>
                             <div class="col-md-6">
                                 <p class="text-left">[[dataOnModal.name]]</p>
@@ -81,15 +81,15 @@
                                 <p class="text-left">Deskripsi</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.desc]]</p>
+                                <p class="text-left">[[dataOnModal.description]]</p>
                             </div>
                         </div> 
                         <div class="row p-b-15"">
                             <div class="col-md-6">
-                                <p class="text-left">Lokasi</p>
+                                <p class="text-left">Display Name</p>
                             </div>
                             <div class="col-md-6">
-                                <p class="text-left">[[dataOnModal.location]]</p>
+                                <p class="text-left">[[dataOnModal.display_name]]</p>
                             </div>
                         </div>   
                     </div>               
@@ -98,7 +98,7 @@
             <div class="row col-md-12 pull-right">
                 <div class="col-md-6">
                     <div class="bg-warning" style="min-height: 34px;"
-                        ng-show="message.crtDepo.error">
+                        ng-show="message.crtRole.error">
                         <p class="text-left">
                             [[message.error]]
                         </p>
@@ -106,24 +106,24 @@
                 </div>
                 <button
                     class="btn btn-danger col-md-3 no-radius" 
-                    ng-click="deleteDepo(dataOnModal.id)">
+                    ng-click="deleteRoles(dataOnModal.id)">
                     Delete
                 </button>
                 <button 
                     class="btn btn-warning col-md-3 no-radius" 
-                    ng-click="openModal('credDepoModal', 'edit', dataOnModal)">Edit</button>
+                    ng-click="openModal('credRoleModal', 'edit', dataOnModal)">Edit</button>
             </div>
         </script>
-        <script type="text/ng-template" id="credDepoModal">
+        <script type="text/ng-template" id="credRoleModal">
             <div class="row p-b-15">
-                <h4 class="modal-title">[[ titlecredDepoModal]]</h4>
+                <h4 class="modal-title">[[ titlecredRoleModal]]</h4>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-left">Nama Depo</p>
+                                <p class="text-left">Nama Role</p>
                             </div>
                             <div class="col-md-6">                                
                                 <input 
@@ -146,14 +146,14 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="text-left">Lokasi</p>
+                                <p class="text-left">Nama Display </p>
                             </div>
                             <div class="col-md-6">                                
                                 <input 
                                     type="text" 
                                     class="form-control" 
-                                    name="location"
-                                    ng-model="temp.location">
+                                    name="display_name"
+                                    ng-model="temp.display_name">
                             </div>
                         </div>
                     </div>               
@@ -162,7 +162,7 @@
             <div class="row col-md-12 pull-right">
                 <div class="col-md-9">
                     <div class="bg-warning" style="min-height: 34px;"
-                        ng-show="message.crtDepo.error">
+                        ng-show="message.crtRole.error">
                         <p class="text-left">
                             [[message.error]]
                         </p>
@@ -170,16 +170,16 @@
                 </div>
                 <button 
                     class="btn btn-info col-md-3 no-radius"
-                    ng-show="typecredDepo=='tambah'"
-                    ng-click="createnewDepo()">Tambah</button>
+                    ng-show="typecredRole=='tambah'"
+                    ng-click="createnewRole()">Tambah</button>
                 <button 
                     class="btn btn-info col-md-3 no-radius" 
-                    ng-show="typecredDepo=='edit'"
-                    ng-click="updateDepo()">Update</button>
+                    ng-show="typecredRole=='edit'"
+                    ng-click="updateRole()">Update</button>
             </div>
         </script>
     </div>
 @endsection
 @section('scripts')
-    <script src="views/depo/depo.js"></script>    
+    <script src="views/role/role.js"></script>    
 @endsection

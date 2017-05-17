@@ -161,3 +161,7 @@ Route::get('/transfer_depo', function() {
     return View::make('transfer_depo.transfer_depo');
 
 });
+Route::get('/role', function() {
+    return View::make('role.role');
+
+});
