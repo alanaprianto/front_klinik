@@ -381,6 +381,30 @@ angular.module('adminApp')
                 submodule: 'common',
                 controller: 'transactions'
             }  
+        },
+        getDepo: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'depo'
+            }  
+        },
+        postDepo: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'depo'
+            }  
+        },
+        deleteDepo: {
+            method: 'DELETE',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'depo'
+            }  
         }
     });
 });
