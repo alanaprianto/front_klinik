@@ -198,6 +198,22 @@ angular.module('adminApp')
                 controller: 'roles'
             }
         },
+        postRoles: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'roles'
+            }
+        },
+        deleteRoles: {
+            method: 'DELETE',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'roles'
+            }
+        },
         getServices: {
             method: 'GET',
             params: {

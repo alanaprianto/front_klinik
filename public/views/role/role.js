@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('MasterDepoCtrl', function(
+    .controller('MasterRoleCtrl', function(
         $scope, 
         $http, 
         $rootScope, 
@@ -15,7 +15,7 @@ angular.module('adminApp')
         $scope.temp = {};        
 
         var getDataOnModalOpen = function (data) {            
-            return ServicesCommon.getDepo({id: data.id}).$promise
+            return ServicesCommon.getRoles({id: data.id}).$promise
             .then(function (result) {
                 console.log(result);
             });
@@ -32,15 +32,15 @@ angular.module('adminApp')
             }
 
             if (type=="tambah") {
-                $scope.titlecredDepoModal = "Tambah Depo";
+                $scope.titlecredRoleModal = "Tambah Role";
             } else {
                 $scope.temp.id = data.id;
                 $scope.temp.nama = data.name;
-                $scope.temp.desc = data.desc;
-                $scope.temp.location = data.location;
-                $scope.titlecredDepoModal = "Edit Depo";
+                $scope.temp.description = data.description;
+                $scope.temp.display_name = data.display_name;
+                $scope.titlecredRoleModal = "Edit Role";
             }
-            $scope.typecredDepo = type;
+            $scope.typecredRole = type;
 
             ngDialog.open({
             template: target,
@@ -62,14 +62,14 @@ angular.module('adminApp')
             // }            
         }
 
-        var listDepo = function () {
-            return ServicesCommon.getDepo().$promise
+        var listRole = function () {
+            return ServicesCommon.getRoles().$promise
             .then(function (result) {
                 var tempData = [];
-                result.datas.depos.forEach(function (item, key) {
+                result.datas.roles.forEach(function (item, key) {
                     tempData.push(item);
                 });
-                $scope.tableListDepo = tempData;
+                $scope.tableListRole = tempData;
             });
         }
 
@@ -80,7 +80,7 @@ angular.module('adminApp')
         }
 
         function webWorker () {
-            listDepo()
+            listRole()
             .then(function () {
                 setTimeout(webWorker, 5000);
             })
@@ -93,27 +93,27 @@ angular.module('adminApp')
 
         firstInit();
 
-        $scope.createnewDepo = function () {            
+        $scope.createnewRole = function () {            
             $scope.message = {};
             var param = {
                 name: $scope.temp.name,
-                desc: $scope.temp.desc,
-                location: $scope.temp.location,
+                description: $scope.temp.description,
+                display_name: $scope.temp.display_name,
                 
             }
 
-            ServicesCommon.postDepo(param).$promise
+            ServicesCommon.postRoles(param).$promise
             .then(function (result) {
                 if (!result.isSuccess) {
                     return $scope.message.error = result.message;
                 };
                 
                 ngDialog.closeAll();
-                listDepo();
+                listRole();
             });
         }
 
-        $scope.deleteDepo = function (id) {
+        $scope.deleteRoles = function (id) {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan delete Data ini?",
@@ -127,20 +127,20 @@ angular.module('adminApp')
                 if (isConfirm) {
                     $scope.message = {};
 
-                    ServicesCommon.deleteDepo({id: id}).$promise
+                    ServicesCommon.deleteRoles({id: id}).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;
                         };
 
                         ngDialog.closeAll();
-                        listDepo();
+                        listRole();
                     });
                 }
             });
         }
 
-        $scope.updateDepo = function () {
+        $scope.updateRole = function () {
             SweetAlert.swal({
                title: "Konfirmasi?",
                text: "Anda yakin akan update Data ini?",
@@ -155,20 +155,20 @@ angular.module('adminApp')
                     console.log($scope.temp);
                     $scope.message = {};
                     var param = {
-                        Depo_id: $scope.temp.id,
-                        name: $scope.temp.namadist,
-                        desc: $scope.temp.descdist,
-                        location: $scope.temp.location,
+                        role_id: $scope.temp.id,
+                        name: $scope.temp.nama,
+                        description: $scope.temp.description,
+                        display_name: $scope.temp.display_name,
                     }
 
-                    ServicesCommon.postDepo(param).$promise
+                    ServicesCommon.postRoles(param).$promise
                     .then(function (result) {
                         if (!result.isSuccess) {
                             return $scope.message.error = result.message;
                         };
 
                         ngDialog.closeAll();
-                        listDepo();
+                        listRole();
                     });
                 }
             }); 
