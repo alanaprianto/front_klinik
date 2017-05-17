@@ -147,6 +147,9 @@ Route::get('/poli', function() {
 Route::get('/categoryService', function() {
     return View::make('categoryService.categoryService');
 });
+Route::get('/service', function() {
+    return View::make('service.service');
+});
 
 Route::get('/pembelian_alkes', function() {
     return View::make('pembelian_alkes.pembelian_alkes');
@@ -156,4 +159,5 @@ Route::get('/penjualan_alkes', function() {
 });
 Route::get('/transfer_depo', function() {
     return View::make('transfer_depo.transfer_depo');
+
 });
