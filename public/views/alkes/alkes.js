@@ -75,9 +75,11 @@ angular.module('adminApp')
             $scope.temp.type = 'pharmacy';        
 
             ngDialog.open({
-            template: target,
-            scope: $scope,
-            className: 'ngDialog-modal ' + cssModal});
+                template: target,
+                scope: $scope,
+                className: 'ngDialog-modal ' + cssModal,
+                closeByDocument: false
+            });
         }
 
         var getInventoryAlkes = function () {
@@ -114,7 +116,7 @@ angular.module('adminApp')
             var tuslah_ids = [];            
 
             $scope.temp.listTuslah.forEach(function (val) {
-                tuslah_ids.push(val.tuslah_code);                
+                tuslah_ids.push(val.tuslah_code);
             });
 
             $scope.message = {};
@@ -124,7 +126,7 @@ angular.module('adminApp')
                 type: $scope.temp.type,
                 explain: $scope.temp.explain,
                 sediaan: $scope.temp.sediaan.value,
-                inventory_category_id: $scope.temp.category.id,                
+                inventory_category_id: $scope.temp.category.id,
                 inventory_tuslah_id: tuslah_ids
             }
                 // price: $scope.temp.price,                
@@ -219,15 +221,19 @@ angular.module('adminApp')
             $scope.temp.listTuslah.push(addService);
         }
 
-        $scope.setTuslah = function (idx) {            
+        $scope.setTuslah = function (idx) {
             var result = {};
             $scope.tuslah.forEach(function (item) {
-                if (item.id == $scope.temp.listTuslah[idx].tuslah_code) {                    
+                if (item.id == $scope.temp.listTuslah[idx].tuslah_code) {
                     $scope.temp.listTuslah[idx].tuslah_sediaan = getSediaan(item.sediaan).key;
                     return result = item;
                 };
             });
 
             $scope.temp.listTuslah[idx].tuslah_amount = result.tuslah_amount;
+        }
+
+        $scope.removeTuslah = function (idx) {
+            $scope.temp.listTuslah.splice(idx, 1);
         }
     });

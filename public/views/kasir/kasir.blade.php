@@ -15,12 +15,12 @@
 @endsection
 @section('module-content-container')
 <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <ul>
-                <h3>Kasir </h3>
-            </ul>
-        </div>
-    </nav>
+    <div class="navbar-header">
+        <ul>
+            <h3>Kasir </h3>
+        </ul>
+    </div>
+</nav>
 @endsection
 @section('content')
 <div ng-controller="KasirController">
