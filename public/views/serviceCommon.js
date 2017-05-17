@@ -246,7 +246,7 @@ angular.module('adminApp')
                 controller: 'staff'
             }
         },
-            getStaffJobs: {
+        getStaffJobs: {
             method: 'GET',
             params: {
                 module: 'api',
