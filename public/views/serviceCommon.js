@@ -349,6 +349,14 @@ angular.module('adminApp')
                 submodule: 'common',
                 controller: 'transactions'
             }
+        },
+        createupdatePO: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'transactions'
+            }  
         }
     });
 });

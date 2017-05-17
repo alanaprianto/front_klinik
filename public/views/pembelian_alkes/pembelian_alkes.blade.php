@@ -35,31 +35,25 @@
             <div class="col-md-12 no-padding">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
-                        <tr>
+                        <tr>                            
                             <th>No</th>
-                            <th>Kode Alkes</th>
-                            <th>Nama </th>
-                            <th>Kategori</th>
-                            <th>Tipe</th>
-                            <th>Sediaan</th>
-                            <th>Keterangan</th>
+                            <th>Nomor PO</th>
+                            <th>Staff</th>
+                            <th>Distributor</th>                            
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="inventory in tableListInventories">
+                        <tr ng-repeat="po in tableListPOs">
                             <td>[[$index + 1]]</td>
-                            <td>[[inventory.code]]</td>
-                            <td>[[inventory.name]]</td>
-                            <td>[[inventory.inventory_category_id]]</td>
-                            <td>[[inventory.type]]</td>
-                            <td>[[inventory.sediaan]]</td>
-                            <td>[[inventory.explain]]</td>
+                            <td>[[po.number_transaction]]</td>
+                            <td>[[po.staff.full_name]]</td>
+                            <td>[[po.distributor.name]]</td>                            
                             <td>
                                 <button
                                     class="btn btn-xs btn-default"
-                                    ng-click="openModal('detailAlkesModal', '', inventory)">
-                                        <i class="fa fa-id-card"></i>&nbsp;&nbsp;Detail
+                                    ng-click="openModal('createPOModal', 'receive', po)">
+                                        <i class="fa fa-id-card"></i>&nbsp;&nbsp;Receive Order
                                 </button>
                             </td>
                         </tr>
@@ -70,7 +64,7 @@
     </div>
     <script type="text/ng-template" id="createPOModal">
         <div class="row p-b-15">
-            <h4 class="modal-title">Tambah PO</h4>
+            <h4 class="modal-title">[[temp.titleCrEdPO]]</h4>
         </div>
         <div class="row p-b-15">
             <div class="col-md-12">
@@ -78,7 +72,7 @@
                     <div class="form-group field row text-left">
                         <h4>Vendor</h4>
                     </div>
-                    <div class="form-group field row text-left">
+                    <div class="form-group field row text-left" ng-show="temp.typecredPO=='tambah'">
                         <div class="col-sm-4 no-padding">
                             <b>Pilih Vendor</b>
                         </div>
@@ -129,29 +123,55 @@
         </div>
         <div class="row p-b-15">
             <div class="col-md-12 no-padding">
-                <div class="sub-title col-md-12">
-                    <h4 class="text-left no-margin no-padding">[[pp.poly.name]]</h4>
-                </div>
-                <table class="table table-payment">
+                <table class="table table-po">
                     <thead>
                         <tr>
-                            <th class="text-center">Item</th>
-                            <th class="text-center">Description</th>
-                            <th class="text-center">Qty</th>
-                            <th class="text-center">Unit Price</th>
-                            <th class="text-right">Total</th>
+                            <th>
+                                <button type="button"
+                                    class="btn btn-primary btn-xs"
+                                    ng-click="addPO()"
+                                    ng-hide="temp.listPO.length == purchaseodr.length">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </th>
+                            <th>No</th>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Unit</th>
+                            <th>Price</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="p in pp.payments">
-                            <td class="text-center">[[$index + 1]]</td>
-                            <td class="text-center" ng-show="p.service.name">[[p.service.name]]</td>
-                            <td class="text-center" ng-hide="p.service.name">[[p.type]]</td>
-                            <td class="text-center" ng-show="p.service">[[p.total/p.service.cost]]</td>
-                            <td class="text-center" ng-hide="p.service">[[p.total/p.total]]</td>
-                            <td class="text-center" ng-show="p.service.cost">[[p.service.cost | currency]]</td>
-                            <td class="text-center" ng-hide="p.service.cost">[[p.total | currency]]</td>
-                            <td class="text-right">[[p.total | currency]]</td>
+                        <tr ng-repeat="l in temp.listPO">
+                            <td>
+                                <button type="button"
+                                    class="btn btn-danger btn-xs"
+                                    ng-click="removePO($index)">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </td>
+                            <td class="col-sm-1">[[$index + 1]]</td>
+                            <td class="col-sm-3">
+                                <select class="form-control condition"
+                                    ng-model="l.po_item_id"
+                                    ng-change="setPO($index)"
+                                    ng-options="s.id as s.name for s in purchaseodr">
+                                </select>
+                            </td>
+                            <td>[[temp.listPO[$index].po_desc]]</td>
+                            <td class="col-sm-1">
+                                <input type="number"
+                                    step="1" 
+                                    min="0"
+                                    class="form-control" 
+                                    ng-model="l.po_qty"
+                                    ng-change="setTotalPO($index)">
+                            </td>
+                            <td>[[temp.listPO[$index].po_unit]]</td>
+                            <td>[[temp.listPO[$index].po_price]]</td>
+                            <td>[[temp.listPO[$index].po_total]]</td>
                         </tr>
                     </tbody>                    
                 </table>
@@ -175,11 +195,7 @@
                             <b>Subtotal</b>
                         </div>
                         <div class="col-sm-8">
-                            <input 
-                                type="text" 
-                                class="form-control hidden-print"
-                                name="subtotal"
-                                ng-model="temp.subtotal">
+                            [[ temp.subtotal ]]                            
                         </div>
                     </div>
                     <div class="form-group field row text-left">
@@ -191,6 +207,7 @@
                                 type="text" 
                                 class="form-control hidden-print"
                                 name="tax"
+                                ng-change="setGrandTotals()"
                                 ng-model="temp.tax">
                         </div>
                     </div>
@@ -203,6 +220,7 @@
                                 type="text" 
                                 class="form-control hidden-print"
                                 name="shipping"
+                                ng-change="setGrandTotals()"
                                 ng-model="temp.shipping">
                         </div>
                     </div>
@@ -215,6 +233,7 @@
                                 type="text" 
                                 class="form-control hidden-print"
                                 name="other"
+                                ng-change="setGrandTotals()"
                                 ng-model="temp.other">
                         </div>
                     </div>
@@ -223,7 +242,7 @@
                             <b>Total</b>
                         </div>
                         <div class="col-sm-8">
-                            Rp. 4.500.000,00
+                            [[ temp.total ]]
                         </div>
                     </div>
                 </div>
@@ -240,9 +259,15 @@
             </div>
             <button
                 class="btn btn-info col-md-3 no-radius"
-                ng-show="typecredPO=='tambah'"
+                ng-show="temp.typecredPO=='tambah'"
                 ng-click="createnewPO()">
                 Tambah
+            </button>
+            <button
+                class="btn btn-info col-md-3 no-radius"
+                ng-show="temp.typecredPO=='receive'"
+                ng-click="createRO()">
+                Terima Barang
             </button>
         </div>
     </script>
