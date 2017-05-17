@@ -17,7 +17,7 @@
     <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <ul>
-                <h3>Staff Job</h3>
+                <h3>Staff Position</h3>
             </ul>
         </div>
     </nav>
