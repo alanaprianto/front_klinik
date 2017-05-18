@@ -37,29 +37,29 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nomor PO</th>
+                            <th>Nomor Transaksi</th>
+                            <th>Depo Asal</th>
+                            <th>Depo Tujuan</th>
                             <th>Staff</th>
-                            <th>Distributor</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="po in tableListPOs">
+                        <tr ng-repeat="trDepo in tableListTrDepos">
                             <td>[[$index + 1]]</td>
-                            <td>[[po.number_transaction]]</td>
-                            <td>[[po.staff.full_name]]</td>
-                            <td>[[po.distributor.name]]</td>
+                            <td>[[trDepo.number_transaction]]</td>
+                            <td>[[getDepoObj(trDepo.from_depo_id).desc]]</td>
+                            <td>[[getDepoObj(trDepo.to_depo_id).desc]]</td>
+                            <td>[[trDepo.staff.full_name]]</td>
+                            <td>[[trDepo.status]]</td>
                             <td>
                                 <button
-                                    class="btn btn-xs btn-default"
-                                    ng-show="po.status!=3"
-                                    ng-click="openModal('crupTransferDepoModal', 'receive', po)">
-                                        <i class="fa fa-id-card"></i>&nbsp;&nbsp;Receive Order
-                                </button>
-                                <div 
-                                    ng-show="po.status==3">
-                                    Order Received
-                                </div>
+                                    class="btn btn-xs btn-warning"
+                                    ng-show="trDepo.status!=3"
+                                    ng-click="openModal('crupTransferDepoModal', 'detail', trDepo)">
+                                        Detail Transfer
+                                </button>                                
                             </td>
                         </tr>
                     </tbody>

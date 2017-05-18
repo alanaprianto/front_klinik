@@ -20,14 +20,9 @@ angular.module('adminApp')
 
         $scope.openModal = function (target, type, data) {
             var cssModal = 'modal-lg';            
-            // var sediaan = {};
-            // var category = {};
+            
             if (data) {
-                $scope.dataOnModal = data;                
-                // sediaan = getSediaan(data.sediaan);
-                // category = getCategory(data.inventory_category_id);
-                // $scope.dataOnModal.displaySediaan = sediaan.key;
-                // $scope.dataOnModal.displayCategory = category.name;
+                $scope.dataOnModal = data;
             }            
 
             initTemp();
@@ -51,8 +46,7 @@ angular.module('adminApp')
 
                 $scope.setSubTotal();
             }
-            $scope.temp.typecredPO = type;
-            // $scope.temp.type = 'pharmacy';
+            $scope.temp.typecredPO = type;            
 
             listDistributor();
             ngDialog.open({

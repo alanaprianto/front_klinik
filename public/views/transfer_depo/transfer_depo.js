@@ -24,15 +24,29 @@ angular.module('adminApp')
                 $scope.dataOnModal = data;                
             }            
 
-            initTemp();
+            initTemp();            
             if (type=="tambah") {
                 $scope.temp.titleCrEdTrDepo = "Transfer Depo";                
-            } else {
-                $scope.temp.titleCrEdTrDepo = "Edit Transfer Depo";                
+            } else {                
+                $scope.temp.titleCrEdTrDepo = "Detail Transfer Depo";
+                data.item_orders.forEach(function (item) {
+                    var addTrDepo = {
+                        trd_id: item.id,
+                        trd_unit: item.unit,
+                        trd_price: item.price,
+                        trd_name: item.name,
+                        trd_desc: item.explain,
+                        trd_stock: item.stock,
+                        trd_qty: item.amount
+                    };
+
+                    $scope.temp.listTrDepos.push(addTrDepo);
+                });
+                $scope.temp.depo_src = $scope.getDepoObj(data.from_depo_id);
+                $scope.temp.depo_dest = $scope.getDepoObj(data.to_depo_id);
             }
             $scope.temp.typecredTrDepo = type;            
-
-            listDepo();
+            
             ngDialog.open({
                 template: target,
                 scope: $scope,
@@ -52,11 +66,22 @@ angular.module('adminApp')
             });
         }        
 
+        $scope.getDepoObj = function(id) {
+            var depo = {};
+            $scope.listDepos.forEach(function (item) {
+                if (item.id==id) {
+                    depo = item;
+                }
+            });
+            return depo;
+        }
+
         var getListTrDepos = function () {
             return ServicesCommon.getListPembelian({type:2}).$promise.then(function (result) {
-                $scope.tableListPOs = result.datas.transactions.data;
+                $scope.tableListTrDepos = result.datas.transactions.data;
             });
         }
+
 
         var getDefaultValues = function() {
             return $http.get('views/config/defaultValues.json').then(function(data) {
@@ -92,6 +117,7 @@ angular.module('adminApp')
             .then(webWorker);
             
             initTemp();
+            listDepo();
         }
 
         firstInit();
@@ -159,8 +185,6 @@ angular.module('adminApp')
                 trd_qty: initQty
             };
 
-            console.log(addTrDepo);
             $scope.temp.listTrDepos.push(addTrDepo);
-
         }
     });

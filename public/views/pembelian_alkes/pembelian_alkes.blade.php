@@ -51,15 +51,17 @@
                             <td>[[po.distributor.name]]</td>
                             <td>
                                 <button
-                                    class="btn btn-xs btn-default"
+                                    class="btn btn-xs btn-success"
                                     ng-show="po.status!=3"
                                     ng-click="openModal('createPOModal', 'receive', po)">
-                                        <i class="fa fa-id-card"></i>&nbsp;&nbsp;Receive Order
+                                        Receive Order
                                 </button>
-                                <div 
-                                    ng-show="po.status==3">
-                                    Order Received
-                                </div>
+                                <button
+                                    class="btn btn-xs btn-warning"
+                                    ng-show="po.status==3"
+                                    ng-click="openModal('createPOModal', 'detail', po)">
+                                        Detail Order
+                                </button>                                
                             </td>
                         </tr>
                     </tbody>
@@ -162,6 +164,7 @@
                                 <select class="form-control condition"
                                     ng-model="l.po_item_id"
                                     ng-change="setPO($index)"
+                                    ng-disabled="temp.typecredPO=='detail'"
                                     ng-options="s.id as s.name for s in purchaseodr">
                                 </select>
                             </td>
@@ -172,6 +175,7 @@
                                     min="0"
                                     class="form-control" 
                                     ng-model="l.po_qty"
+                                    ng-disabled="temp.typecredPO=='detail'"
                                     ng-change="setTotalPO($index)">
                             </td>
                             <td>[[temp.listPO[$index].po_unit]]</td>
@@ -203,7 +207,7 @@
                             [[ temp.subtotal ]]                            
                         </div>
                     </div>
-                    <div class="form-group field row text-left">
+                    <!-- <div class="form-group field row text-left">
                         <div class="col-sm-4 no-padding">
                             <b>Tax</b>
                         </div>
@@ -241,7 +245,7 @@
                                 ng-change="setGrandTotals()"
                                 ng-model="temp.other">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group field row text-left">
                         <div class="col-sm-4 no-padding">
                             <b>Total</b>
