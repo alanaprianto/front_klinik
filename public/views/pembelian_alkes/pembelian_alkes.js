@@ -19,7 +19,7 @@ angular.module('adminApp')
         }
 
         $scope.openModal = function (target, type, data) {
-            var cssModal = 'modal-lg';            
+            var cssModal = 'modal-lg';
             
             if (data) {
                 $scope.dataOnModal = data;
@@ -27,7 +27,7 @@ angular.module('adminApp')
 
             initTemp();
             if (type=="tambah") {
-                $scope.temp.titleCrEdPO = "Tambah PO";                
+                $scope.temp.titleCrEdPO = "Tambah PO";
             } else {
                 $scope.temp.titleCrEdPO = "Receive Order (No. PO: "+data.number_transaction+")";
                 $scope.temp.vendor = data.distributor;
@@ -46,7 +46,7 @@ angular.module('adminApp')
 
                 $scope.setSubTotal();
             }
-            $scope.temp.typecredPO = type;            
+            $scope.temp.typecredPO = type;
 
             listDistributor();
             ngDialog.open({
@@ -69,7 +69,7 @@ angular.module('adminApp')
         }
 
         var getInventoryAlkes = function () {
-            return ServicesCommon.getInventories({type: 'pharmacy'}).$promise.then(function (result) {        
+            return ServicesCommon.getInventories({type: 'pharmacy'}).$promise.then(function (result) {
                 $scope.purchaseodr = result.datas.inventories.data;
             });
         }

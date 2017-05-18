@@ -182,7 +182,7 @@
                             <td>[[temp.listPO[$index].po_price]]</td>
                             <td>[[temp.listPO[$index].po_total]]</td>
                         </tr>
-                    </tbody>                    
+                    </tbody>
                 </table>
             </div>
         </div>

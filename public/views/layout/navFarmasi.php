@@ -37,7 +37,13 @@
             <a href="/pos_farmasi">
                 <span class="sidebar-nav-item-icon fa fa-shopping-cart fa-fw"></span>
                 <span class="sidebar-nav-item">Point of Sales</span>
-            </a>            
+            </a>
+        </li>
+        <li>
+            <a href="/penjualan_alkes">
+                <span class="sidebar-nav-item-icon fa fa-shopping-cart fa-fw"></span>
+                <span class="sidebar-nav-item">Point of Sales</span>
+            </a>
         </li>
         <li>
             <a href="/transfer_depo">
