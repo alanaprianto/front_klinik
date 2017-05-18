@@ -87,7 +87,7 @@
                                 class="form-control m-b"
                                 ng-model="temp.depo_src"
                                 ng-change="selectSrc()"
-                                ng-options="d as d.desc for d in listDepoSrc">
+                                ng-options="d as d.desc for d in listDepos">
                             </select>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                             <select
                                 class="form-control m-b"
                                 ng-model="temp.depo_dest"
-                                ng-options="d as d.desc for d in listDepoDst">
+                                ng-options="d as d.desc for d in listDepos | filter:{id: '!'+ temp.depo_src.id}">
                             </select>
                         </div>                        
                     </div>
@@ -202,6 +202,8 @@
                                 <input type="number"
                                     step="1" 
                                     min="0"
+                                    max="[[temp.listTrDepos[$index].trd_stock]]"
+                                    max-to="temp.listTrDepos[$index].trd_stock"
                                     class="form-control" 
                                     ng-model="l.trd_qty">
                             </td>
@@ -222,7 +224,7 @@
             <button
                 class="btn btn-info col-md-3 no-radius"
                 ng-show="temp.typecredTrDepo=='tambah'"
-                ng-click="createnewPO()">
+                ng-click="createTrDepo()">
                 Transfer Barang
             </button>
             <button

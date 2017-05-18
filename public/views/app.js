@@ -55,6 +55,21 @@ angular.module('adminApp', [
         };
     })
 
+    .directive("maxTo", [function() {
+        return {
+            restrict: "A",
+            require: 'ngModel',
+            link: function(scope, elem, attrs) {
+                var max = parseInt(attrs.max);
+                angular.element(elem).on("keyup", function(e) {
+                    if (this.value > max) {
+                        this.value = max;
+                    }
+                });
+            }
+        }
+    }])
+
     .run(function ($rootScope, $cookies, config, $window, $http) {
         var isLoggedIn = function () {
             var token = $cookies.get('access_token');

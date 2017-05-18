@@ -48,7 +48,7 @@ angular.module('adminApp')
                 result.datas.depos.forEach(function (item, key) {
                     tempData.push(item);
                 });
-                $scope.listDepoSrc = tempData;
+                $scope.listDepos = tempData;
             });
         }        
 
@@ -96,23 +96,42 @@ angular.module('adminApp')
 
         firstInit();
 
+        $scope.createTrDepo = function () {
+            var data = [];
+
+            $scope.temp.listTrDepos.forEach(function (val) {
+                var temp = {
+                    inventory_id: val.trd_id,
+                    amount: val.trd_qty,
+                    unit: val.trd_unit,
+                    price: val.trd_price                    
+                };
+                data.push(temp);
+            });
+
+            $scope.message = {};
+            var param = {
+                type: "2",
+                data: data,
+                from_depo_id: $scope.temp.depo_src.id,
+                to_depo_id: $scope.temp.depo_dest.id
+            }
+                // price: $scope.temp.price,
+            ServicesCommon.createupdatePO(param).$promise
+            .then(function (result) {
+                if (!result.isSuccess) {
+                    return $scope.message.error = result.message;
+                };
+                
+                ngDialog.closeAll();
+                getListTrDepos();
+            });
+        }
+
         $scope.selectSrc = function () {
             getDepoInventory($scope.temp.depo_src.id);
-            $scope.temp.listTrDepos = [];
-            
-            $scope.excludeDst();
-        }
-
-        $scope.excludeDst = function () {
-            // console.log($scope.temp.depo_src);
-            // console.log($scope.listDepoSrc[0]);
-
-            $scope.listDepoDst = $scope.listDepoSrc;
-            var index = $scope.listDepoDst.indexOf($scope.temp.depo_src);
-            // console.log(index);
-
-            $scope.listDepoDst.splice(index, 0);
-        }
+            $scope.temp.listTrDepos = [];            
+        }        
 
         $scope.addTrDepo = function () {
             var countTrDepo = $scope.temp.listTrDepos.length;
@@ -121,12 +140,19 @@ angular.module('adminApp')
                 return;
             }
 
+            var initId = $scope.trDepos[countTrDepo].id;
+            var initUnit = getSediaan($scope.trDepos[countTrDepo].sediaan).key;
+            var initPrice = $scope.trDepos[countTrDepo].purchase_price;
+
             var initName = $scope.trDepos[countTrDepo].name;
             var initDesc = $scope.trDepos[countTrDepo].explain;
             var initStok = $scope.trDepos[countTrDepo].stocks[0].stock;
             var initQty = 1;
 
             var addTrDepo = {
+                trd_id: initId,
+                trd_unit: initUnit,
+                trd_price: initPrice,
                 trd_name: initName,
                 trd_desc: initDesc,
                 trd_stock: initStok,
