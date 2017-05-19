@@ -151,7 +151,7 @@
                                     <td>[[l.sub_total | currency]]
                                         <button type="button"
                                             class="btn btn-danger btn-xs"
-                                            ng-click="removePO($index)">
+                                            ng-click="removeItem($index)">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </td>

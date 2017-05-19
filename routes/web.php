@@ -165,3 +165,9 @@ Route::get('/role', function() {
     return View::make('role.role');
 
 });
+Route::get('/rawat_inap', function() {
+    return View::make('rawat_inap.rawat_inap');
+});
+Route::get('/register_irna', function() {
+    return View::make('rawat_inap.register_irna');
+});

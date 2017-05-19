@@ -56,35 +56,6 @@ angular.module('adminApp')
 
         firstInit();
 
-        $scope.addItem = function (item) {
-            var check = false;
-            angular.forEach($scope.temp.listItems, function (val, key) {
-                if (val.id == item.id) {
-                    check = true;
-                    $scope.temp.listItems[key].qty = $scope.temp.listItems[key].qty + 1;
-                    $scope.temp.listItems[key].sub_total = $scope.temp.listItems[key].qty * $scope.temp.listItems[key].sell_price;
-                    $scope.temp.totaltagihan += $scope.temp.listItems[key].sub_total;
-                }
-            });
-
-            if (check) {
-                return;
-            }
-
-            item.qty = 1;
-            $scope.temp.listItems.push(item);
-        }        
-
-        $scope.setTotal = function () {
-            var total = 0;
-            for(var i = 0; i < $scope.temp.listItems.length; i++){
-                var product = $scope.temp.listItems[i];
-                total += product.sub_total;
-            }
-            $scope.temp.totalPayment = total;
-            return total;
-        }
-
         $scope.openModal = function (target, type, data) {
             var cssModal = 'modal-lg';
             
@@ -96,7 +67,7 @@ angular.module('adminApp')
             if (type=="tambah") {
                 $scope.temp.titlePembayaran = "Pembayaran";
             } else {
-                $scope.temp.titlePembayaran = "";                
+                $scope.temp.titlePembayaran = "";
             }
             $scope.temp.typecredPO = type;
             
@@ -107,11 +78,7 @@ angular.module('adminApp')
                 closeByDocument: false
             });
         }
-
-        $scope.countPayments = function () {                    
-            $scope.temp.diff = $filter('currency')($scope.temp.payment - $scope.temp.totalPayment);            
-        }
-
+        
         $scope.createPOS = function () {
             var data = [];
 
@@ -141,7 +108,44 @@ angular.module('adminApp')
                     return $scope.message.error = result.message;
                 };
                 
-                ngDialog.closeAll();                
+                ngDialog.closeAll();
             });
+        }
+
+        $scope.addItem = function (item) {
+            var check = false;
+            angular.forEach($scope.temp.listItems, function (val, key) {
+                if (val.id == item.id) {
+                    check = true;
+                    $scope.temp.listItems[key].qty = $scope.temp.listItems[key].qty + 1;
+                    $scope.temp.listItems[key].sub_total = $scope.temp.listItems[key].qty * $scope.temp.listItems[key].sell_price;
+                    $scope.temp.totaltagihan += $scope.temp.listItems[key].sub_total;
+                }
+            });
+
+            if (check) {
+                return;
+            }
+
+            item.qty = 1;
+            $scope.temp.listItems.push(item);
+        }        
+
+        $scope.setTotal = function () {
+            var total = 0;
+            for(var i = 0; i < $scope.temp.listItems.length; i++){
+                var product = $scope.temp.listItems[i];
+                total += product.sub_total;
+            }
+            $scope.temp.totalPayment = total;
+            return total;
+        }    
+
+        $scope.countPayments = function () {                    
+            $scope.temp.diff = $filter('currency')($scope.temp.payment - $scope.temp.totalPayment);            
+        }        
+
+        $scope.removeItem = function (idx) {
+            $scope.temp.listItems.splice(idx, 1);
         }
     });
