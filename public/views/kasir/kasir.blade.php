@@ -140,7 +140,7 @@
                         <tr>
                         </tr>
                         <tr>
-                        </tr>           
+                        </tr>
                     </tfoot>
                 </table>
             </div>

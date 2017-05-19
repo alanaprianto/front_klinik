@@ -281,7 +281,7 @@
                             name="doctor" 
                             id="doctors"
                             ng-model="temp.doctor"
-                            ng-options="d as d.full_name for d in listDoctor">                            
+                            ng-options="d as d.full_name for d in listDoctor">
                         </select>
                     </div>
                 </div>

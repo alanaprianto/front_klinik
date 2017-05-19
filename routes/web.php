@@ -177,3 +177,15 @@ Route::get('/transaksiRawatInap', function() {
 Route::get('/infoRawatInap', function() {
     return View::make('infoRawatInap.infoRawatInap');
 });
+Route::get('/radiologi', function() {
+    return View::make('radiologi.radiologi');
+});
+Route::get('/transaksi_radiologi', function() {
+    return View::make('radiologi.transaksi_radiologi');
+});
+Route::get('/pjasa_irj_radiologi', function() {
+    return View::make('radiologi.pjasa_irj_radiologi');
+});
+Route::get('/pjasa_irna_radiologi', function() {
+    return View::make('radiologi.pjasa_irna_radiologi');
+});

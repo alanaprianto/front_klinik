@@ -61,7 +61,7 @@ angular.module('adminApp')
             
             if (data) {
                 $scope.dataOnModal = data;
-            }            
+            }
 
             // initTemp();
             if (type=="tambah") {
@@ -139,7 +139,7 @@ angular.module('adminApp')
             }
             $scope.temp.totalPayment = total;
             return total;
-        }    
+        }
 
         $scope.countPayments = function () {                    
             $scope.temp.diff = $filter('currency')($scope.temp.payment - $scope.temp.totalPayment);            

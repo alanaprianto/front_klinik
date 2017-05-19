@@ -1,34 +1,34 @@
 @extends('layout.layout')
 @section('title')
-<title>Farmasi .: Teknohealth :. </title>
+<title>Radiologi .: Teknohealth :. </title>
 <link rel="icon" href="assets/images/logo/logo-sm.png">
 @endsection
 @section('module-title')
 <div class="module-left-title">
     <div class="module-left-bars"><i class="ti-menu"></i></div>
-    <img src="assets/images/logo/farmasi-101.png">
-    <span>Apotek</span>
+    <img src="assets/images/logo/lab.png">
+    <span>Radiologi</span>
 </div>
 @endsection
 @section('nav')
-    @include('layout.navFarmasi')
+    @include('layout.navRadiologi')
 @endsection
 @section('module-content-container')
     <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <ul>
-                <h3>Penjualan Langsung Apotek</h3>
+                <h3>Transaksi Langsung</h3>
             </ul>
         </div>
     </nav>
 @endsection
 @section('content')
-    <div class="row no-margin no-padding">
+<div class="row no-margin no-padding">
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#Penjualan" 
-                    aria-controls="Penjualan" 
-                    role="tab" data-toggle="tab">Penjualan</a>
+                <a href="#TrLangsung" 
+                    aria-controls="TrLangsung" 
+                    role="tab" data-toggle="tab">Transaksi Langsung</a>
             </li>
             <li role="presentation">
                 <a href="#riwayat" aria-controls="riwayat" role="tab" data-toggle="tab">Riwayat</a>
@@ -36,8 +36,8 @@
         </ul>
 
         <!-- Tab panes -->
-        <div class="tab-content" ng-controller="PenjualanAlkesCtrl" >
-            <div role="tabpanel" class="tab-pane active" id="Penjualan">
+        <div class="tab-content" ng-controller="TransaksiRadiologiCtrl" >
+            <div role="tabpanel" class="tab-pane active" id="TrLangsung">
                 <br>
                 <div class="row">
                     <div class="col-md-12">
@@ -45,116 +45,103 @@
                             <div class="col-md-4">
                                 <div class="form-group field row text-left">
                                     <div class="col-sm-4">
-                                        <b>No. Ref</b>
+                                        <b>Nama Pasien</b>
                                     </div>
                                     <div class="col-sm-8">
-                                        201705180001
-                                    </div>
-                                </div>
-                                <div class="form-group field row text-left">
-                                    <div class="col-sm-4">
-                                        <b>Tanggal</b>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        2017/05/18
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group field row text-left">
-                                    <div class="col-sm-4">
-                                        <b>Pelanggan</b>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        Cari Pelanggan
-                                    </div>
-                                </div>
-                                <div class="form-group field row text-left">
-                                    <div class="col-sm-4">
-                                        <b>Petugas</b>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        Alan Budikusuma
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <form style="padding-bottom: 10px; margin-top: -10px;">
-                                    <div class="input-group">
-                                        <input id="individualDrop"
+                                        <input 
                                             type="text" 
-                                            class="form-control input-sm" 
-                                            data-toggle="dropdown"
-                                            placeholder="Nama Barang" 
-                                            ng-model="temp.searchParam">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                        </div>
-                                        <ul class="dropdown-menu col-md-12" role="menu" aria-labelledby="individualDrop">
-                                            <li role="presentation" ng-repeat="resItem in inventories | filter:{name: temp.searchParam}">
-                                                <a role="menuitem" ng-click="addItem(resItem)">[[resItem.name]]</a>
-                                            </li>
-                                        </ul>
-                                     </div>
-                                </form>
-                                <form>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control input-sm" placeholder="No. PLU">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-default btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                        </div>
-                                     </div>
-                                </form>
+                                            class="form-control input-sm"
+                                            ng-model="temp.patient_name">
+                                    </div>
+                                </div>
+                                <div class="form-group field row text-left">
+                                    <div class="col-sm-4">
+                                        <b>Alamat</b>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <textarea 
+                                            class="form-control" 
+                                            name="address"
+                                            ng-model="temp.patient_address"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group field row text-left">
+                                    <div class="col-sm-4">
+                                        <b>Nama DPJP</b>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <select 
+                                            class="form-control m-b"
+                                            ng-model="temp.patient_dpjp"
+                                            ng-options="d as d.full_name for d in listDoctor">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group field row text-left">
+                                    <div class="col-sm-4">
+                                        <b>Nama Pelaksana</b>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <select 
+                                            class="form-control m-b" 
+                                            ng-model="temp.patient_executor"
+                                            ng-options="d as d.full_name for d in listDoctor">
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row p-b-15" style="height: 100%; position: fixed; width: 100%; left: 10px; padding-left: 250px;">
                     <div class="col-md-12" style="max-height: 60%; overflow: auto;">
-                        <table class="table table-po">
+                        <table id="service-table" class="table service-table">
                             <thead>
-                                <tr>                                    
+                                <tr>
+                                    <th>
+                                        <button type="button"
+                                            class="btn btn-primary btn-xs"
+                                            ng-click="addService()"
+                                            ng-hide="temp.listServices.length == services.length">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
                                     <th>No</th>
-                                    <th>Item</th>
-                                    <th>Qty</th>
-                                    <th>Unit</th>
-                                    <th>Price</th>
-                                    <th>Diskon (%)</th>
+                                    <th>Nama Layanan</th>
+                                    <th>Biaya Layanan</th>
+                                    <th>Jumlah</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="l in temp.listItems track by $index">                                    
-                                    <td class="col-sm-1">
-                                        [[$index + 1]]
-                                    </td>
-                                    <td class="col-sm-3">
-                                        [[l.name]]
-                                    </td>
+                                <tr ng-repeat="l in temp.listServices">
                                     <td>
-                                        <input type="number"
-                                            step="1" 
-                                            min="0"
-                                            class="form-control input-sm" 
-                                            ng-model="l.qty"
-                                            ng-keypress="l.sub_total = l.sell_price * l.qty"
-                                            ng-mouseleave="l.sub_total = l.sell_price * l.qty"
-                                            ng-init="l.sub_total = l.sell_price">
-                                    </td>
-                                    <td class="col-sm-1">
-                                        [[l.sediaan]]
-                                    </td>
-                                    <td>[[l.sell_price | currency]]</td>
-                                    <td>
-                                        0
-                                    </td>
-                                    <td>[[l.sub_total | currency]]
                                         <button type="button"
                                             class="btn btn-danger btn-xs"
-                                            ng-click="removeItem($index)">
+                                            ng-click="removeService($index)">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </td>
+                                    <td>[[$index + 1]]</td>
+                                    <td>
+                                        <select class="form-control condition"
+                                            ng-model="l.service_id"
+                                            ng-change="setService($index)"
+                                            ng-options="s.id as s.name for s in services">
+                                        </select>
+                                    </td>
+                                    <td>[[temp.listServices[$index].cost | currency]]</td>
+                                    <td class="col-sm-2">
+                                        <input type="number"
+                                            step="1" 
+                                            min="0"
+                                            class="form-control" 
+                                            ng-model="l.service_amount"
+                                            ng-change="setSubTotal($index)">
+                                    </td>
+                                    <td>[[temp.listServices[$index].service_total | currency]]</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -184,83 +171,69 @@
             </div>
         </div>
     </div>
-    
+
     <script type="text/ng-template" id="pembayaranModal">
         <div class="row p-b-15">
             <h4 class="modal-title">[[temp.titlePembayaran]]</h4>
         </div>
         <div class="row p-b-15">
             <div class="col-md-12">
-                <div class="col-md-6">                    
+                <div class="col-md-4">
                     <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <b>No. Ref</b>
+                        <div class="col-sm-4">
+                            <b>Nama Pasien</b>
                         </div>
                         <div class="col-sm-8">
-                            201705180001
+                            [[temp.patient_name]]
                         </div>
                     </div>
                     <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <b>Tanggal</b>
+                        <div class="col-sm-4">
+                            <b>Alamat</b>
                         </div>
                         <div class="col-sm-8">
-                            2017/05/18
+                            [[temp.patient_address]]
                         </div>
-                    </div>                    
+                    </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <b>Pelanggan</b>
+                        <div class="col-sm-4">
+                            <b>Nama DPJP</b>
                         </div>
                         <div class="col-sm-8">
-                            Cari Pelanggan
+                            [[temp.patient_dpjp]]
                         </div>
                     </div>
                     <div class="form-group field row text-left">
-                        <div class="col-sm-4 no-padding">
-                            <b>Staff</b>
+                        <div class="col-sm-4">
+                            <b>Nama Pelaksana</b>
                         </div>
                         <div class="col-sm-8">
-                            Alan Budikusuma
+                            [[temp.patient_executor]]
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row p-b-15">
-                <div class="col-md-12">
-                    <table class="table table-po">
+                <div class="col-md-12">                
+                    <table id="service-table" class="table service-table">
                         <thead>
-                            <tr>
+                            <tr>                                
                                 <th>No</th>
-                                <th>Item</th>
-                                <th>Qty</th>
-                                <th>Unit</th>
-                                <th>Price</th>
-                                <th>Diskon (%)</th>
+                                <th>Nama Layanan</th>
+                                <th>Biaya Layanan</th>
+                                <th>Jumlah</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="l in temp.listItems track by $index">
-                                <td class="col-sm-1">
-                                    [[$index + 1]]
-                                </td>
-                                <td class="col-sm-3">
-                                    [[l.name]]
-                                </td>
-                                <td>
-                                    [[l.qty]]
-                                </td>
-                                <td class="col-sm-1">
-                                    [[l.sediaan]]
-                                </td>
-                                <td>[[l.sell_price | currency]]</td>
-                                <td>
-                                    0
-                                </td>
-                                <td>[[l.sub_total | currency]]</td>
+                            <tr ng-repeat="l in temp.listServices">                                
+                                <td>[[$index + 1]]</td>
+                                <td>[[l.service_id]]</td>
+                                <td>[[l.cost | currency]]</td>
+                                <td class="col-sm-2">[[l.service_amount]]</td>
+                                <td>[[l.service_total | currency]]</td>
                             </tr>
                         </tbody>
                     </table>
@@ -318,5 +291,5 @@
     </script>
 @endsection
 @section('scripts')
-<script src="views/penjualan_alkes/penjualan_alkes.js"></script>
+<script src="views/radiologi/transaksi_radiologi.js"></script>
 @endsection
