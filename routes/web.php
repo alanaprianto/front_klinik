@@ -171,3 +171,6 @@ Route::get('/rawat_inap', function() {
 Route::get('/register_irna', function() {
     return View::make('rawat_inap.register_irna');
 });
+Route::get('/transaksiRawatInap', function() {
+    return View::make('transaksiRawatInap.transaksiRawatInap');
+});

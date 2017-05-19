@@ -296,6 +296,58 @@
                             </table>
                         </div>
                         <div>
+                        <p><b>Obat</b></p>
+                        <div class="overflow-table">
+                            <table id="service-table" class="table service-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <button type="button"
+                                                class="btn btn-primary btn-xs"
+                                                ng-click="addService()"
+                                                ng-hide="temp.listServices.length == services.length">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </th>
+                                        <th>No</th>
+                                        <th>Nama Obat</th>
+                                        <th>Biaya Obat</th>
+                                        <th>Jumlah</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="l in temp.listServices">
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-danger btn-xs"
+                                                ng-click="removeService($index)">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </td>
+                                        <td>[[$index + 1]]</td>
+                                        <td>
+                                            <select class="form-control condition"
+                                                ng-model="l.service_id"
+                                                ng-change="setService($index)"
+                                                ng-options="s.id as s.name for s in services">
+                                            </select>
+                                        </td>
+                                        <td>[[temp.listServices[$index].cost | currency]]</td>
+                                        <td class="col-sm-2">
+                                            <input type="number"
+                                                step="1" 
+                                                min="0"
+                                                class="form-control" 
+                                                ng-model="l.service_amount"
+                                                ng-change="setTotal($index)">
+                                        </td>
+                                        <td>[[temp.listServices[$index].service_total | currency]]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
                             <p><b>Kesimpulan Akhir</b></p>
                             <table class="table table-condition">
                                 <tbody>
