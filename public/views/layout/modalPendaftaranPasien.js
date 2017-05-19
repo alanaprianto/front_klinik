@@ -15,7 +15,7 @@ angular.module('adminApp')
                 age: $scope.temp.age
             }
             return data;
-        }
+        }        
 
         $scope.currHour = moment().format('h:mm:ss a');
 
@@ -121,18 +121,19 @@ angular.module('adminApp')
             .then(function (result) {
                 $scope.temp.patients = result.datas.patient;
             });
-        }
+        }        
 
-        $scope.oldPatient = function () {
-            if ($scope.temp.patient) {
+        $scope.oldPatient = function (patient) {
+            if (patient) {
+                $scope.temp.patient = patient;
                 $scope.temp.number_medical_record = $scope.temp.patient.number_medical_record;
                 $scope.temp.full_name = $scope.temp.patient.full_name;
                 $scope.temp.place = $scope.temp.patient.place;
                 $scope.temp.birth = new Date(moment($scope.temp.patient.birth, "DD/MM/YYYY"));
                 $scope.temp.age = moment().diff($scope.temp.birth, 'years');
-                $scope.temp.address = $scope.temp.patient.address;            
+                $scope.temp.address = $scope.temp.patient.address;
                 $scope.temp.rt_rw = $scope.temp.patient.rt_rw;
-                $scope.temp.phone_number = $scope.temp.patient.phone_number;                
+                $scope.temp.phone_number = $scope.temp.patient.phone_number;
                 $scope.temp.askes_number = $scope.temp.patient.askes_number;
                 $scope.patient_id = $scope.temp.patient.id;
 
@@ -170,7 +171,7 @@ angular.module('adminApp')
                 });                
                 $scope.defaultValues.religion.forEach(function (val) {
                     if (val.value == $scope.temp.patient.religion) {
-                        return $scope.temp.religion = val;                        
+                        return $scope.temp.religion = val;
                     }
                 });                
                 $scope.defaultValues.education.forEach(function (val) {
@@ -242,9 +243,18 @@ angular.module('adminApp')
             });
         }
 
+        var getPatients = function () {
+            ServicesAdmin.getLoketPendaftaranPatient().$promise
+            .then(function (result) {
+                $scope.patients = result.datas.patient;
+            });
+        }
+
         var firstInit = function () {
             getDefaultValues();
             getSSRl4b();
+            getPatients();
+
             $scope.getListProvinces();
             $scope.getListCities();
             $scope.getListDistricts();

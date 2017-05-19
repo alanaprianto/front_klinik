@@ -23,7 +23,7 @@
     </div>
     <div class="row p-t-15">
         <div class="col-md-12">
-            <div class="col-md-6">                
+            <div class="col-md-6">
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Nama Lengkap</label>
                     <div class="col-sm-8">
@@ -309,7 +309,37 @@
         <h4 class="modal-title">Pasien Lama</h4>
     </div>
     <div class="row p-b-15">
-        <div class="col-md-6 text-left">
+        <br><br>
+        <div class="col-md-3">
+            
+        </div>
+        <div class="col-md-2">
+            <p>Search</p>
+        </div>
+        <div class="col-md-4">
+            <form style="padding-bottom: 10px; margin-top: -10px;">
+                <div class="input-group">
+                    <input id="individualDrop"
+                        type="text" 
+                        class="form-control input-sm" 
+                        data-toggle="dropdown"
+                        placeholder="Cari Pasien" 
+                        ng-model="temp.searchParam">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                    <ul class="dropdown-menu col-md-12" role="menu" aria-labelledby="individualDrop">
+                        <li role="presentation" ng-repeat="patient in patients | filter:{full_name: temp.searchParam}">
+                            <a role="menuitem" ng-click="oldPatient(patient)">[[patient.full_name]]</a>
+                        </li>
+                    </ul>
+                 </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            
+        </div>
+        <!-- <div class="col-md-6 text-left">
             <div class="form-group field p-b-15 row">
                 <div class="col-md-4">
                     <p>Search</p>
@@ -345,7 +375,7 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="row p-t-15" ng-show="temp.patient">
         <div class="col-md-12">
