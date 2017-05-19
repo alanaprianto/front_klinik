@@ -1,13 +1,13 @@
 @extends('layout.layout')
 @section('title')
-<title>Loket .: Teknohealth :. </title>
+<title>Lab .: Teknohealth :. </title>
 <link rel="icon" href="assets/images/logo/logo-sm.png">
 @endsection
 @section('module-title')
 <div class="module-left-title">
     <div class="module-left-bars"><i class="ti-menu"></i></div>
     <img src="assets/images/logo/dataPasien.png">
-    <span>RadioLogi</span>
+    <span>Laboratorium</span>
 </div>
 @endsection
 @section('nav')
@@ -17,7 +17,7 @@
     <nav class="navbar navbar-static-top nav-title" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <ul>
-                <h3>Antrian Radiologi</h3>
+                <h3>Antrian Laboratorium</h3>
             </ul>            
         </div>
     </nav>
@@ -26,7 +26,7 @@
     <div id="staff-area" ng-controller="AntrianRadiologiCtrl" >
         <div class="row no-margin no-padding">
             <div class="col-md-4">
-                <h5>Antrian Radiologi</h5>
+                <h5>Antrian Laboratorium</h5>
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -65,5 +65,5 @@
 @endsection
 @section('scripts')
     <script src="views/antrian/antrian.js"></script>
-    <script src="views/layout/modalPendaftaranRadiologi.js"></script>
+    <script src="views/layout/modalPendaftaranLab.js"></script>
 @endsection
