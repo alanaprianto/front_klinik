@@ -14,7 +14,7 @@
             </a>
         </li> 
         <li>
-            <a href="transaksiRawatInap" class="has-arrow" aria-expanded="false">
+            <a href="/transaksiRawatInap">
                 <span class="sidebar-nav-item-icon fa fa-shopping-basket fa-fw"></span>
                 <span class="sidebar-nav-item">Transaksi Rawat Inap</span>
             </a>
