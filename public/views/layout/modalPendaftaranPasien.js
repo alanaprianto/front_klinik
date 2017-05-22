@@ -9,7 +9,9 @@ angular.module('adminApp')
         ServicesAdmin,
         ServicesCommon,
         moment
-    ) {        
+    ) {
+        $scope.currHour = moment().format('h:mm:ss a');
+
         var defaultDataCreatePasien = function () {
             var data = {
                 age: $scope.temp.age
@@ -17,7 +19,36 @@ angular.module('adminApp')
             return data;
         }        
 
-        $scope.currHour = moment().format('h:mm:ss a');
+        var getDefaultValues = function() {
+            return $http.get('views/config/defaultValues.json').then(function(data) {                
+                $scope.genders = data.data.gender;                
+            });            
+        };
+
+        var getSSRl4b = function () {
+            return $http.get('views/config/defaultSSRjalanRl4b.json').then(function(data) {                
+                $scope.defaultSSRjalanRl4b = data.data;                
+            });
+        }
+
+        var getPatients = function () {
+            ServicesAdmin.getLoketPendaftaranPatient().$promise
+            .then(function (result) {
+                $scope.patients = result.datas.patient;
+            });
+        }
+
+        var firstInit = function () {
+            getDefaultValues();
+            getSSRl4b();
+            getPatients();
+
+            $scope.getListProvinces();
+            $scope.getListCities();
+            $scope.getListDistricts();
+        }
+
+        firstInit();
 
         $scope.printArea = function (divID) {
             if (!$scope.temp.duration) {
@@ -221,6 +252,7 @@ angular.module('adminApp')
                 $scope.districts = result.datas.districts;
             });
         }
+
         $scope.getListSubDistricts = function () {
             if ($scope.temp && $scope.temp.district && $scope.temp.district.code) {
                 var code = $scope.temp.district.code;
@@ -230,35 +262,4 @@ angular.module('adminApp')
                 });
             }
         }
-
-        var getDefaultValues = function() {
-            return $http.get('views/config/defaultValues.json').then(function(data) {                
-                $scope.genders = data.data.gender;                
-            });            
-        };
-
-        var getSSRl4b = function () {
-            return $http.get('views/config/defaultSSRjalanRl4b.json').then(function(data) {                
-                $scope.defaultSSRjalanRl4b = data.data;                
-            });
-        }
-
-        var getPatients = function () {
-            ServicesAdmin.getLoketPendaftaranPatient().$promise
-            .then(function (result) {
-                $scope.patients = result.datas.patient;
-            });
-        }
-
-        var firstInit = function () {
-            getDefaultValues();
-            getSSRl4b();
-            getPatients();
-
-            $scope.getListProvinces();
-            $scope.getListCities();
-            $scope.getListDistricts();
-        }
-
-        firstInit();        
     });

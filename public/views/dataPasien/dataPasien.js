@@ -64,7 +64,17 @@ angular.module('adminApp')
                 
                 $scope.tableListVisitor = tempData; 
             });
-           $scope.printArea = function (divID) {
+        }
+        
+        var firstInit = function () {
+            listDataPasien();
+            getDefaultValues();
+
+        }
+
+        firstInit();
+
+        $scope.printArea = function (divID) {
             $scope.currentDate = moment().format('DD MMMM YYYY HH:mm:ss');
             $scope.temp.displayedJob = jobToString($scope.dataOnModal.patient.job);
             setTimeout(function(){
@@ -85,32 +95,24 @@ angular.module('adminApp')
                 popupWin.document.close();
             }, 500);
         }
-            $scope.openModal = function (target, type, data) {
-                console.log(data);
-                var cssModal = '';
-                if (type) {
-                    cssModal = 'modal-' + type;
-                }
 
-                if (data) {
-                    $scope.dataOnModal = data;
-                }
-                
-                $scope.dataOnModal.displayedJob = jobToString(data.job);
-                ngDialog.open({
-                    template: target,
-                    scope: $scope,
-                    className: 'ngDialog-modal ' + cssModal,
-                    closeByDocument: false
-                });
+        $scope.openModal = function (target, type, data) {
+            console.log(data);
+            var cssModal = '';
+            if (type) {
+                cssModal = 'modal-' + type;
             }
-        }
-        
-        var firstInit = function () {
-            listDataPasien();
-            getDefaultValues();
 
+            if (data) {
+                $scope.dataOnModal = data;
+            }
+            
+            $scope.dataOnModal.displayedJob = jobToString(data.job);
+            ngDialog.open({
+                template: target,
+                scope: $scope,
+                className: 'ngDialog-modal ' + cssModal,
+                closeByDocument: false
+            });
         }
-
-        firstInit();
     });

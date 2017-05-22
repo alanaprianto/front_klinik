@@ -15,17 +15,47 @@ angular.module('adminApp')
         $scope.temp = {};
         $scope.message = {};
 
-        // angular.extend(this, $controller('ModalPendaftaranPasienCtrl', {$scope: $scope}));
+        angular.extend(this, $controller('ModalPendaftaranIrnaCtrl', {$scope: $scope}));
 
-        var getDataOnModalOpen = function (target) {
-            switch(target) {
-                case 'tambahPasienBaruModal':
-
-                    break;
-                default:
-                    
-            }
+        var listDataPasien = function () {
+            return ServicesAdmin.getVisitor().$promise
+            .then(function (result) {
+                var tempData=[];
+                result.datas.patients.forEach(function(item,key){
+                    tempData.push(item);
+                });
+                
+                $scope.tableListPatients = tempData; 
+            });           
         }
+
+        var getDefaultValues = function() {
+            return $http.get('views/config/defaultValues.json').then(function(data) {
+                $scope.defaultValues = data.data;
+            });
+        }       
+
+        var getClassRoom = function () {
+            return ServicesCommon.getClassRoom().$promise.then(function (result) {
+                $scope.class_rooms = result.datas.class_rooms;
+            });
+        }
+
+        function webWorker () {
+            listDataPasien()
+            .then(function () {
+                setTimeout(webWorker, 5000);
+            })
+        }
+
+        var firstInit = function () {
+            getDefaultValues()
+            .then(webWorker);
+
+            getClassRoom();
+        }
+        
+        firstInit();
 
         $scope.openModal = function (target, type, data) {
             var cssModal = '';
@@ -35,68 +65,14 @@ angular.module('adminApp')
 
             if (data) {
                 $scope.dataOnModal = data;
-            }
-
-            getDataOnModalOpen(target);
+                $scope.temp.patient = data;
+            }            
 
             ngDialog.open({
                 template: target,
                 scope: $scope,
-                className: 'ngDialog-modal ' + cssModal
-            });
-        }        
-
-        // var listPendaftaranPasien = function () {
-        //     return ServicesAdmin.getLoketRegisters().$promise
-        //     .then(function (result) {
-        //         var tempData = [];
-        //         result.datas.registers.forEach(function (item, key) {
-        //             if (item.patient && item.patient.birth) {
-        //                 item.patient.age = moment().diff(moment(item.patient.birth, "DD/MM/YYYY", true), 'years');
-        //             }
-        //             if (item.status == 1) {
-        //                 item.displayedStatus = 'open';
-        //             }
-        //             if (item.status == 2) {
-        //                 item.displayedStatus = 'closed';
-        //             }
-
-        //             if (item.references) {
-        //                 item.references.forEach(function (ref, idx) {
-        //                     if (ref.status == 1) {
-        //                         item.references[idx].displayedStatus = 'belum diperiksa';
-        //                     }
-        //                     if (ref.status == 2) {
-        //                         item.references[idx].displayedStatus = 'sedang diperiksa';
-        //                     }
-        //                     if (ref.status == 3) {
-        //                         item.references[idx].displayedStatus = 'sudah diperiksa';
-        //                     }
-        //                 });
-        //             }
-        //             tempData.push(item);
-        //         });
-        //         $scope.tableListRegister = tempData;
-        //     });
-        // }
-
-        var getDefaultValues = function() {
-            return $http.get('views/config/defaultValues.json').then(function(data) {
-                $scope.defaultValues = data.data;
+                className: 'ngDialog-modal ' + cssModal,
+                closeByDocument: false
             });
         }
-
-        function webWorker () {
-            // listPendaftaranPasien()
-            // .then(function () {
-            //     setTimeout(webWorker, 5000);
-            // })
-        }
-
-        var firstInit = function () {
-            getDefaultValues()
-            .then(webWorker);            
-        }
-        
-        firstInit();
     });

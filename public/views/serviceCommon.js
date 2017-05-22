@@ -429,6 +429,30 @@ angular.module('adminApp')
                 submodule: 'common',
                 controller: 'depo-inventory'
             }
+        },
+        getClassRoom: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'class-rooms'
+            }
+        },
+        getRoom: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'rooms'
+            }
+        },
+        getBed: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'beds'
+            }
         }
     });
 });

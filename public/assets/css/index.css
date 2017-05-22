@@ -1,3 +1,5 @@
+.ngdialog, .ngdialog-overlay {right: 18px !important;}
+
 .no-margin {
 	margin: 0px !important;
     padding: 25px

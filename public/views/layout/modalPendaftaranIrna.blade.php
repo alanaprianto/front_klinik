@@ -253,12 +253,10 @@
                     <label class="col-sm-4 no-padding text-left">Kelas</label>
                     <div class="col-sm-8">
                         <select 
-                            class="form-control m-b" 
-                            name="poly" 
-                            id="clinic"
-                            ng-model="temp.poly"
-                            ng-change="getDoctor($index)"
-                            ng-options="d as d.name for d in listPoli">
+                            class="form-control m-b"
+                            ng-model="temp.class_room"
+                            ng-change="getRoom()"
+                            ng-options="d as d.display_name for d in class_rooms">
                         </select>
                     </div>
                 </div>
@@ -266,12 +264,10 @@
                     <label class="col-sm-4 no-padding text-left">Kamar</label>
                     <div class="col-sm-8">
                         <select 
-                            class="form-control m-b" 
-                            name="poly" 
-                            id="clinic"
-                            ng-model="temp.poly"
-                            ng-change="getDoctor($index)"
-                            ng-options="d as d.name for d in listPoli">
+                            class="form-control m-b"
+                            ng-model="temp.room"
+                            ng-change="getBed($index)"
+                            ng-options="d as d.display_name for d in rooms">
                         </select>
                     </div>
                 </div>
@@ -279,11 +275,9 @@
                     <label class="col-sm-4 no-padding text-left">Bed</label>
                     <div class="col-sm-8">
                         <select 
-                            class="form-control m-b" 
-                            name="doctor" 
-                            id="doctors"
-                            ng-model="temp.doctor"
-                            ng-options="d as d.full_name for d in listDoctor">
+                            class="form-control m-b"
+                            ng-model="temp.bed"
+                            ng-options="d as d.display_name for d in beds">
                         </select>
                     </div>
                 </div>
@@ -311,70 +305,35 @@
         <h4 class="modal-title">Pasien Lama</h4>
     </div>
     <div class="row p-b-15">
-        <div class="col-md-6 text-left">
-            <div class="form-group field p-b-15 row">
-                <div class="col-md-4">
-                    <p>Search</p>
-                </div>
-                <div class="col-sm-8">
-                    <div class="dropdown pull-right col-md-12 no-padding" auto-close="outsideClick">
-                        <div class="col-md-10 no-padding">
-                            <p ng-repeat="i in temp.medrec.icd10">
-                                <button class="btn btn-xs btn-danger" ng-click="removeICDItem($index)">X</button>
-                                [[i.code]] - [[i.desc]]
-                            </p>
-                        </div>
-                        <button id="individualDrop"
-                            type="button" 
-                            data-toggle="dropdown"
-                            class="btn btn-default dropdown-toggle col-md-2 text-left">
-                            <span class="pull-left">search</span><span class="pull-right"> <i class="fa fa-search"></i></span>
-                        </button>
-                        <ul class="dropdown-menu col-md-12" role="menu" aria-labelledby="individualDrop">
-                            <input disable-auto-close 
-                                type="search"
-                                class="form-control" 
-                                placeholder="Search"
-                                ng-model="temp.medrec.query"
-                                ng-keyup="getICD()">
-                            <li role="presentation" ng-repeat="icd in icd10">
-                                <a role="menuitem" ng-click="getICDItem(icd)" ng-hide="icd.selected">[[icd.code]] - [[icd.desc]]</a>
-                            </li>  
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-8" >
-                    <div class="input-group">
-                        <input 
-                            type="text" 
-                            class="form-control"
-                            name="searchPasien"
-                            ng-model="temp.query" 
-                            ng-keyup="searchPasien()">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="searchPasien()">Search</button>
-                        </span>
-                    </div>
-                    <p ng-show="temp.patients.length == 0">pencarian dengan kata kunci "[[temp.query]]" tidak ditemukan.</p>
-                    <p ng-show="temp.patients.length > 0">[[temp.patients.length]] pasien ditemukan.</p>
-                </div>
-            </div>
-            <div class="form-group field p-b-15 row" ng-show="temp.patients.length > 0">
-                <div class="col-md-4">
-                    <p>Pilih Pasien</p>
-                </div>
-                <div class="col-md-8">
-                    <select 
-                        class="form-control m-b" 
-                        name="patient"
-                        ng-init="temp.patient = temp.patients[0]"
-                        ng-model="temp.patient"
-                        ng-click="oldPatient()"
-                        ng-options="p.result for p in temp.patients">
-                    </select>
-                </div>
-            </div>
+        <br><br>
+        <div class="col-md-3">
+            
         </div>
+        <div class="col-md-2">
+            <p>Search</p>
+        </div>
+        <div class="col-md-4">
+            <form style="padding-bottom: 10px; margin-top: -10px;">
+                <div class="input-group">
+                    <input id="individualDrop"
+                        type="text" 
+                        class="form-control input-sm" 
+                        data-toggle="dropdown"
+                        placeholder="Cari Pasien" 
+                        ng-model="temp.searchParam">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                    <ul class="dropdown-menu col-md-12" role="menu" aria-labelledby="individualDrop">
+                        <li role="presentation" ng-repeat="patient in patients | filter:{full_name: temp.searchParam}">
+                            <a role="menuitem" ng-click="oldPatient(patient)">[[patient.full_name]]</a>
+                        </li>
+                    </ul>
+                 </div>
+            </form>
+        </div>
+        <div class="col-md-3">            
+        </div>        
     </div>
     <div class="row p-t-15" ng-show="temp.patient">
         <div class="col-md-12">
@@ -608,12 +567,10 @@
                     <label class="col-sm-4 no-padding text-left">Kelas</label>
                     <div class="col-sm-8">
                         <select 
-                            class="form-control m-b" 
-                            name="poly" 
-                            id="clinic"
-                            ng-model="temp.poly"
-                            ng-change="getDoctor($index)"
-                            ng-options="d as d.name for d in listPoli">
+                            class="form-control m-b"
+                            ng-model="temp.class_room"
+                            ng-change="getRoom()"
+                            ng-options="d as d.display_name for d in class_rooms">
                         </select>
                     </div>
                 </div>
@@ -621,12 +578,10 @@
                     <label class="col-sm-4 no-padding text-left">Kamar</label>
                     <div class="col-sm-8">
                         <select 
-                            class="form-control m-b" 
-                            name="poly" 
-                            id="clinic"
-                            ng-model="temp.poly"
-                            ng-change="getDoctor($index)"
-                            ng-options="d as d.name for d in listPoli">
+                            class="form-control m-b"
+                            ng-model="temp.room"
+                            ng-change="getBed($index)"
+                            ng-options="d as d.display_name for d in rooms">
                         </select>
                     </div>
                 </div>
@@ -634,11 +589,9 @@
                     <label class="col-sm-4 no-padding text-left">Bed</label>
                     <div class="col-sm-8">
                         <select 
-                            class="form-control m-b" 
-                            name="doctor" 
-                            id="doctors"
-                            ng-model="temp.doctor"
-                            ng-options="d as d.full_name for d in listDoctor">
+                            class="form-control m-b"
+                            ng-model="temp.bed"
+                            ng-options="d as d.display_name for d in beds">
                         </select>
                     </div>
                 </div>

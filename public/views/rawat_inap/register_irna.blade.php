@@ -35,35 +35,31 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nomor Pendaftaran</th>
                             <th>Nomor Rekam Medis</th>
                             <th>Nama Pasien</th>
+                            <th>Jenis Kelamin</th>
                             <th>Umur</th>
-                            <th>Alamat</th>
+                            <th>Telepon</th>
+                            <th>Terakhir Kunjungan</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="register in tableListRegister">
+                        <tr ng-repeat="visitor in tableListPatients | filter: { patient: searchVisitor }">
                             <td>[[$index + 1]]</td>
-                            <td>[[register.register_number]]</td>
-                            <td>[[register.patient.number_medical_record]]</td>
-                            <td>[[register.patient.full_name]]</td>
-                            <td>[[register.patient.age]]</td>
-                            <td>[[register.displayedStatus]]</td>
+                            <td>[[visitor.number_medical_record]]</td>
+                            <td>[[visitor.full_name]]</td>
+                            <td>[[visitor.gender]]</td>
+                            <td>[[visitor.age]]</td>
+                            <td>[[visitor.phone_number]]</td>
+                            <td>[[formatDate(visitor.registers[0].created_at) | date: 'dd MMM yyyy HH:mm']]</td>
                             <td>
-                                <button 
-                                    class="btn btn-xs btn-default"
-                                    ng-click="openModal('tambahRujukanModal', '', register)"
-                                    ng-if="register.status == 1">
-                                        <i class="fa fa-plus"></i> rujukan
+                                <button class="btn btn-xs btn-success"
+                                    ng-click="openModal('tambahPasienLamaModal', 'lg', visitor)">
+                                    Daftarkan Pasien
                                 </button>
-                                <div 
-                                    ng-if="register.status != 1">
-                                    -
-                                </div>
                             </td>
-                        </tr>
+                        </tr>                        
                     </tbody>
                 </table>
             </div>
@@ -75,4 +71,5 @@
 @endsection
 @section('scripts')
 <script src="views/rawat_inap/register_irna.js"></script>
+<script src="views/layout/modalPendaftaranIrna.js"></script>
 @endsection

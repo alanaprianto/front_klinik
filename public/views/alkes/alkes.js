@@ -37,8 +37,8 @@ angular.module('adminApp')
         }
 
         var getCategoryId = function () {
-            return ServicesCommon.getInventoryCategory().$promise.then(function (result) {                
-                $scope.listCategories = result.datas.inventory_categories;                
+            return ServicesCommon.getInventoryCategory().$promise.then(function (result) {
+                $scope.listCategories = result.datas.inventory_categories;
             });
         }
 

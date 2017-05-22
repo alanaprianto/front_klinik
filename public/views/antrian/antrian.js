@@ -27,7 +27,7 @@ angular.module('adminApp')
 
             if (data) {
                 $scope.dataOnModal = data;
-                $scope.kiosk_id = data.id;                
+                $scope.kiosk_id = data.id;
             }
 
             ngDialog.open({
@@ -53,8 +53,8 @@ angular.module('adminApp')
                     if (val.status == item.value) {
                         result = item.key;
                     }
-                });         
-                return result;       
+                });
+                return result;
             }
         }
 
@@ -80,7 +80,7 @@ angular.module('adminApp')
                     item.displayedQueue = tripleDigit(item.queue_number);
                     dataArray.push(item);
                 });
-                $scope.antrianUmum = dataArray; 
+                $scope.antrianUmum = dataArray;
             });
         }
 

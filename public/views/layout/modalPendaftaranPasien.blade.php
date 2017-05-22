@@ -324,7 +324,7 @@
                         class="form-control input-sm" 
                         data-toggle="dropdown"
                         placeholder="Cari Pasien" 
-                        ng-model="temp.searchParam">
+                        ng-model="temp.searchParam" />
                     <div class="input-group-btn">
                         <button class="btn btn-default btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
@@ -338,44 +338,7 @@
         </div>
         <div class="col-md-3">
             
-        </div>
-        <!-- <div class="col-md-6 text-left">
-            <div class="form-group field p-b-15 row">
-                <div class="col-md-4">
-                    <p>Search</p>
-                </div>
-                <div class="col-md-8" >
-                    <div class="input-group">
-                        <input 
-                            type="text" 
-                            class="form-control"
-                            name="searchPasien"
-                            ng-model="temp.query" 
-                            ng-keyup="searchPasien()">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="searchPasien()">Search</button>
-                        </span>
-                    </div>
-                    <p ng-show="temp.patients.length == 0">pencarian dengan kata kunci "[[temp.query]]" tidak ditemukan.</p>
-                    <p ng-show="temp.patients.length > 0">[[temp.patients.length]] pasien ditemukan.</p>
-                </div>
-            </div>
-            <div class="form-group field p-b-15 row" ng-show="temp.patients.length > 0">
-                <div class="col-md-4">
-                    <p>Pilih Pasien</p>
-                </div>
-                <div class="col-md-8">
-                    <select 
-                        class="form-control m-b" 
-                        name="patient"
-                        ng-init="temp.patient = temp.patients[0]"
-                        ng-model="temp.patient"
-                        ng-click="oldPatient()"
-                        ng-options="p.result for p in temp.patients">
-                    </select>
-                </div>
-            </div>
-        </div> -->
+        </div>        
     </div>
     <div class="row p-t-15" ng-show="temp.patient">
         <div class="col-md-12">
@@ -559,7 +522,7 @@
                             type="text" 
                             class="form-control" 
                             name="responsible_person"
-                            ng-model="temp.responsible_person">
+                            ng-model="temp.responsible_person" />
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">
