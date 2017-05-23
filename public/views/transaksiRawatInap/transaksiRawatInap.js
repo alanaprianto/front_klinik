@@ -91,7 +91,7 @@ angular.module('adminApp')
             initTemp();
             if (data) {
                 $scope.dataOnModal = data;
-                $scope.oldPatient(data);
+                
             }
 
             ngDialog.open({

@@ -46,7 +46,7 @@
                     </div>
                     <div>
                         <a class="ui fluid large teal button" style="background-color: #FE6860" href="registasi">Registasi</a>
-                        <p style="text-align:center;color: #fff">Copyright Teknoland 2017        Teknohealth Software ver. 1.0.0</p>
+                        <a  href="kiosk" > KIOSK </a>
                     </div>
                 </div>
             </div>

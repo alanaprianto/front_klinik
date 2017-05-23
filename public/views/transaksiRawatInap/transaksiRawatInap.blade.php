@@ -75,37 +75,34 @@
                                 <td></td>
                                 <td></td>
                             <td>
-                                <button class="btn btn-xs btn-success"
-                                            ng-click="openModal('editPasienModal', '', i)">
-                                            <i class="fa fa-edit"></i> 
-                                </button>
+                                
                                 <button
-                                    class="btn btn-xs btn-info"
+                                    class="btn btn-xs btn-info col-xs-6 col-md-6"
                                     ng-click="openModal('detailTransaksiRawatInapModal', '', i)">
                                         <i class="fa fa-search-plus"></i> Detail 
                                 </button>
                                 <button
-                                    class="btn btn-xs btn-warning"
+                                    class="btn btn-xs btn-warning col-xs-6 col-md-6"
                                     ng-click="openModal('transferTransaksiRawatInapModal', '', i)">
                                         <i class="fa fa-random"></i> Transfer 
                                 </button>
                                  <button
-                                    class="btn btn-xs btn-danger"
+                                    class="btn btn-xs btn-danger col-xs-6 col-md-6"
                                     ng-click="openModal('detailDistributorModal', '', i)">
                                         <i class="fa fa-home"></i> Dipulangkan
                                 </button>
                                  <button
-                                    class="btn btn-xs btn-primary"
+                                    class="btn btn-xs btn-primary col-xs-6 col-md-6"
                                     ng-click="openModal('detailDistributorModal', '', i)">
                                         <i class="fa fa-thermometer-quarter"></i> Dirujuk Ke Laboratorium
                                 </button>
                                 <button
-                                    class="btn btn-xs btn-default"
+                                    class="btn btn-xs btn-success col-xs-6 col-md-6"
                                     ng-click="openModal('detailDistributorModal', '', i)">
                                         <i class="fa fa-hourglass-half"></i> Dirujuk Ke Radiologi
                                 </button>
                                 <button
-                                    class="btn btn-xs btn-default"
+                                    class="btn btn-xs btn-default col-xs-6 col-md-6"
                                     ng-click="openModal('detailDistributorModal', '', i)">
                                         <i class="fa fa-user-md"></i> Dirujuk Ke Oprasi
                                 </button>
