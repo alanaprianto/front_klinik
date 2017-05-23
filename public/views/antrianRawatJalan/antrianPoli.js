@@ -398,24 +398,35 @@ angular.module('adminApp')
             
         }
 
-        $scope.createCheckUp = function () {
-            var service_ids = [];
-            var service_amounts = [];
+        $scope.createCheckUp = function () {            
+            var data_service = [];
+            var data_medicine = [];
 
             $scope.temp.listServices.forEach(function (val) {
-                service_ids.push(val.service_id);
-                service_amounts.push(val.service_amount);
+                var params = {
+                    service_id: val.service_id,
+                    amount: val.service_amount
+                }
+                data_service.push(params)
             });
     
+            $scope.temp.listPharmacy.forEach(function (val) {
+                var params = {
+                    inventory_id: val.service_id,
+                    amount: val.service_amount
+                }
+                data_medicine.push(params)
+            });
+
             var params = {
                 kiosk_id: $scope.dataOnModal.id,
                 reference_id: $scope.dataOnModal.reference_id,
                 poly_id: $scope.temp.poliID,
-                doctor_id: $scope.temp.doctor_id,
-                service_ids: service_ids,
-                service_amounts: service_amounts,
+                doctor_id: $scope.temp.doctor_id,                
                 status: $scope.temp.finalResult,
-                notes: $scope.temp.notes
+                notes: $scope.temp.notes,
+                data_service: data_service,
+                data_medicine: data_medicine,
             };
 
             ServicesAdmin.createPenataJasaPeriksa(params).$promise

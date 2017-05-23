@@ -120,11 +120,29 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="p in pp.payments">
-                            <td class="text-center">[[$index + 1]]</td>
-                            <td class="text-center" ng-show="p.service.name">[[p.service.name]]</td>
-                            <td class="text-center" ng-hide="p.service.name">[[p.type]]</td>
-                            <td class="text-center" ng-show="p.service">[[p.total/p.service.cost]]</td>
-                            <td class="text-center" ng-hide="p.service">[[p.total/p.total]]</td>
+                            <td class="text-center">[[$index + 1]]</td>                                                
+                            <td class="text-center">
+                                <div ng-if="p.type=='doctor_service'">
+                                    Jasa Dokter
+                                </div>
+                                <div ng-if="p.type=='medical_record_service'">
+                                    [[p.service.name]]
+                                </div>
+                                <div ng-if="p.type=='medical_record_medicine'">
+                                    [[p.inventory.name]]
+                                </div>
+                            </td>                                                
+                            <td class="text-center">
+                                <div ng-if="p.type=='doctor_service'">
+                                    1
+                                </div>
+                                <div ng-if="p.type=='medical_record_service'">
+                                    [[p.total/p.service.cost]]
+                                </div>
+                                <div ng-if="p.type=='medical_record_medicine'">
+                                    [[p.total/p.inventory.purchase_price]]
+                                </div>
+                            </td>
                             <td class="text-center" ng-show="p.service.cost">[[p.service.cost | currency]]</td>
                             <td class="text-center" ng-hide="p.service.cost">[[p.total | currency]]</td>
                             <td class="text-right">[[p.total | currency]]</td>

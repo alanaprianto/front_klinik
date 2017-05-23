@@ -198,8 +198,7 @@ angular.module('adminApp')
 
         firstInit();
 
-        $scope.createNewPendaftaranPasien = function () {
-            console.log('createNewPendaftaranPasien');
+        $scope.createNewPendaftaranPasien = function () {            
             $scope.message.createLoketRegisters = {};
             var data = {                
                 number_medical_record: $scope.temp.number_medical_record,
@@ -226,8 +225,7 @@ angular.module('adminApp')
             serviceCreatePendaftaran(data);
         }
 
-        $scope.createOldPendaftaranPasien = function () {
-            console.log("createOldPendaftaranPasien");
+        $scope.createOldPendaftaranPasien = function () {            
             $scope.message.createLoketRegisters = {};
             var data = {                
                 patient_id: $scope.patient_id,

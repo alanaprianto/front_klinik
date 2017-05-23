@@ -26,7 +26,7 @@
 
     <div id="pendaftaranPasien-area" ng-controller="DistributorCtrl" >
         <div class="row no-margin">
-            <div class="col-md-12 no-padding m-b-15">
+            <!-- <div class="col-md-12 no-padding m-b-15">
                 <p class="text-left"> Periode </p>
                 <input type="date" name=""> Sampai Dengan <input type="date" name=""> 
                 <p class="text-left"> Nama Pasien : </p>
@@ -35,6 +35,40 @@
                 <input type="text" name="">
                 <p class="text-left"> Ruangan : </p>
                 <input type="text" name="">
+            </div> -->
+            <div class="col-md-4">
+                <div class="form-group field p-b-15 row">
+                    <label class="col-sm-4 no-padding text-left">Kelas</label>
+                    <div class="col-sm-8">
+                        <select 
+                            class="form-control m-b"
+                            ng-model="temp.class_room"
+                            ng-change="getRoom()"
+                            ng-options="d as d.display_name for d in class_rooms">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group field p-b-15 row">
+                    <label class="col-sm-4 no-padding text-left">Kamar</label>
+                    <div class="col-sm-8">
+                        <select 
+                            class="form-control m-b"
+                            ng-model="temp.room"
+                            ng-change="getBed($index)"
+                            ng-options="d as d.display_name for d in rooms">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group field p-b-15 row">
+                    <label class="col-sm-4 no-padding text-left">Bed</label>
+                    <div class="col-sm-8">
+                        <select 
+                            class="form-control m-b"
+                            ng-model="temp.bed"
+                            ng-options="d as d.display_name for d in beds">
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="col-md-12 no-padding">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">

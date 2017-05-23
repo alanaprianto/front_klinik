@@ -24,7 +24,11 @@
                 <span class="sidebar-nav-item-icon fa fa-info-circle fa-fw"></span>
                 <span class="sidebar-nav-item">Informasi Rawat Inap</span>
             </a>
-        </li>                     
+            <ul class="nav nav-second-level" aria-expanded="true">
+                <li class="@yield('active-organizer-setting')"><a href="{{ url('admin/organizer/setting_')}}">Setting</a></li>
+                <li class="@yield('active-organizer-list')"><a href="{{ url('admin/organizer/list')}}">List</a></li>
+            </ul>
+        </li>                       
         <li class="sidebar-nav-heading">Lain-lain</li>
         <li>
             <a href="login">
