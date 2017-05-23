@@ -9,76 +9,63 @@ angular.module('adminApp')
         ngDialog, 
         ServicesAdmin,
         ServicesCommon,
-        SweetAlert,
         moment
     ) {
-        $scope.temp = {};        
-
-        var getDataOnModalOpen = function (data) {            
-            return ServicesCommon.getDistributors({id: data.id}).$promise
-            .then(function (result) {
-                console.log(result);
-            });
+        var initTemp = function () {
+            $scope.today = new Date();
+            $scope.temp = {};
+            $scope.message = {};
         }
 
-        $scope.openModal = function (target, type, data) {
-            var cssModal = '';
-            if (type) {
-                cssModal = 'modal-' + type;
-            }
-
-            if (data) {
-                $scope.dataOnModal = data;
-            }
-
-            if (type=="tambah") {
-                $scope.titlecredTransaksiRawatInapModal = "Tambah Transaksi Rawat Inap";
-            } else {
-                $scope.temp.id = data.id;
-                $scope.temp.namadist = data.name;
-                $scope.temp.alamatdist = data.address;
-                $scope.temp.telpondist = data.phone;
-                $scope.titlecredTransaksiRawatInapModal = "Edit Transaksi Rawat Inap";
-            }
-            $scope.typecredTransaksiRawatInap = type;
-
-            ngDialog.open({
-            template: target,
-            scope: $scope,
-            className: 'ngDialog-modal ' + cssModal});
-            // if (target=="createDistributorModal") {
-            //     ngDialog.open({
-            //     template: target,
-            //     scope: $scope,
-            //     className: 'ngDialog-modal ' + cssModal});
-            // } else {
-            //     getDataOnModalOpen(data)
-            //     .then(
-            //         ngDialog.open({
-            //         template: target,
-            //         scope: $scope,
-            //         className: 'ngDialog-modal ' + cssModal
-            //     }));
-            // }            
-        }
 
         var listTransaksiRawatInap = function () {
-            return ServicesCommon.getDistributors().$promise
+            return ServicesAdmin.getVisitor().$promise
             .then(function (result) {
-                var tempData = [];
-                result.datas.distributors.forEach(function (item, key) {
+                var tempData=[];
+                result.datas.patients.forEach(function(item,key){
                     tempData.push(item);
+                    switch (item.gender) {
+                    case 1:
+                        item.displayedGender = 'Laki-laki';
+                        break;
+                    case 2:
+                        item.displayedGender = 'Perempuan';
+                        break;
+                    }
+
                 });
-                $scope.tableListDistributor = tempData;
-            });
+                result.datas.beds;
+                result.datas.room;
+                result.datas.class_rooms;
+
+
+
+                $scope.tablelistTransaksiRawatInap = tempData; 
+            });           
         }
 
         var getDefaultValues = function() {
             return $http.get('views/config/defaultValues.json').then(function(data) {
                 $scope.defaultValues = data.data;
             });
+        }       
+
+        var getClassRoom = function () {
+            return ServicesCommon.getClassRoom().$promise.then(function (result) {
+                $scope.class_rooms = result.datas.class_rooms;
+            });
         }
 
+        var getRoom = function () {
+            return ServicesCommon.getRoom().$promise.then(function (result) {
+                $scope.room = result.datas.room;
+            });
+        }
+         var getBed = function () {
+            return ServicesCommon.getBed().$promise.then(function (result) {
+                $scope.bed = result.datas.beds;
+            });
+        }
         function webWorker () {
             listTransaksiRawatInap()
             .then(function () {
@@ -89,87 +76,29 @@ angular.module('adminApp')
         var firstInit = function () {
             getDefaultValues()
             .then(webWorker);
-        }
 
+            getClassRoom();
+        }
+        
         firstInit();
 
-        $scope.createnewTransaksiRawatInap = function () {            
-            $scope.message = {};
-            var param = {
-                name: $scope.temp.namadist,
-                address: $scope.temp.alamatdist,
-                phone: $scope.temp.telpondist,
+        $scope.openModal = function (target, type, data) {
+            var cssModal = '';
+            if (type) {
+                cssModal = 'modal-' + type;
             }
 
-            ServicesCommon.createupdateTransaksiRawatInap(param).$promise
-            .then(function (result) {
-                if (!result.isSuccess) {
-                    return $scope.message.error = result.message;
-                };
-                
-                ngDialog.closeAll();
-                listTransaksiRawatInap();
+            initTemp();
+            if (data) {
+                $scope.dataOnModal = data;
+                $scope.oldPatient(data);
+            }
+
+            ngDialog.open({
+                template: target,
+                scope: $scope,
+                className: 'ngDialog-modal ' + cssModal,
+                closeByDocument: false
             });
-        }
-
-        $scope.deleteTransaksiRawatInap = function (id) {
-            SweetAlert.swal({
-               title: "Konfirmasi?",
-               text: "Anda yakin akan delete Data ini?",
-               type: "warning",
-               showCancelButton: true,
-               confirmButtonColor: "#DD6B55",
-               confirmButtonText: "Ya",
-               cancelButtonText: "Tidak",
-               closeOnConfirm: true
-           }, function(isConfirm){ 
-                if (isConfirm) {
-                    $scope.message = {};
-
-                    ServicesCommon.deleteTransaksiRawatInap({id: id}).$promise
-                    .then(function (result) {
-                        if (!result.isSuccess) {
-                            return $scope.message.error = result.message;
-                        };
-
-                        ngDialog.closeAll();
-                        listTransaksiRawatInap();
-                    });
-                }
-            });
-        }
-
-        $scope.updateTransaksiRawatInap = function () {
-            SweetAlert.swal({
-               title: "Konfirmasi?",
-               text: "Anda yakin akan update Data ini?",
-               type: "warning",
-               showCancelButton: true,
-               confirmButtonColor: "#DD6B55",
-               confirmButtonText: "Ya",
-               cancelButtonText: "Tidak",
-               closeOnConfirm: true
-           }, function(isConfirm){ 
-                if (isConfirm) {
-                    console.log($scope.temp);
-                    $scope.message = {};
-                    var param = {
-                        distributor_id: $scope.temp.id,
-                        name: $scope.temp.namadist,
-                        address: $scope.temp.alamatdist,
-                        phone: $scope.temp.telpondist,
-                    }
-
-                    ServicesCommon.createupdateTransaksiRawatInap(param).$promise
-                    .then(function (result) {
-                        if (!result.isSuccess) {
-                            return $scope.message.error = result.message;
-                        };
-
-                        ngDialog.closeAll();
-                        listTransaksiRawatInap();
-                    });
-                }
-            }); 
-        }
+        }        
     });
