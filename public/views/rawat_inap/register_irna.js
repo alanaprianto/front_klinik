@@ -23,7 +23,11 @@ angular.module('adminApp')
                 var tempData=[];
                 result.datas.patients.forEach(function(item,key){
                     tempData.push(item);
+
                 });
+                result.datas.beds;
+                result.datas.room;
+                result.datas.class_rooms;
                 
                 $scope.tableListPatients = tempData; 
             });           
@@ -41,6 +45,16 @@ angular.module('adminApp')
             });
         }
 
+        var getRoom = function () {
+            return ServicesCommon.getRoom().$promise.then(function (result) {
+                $scope.room = result.datas.room;
+            });
+        }
+         var getBed = function () {
+            return ServicesCommon.getBed().$promise.then(function (result) {
+                $scope.bed = result.datas.beds;
+            });
+        }
         function webWorker () {
             listDataPasien()
             .then(function () {

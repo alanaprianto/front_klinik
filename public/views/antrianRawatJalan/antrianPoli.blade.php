@@ -31,13 +31,13 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active">
                     <a href="#antrianHariIni" 
-                        aria-controls="antrianHariIni" 
+                       aria-controls="antrianHariIni" 
                         role="tab" data-toggle="tab">Antrian Hari Ini</a>
                 </li>
                 <li role="presentation">
                     <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Riwayat</a>
                 </li>
-            </ul>
+            </ul> 
 
             <!-- Tab panes -->
             <div class="tab-content">
@@ -171,7 +171,10 @@
                                 <b>TTL / Umur</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.displayedBirth]] / <b>[[dataOnModal.displayedAge]]</b> tahun</p>
+                                <p>[[dataOnModal.displayedBirth]] / <br>
+                                    [[dataOnModal.displayedAge]] tahun, 
+                                    [[dataOnModal.displayedMonth]] bulan, 
+                                    [[dataOnModal.displayedDay]] hari</p>
                             </div>
                         </div>
 
@@ -304,8 +307,8 @@
                                         <th>
                                             <button type="button"
                                                 class="btn btn-primary btn-xs"
-                                                ng-click="addService()"
-                                                ng-hide="temp.listServices.length == services.length">
+                                                ng-click="addPharmacy()"
+                                                ng-hide="temp.listPharmacy.length == pharmacy.length">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </th>
@@ -317,11 +320,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="l in temp.listServices">
+                                    <tr ng-repeat="l in temp.listPharmacy">
                                         <td>
                                             <button type="button"
                                                 class="btn btn-danger btn-xs"
-                                                ng-click="removeService($index)">
+                                                ng-click="removePharmacy($index)">
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </td>
@@ -329,20 +332,20 @@
                                         <td>
                                             <select class="form-control condition"
                                                 ng-model="l.service_id"
-                                                ng-change="setService($index)"
-                                                ng-options="s.id as s.name for s in services">
+                                                ng-change="setPharmacy($index)"
+                                                ng-options="s.id as s.name for s in pharmacy">
                                             </select>
                                         </td>
-                                        <td>[[temp.listServices[$index].cost | currency]]</td>
+                                        <td>[[temp.listPharmacy[$index].cost | currency]]</td>
                                         <td class="col-sm-2">
                                             <input type="number"
                                                 step="1" 
                                                 min="0"
                                                 class="form-control" 
                                                 ng-model="l.service_amount"
-                                                ng-change="setTotal($index)">
+                                                ng-change="setTotalPharmacy($index)">
                                         </td>
-                                        <td>[[temp.listServices[$index].service_total | currency]]</td>
+                                        <td>[[temp.listPharmacy[$index].service_total | currency]]</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -516,6 +519,15 @@
                             <textarea name="notes" class="form-control" ng-model="temp.medrec.notes"></textarea>
                         </div>
                     </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                           <label class="control-label">Select File</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input id="input-4" name="input4[]" type="file" multiple class="file-loading">
+                        </div>
+                    </div>
+
                 </div>
                 <div class="col-md-6">
                     <div class="bg-warning" style="min-height: 34px;"
@@ -666,7 +678,10 @@
                                 <b>TTL / Umur</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.displayedBirth]] / <b>[[dataOnModal.displayedAge]]</b> tahun</p>
+                                <p>[[dataOnModal.displayedBirth]] / <br>
+                                    [[dataOnModal.displayedAge]] tahun, 
+                                    [[dataOnModal.displayedMonth]] bulan, 
+                                    [[dataOnModal.displayedDay]] hari</p>
                             </div>
                         </div>
 

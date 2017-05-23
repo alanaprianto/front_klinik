@@ -25,7 +25,7 @@ angular.module('adminApp')
             .then(function (result) {
                 $scope.patients = result.datas.patient;
             });
-        }            
+        }
 
         var serviceCreatePendaftaran = function (data) {
             var rp = "-";
@@ -78,17 +78,6 @@ angular.module('adminApp')
             });
         };
 
-        var firstInit = function () {
-            getDefaultValues();
-            getSSRl4b();
-
-            // $scope.getListProvinces();
-            // $scope.getListCities();
-            // $scope.getListDistricts();
-        }
-
-        firstInit();
-
         $scope.printArea = function (divID) {
             if (!$scope.temp.duration) {
                 $scope.temp.duration = 0;
@@ -125,7 +114,7 @@ angular.module('adminApp')
                 job: $scope.temp.job.value,
                 askes_number: $scope.temp.askes_number,
                 poly_id: $scope.temp.poly.id,
-                doctor_id: $scope.temp.doctor.id,                
+                doctor_id: $scope.temp.doctor.id,
             }
             
             serviceCreatePendaftaran(data);
@@ -160,7 +149,17 @@ angular.module('adminApp')
                 $scope.temp.full_name = patient.full_name;
                 $scope.temp.place = patient.place;
                 $scope.temp.birth = new Date(moment(patient.birth, "DD/MM/YYYY"));
-                $scope.temp.age = moment().diff($scope.temp.birth, 'years');
+                
+                var diffDuration = moment.duration(moment().diff($scope.temp.birth));
+                $scope.temp.age = diffDuration.years();
+                $scope.temp.month = diffDuration.months();
+                $scope.temp.day = diffDuration.days();
+                if (isNaN(diffDuration)) {
+                    $scope.temp.age = 0;
+                    $scope.temp.month = 0;
+                    $scope.temp.day = 0;
+                }
+
                 $scope.temp.address = patient.address;            
                 $scope.temp.rt_rw = patient.rt_rw;
                 $scope.temp.phone_number = patient.phone_number;                
@@ -213,23 +212,29 @@ angular.module('adminApp')
         }
 
         $scope.getAge = function () {
-            $scope.temp.age = moment().diff($scope.temp.birth, 'years');
+            var diffDuration = moment.duration(moment().diff($scope.temp.birth));
+            $scope.temp.age = diffDuration.years();
+            $scope.temp.month = diffDuration.months();
+            $scope.temp.day = diffDuration.days();
+            if (isNaN(diffDuration)) {
+                $scope.temp.age = 0;
+                $scope.temp.month = 0;
+                $scope.temp.day = 0;
+            }
         }
 
         $scope.getRoom = function () {
             return ServicesCommon.getRoom({class_room_id:$scope.temp.class_room.id})
-                .$promise.then(function (result) {
-                    console.log(result);
-                    $scope.rooms = result.datas.rooms;
-                    $scope.beds = {};
+            .$promise.then(function (result) {
+                $scope.rooms = result.datas.rooms;
+                $scope.beds = {};
             });
         }
 
         $scope.getBed = function () {
             return ServicesCommon.getBed({room_id:$scope.temp.room.id})
-                .$promise.then(function (result) {
-                    console.log(result);
-                    $scope.beds = result.datas.beds;
+            .$promise.then(function (result) {
+                $scope.beds = result.datas.beds;
             });
         }
 
@@ -268,5 +273,17 @@ angular.module('adminApp')
                     $scope.subDistricts = result.datas.subDistricts;
                 });
             }
-        }        
+        }
+
+        var firstInit = function () {
+            getDefaultValues();
+            getSSRl4b();
+            getPatients();
+
+            $scope.getListProvinces();
+            $scope.getListCities();
+            $scope.getListDistricts();
+        }
+
+        firstInit();
     });

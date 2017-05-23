@@ -42,7 +42,8 @@ angular.module('adminApp')
             ngDialog.open({
                 template: target,
                 scope: $scope,
-                className: 'ngDialog-modal ' + cssModal
+                className: 'ngDialog-modal ' + cssModal,
+                closeByDocument: false
             });
         }
 

@@ -15,6 +15,7 @@ angular.module('adminApp')
             $scope.temp = {};
             $scope.temp.startDate = new Date();
             $scope.temp.listServices = [];
+            $scope.temp.listPharmacy = [];
         }
 
         $scope.formatDate = function(date){
@@ -132,6 +133,13 @@ angular.module('adminApp')
             });
         }
 
+        var listPharmacy = function () {
+            return ServicesCommon.getInventories().$promise
+            .then(function (result) {
+                $scope.pharmacy = result.datas.inventories.data;
+            });
+        }
+
         var getDoctorName = function (staffID) {
             var result = "";
             $scope.listAllDoctor.forEach(function (val) {
@@ -164,7 +172,17 @@ angular.module('adminApp')
                     if (item.reference && item.reference.register && item.reference.register.patient) {
                         var dateBirth = moment(item.reference.register.patient.birth, 'DD/MM/YYYY');
                         item.displayedBirth = dateBirth.format('DD MMMM YYYY');
-                        item.displayedAge = moment().diff(dateBirth, 'years');
+
+                        var diffDuration = moment.duration(moment().diff(dateBirth));
+                        item.displayedAge = diffDuration.years();
+                        item.displayedMonth = diffDuration.months();
+                        item.displayedDay = diffDuration.days();
+                        if (isNaN(diffDuration)) {
+                            item.displayedAge = 0;
+                            item.displayedMonth = 0;
+                            item.displayedDay = 0;
+                        }
+
                         item.displayedGender = genderToString(item.reference.register.patient.gender);
                     }
                     if (item.reference) {
@@ -195,7 +213,17 @@ angular.module('adminApp')
                     );
 
                     var dateBirth = moment(item.birth, 'DD/MM/YYYY');
-                    item.displayedAge = moment().diff(dateBirth, 'years');
+
+                    var diffDuration = moment.duration(moment().diff(dateBirth));
+                    item.displayedAge = diffDuration.years();
+                    item.displayedMonth = diffDuration.months();
+                    item.displayedDay = diffDuration.days();
+                    if (isNaN(diffDuration)) {
+                        item.displayedAge = 0;
+                        item.displayedMonth = 0;
+                        item.displayedDay = 0;
+                    }
+
                     item.displayedBirth = dateBirth.format('DD MMMM YYYY');
                     item.displayedGender = genderToString(item.gender);
                     item.displayedJob = jobToString(item.job);
@@ -285,6 +313,7 @@ angular.module('adminApp')
             initTemp();
             getDefaultValues()
             .then(listServices)
+            .then(listPharmacy)
             .then(listPoli)
             .then(webWorker)
         }
@@ -440,6 +469,46 @@ angular.module('adminApp')
 
         $scope.setTotal = function (idx) {
             $scope.temp.listServices[idx].service_total = $scope.temp.listServices[idx].service_amount * $scope.temp.listServices[idx].cost;
+        }
+
+        $scope.removePharmacy = function (idx) {
+            $scope.temp.listPharmacy.splice(idx, 1);
+        }
+
+        $scope.addPharmacy = function () {
+            var countService = $scope.temp.listPharmacy.length;
+            if (!$scope.services[countService]) {
+                return;
+            }
+
+            var initAmount = 1;
+            var initCost = $scope.services[countService].cost;
+            var initID = $scope.services[countService].id;
+
+            var addService = {
+                cost: initCost,
+                service_id: initID,
+                service_amount: initAmount,
+                service_total: initAmount * initCost
+            };
+
+            $scope.temp.listPharmacy.push(addService);
+        }
+        
+        $scope.setPharmacy = function (idx) {
+            var result = {};
+            $scope.services.forEach(function (item) {
+                if (item.id == $scope.temp.listPharmacy[idx].service_id) {
+                    return result = item;
+                };
+            });
+
+            $scope.temp.listPharmacy[idx].cost = result.cost;
+            $scope.temp.listPharmacy[idx].service_total = result.cost * $scope.temp.listPharmacy[idx].service_amount;
+        }
+
+        $scope.setTotalPharmacy = function (idx) {
+            $scope.temp.listPharmacy[idx].service_total = $scope.temp.listPharmacy[idx].service_amount * $scope.temp.listPharmacy[idx].cost;
         }
 
         $scope.createMedicalRecord = function () {    

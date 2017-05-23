@@ -56,7 +56,7 @@
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Umur</label>
                     <div class="col-sm-8">
-                        <p>[[temp.age]] tahun</p>
+                        <p>[[temp.age]] tahun, [[temp.month]] bulan, [[temp.day]] hari</p>
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">
@@ -375,7 +375,7 @@
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Umur</label>
                     <div class="col-sm-8">
-                        <p>[[temp.age]] tahun</p>
+                        <p>[[temp.age]] tahun, [[temp.month]] bulan, [[temp.day]] hari</p>
                     </div>
                 </div>
                 <div class="form-group field p-b-15 row">

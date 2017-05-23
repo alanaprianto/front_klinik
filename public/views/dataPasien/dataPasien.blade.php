@@ -82,7 +82,10 @@
                                 <b>TTL / Umur</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.displayedBirth]] / <b>[[dataOnModal.displayedAge]]</b> tahun</p>
+                                <p>[[dataOnModal.place]], [[formatDate(dataOnModal.birth) | date:"dd MMM yyyy"]] / <br>
+                                    [[dataOnModal.displayedAge]] tahun, 
+                                    [[dataOnModal.displayedMonth]] bulan, 
+                                    [[dataOnModal.displayedDay]] hari</p>
                             </div>
                         </div>
 

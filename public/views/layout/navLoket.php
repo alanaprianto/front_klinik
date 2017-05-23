@@ -20,6 +20,12 @@
                                     <span class="sidebar-nav-item">Pendaftaran</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="dataPasien">
+                                    <span class="sidebar-nav-item-icon fa fa-male"></span>
+                                    <span class="sidebar-nav-item">Pengunjung</span>
+                                </a>
+                            </li>
                            
                             <li class="sidebar-nav-heading">Lain-lain</li>
                             <li>

@@ -189,3 +189,15 @@ Route::get('/pjasa_irj_radiologi', function() {
 Route::get('/pjasa_irna_radiologi', function() {
     return View::make('radiologi.pjasa_irna_radiologi');
 });
+Route::get('/laboratorium', function() {
+    return View::make('lab.lab');
+});
+Route::get('/transaksi_radiologi', function() {
+    return View::make('radiologi.transaksi_radiologi');
+});
+Route::get('/pjasa_irj_radiologi', function() {
+    return View::make('radiologi.pjasa_irj_radiologi');
+});
+Route::get('/pjasa_irna_radiologi', function() {
+    return View::make('radiologi.pjasa_irna_radiologi');
+});

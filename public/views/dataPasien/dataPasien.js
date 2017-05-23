@@ -36,7 +36,7 @@ angular.module('adminApp')
         }
 
         var getDefaultValues = function() {
-            $http.get('views/config/defaultValues.json').then(function(data) {
+            return $http.get('views/config/defaultValues.json').then(function(data) {
                 $scope.gender = data.data.gender;
                 $scope.job = data.data.listJobs;
             });
@@ -47,16 +47,27 @@ angular.module('adminApp')
             .then(function (result) {
                 var tempData=[];
                 result.datas.patients.forEach(function(item,key){
-                     if (item.patient && item.patient.birth) {
-                        item.patient.age = moment().diff(moment(item.patient.birth, "DD/MM/YYYY", true), 'years');
+                     if (item) {
+                        item.age = moment().diff(moment(item.birth, "DD/MM/YYYY", true), 'years');
+
+                        var diffDuration = moment.duration(moment().diff(item.birth));
+                        item.displayedAge = diffDuration.years();
+                        item.displayedMonth = diffDuration.months();
+                        item.displayedDay = diffDuration.days();
+                        if (isNaN(diffDuration)) {
+                            item.displayedAge = 0;
+                            item.displayedMonth = 0;
+                            item.displayedDay = 0;
+                        }
+
                         item.displayedJob = jobToString(item.job);
                     }
                     switch (item.gender) {
                     case 1:
-                       item.gender = 'Laki-laki';
+                        item.displayedGender = 'Laki-laki';
                         break;
                     case 2:
-                        item.gender = 'Perempuan';
+                        item.displayedGender = 'Perempuan';
                         break;
                     }
                     tempData.push(item);
@@ -67,9 +78,8 @@ angular.module('adminApp')
         }
         
         var firstInit = function () {
-            listDataPasien();
-            getDefaultValues();
-
+            getDefaultValues()
+            .then(listDataPasien);
         }
 
         firstInit();

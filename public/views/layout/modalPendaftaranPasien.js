@@ -38,18 +38,6 @@ angular.module('adminApp')
             });
         }
 
-        var firstInit = function () {
-            getDefaultValues();
-            getSSRl4b();
-            getPatients();
-
-            $scope.getListProvinces();
-            $scope.getListCities();
-            $scope.getListDistricts();
-        }
-
-        firstInit();
-
         $scope.printArea = function (divID) {
             if (!$scope.temp.duration) {
                 $scope.temp.duration = 0;
@@ -161,7 +149,17 @@ angular.module('adminApp')
                 $scope.temp.full_name = $scope.temp.patient.full_name;
                 $scope.temp.place = $scope.temp.patient.place;
                 $scope.temp.birth = new Date(moment($scope.temp.patient.birth, "DD/MM/YYYY"));
-                $scope.temp.age = moment().diff($scope.temp.birth, 'years');
+
+                var diffDuration = moment.duration(moment().diff($scope.temp.birth));
+                $scope.temp.age = diffDuration.years();
+                $scope.temp.month = diffDuration.months();
+                $scope.temp.day = diffDuration.days();
+                if (isNaN(diffDuration)) {
+                    $scope.temp.age = 0;
+                    $scope.temp.month = 0;
+                    $scope.temp.day = 0;
+                }
+                
                 $scope.temp.address = $scope.temp.patient.address;
                 $scope.temp.rt_rw = $scope.temp.patient.rt_rw;
                 $scope.temp.phone_number = $scope.temp.patient.phone_number;
@@ -214,7 +212,15 @@ angular.module('adminApp')
         }
 
         $scope.getAge = function () {
-            $scope.temp.age = moment().diff($scope.temp.birth, 'years');
+            var diffDuration = moment.duration(moment().diff($scope.temp.birth));
+            $scope.temp.age = diffDuration.years();
+            $scope.temp.month = diffDuration.months();
+            $scope.temp.day = diffDuration.days();
+            if (isNaN(diffDuration)) {
+                $scope.temp.age = 0;
+                $scope.temp.month = 0;
+                $scope.temp.day = 0;
+            }
         }
 
         $scope.getDoctor = function () {
@@ -262,4 +268,16 @@ angular.module('adminApp')
                 });
             }
         }
+
+        var firstInit = function () {
+            getDefaultValues();
+            getSSRl4b();
+            getPatients();
+
+            $scope.getListProvinces();
+            $scope.getListCities();
+            $scope.getListDistricts();
+        }
+
+        firstInit();
     });
