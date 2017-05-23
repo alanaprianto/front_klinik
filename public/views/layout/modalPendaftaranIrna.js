@@ -28,7 +28,7 @@ angular.module('adminApp')
         }        
 
         var getSSRl4b = function () {
-            return $http.get('views/config/defaultSSRjalanRl4b.json').then(function(data) {
+            return $http.get('views/config/defaultSSRInapRl4a.json').then(function(data) {
                 $scope.defaultSSRjalanRl4b = data.data;
             });
         }
