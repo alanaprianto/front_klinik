@@ -24,153 +24,153 @@
 @endsection
 @section('content')
 <div class="row no-margin no-padding">
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#TrLangsung" 
-                    aria-controls="TrLangsung" 
-                    role="tab" data-toggle="tab">Transaksi Langsung</a>
-            </li>
-            <li role="presentation">
-                <a href="#riwayat" aria-controls="riwayat" role="tab" data-toggle="tab">Riwayat</a>
-            </li>
-        </ul>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#TrLangsung" 
+                aria-controls="TrLangsung" 
+                role="tab" data-toggle="tab">Transaksi Langsung</a>
+        </li>
+        <li role="presentation">
+            <a href="#riwayat" aria-controls="riwayat" role="tab" data-toggle="tab">Riwayat</a>
+        </li>
+    </ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content" ng-controller="TransaksiRadiologiCtrl" >
-            <div role="tabpanel" class="tab-pane active" id="TrLangsung">
-                <br>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-12" style="border-bottom: 2px solid #B3B3B3">
-                            <div class="col-md-4">
-                                <div class="form-group field row text-left">
-                                    <div class="col-sm-4">
-                                        <b>Nama Pasien</b>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <input 
-                                            type="text" 
-                                            class="form-control input-sm"
-                                            ng-model="temp.patient_name">
-                                    </div>
+    <!-- Tab panes -->
+    <div class="tab-content" ng-controller="TransaksiRadiologiCtrl" >
+        <div role="tabpanel" class="tab-pane active" id="TrLangsung">
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12" style="border-bottom: 2px solid #B3B3B3">
+                        <div class="col-md-4">
+                            <div class="form-group field row text-left">
+                                <div class="col-sm-4">
+                                    <b>Nama Pasien</b>
                                 </div>
-                                <div class="form-group field row text-left">
-                                    <div class="col-sm-4">
-                                        <b>Alamat</b>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <textarea 
-                                            class="form-control" 
-                                            name="address"
-                                            ng-model="temp.patient_address"></textarea>
-                                    </div>
+                                <div class="col-sm-8">
+                                    <input 
+                                        type="text" 
+                                        class="form-control input-sm"
+                                        ng-model="temp.patient_name">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group field row text-left">
-                                    <div class="col-sm-4">
-                                        <b>Nama DPJP</b>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <select 
-                                            class="form-control m-b"
-                                            ng-model="temp.patient_dpjp"
-                                            ng-options="d as d.full_name for d in listDoctor">
-                                        </select>
-                                    </div>
+                            <div class="form-group field row text-left">
+                                <div class="col-sm-4">
+                                    <b>Alamat</b>
                                 </div>
-                                <div class="form-group field row text-left">
-                                    <div class="col-sm-4">
-                                        <b>Nama Pelaksana</b>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <select 
-                                            class="form-control m-b" 
-                                            ng-model="temp.patient_executor"
-                                            ng-options="d as d.full_name for d in listDoctor">
-                                        </select>
-                                    </div>
+                                <div class="col-sm-8">
+                                    <textarea 
+                                        class="form-control" 
+                                        name="address"
+                                        ng-model="temp.patient_address"></textarea>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row p-b-15" style="height: 100%; position: fixed; width: 100%; left: 10px; padding-left: 250px;">
-                    <div class="col-md-12" style="max-height: 60%; overflow: auto;">
-                        <table id="service-table" class="table service-table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <button type="button"
-                                            class="btn btn-primary btn-xs"
-                                            ng-click="addService()"
-                                            ng-hide="temp.listServices.length == services.length">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </th>
-                                    <th>No</th>
-                                    <th>Nama Layanan</th>
-                                    <th>Biaya Layanan</th>
-                                    <th>Jumlah</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="l in temp.listServices">
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-danger btn-xs"
-                                            ng-click="removeService($index)">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </td>
-                                    <td>[[$index + 1]]</td>
-                                    <td>
-                                        <select class="form-control condition"
-                                            ng-model="l.service_id"
-                                            ng-change="setService($index)"
-                                            ng-options="s.id as s.name for s in services">
-                                        </select>
-                                    </td>
-                                    <td>[[temp.listServices[$index].cost | currency]]</td>
-                                    <td class="col-sm-2">
-                                        <input type="number"
-                                            step="1" 
-                                            min="0"
-                                            class="form-control" 
-                                            ng-model="l.service_amount"
-                                            ng-change="setSubTotal($index)">
-                                    </td>
-                                    <td>[[temp.listServices[$index].service_total | currency]]</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="row" style="bottom: 0; position: fixed; width: 100%; left: 0; padding-left: 265px;">
-                    <div class="col-md-3" style="background-color:#FE8A71; color: #ffffff">
-                        <p>Total Tagihan </p>
-                        <div class="pull-right">
-                            <h2> [[setTotal()|currency]]</h2>
-                        </div>
-                    </div>
-                    <div class="col-md-9" style="background-color:#72CCCA; color: #ffffff;">
-                        <div class="pull-right col-md-4" style="padding: 14.5px">
-                            <button 
-                                class="btn btn-default no-radius col-md-12"
-                                ng-click="openModal('pembayaranModal', 'tambah')">
-                                Bayar
-                            </button>
+                        <div class="col-md-4">
+                            <div class="form-group field row text-left">
+                                <div class="col-sm-4">
+                                    <b>Nama DPJP</b>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select 
+                                        class="form-control m-b"
+                                        ng-model="temp.patient_dpjp"
+                                        ng-options="d as d.full_name for d in listDoctor">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group field row text-left">
+                                <div class="col-sm-4">
+                                    <b>Nama Pelaksana</b>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select 
+                                        class="form-control m-b" 
+                                        ng-model="temp.patient_executor"
+                                        ng-options="d as d.full_name for d in listDoctor">
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div role="tabpanel" class="tab-pane" id="riwayat">
-                
+            <div class="row p-b-15" style="height: 100%; position: fixed; width: 100%; left: 10px; padding-left: 250px;">
+                <div class="col-md-12" style="max-height: 60%; overflow: auto;">
+                    <table id="service-table" class="table service-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <button type="button"
+                                        class="btn btn-primary btn-xs"
+                                        ng-click="addService()"
+                                        ng-hide="temp.listServices.length == services.length">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </th>
+                                <th>No</th>
+                                <th>Nama Layanan</th>
+                                <th>Biaya Layanan</th>
+                                <th>Jumlah</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="l in temp.listServices">
+                                <td>
+                                    <button type="button"
+                                        class="btn btn-danger btn-xs"
+                                        ng-click="removeService($index)">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </td>
+                                <td>[[$index + 1]]</td>
+                                <td>
+                                    <select class="form-control condition"
+                                        ng-model="l.service_id"
+                                        ng-change="setService($index)"
+                                        ng-options="s.id as s.name for s in services">
+                                    </select>
+                                </td>
+                                <td>[[temp.listServices[$index].cost | currency]]</td>
+                                <td class="col-sm-2">
+                                    <input type="number"
+                                        step="1" 
+                                        min="0"
+                                        class="form-control" 
+                                        ng-model="l.service_amount"
+                                        ng-change="setSubTotal($index)">
+                                </td>
+                                <td>[[temp.listServices[$index].service_total | currency]]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row" style="bottom: 0; position: fixed; width: 100%; left: 0; padding-left: 265px;">
+                <div class="col-md-3" style="background-color:#FE8A71; color: #ffffff">
+                    <p>Total Tagihan </p>
+                    <div class="pull-right">
+                        <h2> [[setTotal()|currency]]</h2>
+                    </div>
+                </div>
+                <div class="col-md-9" style="background-color:#72CCCA; color: #ffffff;">
+                    <div class="pull-right col-md-4" style="padding: 14.5px">
+                        <button 
+                            class="btn btn-default no-radius col-md-12"
+                            ng-click="openModal('pembayaranModal', 'tambah')">
+                            Bayar
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div role="tabpanel" class="tab-pane" id="riwayat">
+            
+        </div>
     </div>
+</div>
 
     <script type="text/ng-template" id="pembayaranModal">
         <div class="row p-b-15">

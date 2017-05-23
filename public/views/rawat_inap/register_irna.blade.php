@@ -1,11 +1,13 @@
 @extends('layout.layout')
 @section('title')
 <title>Rawat Inap .: Teknohealth :. </title>
-<link rel="icon" href="assets/images/logo/logo-sm.png">
+<link rel="icon" href="assets/images/logo/logo-sm.png" />
 @endsection
 @section('module-title')
 <div class="module-left-title">
-    <div class="module-left-bars"><i class="ti-menu"></i></div>
+    <div class="module-left-bars">
+        <i class="ti-menu"></i>
+    </div>
     <img src="assets/images/logo/dataPasien.png">
     <span>Rawat Inap</span>
 </div>
@@ -25,7 +27,7 @@
 @section('content')
    <div id="pendaftaranPasien-area" ng-controller="RegisterIRNACtrl" >
         <div class="row no-margin no-padding"">
-         <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active">
                     <a href="#antrianHariIni" 
                        aria-controls="antrianHariIni" 
@@ -34,17 +36,35 @@
                 <li role="presentation">
                     <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Riwayat</a>
                 </li>
-            </ul> 
+            </ul>
+
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="antrianHariIni">
                     <br>
-                    <div class="col-md-12 no-padding m-b-15">
+                    <div class="col-md-12 m-b-15">
                         <button 
                             class="btn btn-info col-md-4 no-radius" 
-                            ng-click="openModal('tambahPasienModal')"> Pendaftaran</button>
+                            ng-click="openModal('tambahPasienBaruModal', 'lg')"> Pendaftaran Pasien Baru</button>
+                        <div class="col-md-4 pull-right">
+                            <form>
+                                <div class="input-group">
+                                    <input id="individualDrop"
+                                        type="text" 
+                                        class="form-control input-sm" 
+                                        data-toggle="dropdown"
+                                        placeholder="Cari Pasien" 
+                                        ng-model="temp.searchParam">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default btn-sm" type="submit">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </div>
+                                 </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-md-12 no-padding">
-                        <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
+                    <div class="col-md-12">
+                        <table class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -52,27 +72,29 @@
                                     <th>Nama Pasien</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Umur</th>
-                                    <th>Kelas</th>
-                                    <th>Ruangan</th>
-                                    <th>Bad</th>
+                                    <th>Alamat</th>
+                                    <th>No. Telepon</th>                                    
                                     <th>Terakhir Kunjungan</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="visitor in tableListPatients | filter: { patient: searchVisitor }">
+                                <tr ng-repeat="patient in tableListPatients | filter: { full_name: temp.searchParam }">
                                     <td>[[$index + 1]]</td>
-                                    <td>[[visitor.number_medical_record]]</td>
-                                    <td>[[visitor.full_name]]</td>
-                                    <td>[[visitor.gender]]</td>
-                                    <td>[[visitor.age]]</td>
-                                    <td>[[visitor.class_rooms]]</td>
+                                    <td>[[patient.number_medical_record]]</td>
+                                    <td>[[patient.full_name]]</td>
+                                    <td>[[patient.gender]]</td>
+                                    <td>[[patient.age]]</td>
+                                    <td>[[patient.class_rooms]]</td>
                                     <td></td>
                                     <td></td>
-                                    <td>[[formatDate(visitor.registers[0].created_at) | date: 'dd MMM yyyy HH:mm']]</td>
                                     <td>
                                         <button class="btn btn-xs btn-success"
-                                            ng-click="openModal('editPasienModal', 'lg', visitor)">
+                                            ng-click="openModal('tambahPasienLamaModal', 'lg', patient)">
+                                            Daftarkan Pasien
+                                        </button>
+                                        <button class="btn btn-xs btn-success"
+                                            ng-click="openModal('editPasienModal', 'lg', patient)">
                                             <i class="fa fa-edit"></i>
                                         </button>
                                     </td>
@@ -81,7 +103,8 @@
                         </table>
                     </div>
                 </div>
-            <div role="tabpanel" class="tab-pane" id="profile">
+
+                <div role="tabpanel" class="tab-pane" id="profile">
                 <br>
                 <div class="col-md-12">
                 <table id="example" class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
@@ -116,8 +139,10 @@
                             </tbody>
                         </table>
                 </div>
+                </div>
             </div>
         </div>
+
         <script type="text/ng-template" id="editPasienModal">
             <div class="row p-b-15">
                 <div class="col-md-12">
@@ -364,6 +389,7 @@
                 </div>
             </div>
         </script>
+
         <script type="text/ng-template" id="medicalRecordModal">
             <div class="row p-b-15">
                 <h4 class="modal-title">
@@ -499,7 +525,7 @@
             </div>
         </script>
 
-         <script type="text/ng-template" id="detailPasienLamaModal">
+        <script type="text/ng-template" id="detailPasienLamaModal">
             <!--<div class="row p-b-15">
                 <h4 class="modal-title">
                     Pasien [[dataOnModal.reference.register.patient.full_name]]

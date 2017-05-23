@@ -74,19 +74,19 @@ angular.module('adminApp')
                 job: $scope.temp.job.value,
                 askes_number: $scope.temp.askes_number,
                 poly_id: $scope.temp.poly.id,
-                doctor_id: $scope.temp.doctor.id,                
+                doctor_id: $scope.temp.doctor.id,
             }
             
             serviceCreatePendaftaran(data);
         }
 
         $scope.createOldPendaftaranPasien = function () {
-            $scope.message.createLoketRegisters = {};        
+            $scope.message.createLoketRegisters = {};
             var data = {
                 kiosk_id: $scope.kiosk_id,
                 patient_id: $scope.patient_id,
                 poly_id: $scope.temp.poly.id,
-                doctor_id: $scope.temp.doctor.id,                
+                doctor_id: $scope.temp.doctor.id,
             }
             
             serviceCreatePendaftaran(data);

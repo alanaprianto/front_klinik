@@ -1,4 +1,4 @@
-<script type="text/ng-template" id="tambahPasienModal">
+<!-- <script type="text/ng-template" id="tambahPasienModal">
     <div class="row p-b-15">
         <h4 class="modal-title">Pilih Tipe Pendaftaran</h4>        
     </div>
@@ -15,7 +15,7 @@
                 ng-click="openModal('tambahPasienLamaModal', 'lg')">Pasien Lama</button>
         </div>
     </div>
-</script>
+</script> -->
 
 <script type="text/ng-template" id="tambahPasienBaruModal">
     <div class="row p-b-15">
@@ -296,45 +296,14 @@
         <button 
             class="btn btn-info col-md-3 no-radius" 
             ng-click="createNewPendaftaranPasien()"
-            ng-disabled="!temp.poly.id">Tambah</button>
+            ng-disabled="!temp.bed.id">Tambah</button>
     </div>
 </script>
 
 <script type="text/ng-template" id="tambahPasienLamaModal">
     <div class="row p-b-15">
         <h4 class="modal-title">Pasien Lama</h4>
-    </div>
-    <div class="row p-b-15">
-        <br><br>
-        <div class="col-md-3">
-            
-        </div>
-        <div class="col-md-2">
-            <p>Search</p>
-        </div>
-        <div class="col-md-4">
-            <form style="padding-bottom: 10px; margin-top: -10px;">
-                <div class="input-group">
-                    <input id="individualDrop"
-                        type="text" 
-                        class="form-control input-sm" 
-                        data-toggle="dropdown"
-                        placeholder="Cari Pasien" 
-                        ng-model="temp.searchParam">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                    </div>
-                    <ul class="dropdown-menu col-md-12" role="menu" aria-labelledby="individualDrop">
-                        <li role="presentation" ng-repeat="patient in patients | filter:{full_name: temp.searchParam}">
-                            <a role="menuitem" ng-click="oldPatient(patient)">[[patient.full_name]]</a>
-                        </li>
-                    </ul>
-                 </div>
-            </form>
-        </div>
-        <div class="col-md-3">            
-        </div>        
-    </div>
+    </div>    
     <div class="row p-t-15" ng-show="temp.number_medical_record">
         <div class="col-md-12">
             <div class="col-md-6">                
@@ -361,7 +330,7 @@
                     <div class="col-sm-5">
                         <input disabled="input" 
                             type="date" 
-                            class="form-control date-1" 
+                            class="form-control date-1"
                             name="birth"
                             ng-model="temp.birth"
                             ng-change="getAge()">
@@ -610,6 +579,6 @@
         <button 
             class="btn btn-info col-md-3 no-radius" 
             ng-click="createOldPendaftaranPasien()"
-            ng-disabled="!temp.poly.id">Tambah</button>
+            ng-disabled="!temp.bed.id">Tambah</button>
     </div>
 </script>

@@ -44,12 +44,14 @@
                             class="ui teal celled table compact display nowrap" 
                             cellspacing="0" width="100%">
                             <thead>
-                                <tr>
+                                <tr>                           
                                     <th>Antrian</th>
+                                    <th>No. Medrec</th>
                                     <th>Nama</th>
                                     <th>Jenis Kelamin</th>
+                                    <th>Poli Awal</th>
                                     <th>Dokter</th>
-                                    <th>Status</th>
+                                    <th>Tipe Layanan</th>
                                     <th>Action</th>  
                                 </tr>
                             </thead>

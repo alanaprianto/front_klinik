@@ -46,11 +46,13 @@
                             <thead>
                                 <tr>
                                     <th>Antrian</th>
+                                    <th>No. Medrec</th>
                                     <th>Nama</th>
                                     <th>Jenis Kelamin</th>
-                                    <th>Dokter</th>
-                                    <th>Status</th>
-                                    <th>Action</th>  
+                                    <th>Kelas</th>
+                                    <th>Kamar</th>
+                                    <th>Bed</th>
+                                    <th>Action</th> 
                                 </tr>
                             </thead>
                             <tbody>

@@ -11,9 +11,11 @@ angular.module('adminApp')
         ServicesCommon,
         moment
     ) {
-        $scope.today = new Date();
-        $scope.temp = {};
-        $scope.message = {};
+        var initTemp = function () {
+            $scope.today = new Date();
+            $scope.temp = {};
+            $scope.message = {};
+        }
 
         angular.extend(this, $controller('ModalPendaftaranIrnaCtrl', {$scope: $scope}));
 
@@ -77,10 +79,11 @@ angular.module('adminApp')
                 cssModal = 'modal-' + type;
             }
 
+            initTemp();
             if (data) {
                 $scope.dataOnModal = data;
-                $scope.temp.patient = data;
-            }            
+                $scope.oldPatient(data);
+            }
 
             ngDialog.open({
                 template: target,
@@ -88,5 +91,5 @@ angular.module('adminApp')
                 className: 'ngDialog-modal ' + cssModal,
                 closeByDocument: false
             });
-        }
+        }        
     });

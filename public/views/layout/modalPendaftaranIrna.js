@@ -5,7 +5,7 @@ angular.module('adminApp')
         $scope, 
         $http, 
         $rootScope, 
-        ngDialog, 
+        ngDialog,
         ServicesAdmin,
         ServicesCommon,
         moment
@@ -25,46 +25,7 @@ angular.module('adminApp')
             .then(function (result) {
                 $scope.patients = result.datas.patient;
             });
-        }
-
-        var serviceCreatePendaftaran = function (data) {
-            var rp = "-";
-            var rp_state = "-";
-            var cp = "-";
-            if ($scope.temp.responsible_person) {
-                rp = $scope.temp.responsible_person;
-            }
-            if ($scope.temp.responsible_person_state) {
-                rp_state = $scope.temp.responsible_person_state.value;
-            }
-            if ($scope.temp.cause_pain) {
-                cp = $scope.temp.cause_pain.no_dtd;
-            }
-            var registerData = {
-                responsible_person: rp,
-                responsible_person_state: rp_state,
-                how_visit: $scope.temp.how_visit.value,
-                time_attend: $scope.currHour,
-                service_type: $scope.temp.service_type.value,
-                cause_pain: cp,
-            }
-
-            var defaultData = defaultDataCreatePasien();
-
-            var param = Object.assign(defaultData, data, registerData);
-
-            ServicesAdmin.createLoketRegisters(param).$promise
-            .then(function (result) {
-                if (!result.isSuccess) {
-                    return $scope.message.createLoketRegisters.error = result.message;
-                };
-
-                $scope.result = result;
-                $scope.temp.poliquenumber = result.datas.reference.kiosk.queue_number;
-                ngDialog.closeAll();
-                $scope.printArea('printRegister');
-            });
-        }
+        }        
 
         var getSSRl4b = function () {
             return $http.get('views/config/defaultSSRjalanRl4b.json').then(function(data) {
@@ -91,57 +52,7 @@ angular.module('adminApp')
                 popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
                 popupWin.document.close();
             }, 500);
-        } 
-
-        $scope.createNewPendaftaranPasien = function () {
-            $scope.message.createLoketRegisters = {};
-            var data = {
-                kiosk_id: $scope.kiosk_id,
-                number_medical_record: $scope.temp.number_medical_record,
-                full_name: $scope.temp.full_name,
-                place: $scope.temp.place,
-                birth: moment($scope.temp.birth).format("DD/MM/YYYY"),
-                gender: $scope.temp.gender.value,
-                address: $scope.temp.address,
-                religion: $scope.temp.religion.value,
-                province: $scope.temp.province.code,
-                city: $scope.temp.city.code,
-                district: $scope.temp.district.code,
-                sub_district: $scope.temp.subDistrict.code,
-                rt_rw: $scope.temp.rt_rw,
-                phone_number: $scope.temp.phone_number,
-                last_education: $scope.temp.last_education.value,
-                job: $scope.temp.job.value,
-                askes_number: $scope.temp.askes_number,
-                poly_id: $scope.temp.poly.id,
-                doctor_id: $scope.temp.doctor.id,
-            }
-            
-            serviceCreatePendaftaran(data);
-        }
-
-        $scope.createOldPendaftaranPasien = function () {
-            $scope.message.createLoketRegisters = {};        
-            var data = {
-                kiosk_id: $scope.kiosk_id,
-                patient_id: $scope.patient_id,
-                poly_id: $scope.temp.poly.id,
-                doctor_id: $scope.temp.doctor.id,                
-            }
-            
-            serviceCreatePendaftaran(data);
-        }        
-
-        $scope.searchPasien = function () {
-            var params = {
-                data: $scope.temp.query
-            };
-
-            ServicesAdmin.getLoketPendaftaranPatient(params).$promise
-            .then(function (result) {
-                $scope.temp.patients = result.datas.patient;
-            });
-        }
+        }                
 
         $scope.oldPatient = function (patient) {
             if (patient) {
@@ -286,4 +197,82 @@ angular.module('adminApp')
         }
 
         firstInit();
+
+        $scope.createNewPendaftaranPasien = function () {
+            console.log('createNewPendaftaranPasien');
+            $scope.message.createLoketRegisters = {};
+            var data = {                
+                number_medical_record: $scope.temp.number_medical_record,
+                full_name: $scope.temp.full_name,
+                place: $scope.temp.place,
+                birth: moment($scope.temp.birth).format("DD/MM/YYYY"),
+                gender: $scope.temp.gender.value,
+                address: $scope.temp.address,
+                religion: $scope.temp.religion.value,
+                province: $scope.temp.province.code,
+                city: $scope.temp.city.code,
+                district: $scope.temp.district.code,
+                sub_district: $scope.temp.subDistrict.code,
+                rt_rw: $scope.temp.rt_rw,
+                phone_number: $scope.temp.phone_number,
+                last_education: $scope.temp.last_education.value,
+                job: $scope.temp.job.value,
+                askes_number: $scope.temp.askes_number,
+                class_room_id: $scope.temp.class_room.id,
+                room_id: $scope.temp.room.id,
+                bed_id: $scope.temp.bed.id
+            }
+            
+            serviceCreatePendaftaran(data);
+        }
+
+        $scope.createOldPendaftaranPasien = function () {
+            console.log("createOldPendaftaranPasien");
+            $scope.message.createLoketRegisters = {};
+            var data = {                
+                patient_id: $scope.patient_id,
+                class_room_id: $scope.temp.class_room.id,
+                room_id: $scope.temp.room.id,
+                bed_id: $scope.temp.bed.id
+            }
+            
+            serviceCreatePendaftaran(data);
+        }
+
+        var serviceCreatePendaftaran = function (data) {
+            var rp = "-";
+            var rp_state = "-";
+            var cp = "-";
+            if ($scope.temp.responsible_person) {
+                rp = $scope.temp.responsible_person;
+            }
+            if ($scope.temp.responsible_person_state) {
+                rp_state = $scope.temp.responsible_person_state.value;
+            }
+            if ($scope.temp.cause_pain) {
+                cp = $scope.temp.cause_pain.no_dtd;
+            }
+            var registerData = {
+                responsible_person: rp,
+                responsible_person_state: rp_state,
+                how_visit: $scope.temp.how_visit.value,
+                time_attend: $scope.currHour,                
+                cause_pain: cp,
+                type: 1
+            }
+
+            var defaultData = defaultDataCreatePasien();
+
+            var param = Object.assign(defaultData, data, registerData);
+
+            ServicesAdmin.createLoketRegisters(param).$promise
+            .then(function (result) {
+                if (!result.isSuccess) {
+                    return $scope.message.createLoketRegisters.error = result.message;
+                };
+
+                $scope.result = result;                
+                ngDialog.closeAll();                
+            });
+        }
     });
