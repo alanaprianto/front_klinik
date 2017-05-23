@@ -143,8 +143,18 @@
                                     [[p.total/p.inventory.purchase_price]]
                                 </div>
                             </td>
-                            <td class="text-center" ng-show="p.service.cost">[[p.service.cost | currency]]</td>
-                            <td class="text-center" ng-hide="p.service.cost">[[p.total | currency]]</td>
+                            <td class="text-center">
+                                <div ng-if="p.type=='doctor_service'">
+                                    [[p.total | currency]]
+                                </div>
+                                <div ng-if="p.type=='medical_record_service'">
+                                    [[p.service.cost | currency]]
+                                </div>
+                                <div ng-if="p.type=='medical_record_medicine'">
+                                    [[p.inventory.purchase_price | currency]]
+                                </div>
+                            </td>
+
                             <td class="text-right">[[p.total | currency]]</td>
                         </tr>
                     </tbody>
