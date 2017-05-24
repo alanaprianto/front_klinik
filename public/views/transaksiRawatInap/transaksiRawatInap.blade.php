@@ -88,22 +88,22 @@
                                 </button>
                                  <button
                                     class="btn btn-xs btn-danger col-xs-6 col-md-6"
-                                    ng-click="openModal('detailDistributorModal', '', i)">
+                                    ng-click="openModal('dipulangkanModal', '', i)">
                                         <i class="fa fa-home"></i> Dipulangkan
                                 </button>
                                  <button
                                     class="btn btn-xs btn-primary col-xs-6 col-md-6"
-                                    ng-click="openModal('detailDistributorModal', '', i)">
+                                    ng-click="openModal('labModal', '', i)">
                                         <i class="fa fa-thermometer-quarter"></i> Dirujuk Ke Laboratorium
                                 </button>
                                 <button
                                     class="btn btn-xs btn-success col-xs-6 col-md-6"
-                                    ng-click="openModal('detailDistributorModal', '', i)">
+                                    ng-click="openModal('radiologiModal', '', i)">
                                         <i class="fa fa-hourglass-half"></i> Dirujuk Ke Radiologi
                                 </button>
                                 <button
                                     class="btn btn-xs btn-default col-xs-6 col-md-6"
-                                    ng-click="openModal('detailDistributorModal', '', i)">
+                                    ng-click="openModal('operasiModal', '', i)">
                                         <i class="fa fa-user-md"></i> Dirujuk Ke Oprasi
                                 </button>
                             </td>
@@ -366,28 +366,25 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-3">
                     <img src="">
-                    </div>
-                    <div class="col-md-3">
+                    
                         <div class="col-md-6">
                             <p class="text-left">Nomber Rekam Medis</p>
                             <p class="text-left">Nama Pasien </p>
+                            <p class="text-left">gender </p>
                             <p class="text-left">Alamat </p>
                             <p class="text-left">Cara Bayar </p>
                             <p class="text-left">Kelas Ruangan</p>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" ng-repeat="i in tablelistTransaksiRawatInap">
+                            <p class="text-left">[[i.number_medical_record]]</p>
+                            <p class="text-left">[[i.full_name]]</p>
+                            <p class="text-left">[[i.displayedGender]] </p>
+                            <p class="text-left">[[i.address]]</p>
+                            <p class="text-left">[[i.gender]]</p>
                             <p class="text-left">[[]]</p>
-                            <p class="text-left">[[]] /[[]]</p>
-                            <p class="text-left">[[]] </p>
-                            <p class="text-left">[[ ]]</p>
-                            <p class="text-left">[[]]</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
+                        </div>                    
                         <h1 class="text-left">[[]]</h1>
-                    </div>
                 </div>
             </div>
             <div class="row p-b-15">
@@ -443,10 +440,201 @@
                 </button>
                 <button 
                     class="btn btn-warning col-md-3 no-radius" 
-                    ng-click="openModal('credDistributorModal', 'edit', dataOnModal)">Edit</button>
+                    ng-click="openModal('credDistributorModal', 'edit', dataOnModal)">Edit
+                </button>
             </div>
         </script>
-       
+    
+        <script type="text/ng-template" id="transferTransaksiRawatInapModal">
+            <div class="row p-b-15">
+                <h4 class="modal-title">Asal Pasien</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="">
+                    
+                        <div class="col-sm-4 no-padding">
+                            <p class="text-left">Nomber Rekam Medis</p>
+                        </div>
+                        <div class="col-sm-8 no-padding">
+                        <p class="text-left">[[dataOnModal.number_medical_record]]</p>
+                        </div>
+                        <div class="col-sm-4 no-padding">
+                            <p class="text-left">Nama Pasien </p>
+                        </div>
+                        <div class="col-sm-8 no-padding">
+                            <p class="text-left">[[dataOnModal.full_name]]</p>
+                        </div>
+                        <div class="col-sm-4 no-padding">
+                            <p class="text-left">Gender </p>
+                        </div>
+                        <div class="col-sm-8 no-padding">
+                            <p class="text-left">[[dataOnModal.displayedGender]] </p>
+                        </div>
+                        <div class="col-sm-4 no-padding">
+                            <p class="text-left">Kelas </p>
+                        </div>
+                        <div class="col-sm-8 no-padding">
+                            <p class="text-left">[[dataOnModal.displayedGender]]</p>
+                        </div>
+                        <div class="col-sm-4 no-padding">
+                            <p class="text-left">Kamar </p>
+                        </div>
+                        <div class="col-sm-8 no-padding">
+                            <p class="text-left">[[dataOnModal.displayedGender]]</p>
+                        </div>
+                        <div class="col-sm-4 no-padding">
+                            <p class="text-left">Bad </p>
+                        </div>
+                        <div class="col-sm-8 no-padding">
+                            <p class="text-left">[[dataOnModal.displayedGender]]</p>
+                        </div>
+                                        
+                        <h1 class="text-left">[[]]</h1>
+                </div>
+            </div>
+            <div class="row p-b-15">
+                <h4 class="modal-title">Tujuan Kamar</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-12">                    
+                        <div class="col-sm-4 no-padding">
+                            <p class="text-left">Kelas </p>
+                        </div>
+                        <div class="col-sm-8 ">
+                            <select 
+                            class="form-control m-b" 
+                            name="service_type"
+                            ng-model="temp.service_type"
+                            ng-options="d as d.display_name for d in class_rooms">
+                            </select>
+                        </div>
+                        <div class="col-sm-4 no-padding">
+                            <p class="text-left">Kamar </p>
+                        </div>
+                        <div class="col-sm-8 ">
+                            <select 
+                            class="form-control m-b" 
+                            name="service_type"
+                            ng-model="temp.service_type"
+                            ng-options="d as d.display_name for d in rooms">
+                            </select>
+                        </div>
+                        <div class="col-sm-4 no-padding">
+                            <p class="text-left">Bad </p>
+                        </div>
+                        <div class="col-sm-8 ">
+                            <select 
+                            class="form-control m-b" 
+                            name="service_type"
+                            ng-model="temp.service_type"
+                            ng-options="d as d.display_name for d in beds">
+                            </select>
+                        </div>            
+                </div>
+            </div>
+            
+           
+            <div class="row col-md-12 pull-right">
+                <div class="col-md-6">
+                    <div class="bg-warning" style="min-height: 34px;"
+                        ng-show="message.crtDistributor.error">
+                        <p class="text-left">
+                            [[message.error]]
+                        </p>
+                    </div>
+                </div>
+                <button
+                    class="btn btn-danger col-md-3 no-radius" 
+                    ng-click="deleteDistributor(dataOnModal.id)">
+                    Delete
+                </button>
+                <button 
+                    class="btn btn-warning col-md-3 no-radius" 
+                    ng-click="openModal('credDistributorModal', 'edit', dataOnModal)">Edit
+                </button>
+            </div>
+        </script> 
+        <script type="text/ng-template" id="dipulangkanModal">
+            <div class="row p-b-15">
+                <h4 class="modal-title">Anda Yakin</h4>
+                <p> Apakah Pasien Yakin di pulangkan ?</p>
+            </div>       
+                       
+            <div class="row col-md-12">
+                
+                <button
+                    class="btn btn-danger col-md-3 no-radius" 
+                    ng-click="deleteDistributor(dataOnModal.id)">
+                    ya
+                </button>
+                <button 
+                    class="btn btn-warning col-md-3 no-radius" 
+                    ng-click="openModal('credDistributorModal',  dataOnModal)">
+                    Tidak
+                </button>
+            </div>
+        </script> 
+        <script type="text/ng-template" id="operasiModal">
+            <div class="row p-b-15">
+                <h4 class="modal-title">Anda Yakin</h4>
+                <p> Apakah Pasien Yakin di Rujuk Operasi ?</p>
+            </div>       
+                       
+            <div class="row col-md-12">
+                
+                <button
+                    class="btn btn-danger col-md-3 no-radius" 
+                    ng-click="deleteDistributor(dataOnModal.id)">
+                    ya
+                </button>
+                <button 
+                    class="btn btn-warning col-md-3 no-radius" 
+                    ng-click="openModal('credDistributorModal',  dataOnModal)">
+                    Tidak
+                </button>
+            </div>
+        </script>    
+        <script type="text/ng-template" id="labModal">
+            <div class="row p-b-15">
+                <h4 class="modal-title">Anda Yakin</h4>
+                <p> Apakah Pasien Yakin di Rujuk Laboratorium ?</p>
+            </div>       
+                       
+            <div class="row col-md-12">
+                
+                <button
+                    class="btn btn-danger col-md-3 no-radius" 
+                    ng-click="deleteDistributor(dataOnModal.id)">
+                    ya
+                </button>
+                <button 
+                    class="btn btn-warning col-md-3 no-radius" 
+                    ng-click="openModal('credDistributorModal',  dataOnModal)">
+                    Tidak
+                </button>
+            </div>
+        </script> 
+        <script type="text/ng-template" id="radiologiModal">
+            <div class="row p-b-15">
+                <h4 class="modal-title">Anda Yakin</h4>
+                <p> Apakah Pasien Yakin di Rujuk Radiologi ?</p>
+            </div>       
+                       
+            <div class="row col-md-12">
+                
+                <button
+                    class="btn btn-danger col-md-3 no-radius" 
+                    ng-click="deleteDistributor(dataOnModal.id)">
+                    ya
+                </button>
+                <button 
+                    class="btn btn-warning col-md-3 no-radius" 
+                    ng-click="openModal('credDistributorModal',  dataOnModal)">
+                    Tidak
+                </button>
+            </div>
+        </script>     
     </div>
 @endsection
 @section('scripts')

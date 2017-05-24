@@ -20,7 +20,7 @@
             </a>
         </li> 
         <li>
-            <a href="" class="has-arrow" aria-expanded="false">
+            <a href="" >
                 <span class="sidebar-nav-item-icon fa fa-shopping-basket fa-fw"></span>
                 <span class="sidebar-nav-item">Penatajasa Laboratorium</span>
             </a>
