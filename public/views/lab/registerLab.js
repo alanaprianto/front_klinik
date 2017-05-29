@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adminApp')
-    .controller('RegisterIRNACtrl', function(
+    .controller('RegisterLabCtrl', function(
         $scope, 
         $http, 
         $rootScope, 
@@ -20,7 +20,7 @@ angular.module('adminApp')
         angular.extend(this, $controller('ModalPendaftaranIrnaCtrl', {$scope: $scope}));
 
         var listDataPasien = function () {
-            return ServicesAdmin.getVisitor({reg_type:1}).$promise
+            return ServicesAdmin.getVisitor().$promise
             .then(function (result) {
                 var tempData=[];
                 result.datas.patients.forEach(function(item,key){

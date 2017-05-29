@@ -8,22 +8,26 @@
              </a>
         </li>
         <li>
-            <a href="#" >
+            <a href="antrianLab" >
                 <span class="sidebar-nav-item-icon fa fa-info-circle fa-fw"></span>
                 <span class="sidebar-nav-item">Antrian Laboratorium</span>
             </a>
         </li>
         <li>
-            <a  href="#" >
+            <a  href="registerLab" >
                 <span class="sidebar-nav-item-icon fa fa-address-book fa-fw"></span>
                 <span class="sidebar-nav-item">Pendaftaran Laboratorium</span>
             </a>
         </li> 
         <li>
-            <a href="" >
+            <a href="" class="has-arrow" aria-expanded="false" >
                 <span class="sidebar-nav-item-icon fa fa-shopping-basket fa-fw"></span>
                 <span class="sidebar-nav-item">Penatajasa Laboratorium</span>
             </a>
+            <ul class="module-left-dropdown" aria-expanded="false">
+                <li><a href="/pjasaIrJlnLab">Penatajasa Rawat Jalan</a></li>
+                <li><a href="/pjasaIrnaLab">Penatajasa Rawat Inap </a></li>
+            </ul>
         </li> 
         <li>
             <a href="#" >

@@ -192,6 +192,18 @@ Route::get('/pjasa_irna_radiologi', function() {
 Route::get('/laboratorium', function() {
     return View::make('lab.lab');
 });
+Route::get('/antrianLab', function() {
+    return View::make('lab.antrianLab');
+});
+Route::get('/registerLab', function() {
+    return View::make('lab.registerLab');
+});
+Route::get('/pjasaIrJlnLab', function() {
+    return View::make('lab.pjasaIrJlnLab');
+});
+Route::get('/pjasaIrnaLab', function() {
+    return View::make('lab.pjasaIrnaLab');
+});
 Route::get('/transaksi_radiologi', function() {
     return View::make('radiologi.transaksi_radiologi');
 });

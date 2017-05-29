@@ -258,6 +258,16 @@ angular.module('adminApp')
                 controller: 'visitors'
             }
         },
+        getVisitorRawatInap: {
+            method: 'GET',
+            url: config.url + ':module/:submodule/:controller/:reg_type',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'visitors',
+                reg_type:1
+            }
+        },
         getHospital: {
             method: 'GET',
             params: {
