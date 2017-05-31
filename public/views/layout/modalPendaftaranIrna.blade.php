@@ -277,7 +277,7 @@
                         <select 
                             class="form-control m-b"
                             ng-model="temp.bed"
-                            ng-options="d as d.display_name for d in beds">
+                            ng-options="d as d.display_name disable when !d.available for d in beds">
                         </select>
                     </div>
                 </div>
@@ -560,7 +560,7 @@
                         <select 
                             class="form-control m-b"
                             ng-model="temp.bed"
-                            ng-options="d as d.display_name for d in beds">
+                            ng-options="d as d.display_name disable when !d.available for d in beds">
                         </select>
                     </div>
                 </div>

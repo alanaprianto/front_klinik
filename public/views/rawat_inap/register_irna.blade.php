@@ -83,7 +83,7 @@
                                     <th>Jenis Kelamin</th>
                                     <th>Umur</th>
                                     <th>Alamat</th>
-                                    <th>No. Telepon</th>                                    
+                                    <th>No. Telepon</th>
                                     <th>Terakhir Kunjungan</th>
                                     <th>Action</th>
                                 </tr>
@@ -103,12 +103,8 @@
                                             ng-click="openModal('tambahPasienLamaModal', 'lg', patient)">
                                             Daftarkan Pasien
                                         </button>
-                                        <button class="btn btn-xs btn-success"
-                                            ng-click="openModal('editPasienModal', 'lg', patient)">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
                                     </td>
-                                </tr>                        
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -145,260 +141,13 @@
                                            <i class="fa fa-search-plus"></i>
                                         </button>
                                     </td>
-                                </tr>                        
+                                </tr>
                             </tbody>
                         </table>
                 </div>
                 </div>
             </div>
-        </div>
-
-        <script type="text/ng-template" id="editPasienModal">
-            <div class="row p-b-15">
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>No RM</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.number_reference]]</p>
-                            </div>
-                        </div>
-                        <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>Nama Lengkap</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.register.patient.full_name]]</p>
-                            </div>
-                        </div>
-                        <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>TTL / Umur</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>[[dataOnModal.displayedBirth]] / <b>[[dataOnModal.displayedAge]]</b> tahun</p>
-                            </div>
-                        </div>
-
-                        <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>Jenis Kelamin</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>[[dataOnModal.displayedGender]]</p>
-                            </div>
-                        </div>
-                         <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>Alamat</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.register.patient.address]]</p>
-                            </div>
-                        </div>
-                         <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>Nomber Handpone</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.register.patient.phone_number]]</p>
-                            </div>
-                        </div>
-
-                        <div class="form-group field row text-left">
-                            <hr>
-                        </div>
-                        
-                        <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>Poli</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>[[dataOnModal.displayedPoli]]</p>
-                            </div>
-                        </div>
-                        <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>Dokter</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <select class="form-control condition"
-                                    ng-init="temp.doctor_id = dataOnModal.reference.staff_id"
-                                    ng-model="temp.doctor_id"
-                                    ng-options="l.pivot.staff_id as l.full_name for l in currentPoli.doctors">
-                                </select>                                
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="row no-padding">
-                                <div class="col-md-4">
-                                    <button class="btn btn-info col-md-12 no-radius" 
-                                        ng-click="openModal('medicalRecordModal', 'lg')">
-                                        Medical Record
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 text-left">
-                        <p><b>Layanan</b></p>
-                        <div class="overflow-table">
-                            <table id="service-table" class="table service-table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <button type="button"
-                                                class="btn btn-primary btn-xs"
-                                                ng-click="addService()"
-                                                ng-hide="temp.listServices.length == services.length">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </th>
-                                        <th>No</th>
-                                        <th>Nama Layanan</th>
-                                        <th>Biaya Layanan</th>
-                                        <th>Jumlah</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="l in temp.listServices">
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-danger btn-xs"
-                                                ng-click="removeService($index)">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                        </td>
-                                        <td>[[$index + 1]]</td>
-                                        <td>
-                                            <select class="form-control condition"
-                                                ng-model="l.service_id"
-                                                ng-change="setService($index)"
-                                                ng-options="s.id as s.name for s in services">
-                                            </select>
-                                        </td>
-                                        <td>[[temp.listServices[$index].cost | currency]]</td>
-                                        <td class="col-sm-2">
-                                            <input type="number"
-                                                step="1" 
-                                                min="0"
-                                                class="form-control" 
-                                                ng-model="l.service_amount"
-                                                ng-change="setTotal($index)">
-                                        </td>
-                                        <td>[[temp.listServices[$index].service_total | currency]]</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div>
-                        <p><b>Obat</b></p>
-                        <div class="overflow-table">
-                            <table id="service-table" class="table service-table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <button type="button"
-                                                class="btn btn-primary btn-xs"
-                                                ng-click="addService()"
-                                                ng-hide="temp.listServices.length == services.length">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </th>
-                                        <th>No</th>
-                                        <th>Nama Obat</th>
-                                        <th>Biaya Obat</th>
-                                        <th>Jumlah</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="l in temp.listServices">
-                                        <td>
-                                            <button type="button"
-                                                class="btn btn-danger btn-xs"
-                                                ng-click="removeService($index)">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                        </td>
-                                        <td>[[$index + 1]]</td>
-                                        <td>
-                                            <select class="form-control condition"
-                                                ng-model="l.service_id"
-                                                ng-change="setService($index)"
-                                                ng-options="s.id as s.name for s in services">
-                                            </select>
-                                        </td>
-                                        <td>[[temp.listServices[$index].cost | currency]]</td>
-                                        <td class="col-sm-2">
-                                            <input type="number"
-                                                step="1" 
-                                                min="0"
-                                                class="form-control" 
-                                                ng-model="l.service_amount"
-                                                ng-change="setTotal($index)">
-                                        </td>
-                                        <td>[[temp.listServices[$index].service_total | currency]]</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div>
-                            <p><b>Kesimpulan Akhir</b></p>
-                            <table class="table table-condition">
-                                <tbody>
-                                    <tr>
-                                        <td class="no-border">
-                                            <select name="final_result" class="form-control condition" 
-                                                ng-model="temp.finalResult" required>
-                                                <option ng-repeat="o in finalResultOnPoli"
-                                                    value="[[o.value]]">[[o.key]]</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr ng-if="temp.finalResult == 3">
-                                        <td class="no-border">
-                                            <select name="poli" class="form-control condition" 
-                                                ng-model="temp.poliID" required>
-                                                <option ng-repeat="o in listPoli"
-                                                    value="[[o.id]]">[[o.name]]</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="no-border">Catatan :
-                                            <textarea name="notes" class="form-control" ng-model="temp.notes"></textarea>
-                                        </td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12 text-left">
-                        <div class="col-md-9">
-                            <div class="bg-warning" style="min-height: 34px;"
-                                ng-show="message">
-                                <p class="text-left">
-                                    [[message]]
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary" ng-click="createCheckUp()">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </script>
+        </div>        
 
         <script type="text/ng-template" id="medicalRecordModal">
             <div class="row p-b-15">
