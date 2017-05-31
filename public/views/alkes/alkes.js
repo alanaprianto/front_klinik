@@ -24,17 +24,7 @@ angular.module('adminApp')
                 }
             });
             return result;
-        }
-
-        var getCategory = function (id) {
-            var result = {'key':id,'value':id};
-            $scope.listCategories.forEach(function (item) {
-                if (item.id==id) {
-                    result = item;                    
-                }
-            });
-            return result;
-        }
+        }    
 
         var getCategoryId = function () {
             return ServicesCommon.getInventoryCategory().$promise.then(function (result) {
@@ -53,7 +43,7 @@ angular.module('adminApp')
             if (data) {
                 $scope.dataOnModal = data;
                 sediaan = getSediaan(data.sediaan);
-                category = getCategory(data.inventory_category_id);
+                category = $scope.getCategory(data.inventory_category_id);
                 $scope.dataOnModal.displaySediaan = sediaan.key;
                 $scope.dataOnModal.displayCategory = category.name;
             }            
@@ -111,6 +101,16 @@ angular.module('adminApp')
         }
         
         firstInit();
+
+        $scope.getCategory = function (id) {
+            var result = {'key':id,'value':id};
+            $scope.listCategories.forEach(function (item) {
+                if (item.id==id) {
+                    result = item;
+                }
+            });
+            return result;
+        }
 
         $scope.createnewAlkes = function () {
             var tuslah_ids = [];            

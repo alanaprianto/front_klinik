@@ -25,10 +25,23 @@
                 <span class="sidebar-nav-item">Informasi Rawat Inap</span>
             </a>
             <ul class="nav nav-second-level" aria-expanded="true">
-                <li class="@yield('active-organizer-setting')"><a href="{{ url('admin/organizer/setting_')}}">Setting</a></li>
-                <li class="@yield('active-organizer-list')"><a href="{{ url('admin/organizer/list')}}">List</a></li>
+                <li class="">
+                    <a href="#">Sensus Harian</a>
+                </li>
+                <li class="">
+                    <a href="#">10 Besar Diagnosa IRNA</a>
+                </li>
+                <li class="">
+                    <a href="#">10 Besar Tindakan IRNA</a>
+                </li>
+                <li class="">
+                    <a href="#">Rekap Tindakan IRNA</a>
+                </li>
+                <li class="">
+                    <a href="#">Tindakan IRNA Bangsal</a>
+                </li>                
             </ul>
-        </li>                       
+        </li>
         <li class="sidebar-nav-heading">Lain-lain</li>
         <li>
             <a href="login">

@@ -51,7 +51,7 @@
                             <td>[[$index + 1]]</td>
                             <td>[[inventory.code]]</td>
                             <td>[[inventory.name]]</td>
-                            <td>[[inventory.inventory_category_id]]</td>
+                            <td>[[getCategory(inventory.inventory_category_id).name]]</td>
                             <td>[[inventory.type]]</td>
                             <td>[[inventory.sediaan]]</td>
                             <td>[[inventory.explain]]</td>

@@ -46,24 +46,34 @@
                             class="btn btn-info col-md-4 no-radius" 
                             ng-click="openModal('tambahPasienBaruModal', 'lg')"> Pendaftaran Pasien Baru</button>
                         <div class="col-md-4 pull-right">
-                            <form>
-                                <div class="input-group">
-                                    <input id="individualDrop"
-                                        type="text" 
-                                        class="form-control input-sm" 
-                                        data-toggle="dropdown"
-                                        placeholder="Cari Pasien" 
-                                        ng-model="temp.searchParam">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default btn-sm" type="submit">
-                                            <i class="glyphicon glyphicon-search"></i>
-                                        </button>
-                                    </div>
-                                 </div>
-                            </form>
+                            
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 m-b-15">
+                        <div class="row">
+                            <div class="col-md-6">
+                                List Pasien yang Terdaftar
+                            </div>
+                            <div class="col-md-6">
+                                <form>
+                                    <div class="input-group">
+                                        <input id="individualDrop"
+                                            type="text" 
+                                            class="form-control input-sm" 
+                                            data-toggle="dropdown"
+                                            placeholder="Cari Pasien" 
+                                            ng-model="temp.searchParam">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-default btn-sm" type="submit">
+                                                <i class="glyphicon glyphicon-search"></i>
+                                            </button>
+                                        </div>
+                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>                
+                    <div class="col-md-12">                        
                         <table class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>

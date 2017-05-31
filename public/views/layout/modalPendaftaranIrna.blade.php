@@ -23,7 +23,7 @@
     </div>
     <div class="row p-t-15">
         <div class="col-md-12">
-            <div class="col-md-6">                
+            <div class="col-md-6">
                 <div class="form-group field p-b-15 row">
                     <label class="col-sm-4 no-padding text-left">Nama Lengkap</label>
                     <div class="col-sm-8">
