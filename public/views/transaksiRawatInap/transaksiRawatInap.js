@@ -16,6 +16,8 @@ angular.module('adminApp')
             $scope.today = new Date();
             $scope.temp = {};
             $scope.message = {};
+            $scope.temp.listServices = [];
+            $scope.temp.listPharmacy = [];
         }
 
         var listTransaksiRawatInap = function () {
@@ -41,6 +43,31 @@ angular.module('adminApp')
                 $scope.tablelistTransaksiRawatInap = tempData; 
             });           
         }
+        var listServices = function () {
+            return ServicesCommon.getServices().$promise
+            .then(function (result) {
+                $scope.services = result.datas.services;
+            });
+        }
+
+        var listPharmacy = function () {
+            return ServicesCommon.getInventories().$promise
+            .then(function (result) {
+                $scope.pharmacy = result.datas.inventories.data;
+            });
+        }
+
+         var getDoctorName = function (staffID) {
+            var result = "";
+            $scope.listAllDoctor.forEach(function (val) {
+                if (val.pivot && val.pivot.staff_id && val.pivot.staff_id == staffID) {
+                    result = val.full_name;
+                    return;
+                }
+            });
+            return result;
+        }
+
 
         var getDefaultValues = function() {
             return $http.get('views/config/defaultValues.json').then(function(data) {

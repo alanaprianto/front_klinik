@@ -25,6 +25,15 @@ angular.module('adminApp')
                 var tempData=[];
                 result.datas.patients.forEach(function(item,key){
                     tempData.push(item);
+                    switch (item.gender) {
+                    case 1:
+                        item.displayedGender = 'Laki-laki';
+                        break;
+                    case 2:
+                        item.displayedGender = 'Perempuan';
+                        break;
+                    }
+
 
                 });
                 result.datas.beds;
