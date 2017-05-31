@@ -81,6 +81,11 @@
                                     ng-click="openModal('detailTransaksiRawatInapModal', '', i)">
                                         <i class="fa fa-search-plus"></i> Detail 
                                 </button>
+                                 <button
+                                    class="btn btn-xs btn-default col-xs-6 col-md-6"
+                                    ng-click="openModal('editPasienModal', '', i)">
+                                        <i class="fa fa-stethoscope"></i> Pemerikasaan
+                                </button>
                                 <button
                                     class="btn btn-xs btn-warning col-xs-6 col-md-6"
                                     ng-click="openModal('transferTransaksiRawatInapModal', '', i)">
@@ -113,6 +118,141 @@
             </div>
         </div>
 
+        <script type="text/ng-template" id="medicalRecordModal">
+            <div class="row p-b-15">
+                <h4 class="modal-title">
+                    Riwayat Medical Record
+                </h4>
+            </div>
+            <div ng-hide="temp.medrec.showEdit">
+                <table class="table service-table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">NO</th> 
+                            <th class="text-center">Tanggal</th> 
+                            <th class="text-left">Anamnesa</th>
+                            <th class="text-left">Diagnosis</th>
+                            <th class="text-left">Explain</th>
+                            <th class="text-left">Therapy</th>
+                            <th class="text-left">Notes</th>
+                            <th class="text-left">ICD 10</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="l in dataOnModal.reference.medical_records">
+                            <td>[[$index + 1]]</td>
+                            <td>[[l.created_at]]</td>
+                            <td class="text-left">[[l.anamnesa]]</td>
+                            <td class="text-left">[[l.diagnosis]]</td>
+                            <td class="text-left">[[l.explain]]</td>
+                            <td class="text-left">[[l.therapy]]</td>
+                            <td class="text-left">[[l.notes]]</td>
+                            <td class="text-left">
+                                <p ng-repeat="ll in l.listICD10">[[ll]]</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7"></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary text-left" ng-click="temp.medrec.showEdit = true">Tambah</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row p-b-15 no-margin" ng-show="temp.medrec.showEdit">
+                <div class="col-md-12">
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>ICD 10</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="dropdown pull-right col-md-12 no-padding" auto-close="outsideClick">
+                                <div class="col-md-10 no-padding">
+                                    <p ng-repeat="i in temp.medrec.icd10">
+                                        <button class="btn btn-xs btn-danger" ng-click="removeICDItem($index)">X</button>
+                                        [[i.code]] - [[i.desc]]
+                                    </p>
+                                </div>
+                                <button id="individualDrop"
+                                    type="button" 
+                                    data-toggle="dropdown"
+                                    class="btn btn-default dropdown-toggle col-md-2 text-left">
+                                    <span class="pull-left">search</span><span class="pull-right"> <i class="fa fa-search"></i></span>
+                                </button>
+                                <ul class="dropdown-menu col-md-12" role="menu" aria-labelledby="individualDrop">
+                                    <input disable-auto-close 
+                                        type="search"
+                                        class="form-control" 
+                                        placeholder="Search"
+                                        ng-model="temp.medrec.query"
+                                        ng-keyup="getICD()">
+                                    <li role="presentation" ng-repeat="icd in icd10">
+                                        <a role="menuitem" ng-click="getICDItem(icd)" ng-hide="icd.selected">[[icd.code]] - [[icd.desc]]</a>
+                                    </li>  
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Anamnesa</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <textarea name="notes" class="form-control" ng-model="temp.medrec.anamnesa"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Diagnosis</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <textarea name="notes" class="form-control" ng-model="temp.medrec.diagnosis"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Explain</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <textarea name="notes" class="form-control" ng-model="temp.medrec.explain"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Therapy</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <textarea name="notes" class="form-control" ng-model="temp.medrec.therapy"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group field row text-left">
+                        <div class="col-sm-4 no-padding">
+                            <label>Notes</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <textarea name="notes" class="form-control" ng-model="temp.medrec.notes"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-warning" style="min-height: 34px;"
+                        ng-show="createMedicalRecorderror">
+                        <p class="text-left">
+                            [[createMedicalRecorderror]]
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 pull-left">
+                    <button type="submit" 
+                         class="btn btn-default col-md-4 no-radius pull-right" 
+                         ng-click="createMedicalRecord()">Submit</button>
+                    <button class="btn btn-warning col-md-4 no-radius pull-right" ng-click="temp.medrec.showEdit = false">Batal</button>
+                </div>
+            </div>
+        </script>
+
         <script type="text/ng-template" id="editPasienModal">
             <div class="row p-b-15">
                 <div class="col-md-12">
@@ -122,7 +262,7 @@
                                 <b>No RM</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.number_reference]]</p>
+                                <p>[[dataOnModal.number_medical_record]]</p>
                             </div>
                         </div>
                         <div class="form-group field row text-left">
@@ -130,7 +270,7 @@
                                 <b>Nama Lengkap</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.register.patient.full_name]]</p>
+                                <p>[[dataOnModal.full_name]]</p>
                             </div>
                         </div>
                         <div class="form-group field row text-left">
@@ -155,7 +295,7 @@
                                 <b>Alamat</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.register.patient.address]]</p>
+                                <p>[[dataOnModal.address]]</p>
                             </div>
                         </div>
                          <div class="form-group field row text-left">
@@ -163,7 +303,7 @@
                                 <b>Nomber Handpone</b>
                             </div>
                             <div class="col-sm-8">
-                                <p>[[dataOnModal.reference.register.patient.phone_number]]</p>
+                                <p>[[dataOnModal.phone_number]]</p>
                             </div>
                         </div>
 
@@ -171,14 +311,6 @@
                             <hr>
                         </div>
                         
-                        <div class="form-group field row text-left">
-                            <div class="col-sm-4 no-padding">
-                                <b>Poli</b>
-                            </div>
-                            <div class="col-sm-8">
-                                <p>[[dataOnModal.displayedPoli]]</p>
-                            </div>
-                        </div>
                         <div class="form-group field row text-left">
                             <div class="col-sm-4 no-padding">
                                 <b>Dokter</b>

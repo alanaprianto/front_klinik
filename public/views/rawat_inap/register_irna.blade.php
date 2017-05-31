@@ -85,9 +85,9 @@
                                     <td>[[patient.full_name]]</td>
                                     <td>[[patient.gender]]</td>
                                     <td>[[patient.age]]</td>
-                                    <td>[[patient.class_rooms]]</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>[[patient.address]]</td>
+                                    <td>[[patient.phone_number]]</td>
+                                    <td>[[patient.formatDate(visitor.registers[0].created_at) | date: 'dd MMM yyyy HH:mm']]</td>
                                     <td>
                                         <button class="btn btn-xs btn-success"
                                             ng-click="openModal('tambahPasienLamaModal', 'lg', patient)">

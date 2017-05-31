@@ -19,7 +19,7 @@ angular.module('adminApp')
 
 
         var listTransaksiRawatInap = function () {
-            return ServicesAdmin.getVisitor().$promise
+            return ServicesAdmin.getVisitor({reg_type:1}).$promise
             .then(function (result) {
                 var tempData=[];
                 result.datas.patients.forEach(function(item,key){
@@ -66,6 +66,153 @@ angular.module('adminApp')
                 $scope.bed = result.datas.beds;
             });
         }
+
+        $scope.getICD = function () {
+            if (!$scope.temp.medrec.icd10) {
+                $scope.temp.medrec.icd10 = [];
+            }
+
+            var params = {
+                data: $scope.temp.medrec.query,
+                limit: 20
+            };
+
+            return ServicesAdmin.getICD(params).$promise
+            .then(function(data) {
+                $scope.icd10 = data.datas.icd10s.data;
+
+                hideICDSelected();
+            });
+        }
+
+        var hideICDSelected = function () {
+            angular.forEach($scope.icd10, function (val) {
+                $scope.temp.medrec.icd10.forEach(function (v) {
+                    if (v.code === val.code) {
+                        val.selected = true;
+                    }
+                });
+            });
+        }
+
+        $scope.addService = function () {
+            var countService = $scope.temp.listServices.length;
+            if (!$scope.services[countService]) {
+                return;
+            }
+
+            var initAmount = 1;
+            var initCost = $scope.services[countService].cost;
+            var initID = $scope.services[countService].id;
+
+            var addService = {
+                cost: initCost,
+                service_id: initID,
+                service_amount: initAmount,
+                service_total: initAmount * initCost
+            };
+
+            $scope.temp.listServices.push(addService);
+        }
+        
+        $scope.setService = function (idx) {
+            var result = {};
+            $scope.services.forEach(function (item) {
+                if (item.id == $scope.temp.listServices[idx].service_id) {
+                    return result = item;
+                };
+            });
+
+            $scope.temp.listServices[idx].cost = result.cost;
+            $scope.temp.listServices[idx].service_total = result.cost * $scope.temp.listServices[idx].service_amount;
+        }
+
+        $scope.setTotal = function (idx) {
+            $scope.temp.listServices[idx].service_total = $scope.temp.listServices[idx].service_amount * $scope.temp.listServices[idx].cost;
+        }
+
+        $scope.removePharmacy = function (idx) {
+            $scope.temp.listPharmacy.splice(idx, 1);
+        }
+
+        $scope.addPharmacy = function () {
+            var countService = $scope.temp.listPharmacy.length;
+            if (!$scope.services[countService]) {
+                return;
+            }
+
+            var initAmount = 1;
+            var initCost = $scope.services[countService].cost;
+            var initID = $scope.services[countService].id;
+
+            var addService = {
+                cost: initCost,
+                service_id: initID,
+                service_amount: initAmount,
+                service_total: initAmount * initCost
+            };
+
+            $scope.temp.listPharmacy.push(addService);
+        }
+        
+        $scope.setPharmacy = function (idx) {
+            var result = {};
+            $scope.services.forEach(function (item) {
+                if (item.id == $scope.temp.listPharmacy[idx].service_id) {
+                    return result = item;
+                };
+            });
+
+            $scope.temp.listPharmacy[idx].cost = result.cost;
+            $scope.temp.listPharmacy[idx].service_total = result.cost * $scope.temp.listPharmacy[idx].service_amount;
+        }
+
+        $scope.setTotalPharmacy = function (idx) {
+            $scope.temp.listPharmacy[idx].service_total = $scope.temp.listPharmacy[idx].service_amount * $scope.temp.listPharmacy[idx].cost;
+        }
+
+        $scope.createMedicalRecord = function () {    
+            $scope.createMedicalRecorderror = '';
+            var idx = $scope.dataOnModal.idx;
+            var icd = [];
+            $scope.temp.medrec.icd10.forEach(function (val) {
+                icd.push(val.code);
+            });
+
+            var data = {
+                reference_id: $scope.dataOnModal.reference_id,
+                anamnesa: $scope.temp.medrec.anamnesa,
+                diagnosis: $scope.temp.medrec.diagnosis,
+                explain: $scope.temp.medrec.explain,
+                therapy: $scope.temp.medrec.therapy,
+                notes: $scope.temp.medrec.notes,
+                icd10: icd
+            }
+
+            ServicesAdmin.postMedicalRecord(data).$promise
+            .then(function (result) {
+                if (!result.isSuccess) {
+                    return $scope.createMedicalRecorderror = result.message;
+                };
+
+                getLoketAntrianPoli()
+                .then(function () {
+                    $scope.temp.medrec = {};
+                    $scope.dataOnModal = $scope.antrianPoliUmum[idx];
+                });
+            });
+        }
+        
+        $scope.removeICDItem = function (index) {
+            $scope.temp.medrec.icd10.splice(index, 1);
+        }
+
+        $scope.getICDItem = function (item) {
+            $scope.temp.medrec.icd10.push(item);
+
+            hideICDSelected();
+        }
+
         function webWorker () {
             listTransaksiRawatInap()
             .then(function () {
@@ -87,12 +234,12 @@ angular.module('adminApp')
             if (type) {
                 cssModal = 'modal-' + type;
             }
-
             initTemp();
             if (data) {
                 $scope.dataOnModal = data;
                 
             }
+
 
             ngDialog.open({
                 template: target,
@@ -100,5 +247,7 @@ angular.module('adminApp')
                 className: 'ngDialog-modal ' + cssModal,
                 closeByDocument: false
             });
-        }        
+        } 
+
+
     });
