@@ -93,7 +93,7 @@
                                     <td>[[$index + 1]]</td>
                                     <td>[[patient.number_medical_record]]</td>
                                     <td>[[patient.full_name]]</td>
-                                    <td>[[patient.gender]]</td>
+                                    <td>[[patient.displayedGender]]</td>
                                     <td>[[patient.age]]</td>
                                     <td>[[patient.address]]</td>
                                     <td>[[patient.phone_number]]</td>
@@ -131,7 +131,7 @@
                                     <td>[[$index + 1]]</td>
                                     <td>[[visitor.number_medical_record]]</td>
                                     <td>[[visitor.full_name]]</td>
-                                    <td>[[visitor.gender]]</td>
+                                    <td>[[visitor.displayedGender]]</td>
                                     <td>[[visitor.age]]</td>
                                     <td>[[visitor.phone_number]]</td>
                                     <td>[[formatDate(visitor.registers[0].created_at) | date: 'dd MMM yyyy HH:mm']]</td>

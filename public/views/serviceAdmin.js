@@ -436,6 +436,22 @@ angular.module('adminApp')
                 controller: 'users'
             }
         },
+        getCheupInpatients: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'check-up-inpatient'
+            }
+        },
+        postCheupInpatients: {
+            method: 'POST',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'check-up-inpatient'
+            }
+        },
         getApotekRecipes: {
             method: 'GET',
             params: {

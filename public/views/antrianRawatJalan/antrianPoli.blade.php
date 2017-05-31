@@ -265,6 +265,7 @@
                                         <th>Biaya Layanan</th>
                                         <th>Jumlah</th>
                                         <th>Total</th>
+                                        <th>Staff </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -294,6 +295,11 @@
                                                 ng-change="setTotal($index)">
                                         </td>
                                         <td>[[temp.listServices[$index].service_total | currency]]</td>
+                                        <td><select class="form-control condition"
+                                    ng-init="temp.doctor_id = dataOnModal.reference.staff_id"
+                                    ng-model="temp.doctor_id"
+                                    ng-options="l.pivot.staff_id as l.full_name for l in currentPoli.doctors">
+                                </select> </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -317,6 +323,7 @@
                                         <th>Biaya Obat</th>
                                         <th>Jumlah</th>
                                         <th>Total</th>
+                                        <th>Staff </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -346,6 +353,11 @@
                                                 ng-change="setTotalPharmacy($index)">
                                         </td>
                                         <td>[[temp.listPharmacy[$index].service_total | currency]]</td>
+                                        <td><select class="form-control condition"
+                                    ng-init="temp.doctor_id = dataOnModal.reference.staff_id"
+                                    ng-model="temp.doctor_id"
+                                    ng-options="l.pivot.staff_id as l.full_name for l in currentPoli.doctors">
+                                </select> </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -524,7 +536,7 @@
                            <label class="control-label">Select File</label>
                         </div>
                         <div class="col-sm-8">
-                            <input id="input-4" name="input4[]" type="file" multiple class="file-loading">
+                            <input id="input-4" name="input4[]" type="file" multiple class="file-loading">f
                         </div>
                     </div>
 
