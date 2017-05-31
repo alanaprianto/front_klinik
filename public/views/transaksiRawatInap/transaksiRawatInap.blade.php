@@ -70,10 +70,10 @@
                                 <td>[[i.displayedGender]]</td>
                                 <td>[[i.age]]</td>
                                 <td>[[i.created_at]]</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>[[i.registers.payment_status]]</td>
+                                <td>[[i.registers.references.class_room_id]]</td>
+                                <td>[[i.registers.references.room_id]]</td>
+                                <td>[[i.registers.references.bed_id]]</td>
                             <td>
                                 <button 
                                     type="button"
@@ -375,6 +375,7 @@
                                         <th>Biaya Layanan</th>
                                         <th>Jumlah</th>
                                         <th>Total</th>
+                                        <th>Staff </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -404,6 +405,13 @@
                                                 ng-change="setTotal($index)">
                                         </td>
                                         <td>[[temp.listServices[$index].service_total | currency]]</td>
+                                        <td>
+                                            <select class="form-control condition"
+                                            ng-init="temp.doctor_id = dataOnModal.reference.staff_id"
+                                            ng-model="temp.doctor_id"
+                                            ng-options="l.pivot.staff_id as l.full_name for l in currentPoli.doctors">
+                                            </select> 
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -417,8 +425,8 @@
                                         <th>
                                             <button type="button"
                                                 class="btn btn-primary btn-xs"
-                                                ng-click="addService()"
-                                                ng-hide="temp.listServices.length == services.length">
+                                                ng-click="addPharmacy()"
+                                                ng-hide="temp.listPharmacy.length == pharmacy.length">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </th>
@@ -427,14 +435,15 @@
                                         <th>Biaya Obat</th>
                                         <th>Jumlah</th>
                                         <th>Total</th>
+                                        <th>Staff </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="l in temp.listServices">
+                                    <tr ng-repeat="l in temp.listPharmacy">
                                         <td>
                                             <button type="button"
                                                 class="btn btn-danger btn-xs"
-                                                ng-click="removeService($index)">
+                                                ng-click="removePharmacy($index)">
                                                 <i class="fa fa-minus"></i>
                                             </button>
                                         </td>
@@ -442,20 +451,27 @@
                                         <td>
                                             <select class="form-control condition"
                                                 ng-model="l.service_id"
-                                                ng-change="setService($index)"
-                                                ng-options="s.id as s.name for s in services">
+                                                ng-change="setPharmacy($index)"
+                                                ng-options="s.id as s.name for s in pharmacy">
                                             </select>
                                         </td>
-                                        <td>[[temp.listServices[$index].cost | currency]]</td>
+                                        <td>[[temp.listPharmacy[$index].cost | currency]]</td>
                                         <td class="col-sm-2">
                                             <input type="number"
                                                 step="1" 
                                                 min="0"
                                                 class="form-control" 
                                                 ng-model="l.service_amount"
-                                                ng-change="setTotal($index)">
+                                                ng-change="setTotalPharmacy($index)">
                                         </td>
-                                        <td>[[temp.listServices[$index].service_total | currency]]</td>
+                                        <td>[[temp.listPharmacy[$index].service_total | currency]]</td>
+                                        <td>
+                                            <select class="form-control condition"
+                                            ng-init="temp.doctor_id = dataOnModal.reference.staff_id"
+                                            ng-model="temp.doctor_id"
+                                            ng-options="l.pivot.staff_id as l.full_name for l in currentPoli.doctors">
+                                            </select> 
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
