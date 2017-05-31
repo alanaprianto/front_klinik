@@ -9,14 +9,14 @@ angular.module('adminApp')
         ngDialog, 
         ServicesAdmin,
         ServicesCommon,
-        moment
+        moment,
+        SweetAlert
     ) {
         var initTemp = function () {
             $scope.today = new Date();
             $scope.temp = {};
             $scope.message = {};
         }
-
 
         var listTransaksiRawatInap = function () {
             return ServicesAdmin.getVisitor({reg_type:1}).$promise
@@ -37,8 +37,6 @@ angular.module('adminApp')
                 result.datas.beds;
                 result.datas.room;
                 result.datas.class_rooms;
-
-
 
                 $scope.tablelistTransaksiRawatInap = tempData; 
             });           
@@ -234,12 +232,12 @@ angular.module('adminApp')
             if (type) {
                 cssModal = 'modal-' + type;
             }
+
             initTemp();
             if (data) {
                 $scope.dataOnModal = data;
                 
             }
-
 
             ngDialog.open({
                 template: target,
@@ -249,5 +247,71 @@ angular.module('adminApp')
             });
         } 
 
+        $scope.openDipulangkan = function (id) {
+            SweetAlert.swal({
+               title: "Konfirmasi?",
+               text: "Apakah Pasien Yakin di pulangkan?",
+               type: "warning",
+               showCancelButton: true,
+               confirmButtonColor: "#DD6B55",
+               confirmButtonText: "Ya",
+               cancelButtonText: "Tidak",
+               closeOnConfirm: true
+           }, function(isConfirm){ 
+                if (isConfirm) {
+                    // pulangkan pasien
+                }
+            });
+        }
 
+        $scope.openRujukLab = function (id) {
+            SweetAlert.swal({
+               title: "Konfirmasi?",
+               text: "Apakah Pasien Yakin di Rujuk ke Laboratorium?",
+               type: "warning",
+               showCancelButton: true,
+               confirmButtonColor: "#DD6B55",
+               confirmButtonText: "Ya",
+               cancelButtonText: "Tidak",
+               closeOnConfirm: true
+           }, function(isConfirm){ 
+                if (isConfirm) {
+                    // Rujuk ke Laboratorium
+                }
+            });
+        }
+
+        $scope.openRujukRad = function (id) {
+            SweetAlert.swal({
+               title: "Konfirmasi?",
+               text: "Apakah Pasien Yakin di Rujuk ke Radiologi?",
+               type: "warning",
+               showCancelButton: true,
+               confirmButtonColor: "#DD6B55",
+               confirmButtonText: "Ya",
+               cancelButtonText: "Tidak",
+               closeOnConfirm: true
+           }, function(isConfirm){ 
+                if (isConfirm) {
+                    // Rujuk ke Radiologi
+                }
+            });
+        }
+
+        $scope.openRujukOpr = function (id) {
+            SweetAlert.swal({
+               title: "Konfirmasi?",
+               text: "Apakah Pasien Yakin di Rujuk ke Operasi?",
+               type: "warning",
+               showCancelButton: true,
+               confirmButtonColor: "#DD6B55",
+               confirmButtonText: "Ya",
+               cancelButtonText: "Tidak",
+               closeOnConfirm: true
+           }, function(isConfirm){ 
+                if (isConfirm) {
+                    // Rujuk ke Operasi
+                }
+            });
+        }
     });

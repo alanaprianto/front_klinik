@@ -75,41 +75,61 @@
                                 <td></td>
                                 <td></td>
                             <td>
-                                
-                                <button
-                                    class="btn btn-xs btn-info col-xs-6 col-md-6"
+                                <button 
+                                    type="button"
+                                    class="btn btn-xs btn-info btn-icon"
+                                    value="Detail"
+                                    title="Detail"
                                     ng-click="openModal('detailTransaksiRawatInapModal', '', i)">
-                                        <i class="fa fa-search-plus"></i> Detail 
+                                    <i class="fa fa-search-plus"></i>
                                 </button>
-                                 <button
-                                    class="btn btn-xs btn-default col-xs-6 col-md-6"
-                                    ng-click="openModal('editPasienModal', '', i)">
-                                        <i class="fa fa-stethoscope"></i> Pemerikasaan
+                                <button 
+                                    type="button"
+                                    class="btn btn-xs btn-default btn-icon"
+                                    value="Pemeriksaan"
+                                    title="Pemeriksaan"
+                                    ng-click="openModal('editPasienModal', 'lg', i)">
+                                    <i class="fa fa-stethoscope"></i>
                                 </button>
-                                <button
-                                    class="btn btn-xs btn-warning col-xs-6 col-md-6"
+                                <button 
+                                    type="button"
+                                    class="btn btn-xs btn-warning btn-icon"
+                                    value="Transfer"
+                                    title="Transfer"
                                     ng-click="openModal('transferTransaksiRawatInapModal', '', i)">
-                                        <i class="fa fa-random"></i> Transfer 
+                                    <i class="fa fa-random"></i>
                                 </button>
-                                 <button
-                                    class="btn btn-xs btn-danger col-xs-6 col-md-6"
-                                    ng-click="openModal('dipulangkanModal', '', i)">
-                                        <i class="fa fa-home"></i> Dipulangkan
+                                <button 
+                                    type="button"
+                                    class="btn btn-xs btn-primary btn-icon"
+                                    value="Dirujuk Ke Laboratorium"
+                                    title="Dirujuk Ke Laboratorium"
+                                    ng-click="openRujukLab(i.id)">
+                                    <i class="fa fa-thermometer-quarter"></i>
                                 </button>
-                                 <button
-                                    class="btn btn-xs btn-primary col-xs-6 col-md-6"
-                                    ng-click="openModal('labModal', '', i)">
-                                        <i class="fa fa-thermometer-quarter"></i> Dirujuk Ke Laboratorium
+                                <button 
+                                    type="button"
+                                    class="btn btn-xs btn-success btn-icon"
+                                    value="Dirujuk Ke Radiologi"
+                                    title="Dirujuk Ke Radiologi"
+                                    ng-click="openRujukRad(i.id)">
+                                    <i class="fa fa-hourglass-half"></i>
                                 </button>
                                 <button
-                                    class="btn btn-xs btn-success col-xs-6 col-md-6"
-                                    ng-click="openModal('radiologiModal', '', i)">
-                                        <i class="fa fa-hourglass-half"></i> Dirujuk Ke Radiologi
+                                    type="button"
+                                    class="btn btn-xs btn-default btn-icon"
+                                    value="Dirujuk Ke Operasi"
+                                    title="Dirujuk Ke Operasi"
+                                    ng-click="openRujukOpr(i.id)">
+                                    <i class="fa fa-user-md"></i>
                                 </button>
-                                <button
-                                    class="btn btn-xs btn-default col-xs-6 col-md-6"
-                                    ng-click="openModal('operasiModal', '', i)">
-                                        <i class="fa fa-user-md"></i> Dirujuk Ke Oprasi
+                                <button 
+                                    type="button"
+                                    class="btn btn-xs btn-danger btn-icon"
+                                    value="Dipulangkan"
+                                    title="Dipulangkan"
+                                    ng-click="openDipulangkan(i.id)">
+                                    <i class="fa fa-home"></i>
                                 </button>
                             </td>
                         </tr>
@@ -687,7 +707,7 @@
                 </button>
             </div>
         </script> 
-        <script type="text/ng-template" id="dipulangkanModal">
+        <!-- <script type="text/ng-template" id="dipulangkanModal">
             <div class="row p-b-15">
                 <h4 class="modal-title">Anda Yakin</h4>
                 <p> Apakah Pasien Yakin di pulangkan ?</p>
@@ -706,8 +726,8 @@
                     Tidak
                 </button>
             </div>
-        </script> 
-        <script type="text/ng-template" id="operasiModal">
+        </script>  -->
+        <!-- <script type="text/ng-template" id="operasiModal">
             <div class="row p-b-15">
                 <h4 class="modal-title">Anda Yakin</h4>
                 <p> Apakah Pasien Yakin di Rujuk Operasi ?</p>
@@ -726,8 +746,8 @@
                     Tidak
                 </button>
             </div>
-        </script>    
-        <script type="text/ng-template" id="labModal">
+        </script>  -->   
+        <!-- <script type="text/ng-template" id="labModal">
             <div class="row p-b-15">
                 <h4 class="modal-title">Anda Yakin</h4>
                 <p> Apakah Pasien Yakin di Rujuk Laboratorium ?</p>
@@ -746,8 +766,8 @@
                     Tidak
                 </button>
             </div>
-        </script> 
-        <script type="text/ng-template" id="radiologiModal">
+        </script>  -->
+        <!-- <script type="text/ng-template" id="radiologiModal">
             <div class="row p-b-15">
                 <h4 class="modal-title">Anda Yakin</h4>
                 <p> Apakah Pasien Yakin di Rujuk Radiologi ?</p>
@@ -766,7 +786,7 @@
                     Tidak
                 </button>
             </div>
-        </script>     
+        </script>     --> 
     </div>
 @endsection
 @section('scripts')
