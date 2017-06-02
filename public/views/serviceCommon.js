@@ -453,6 +453,14 @@ angular.module('adminApp')
                 submodule: 'common',
                 controller: 'beds'
             }
+        },
+        getInfoBed: {
+            method: 'GET',
+            params: {
+                module: 'api',
+                submodule: 'common',
+                controller: 'rooms-available'
+            }
         }
     });
 });

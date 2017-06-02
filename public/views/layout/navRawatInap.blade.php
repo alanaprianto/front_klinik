@@ -18,26 +18,29 @@
                 <span class="sidebar-nav-item-icon fa fa-shopping-basket fa-fw"></span>
                 <span class="sidebar-nav-item">Transaksi Rawat Inap</span>
             </a>
-        </li> 
+        </li>        
         <li>
-            <a href="infoRawatInap" >
+            <a href="infoRawatInap" class="has-arrow" aria-expanded="false">
                 <span class="sidebar-nav-item-icon fa fa-info-circle fa-fw"></span>
                 <span class="sidebar-nav-item">Informasi Rawat Inap</span>
             </a>
-            <ul class="nav nav-second-level" aria-expanded="true">
-                <li class="">
+            <ul class="module-left-dropdown" aria-expanded="false">
+                <li>
+                    <a href="/infoBed">Informasi Ketersediaan Bed</a>
+                </li>
+                <li>
                     <a href="#">Sensus Harian</a>
                 </li>
-                <li class="">
+                <li>
                     <a href="#">10 Besar Diagnosa IRNA</a>
                 </li>
-                <li class="">
+                <li>
                     <a href="#">10 Besar Tindakan IRNA</a>
                 </li>
-                <li class="">
+                <li>
                     <a href="#">Rekap Tindakan IRNA</a>
                 </li>
-                <li class="">
+                <li>
                     <a href="#">Tindakan IRNA Bangsal</a>
                 </li>                
             </ul>

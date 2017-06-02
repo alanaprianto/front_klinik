@@ -21,9 +21,9 @@
             </a>
         </li>
         <li>
-            <a href="dataPasien">
+            <a href="data_patient">
                 <span class="sidebar-nav-item-icon fa fa-male"></span>
-                <span class="sidebar-nav-item">Pengunjung</span>
+                <span class="sidebar-nav-item">Data Pasien</span>
             </a>
         </li>
        

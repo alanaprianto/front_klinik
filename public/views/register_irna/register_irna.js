@@ -40,8 +40,8 @@ angular.module('adminApp')
                 result.datas.room;
                 result.datas.class_rooms;
                 
-                $scope.tableListPatients = tempData; 
-            });           
+                $scope.tableListPatients = tempData;
+            });
         }
 
         var getDefaultValues = function() {

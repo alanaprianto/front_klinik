@@ -25,6 +25,3 @@
 @section('content')
    
 @endsection
-@section('scripts')
-<script src="views/staff/staff.js"></script>
-@endsection

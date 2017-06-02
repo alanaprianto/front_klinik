@@ -72,8 +72,8 @@
                                 </form>
                             </div>
                         </div>
-                    </div>                
-                    <div class="col-md-12">                        
+                    </div>
+                    <div class="col-md-12">
                         <table class="ui teal celled table compact display nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
