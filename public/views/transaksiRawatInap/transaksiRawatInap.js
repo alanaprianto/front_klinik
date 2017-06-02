@@ -156,10 +156,10 @@ angular.module('adminApp')
         }
 
         var listTransaksiRawatInap = function () {
-            return ServicesAdmin.getVisitor({reg_type:1}).$promise
+            return ServicesAdmin.getCheupInpatients().$promise
             .then(function (result) {
                 var tempData = [];
-                result.datas.patients.forEach(function (item) {
+                result.datas.registers.patient.forEach(function (item) {
                     tempData.push(item);
                     item.displayedStatus = statusOnQueue(item);
                     item.displayedQueue = tripleDigit(item.queue_number);
@@ -177,12 +177,8 @@ angular.module('adminApp')
                             item.displayedDay = 0;
                         }
 
-                      
                     }
-                    if (item.reference) {
-                        item.displayedDoctor = getDoctorName(item.reference.staff_id);
-                        item.displayedPoli = getPoliName(item.reference.poly_id);
-                    }
+                    
                       switch (item.gender) {
                     case 1:
                         item.displayedGender = 'Laki-laki';
